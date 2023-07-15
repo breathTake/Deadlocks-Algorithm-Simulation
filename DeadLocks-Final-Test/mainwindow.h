@@ -28,5 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    bool bankiersAlgorithm(int stillNeededRessources_R[5][4], int assignedRessources_C[5][4], int availableRessources_E[4], int occupiedRessources_P[4], int differenceRessources_A[4]);
+
 };
 #endif // MAINWINDOW_H

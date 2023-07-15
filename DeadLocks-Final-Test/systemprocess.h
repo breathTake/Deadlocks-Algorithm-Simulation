@@ -4,8 +4,6 @@
 #include <QObject>
 #include "systemressource.h"
 
-using std::vector;
-
 class SystemProcess : public QObject
 {
     Q_OBJECT

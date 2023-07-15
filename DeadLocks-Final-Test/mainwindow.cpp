@@ -52,6 +52,45 @@ void MainWindow::run()
         countRepititionsDone++;
     }
     secondTimer->start(1000);
+
+
+    int assignedRessources_C[5][4] = {{3, 0, 1, 1},
+                                      {0, 1, 0, 0},
+                                      {1, 1, 1, 0},
+                                      {1, 1, 0, 1},
+                                      {0, 0, 0, 0}};
+    int stillNeededRessources_R[5][4] = {{1, 1, 0, 0},
+                                         {0, 1, 1, 2},
+                                         {3, 1, 0, 0},
+                                         {0, 0, 1, 0},
+                                         {2, 1, 1, 0}};
+    int availableRessources_E[4] = {6, 3, 4, 2};
+    int occupiedRessources_P[4] = {5, 3, 2, 2};
+    int differenceRessources_A[4] = {1, 0, 2, 0};
+
+    bool isDeadlock = bankiersAlgorithm(stillNeededRessources_R, assignedRessources_C, availableRessources_E, occupiedRessources_P, differenceRessources_A);
+    if(isDeadlock){
+        ui->deadlockIndicator->setText("True");
+    }else{
+        ui->deadlockIndicator->setText("False");
+    }
+}
+
+bool MainWindow::bankiersAlgorithm(int stillNeededRessources_R[5][4], int assignedRessources_C[5][4], int availableRessources_E[4], int occupiedRessources_P[4], int differenceRessources_A[4])
+{
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 4; j++) {
+            if(stillNeededRessources_R[i][j] <= differenceRessources_A[j]) {
+                differenceRessources_A[j] += assignedRessources_C[i][j];
+                availableRessources_E[j] -= assignedRessources_C[i][j];
+                stillNeededRessources_R[i][j] = 0;
+                return true; // kein deadlock
+            }
+            else {
+                return false; // Deadlock
+            }
+        }
+    }
 }
 
 
@@ -88,6 +127,7 @@ void MainWindow::update_resource_occupation(int availableRessources_E[4], int oc
     ui->Plotter_label_occupation->setText(QString::number(occupiedRessources_P[2]) + "/" + QString::number(availableRessources_E[2]));
     ui->Tapedrive_label_occupation->setText(QString::number(occupiedRessources_P[3]) + "/" + QString::number(availableRessources_E[3]));
 }
+
 
 QList<SystemRessource> setUpResources()
 {

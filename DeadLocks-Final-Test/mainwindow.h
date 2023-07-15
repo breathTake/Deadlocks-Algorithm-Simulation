@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QList>
+#include <SystemRessource.h>
+#include <SystemProcess.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +17,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QList<SystemRessource> setUpResources();
+    QList<SystemProcess> setUpProcesses();
+
+private slots:
+    void on_pushButton_clicked();
+    void run();
+    void update_occupation_matrix(int occupiedResources[3][4]);
 
 private:
     Ui::MainWindow *ui;

@@ -116,6 +116,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_resources.cpp
 release/qrc_resources.cpp: ../DeadLocks-Final-Test/resources.qrc \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/rcc.exe \
+		../DeadLocks-Final-Test/resources/Icon_White.png \
+		../DeadLocks-Final-Test/resources/Printer_on.png \
 		../DeadLocks-Final-Test/resources/Printer_off.png \
 		../DeadLocks-Final-Test/resources/Occupation_Matrix.png
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\rcc.exe -name resources --no-zstd ..\DeadLocks-Final-Test\resources.qrc -o release\qrc_resources.cpp
@@ -782,9 +784,15 @@ release/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QMenuBar \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qmenubar.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qmenu.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QPushButton \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qabstractbutton.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QStatusBar \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qstatusbar.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QWidget
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QWidget \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QTimer \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtimer.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\DeadLocks-Final-Test\mainwindow.cpp
 
 release/systemprocess.o: ../DeadLocks-Final-Test/systemprocess.cpp ../DeadLocks-Final-Test/systemprocess.h \

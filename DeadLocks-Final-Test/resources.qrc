@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>resources/Occupation_Matrix.png</file>
         <file>resources/Printer_off.png</file>
+        <file>resources/Icon_White.png</file>
+        <file>resources/Printer_on.png</file>
     </qresource>
 </RCC>

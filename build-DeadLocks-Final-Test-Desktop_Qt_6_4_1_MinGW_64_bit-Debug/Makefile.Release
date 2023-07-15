@@ -117,9 +117,16 @@ compiler_rcc_clean:
 release/qrc_resources.cpp: ../DeadLocks-Final-Test/resources.qrc \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/rcc.exe \
 		../DeadLocks-Final-Test/resources/Icon_White.png \
+		../DeadLocks-Final-Test/resources/plotter_off.png \
 		../DeadLocks-Final-Test/resources/Printer_on.png \
 		../DeadLocks-Final-Test/resources/Printer_off.png \
-		../DeadLocks-Final-Test/resources/Occupation_Matrix.png
+		../DeadLocks-Final-Test/resources/tapedrive_off.png \
+		../DeadLocks-Final-Test/resources/Background_resources.png \
+		../DeadLocks-Final-Test/resources/tapedrive_on.png \
+		../DeadLocks-Final-Test/resources/cd_on.png \
+		../DeadLocks-Final-Test/resources/cd_off.png \
+		../DeadLocks-Final-Test/resources/Occupation_Matrix.png \
+		../DeadLocks-Final-Test/resources/plotter_on.png
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\rcc.exe -name resources --no-zstd ..\DeadLocks-Final-Test\resources.qrc -o release\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -269,6 +276,9 @@ release/moc_mainwindow.cpp: ../DeadLocks-Final-Test/mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
+		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemProcess.h \
+		../DeadLocks-Final-Test/systemressource.h \
 		release/moc_predefs.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\mainwindow.h -o release\moc_mainwindow.cpp
@@ -585,8 +595,10 @@ release/main.o: ../DeadLocks-Final-Test/main.cpp ../DeadLocks-Final-Test/mainwin
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
-		../DeadLocks-Final-Test/systemprocess.h \
+		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemProcess.h \
 		../DeadLocks-Final-Test/systemressource.h \
+		../DeadLocks-Final-Test/systemprocess.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcoreapplication.h \
@@ -750,6 +762,9 @@ release/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
+		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemProcess.h \
+		../DeadLocks-Final-Test/systemressource.h \
 		ui_mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QVariant \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QIcon \

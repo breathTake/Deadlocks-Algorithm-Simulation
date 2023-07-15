@@ -4,5 +4,12 @@
         <file>resources/Printer_off.png</file>
         <file>resources/Icon_White.png</file>
         <file>resources/Printer_on.png</file>
+        <file>resources/cd_off.png</file>
+        <file>resources/cd_on.png</file>
+        <file>resources/plotter_off.png</file>
+        <file>resources/plotter_on.png</file>
+        <file>resources/tapedrive_off.png</file>
+        <file>resources/tapedrive_on.png</file>
+        <file>resources/Background_resources.png</file>
     </qresource>
 </RCC>

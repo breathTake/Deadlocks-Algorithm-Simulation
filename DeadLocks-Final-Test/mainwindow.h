@@ -24,6 +24,7 @@ private slots:
     void on_pushButton_clicked();
     void run();
     void update_occupation_matrix(int occupiedResources[3][4]);
+    void update_resource_occupation(int availableRessources_E[4], int occupiedRessources_P[4]);
 
 private:
     Ui::MainWindow *ui;

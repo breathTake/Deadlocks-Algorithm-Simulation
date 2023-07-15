@@ -38,8 +38,20 @@ public:
     QLabel *C4_label_occupation;
     QLabel *A4_label_occupation;
     QLabel *Occupation_Matrix_Label;
-    QLabel *Printer_off_label;
     QPushButton *pushButton;
+    QLabel *background_resources;
+    QLabel *Printer_background_label;
+    QLabel *Cd_background_label;
+    QLabel *Plotter_background_label;
+    QLabel *Tapedrive_background_label;
+    QLabel *Printer_label_occupation_list;
+    QLabel *Cd_label_occupation_list;
+    QLabel *Tapedrive_label_occupation_list_2;
+    QLabel *Plotter_label_occupation_list;
+    QLabel *Printer_label_occupation;
+    QLabel *Cd_label_occupation;
+    QLabel *Tapedrive_label_occupation;
+    QLabel *Plotter_label_occupation;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -147,14 +159,104 @@ public:
         Occupation_Matrix_Label->setObjectName("Occupation_Matrix_Label");
         Occupation_Matrix_Label->setGeometry(QRect(654, 397, 591, 371));
         Occupation_Matrix_Label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Occupation_Matrix.png);"));
-        Printer_off_label = new QLabel(centralwidget);
-        Printer_off_label->setObjectName("Printer_off_label");
-        Printer_off_label->setGeometry(QRect(100, 410, 171, 131));
-        Printer_off_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);"));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(140, 190, 83, 29));
+        pushButton->setGeometry(QRect(120, 80, 83, 29));
+        background_resources = new QLabel(centralwidget);
+        background_resources->setObjectName("background_resources");
+        background_resources->setGeometry(QRect(90, 400, 531, 371));
+        background_resources->setStyleSheet(QString::fromUtf8("image: url(:/resources/Background_resources.png);"));
+        Printer_background_label = new QLabel(centralwidget);
+        Printer_background_label->setObjectName("Printer_background_label");
+        Printer_background_label->setGeometry(QRect(130, 430, 231, 151));
+        Printer_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
+"background-color: rgb(73, 81, 103);"));
+        Printer_background_label->setScaledContents(true);
+        Cd_background_label = new QLabel(centralwidget);
+        Cd_background_label->setObjectName("Cd_background_label");
+        Cd_background_label->setGeometry(QRect(360, 430, 231, 151));
+        Cd_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
+"background-color: rgb(73, 81, 103);"));
+        Cd_background_label->setScaledContents(true);
+        Plotter_background_label = new QLabel(centralwidget);
+        Plotter_background_label->setObjectName("Plotter_background_label");
+        Plotter_background_label->setGeometry(QRect(130, 590, 231, 151));
+        Plotter_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
+"background-color: rgb(73, 81, 103);"));
+        Plotter_background_label->setScaledContents(true);
+        Tapedrive_background_label = new QLabel(centralwidget);
+        Tapedrive_background_label->setObjectName("Tapedrive_background_label");
+        Tapedrive_background_label->setGeometry(QRect(360, 590, 231, 151));
+        Tapedrive_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
+"background-color: rgb(73, 81, 103);"));
+        Tapedrive_background_label->setScaledContents(true);
+        Printer_label_occupation_list = new QLabel(centralwidget);
+        Printer_label_occupation_list->setObjectName("Printer_label_occupation_list");
+        Printer_label_occupation_list->setGeometry(QRect(170, 541, 141, 16));
+        Printer_label_occupation_list->setFont(font);
+        Printer_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(237, 237, 237);"));
+        Printer_label_occupation_list->setAlignment(Qt::AlignCenter);
+        Cd_label_occupation_list = new QLabel(centralwidget);
+        Cd_label_occupation_list->setObjectName("Cd_label_occupation_list");
+        Cd_label_occupation_list->setGeometry(QRect(400, 540, 141, 16));
+        Cd_label_occupation_list->setFont(font);
+        Cd_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(237, 237, 237);"));
+        Cd_label_occupation_list->setAlignment(Qt::AlignCenter);
+        Tapedrive_label_occupation_list_2 = new QLabel(centralwidget);
+        Tapedrive_label_occupation_list_2->setObjectName("Tapedrive_label_occupation_list_2");
+        Tapedrive_label_occupation_list_2->setGeometry(QRect(400, 700, 141, 16));
+        Tapedrive_label_occupation_list_2->setFont(font);
+        Tapedrive_label_occupation_list_2->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(237, 237, 237);"));
+        Tapedrive_label_occupation_list_2->setAlignment(Qt::AlignCenter);
+        Plotter_label_occupation_list = new QLabel(centralwidget);
+        Plotter_label_occupation_list->setObjectName("Plotter_label_occupation_list");
+        Plotter_label_occupation_list->setGeometry(QRect(170, 700, 141, 16));
+        Plotter_label_occupation_list->setFont(font);
+        Plotter_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(237, 237, 237);"));
+        Plotter_label_occupation_list->setAlignment(Qt::AlignCenter);
+        Printer_label_occupation = new QLabel(centralwidget);
+        Printer_label_occupation->setObjectName("Printer_label_occupation");
+        Printer_label_occupation->setGeometry(QRect(250, 490, 71, 42));
+        Printer_label_occupation->setFont(font);
+        Printer_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(106, 112, 129);\n"
+""));
+        Printer_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        Cd_label_occupation = new QLabel(centralwidget);
+        Cd_label_occupation->setObjectName("Cd_label_occupation");
+        Cd_label_occupation->setGeometry(QRect(480, 490, 71, 42));
+        Cd_label_occupation->setFont(font);
+        Cd_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(106, 112, 129);"));
+        Cd_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        Tapedrive_label_occupation = new QLabel(centralwidget);
+        Tapedrive_label_occupation->setObjectName("Tapedrive_label_occupation");
+        Tapedrive_label_occupation->setGeometry(QRect(480, 650, 71, 42));
+        Tapedrive_label_occupation->setFont(font);
+        Tapedrive_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(106, 112, 129);"));
+        Tapedrive_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        Plotter_label_occupation = new QLabel(centralwidget);
+        Plotter_label_occupation->setObjectName("Plotter_label_occupation");
+        Plotter_label_occupation->setGeometry(QRect(250, 650, 71, 42));
+        Plotter_label_occupation->setFont(font);
+        Plotter_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
+"font: 500 12pt \"Futura PT\";\n"
+"background-color: rgb(106, 112, 129);"));
+        Plotter_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         MainWindow->setCentralWidget(centralwidget);
+        background_resources->raise();
         Occupation_Matrix_Label->raise();
         C3_label_occupation->raise();
         C1_label_occupation->raise();
@@ -168,8 +270,19 @@ public:
         A2_label_occupation->raise();
         C4_label_occupation->raise();
         A4_label_occupation->raise();
-        Printer_off_label->raise();
         pushButton->raise();
+        Printer_background_label->raise();
+        Cd_background_label->raise();
+        Plotter_background_label->raise();
+        Tapedrive_background_label->raise();
+        Printer_label_occupation_list->raise();
+        Cd_label_occupation_list->raise();
+        Tapedrive_label_occupation_list_2->raise();
+        Plotter_label_occupation_list->raise();
+        Printer_label_occupation->raise();
+        Cd_label_occupation->raise();
+        Tapedrive_label_occupation->raise();
+        Plotter_label_occupation->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 1314, 31));
@@ -199,8 +312,20 @@ public:
         C4_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         A4_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Occupation_Matrix_Label->setText(QString());
-        Printer_off_label->setText(QString());
         pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        background_resources->setText(QString());
+        Printer_background_label->setText(QString());
+        Cd_background_label->setText(QString());
+        Plotter_background_label->setText(QString());
+        Tapedrive_background_label->setText(QString());
+        Printer_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Cd_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Tapedrive_label_occupation_list_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Plotter_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Printer_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Cd_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Tapedrive_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Plotter_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
     } // retranslateUi
 
 };

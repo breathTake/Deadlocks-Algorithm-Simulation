@@ -678,26 +678,10 @@ background-color: rgb(106, 112, 129);</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="background_isDeadLock">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>950</x>
-      <y>50</y>
-      <width>301</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/resources/Background_resources.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
+      <x>450</x>
       <y>50</y>
       <width>261</width>
       <height>198</height>
@@ -730,16 +714,16 @@ background-color: rgb(106, 112, 129);</string>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radio_preempt">
+          <widget class="QRadioButton" name="radio_circularw">
            <property name="text">
-            <string>No Preemption</string>
+            <string>Circular Wait</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radio_circularw">
+          <widget class="QRadioButton" name="radio_preempt">
            <property name="text">
-            <string>Circular Wait</string>
+            <string>No Preemption</string>
            </property>
           </widget>
          </item>
@@ -790,7 +774,22 @@ background-color: rgb(106, 112, 129);</string>
      </item>
     </layout>
    </widget>
-   <zorder>background_isDeadLock</zorder>
+   <widget class="QLabel" name="Deadlock_test_running_label">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>20</y>
+      <width>381</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
    <zorder>background_resources</zorder>
    <zorder>Occupation_Matrix_Label</zorder>
    <zorder>C3_label_occupation</zorder>
@@ -805,7 +804,6 @@ background-color: rgb(106, 112, 129);</string>
    <zorder>A2_label_occupation</zorder>
    <zorder>C4_label_occupation</zorder>
    <zorder>A4_label_occupation</zorder>
-   <zorder>button_start_simulation</zorder>
    <zorder>Printer_background_label</zorder>
    <zorder>Cd_background_label</zorder>
    <zorder>Plotter_background_label</zorder>
@@ -818,15 +816,8 @@ background-color: rgb(106, 112, 129);</string>
    <zorder>Cd_label_occupation</zorder>
    <zorder>Tapedrive_label_occupation</zorder>
    <zorder>Plotter_label_occupation</zorder>
-   <zorder>isDeadLock</zorder>
-   <zorder>deadlockIndicator</zorder>
-   <zorder>radio_bankier</zorder>
-   <zorder>radio_holdwait</zorder>
-   <zorder>radio_preempt</zorder>
-   <zorder>algorithm_label</zorder>
-   <zorder>button_start_simulation</zorder>
-   <zorder></zorder>
-   <zorder>button_start_simulation</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>Deadlock_test_running_label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

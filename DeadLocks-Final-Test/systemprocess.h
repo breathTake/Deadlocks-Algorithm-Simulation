@@ -40,6 +40,12 @@ public:
 
     void requestResource(SystemResource resource, int count);
     void releaseResource(SystemResource resource, int count);
+
+    bool eliminateHoldAndWait(QList<SystemResource> &resources, const QList<int>& counts);
+    QList<SystemResource> eliminateCircularWait(QList<SystemResource> neededResources);
+    void eliminateNoPreemption(SystemResource resource, int count);
+    bool cautiousResourceAllocation(const QList<SystemProcess>& processes, const QList<SystemResource>& resources);
+
     void print();
 
 signals:

@@ -19,7 +19,9 @@ public:
     SystemResource(QString name, int count);
 
 
-    int getResourceId() const;
+    int getResourceId() const{
+        return resourceId;
+    }
 
     void setResourceId(int resourceId);
 
@@ -39,6 +41,9 @@ public:
         SystemResource::count = count;
     }
 
+    void decreaseCount(int count1){
+        SystemResource::count -= count1;
+    }
 
     void print();
 

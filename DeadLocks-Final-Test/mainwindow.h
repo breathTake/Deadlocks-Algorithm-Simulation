@@ -21,12 +21,15 @@ public:
     QList<SystemProcess> setUpProcesses();
 
 private slots:
-    void on_pushButton_clicked();
     void run();
     void update_occupation_matrix(int occupiedResources[3][4]);
     void update_resource_occupation(int availableRessources_E[4], int occupiedRessources_P[4]);
 
+    void on_button_start_simulation_clicked();
+
 private:
     Ui::MainWindow *ui;
+    bool bankiersAlgorithm(int stillNeededRessources_R[5][4], int assignedRessources_C[5][4], int availableRessources_E[4], int occupiedRessources_P[4], int differenceRessources_A[4]);
+
 };
 #endif // MAINWINDOW_H

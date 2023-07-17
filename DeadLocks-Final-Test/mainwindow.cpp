@@ -8,6 +8,10 @@ int system_resource_count = 4;
 int system_process_count = 3;
 QTimer *secondTimer;
 
+int assignedRessources_C[3][4];
+int availableRessources_E[4];
+int occupiedRessources_P[4];
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -25,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
     QPixmap Pixmap_Tapedrive_off= QPixmap(":/resources/tapedrive_off.png");
     ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
+    QPixmap Pixmap_Deadlock_test= QPixmap(":/resources/DeadLockTestRunning.png");
+    ui->Deadlock_test_running_label->setPixmap(Pixmap_Deadlock_test);
 
     int assignedRessources_C[3][4] = {{3, 0, 1, 1},
                                           {0, 1, 0, 0},
@@ -46,24 +52,53 @@ MainWindow::~MainWindow()
 
 void MainWindow::run()
 {
+
+    int stillNeededRessources_R[5][4] = {{1, 1, 0, 0},
+                                         {0, 1, 1, 2},
+                                         {3, 1, 0, 0},
+                                         {0, 0, 1, 0},
+                                         {2, 1, 1, 0}};
+    int differenceRessources_A[4] = {1, 0, 2, 0};
+
     if(countRepititionsDone < countRepititions)
     {
         ui->A1_label_occupation->setNum(countRepititionsDone);
         countRepititionsDone++;
     }
     secondTimer->start(1000);
+
+    bool isDeadlock = bankiersAlgorithm(stillNeededRessources_R, assignedRessources_C, availableRessources_E, occupiedRessources_P, differenceRessources_A);
+    if(isDeadlock){
+        ui->deadlockIndicator->setText("True");
+    }else{
+        ui->deadlockIndicator->setText("False");
+    }
 }
 
+bool MainWindow::bankiersAlgorithm(int stillNeededRessources_R[5][4], int assignedRessources_C[5][4], int availableRessources_E[4], int occupiedRessources_P[4], int differenceRessources_A[4])
+{
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 4; j++) {
+            if(stillNeededRessources_R[i][j] <= differenceRessources_A[j]) {
+                differenceRessources_A[j] += assignedRessources_C[i][j];
+                availableRessources_E[j] -= assignedRessources_C[i][j];
+                stillNeededRessources_R[i][j] = 0;
+                return true; // kein deadlock
+            }
+            else {
+                return false; // Deadlock
+            }
+        }
+    }
+}
 
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_button_start_simulation_clicked()
 {
     QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_on.png");
     ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
     ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
     secondTimer->start(1000);
 }
-
 
 void MainWindow::update_occupation_matrix(int occupiedResources[3][4])
 {
@@ -88,6 +123,7 @@ void MainWindow::update_resource_occupation(int availableRessources_E[4], int oc
     ui->Plotter_label_occupation->setText(QString::number(occupiedRessources_P[2]) + "/" + QString::number(availableRessources_E[2]));
     ui->Tapedrive_label_occupation->setText(QString::number(occupiedRessources_P[3]) + "/" + QString::number(availableRessources_E[3]));
 }
+
 
 QList<SystemRessource> setUpResources()
 {

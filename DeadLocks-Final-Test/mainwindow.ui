@@ -21,334 +21,6 @@
    <string notr="true">background-color: rgb(52, 61, 85);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="C3_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>637</y>
-      <width>50</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="C1_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>640</y>
-      <width>50</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="B1_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>592</y>
-      <width>50</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="B2_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>590</y>
-      <width>51</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A1_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>543</y>
-      <width>50</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A3_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>540</y>
-      <width>50</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="B3_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>589</y>
-      <width>50</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="C2_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>638</y>
-      <width>51</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="B4_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1120</x>
-      <y>592</y>
-      <width>52</width>
-      <height>60</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A2_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>541</y>
-      <width>50</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="C4_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1120</x>
-      <y>640</y>
-      <width>50</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-background-color: rgb(73, 81, 103);
-font: 500 12pt &quot;Futura PT&quot;;</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A4_label_occupation">
-    <property name="geometry">
-     <rect>
-      <x>1120</x>
-      <y>543</y>
-      <width>50</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Futura PT</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="Occupation_Matrix_Label">
-    <property name="geometry">
-     <rect>
-      <x>654</x>
-      <y>397</y>
-      <width>591</width>
-      <height>371</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/resources/Occupation_Matrix.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="background_resources">
     <property name="geometry">
      <rect>
@@ -681,13 +353,47 @@ background-color: rgb(106, 112, 129);</string>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>50</y>
+      <x>20</x>
+      <y>60</y>
       <width>261</width>
-      <height>198</height>
+      <height>234</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="isDeadLock">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Is Deadlock? :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="deadlockIndicator">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -738,72 +444,714 @@ background-color: rgb(106, 112, 129);</string>
        </item>
       </layout>
      </item>
-     <item row="1" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="isDeadLock">
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Is Deadlock? :</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="deadlockIndicator">
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>0</number>
-         </property>
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="Deadlock_test_running_label">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>20</y>
-      <width>381</width>
-      <height>271</height>
+      <x>290</x>
+      <y>50</y>
+      <width>291</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">image: url(:/resources/DeadLockTestRunning.png);</string>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
+   <widget class="QGroupBox" name="OccupationMatrix">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>390</y>
+      <width>601</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: none;</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <widget class="QLabel" name="Occupation_Matrix_Label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>591</width>
+       <height>371</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/resources/Occupation_Matrix.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C2_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>250</y>
+       <width>51</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A1_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>155</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B1_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>204</y>
+       <width>50</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A3_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>152</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C3_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>249</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B2_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>202</y>
+       <width>51</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C4_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>252</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+background-color: rgb(73, 81, 103);
+font: 500 12pt &quot;Futura PT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A4_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>155</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C1_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>252</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A2_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>153</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B3_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>201</y>
+       <width>50</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B4_label_occupation">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>204</y>
+       <width>52</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="OccupationMatrix_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>0</y>
+      <width>601</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: none;</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <widget class="QLabel" name="Needed_Matrix_Label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>591</width>
+       <height>371</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/resources/Required_Matrix.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C2_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>250</y>
+       <width>51</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A1_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>155</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B1_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>204</y>
+       <width>50</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A3_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>152</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C3_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>249</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B2_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>202</y>
+       <width>51</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C4_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>252</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+background-color: rgb(73, 81, 103);
+font: 500 12pt &quot;Futura PT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A4_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>155</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="C1_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>252</y>
+       <width>50</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="A2_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>153</y>
+       <width>50</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B3_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>201</y>
+       <width>50</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="B4_label_needed">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>204</y>
+       <width>52</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Futura PT</family>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>Deadlock_test_running_label</zorder>
    <zorder>background_resources</zorder>
-   <zorder>Occupation_Matrix_Label</zorder>
-   <zorder>C3_label_occupation</zorder>
-   <zorder>C1_label_occupation</zorder>
-   <zorder>B1_label_occupation</zorder>
-   <zorder>B2_label_occupation</zorder>
-   <zorder>A1_label_occupation</zorder>
-   <zorder>A3_label_occupation</zorder>
-   <zorder>B3_label_occupation</zorder>
-   <zorder>C2_label_occupation</zorder>
-   <zorder>B4_label_occupation</zorder>
-   <zorder>A2_label_occupation</zorder>
-   <zorder>C4_label_occupation</zorder>
-   <zorder>A4_label_occupation</zorder>
    <zorder>Printer_background_label</zorder>
    <zorder>Cd_background_label</zorder>
    <zorder>Plotter_background_label</zorder>
@@ -817,7 +1165,8 @@ background-color: rgb(106, 112, 129);</string>
    <zorder>Tapedrive_label_occupation</zorder>
    <zorder>Plotter_label_occupation</zorder>
    <zorder>layoutWidget</zorder>
-   <zorder>Deadlock_test_running_label</zorder>
+   <zorder>OccupationMatrix</zorder>
+   <zorder>OccupationMatrix_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -825,7 +1174,7 @@ background-color: rgb(106, 112, 129);</string>
      <x>0</x>
      <y>0</y>
      <width>1314</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>

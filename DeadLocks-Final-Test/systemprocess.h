@@ -1,45 +1,45 @@
 #ifndef SYSTEMPROCESS_H
 #define SYSTEMPROCESS_H
 
-#include <QObject>
-#include "systemressource.h"
+#include <QList>
+#include "systemresource.h"
 
-class SystemProcess : public QObject
+class SystemProcess
 {
-    Q_OBJECT
+
 private:
     QString name;
     int processId;
 
-    QList<SystemRessource> neededRessources;
-    QList<SystemRessource> assignedRessources;
+    QList<SystemResource> neededResources;
+    QList<SystemResource> assignedResources;
 
 public:
-    explicit SystemProcess(QObject *parent = nullptr);
+    SystemProcess(QString name,int processId, int min, int max);
 
     void setName(const QString &name) {
         SystemProcess::name = name;
     }
 
-    const QList<SystemRessource> &getNeededRessources() const {
-        return neededRessources;
+    const QList<SystemResource> getNeededResources() const {
+        return neededResources;
     }
 
-    void setNeededRessources(const QList<SystemRessource> &neededRessources) {
-        SystemProcess::neededRessources = neededRessources;
+    void setNeededResources(const QList<SystemResource> neededResources) {
+        SystemProcess::neededResources = neededResources;
     }
 
-    const QList<SystemRessource> &getAssignedRessources() const {
-        return assignedRessources;
+    const QList<SystemResource> getAssignedResources() const {
+        return assignedResources;
     }
 
-    void setAssignedRessources(const QList<SystemRessource> &assignedRessources) {
-        SystemProcess::assignedRessources = assignedRessources;
+    void setAssignedResources(const QList<SystemResource> assignedResources) {
+        SystemProcess::assignedResources = assignedResources;
     }
 
-    SystemProcess(QString name,int processId, int min, int max);
-    void requestRessource(SystemRessource ressource, int count);
-    void releaseRessource(SystemRessource ressource, int count);
+
+    void requestResource(SystemResource resource, int count);
+    void releaseResource(SystemResource resource, int count);
     void print();
 
 signals:

@@ -12,12 +12,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     systemprocess.cpp \
-    systemressource.cpp
+    systemresource.cpp
 
 HEADERS += \
     mainwindow.h \
     systemprocess.h \
-    systemressource.h
+    systemresource.h
 
 FORMS += \
     mainwindow.ui

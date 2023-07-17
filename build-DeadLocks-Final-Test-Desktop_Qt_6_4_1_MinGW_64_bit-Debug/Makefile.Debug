@@ -53,25 +53,21 @@ OBJECTS_DIR   = debug
 SOURCES       = ..\DeadLocks-Final-Test\main.cpp \
 		..\DeadLocks-Final-Test\mainwindow.cpp \
 		..\DeadLocks-Final-Test\systemprocess.cpp \
-		..\DeadLocks-Final-Test\systemressource.cpp debug\qrc_resources.cpp \
-		debug\moc_mainwindow.cpp \
-		debug\moc_systemprocess.cpp \
-		debug\moc_systemressource.cpp
+		..\DeadLocks-Final-Test\systemresource.cpp debug\qrc_resources.cpp \
+		debug\moc_mainwindow.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
 		debug/systemprocess.o \
-		debug/systemressource.o \
+		debug/systemresource.o \
 		debug/qrc_resources.o \
-		debug/moc_mainwindow.o \
-		debug/moc_systemprocess.o \
-		debug/moc_systemressource.o
+		debug/moc_mainwindow.o
 
 DIST          =  ..\DeadLocks-Final-Test\mainwindow.h \
 		..\DeadLocks-Final-Test\systemprocess.h \
-		..\DeadLocks-Final-Test\systemressource.h ..\DeadLocks-Final-Test\main.cpp \
+		..\DeadLocks-Final-Test\systemresource.h ..\DeadLocks-Final-Test\main.cpp \
 		..\DeadLocks-Final-Test\mainwindow.cpp \
 		..\DeadLocks-Final-Test\systemprocess.cpp \
-		..\DeadLocks-Final-Test\systemressource.cpp
+		..\DeadLocks-Final-Test\systemresource.cpp
 QMAKE_TARGET  = DeadLocks-Final-Test
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = DeadLocks-Final-Test.exe
@@ -91,10 +87,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) DeadLocks-Final-Test.zip $(SOURCES) $(DIST) ..\DeadLocks-Final-Test\DeadLocks-Final-Test.pro C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\spec_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\device_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\sanitize.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\gcc-base.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\g++-base.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\windows-vulkan.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\g++-win32.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\windows-desktop.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\qconfig.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_core.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_help.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_network.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktimeline.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktimeline_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_repparser.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_repparser_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt_functions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\win32-g++\qmake.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exclusive_builds.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\toolchain.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\default_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\default_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resolve_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\default_post.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\build_pass.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qml_debug.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\entrypoint.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\precompile_header.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\warn_on.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resources_functions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resources.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\moc.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\opengl.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\uic.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qmake_use.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\file_copies.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\windows.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\testcase_targets.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exceptions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\yacc.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\lex.prf ..\DeadLocks-Final-Test\DeadLocks-Final-Test.pro ..\DeadLocks-Final-Test\resources.qrc C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Widgets.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Gui.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Core.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6EntryPoint.prl   ..\DeadLocks-Final-Test\resources.qrc C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\data\dummy.cpp ..\DeadLocks-Final-Test\mainwindow.h ..\DeadLocks-Final-Test\systemprocess.h ..\DeadLocks-Final-Test\systemressource.h  ..\DeadLocks-Final-Test\main.cpp ..\DeadLocks-Final-Test\mainwindow.cpp ..\DeadLocks-Final-Test\systemprocess.cpp ..\DeadLocks-Final-Test\systemressource.cpp ..\DeadLocks-Final-Test\mainwindow.ui    
+	$(ZIP) DeadLocks-Final-Test.zip $(SOURCES) $(DIST) ..\DeadLocks-Final-Test\DeadLocks-Final-Test.pro C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\spec_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\device_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\sanitize.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\gcc-base.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\g++-base.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\windows-vulkan.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\g++-win32.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\common\windows-desktop.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\qconfig.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_core.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_help.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_network.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktimeline.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quicktimeline_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_repparser.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_repparser_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt_functions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\win32-g++\qmake.conf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exclusive_builds.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\toolchain.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\default_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\default_pre.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resolve_config.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\default_post.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\build_pass.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qml_debug.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\entrypoint.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\precompile_header.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\warn_on.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qt.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resources_functions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\resources.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\moc.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\opengl.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\uic.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\qmake_use.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\file_copies.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\win32\windows.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\testcase_targets.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\exceptions.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\yacc.prf C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\lex.prf ..\DeadLocks-Final-Test\DeadLocks-Final-Test.pro ..\DeadLocks-Final-Test\resources.qrc C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Widgets.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Gui.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6Core.prl C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\lib\Qt6EntryPoint.prl   ..\DeadLocks-Final-Test\resources.qrc C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\data\dummy.cpp ..\DeadLocks-Final-Test\mainwindow.h ..\DeadLocks-Final-Test\systemprocess.h ..\DeadLocks-Final-Test\systemresource.h  ..\DeadLocks-Final-Test\main.cpp ..\DeadLocks-Final-Test\mainwindow.cpp ..\DeadLocks-Final-Test\systemprocess.cpp ..\DeadLocks-Final-Test\systemresource.cpp ..\DeadLocks-Final-Test\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\systemprocess.o debug\systemressource.o debug\qrc_resources.o debug\moc_mainwindow.o debug\moc_systemprocess.o debug\moc_systemressource.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\systemprocess.o debug\systemresource.o debug\qrc_resources.o debug\moc_mainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -124,6 +120,8 @@ debug/qrc_resources.cpp: ../DeadLocks-Final-Test/resources.qrc \
 		../DeadLocks-Final-Test/resources/Background_resources.png \
 		../DeadLocks-Final-Test/resources/tapedrive_on.png \
 		../DeadLocks-Final-Test/resources/cd_on.png \
+		../DeadLocks-Final-Test/resources/DeadLockTestRunning.png \
+		../DeadLocks-Final-Test/resources/Required_Matrix.png \
 		../DeadLocks-Final-Test/resources/cd_off.png \
 		../DeadLocks-Final-Test/resources/Occupation_Matrix.png \
 		../DeadLocks-Final-Test/resources/plotter_on.png
@@ -135,9 +133,9 @@ compiler_moc_predefs_clean:
 debug/moc_predefs.h: C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -g -std=gnu++1z -Wall -Wextra -Wextra -dM -E -o debug\moc_predefs.h C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_systemprocess.cpp debug/moc_systemressource.cpp
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_systemprocess.cpp debug\moc_systemressource.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp
 debug/moc_mainwindow.cpp: ../DeadLocks-Final-Test/mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QMainWindow \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -276,163 +274,13 @@ debug/moc_mainwindow.cpp: ../DeadLocks-Final-Test/mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
-		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemResource.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
-		../DeadLocks-Final-Test/systemressource.h \
+		../DeadLocks-Final-Test/systemresource.h \
 		debug/moc_predefs.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\mainwindow.h -o debug\moc_mainwindow.cpp
-
-debug/moc_systemprocess.cpp: ../DeadLocks-Final-Test/systemprocess.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QObject \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobal.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtcore-config.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsysinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlogging.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qflags.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnumeric.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qversiontagging.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qforeach.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstring.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qchar.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearray.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qrefcount.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydata.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qpair.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydataops.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringfwd.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringliteral.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qanystringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterator.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcoreevent.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetatype.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopeguard.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdatastream.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterable.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmath.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbindingstorage.h \
-		../DeadLocks-Final-Test/systemressource.h \
-		debug/moc_predefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
-	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\systemprocess.h -o debug\moc_systemprocess.cpp
-
-debug/moc_systemressource.cpp: ../DeadLocks-Final-Test/systemressource.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QObject \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobal.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtcore-config.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsysinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlogging.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qflags.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic_bootstrap.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnumeric.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qversiontagging.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qforeach.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstring.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qchar.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearray.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qrefcount.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydata.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qpair.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydataops.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringfwd.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringliteral.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qanystringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterator.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcoreevent.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetatype.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopeguard.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdatastream.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterable.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmath.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbindingstorage.h \
-		debug/moc_predefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
-	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/debug/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\systemressource.h -o debug\moc_systemressource.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -595,9 +443,10 @@ debug/main.o: ../DeadLocks-Final-Test/main.cpp ../DeadLocks-Final-Test/mainwindo
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
-		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemResource.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
-		../DeadLocks-Final-Test/systemressource.h \
+		../DeadLocks-Final-Test/systemresource.h \
 		../DeadLocks-Final-Test/systemprocess.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
@@ -762,9 +611,10 @@ debug/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-Te
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QTransform \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnativeinterface.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qtabwidget.h \
-		../DeadLocks-Final-Test/SystemRessource.h \
+		../DeadLocks-Final-Test/SystemResource.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
-		../DeadLocks-Final-Test/systemressource.h \
+		../DeadLocks-Final-Test/systemresource.h \
 		ui_mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QVariant \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QIcon \
@@ -791,9 +641,17 @@ debug/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-Te
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/qinputmethod.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlocale.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QGridLayout \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qlayout.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QGroupBox \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qgroupbox.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qframe.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QHBoxLayout \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QLabel \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qlabel.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/qpicture.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/qtextdocument.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QMenuBar \
@@ -802,8 +660,11 @@ debug/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-Te
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QPushButton \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qpushbutton.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QRadioButton \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qradiobutton.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QStatusBar \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QWidget \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QTimer \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtimer.h \
@@ -811,10 +672,12 @@ debug/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-Te
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\DeadLocks-Final-Test\mainwindow.cpp
 
 debug/systemprocess.o: ../DeadLocks-Final-Test/systemprocess.cpp ../DeadLocks-Final-Test/systemprocess.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QObject \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QList \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlist.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydataops.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydata.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qpair.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobal.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig.h \
@@ -839,18 +702,15 @@ debug/systemprocess.o: ../DeadLocks-Final-Test/systemprocess.cpp ../DeadLocks-Fi
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnumeric.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qversiontagging.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qforeach.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhashfunctions.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstring.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qchar.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearray.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qrefcount.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydata.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qpair.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydataops.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainertools_impl.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearrayview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringfwd.h \
@@ -860,35 +720,19 @@ debug/systemprocess.o: ../DeadLocks-Final-Test/systemprocess.cpp ../DeadLocks-Fi
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qutf8stringview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringtokenizer.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhashfunctions.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterator.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearraylist.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringlist.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qalgorithms.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcoreevent.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetatype.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopeguard.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdatastream.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterable.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmath.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbindingstorage.h \
-		../DeadLocks-Final-Test/systemressource.h
+		../DeadLocks-Final-Test/systemresource.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\systemprocess.o ..\DeadLocks-Final-Test\systemprocess.cpp
 
-debug/systemressource.o: ../DeadLocks-Final-Test/systemressource.cpp ../DeadLocks-Final-Test/systemressource.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QObject \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
+debug/systemresource.o: ../DeadLocks-Final-Test/systemresource.cpp ../DeadLocks-Final-Test/systemresource.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstring.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qchar.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qglobal.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qconfig.h \
@@ -913,13 +757,11 @@ debug/systemressource.o: ../DeadLocks-Final-Test/systemressource.cpp ../DeadLock
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnumeric.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qversiontagging.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qforeach.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstring.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qchar.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearray.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qrefcount.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qnamespace.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtmetamacros.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydata.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qpair.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qarraydatapointer.h \
@@ -933,41 +775,14 @@ debug/systemressource.o: ../DeadLocks-Final-Test/systemressource.cpp ../DeadLock
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qanystringview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qutf8stringview.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterator.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringlist.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qalgorithms.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcoreevent.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetatype.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcompare.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qscopeguard.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdatastream.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qiterable.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmath.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qobject_impl.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qbindingstorage.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\systemressource.o ..\DeadLocks-Final-Test\systemressource.cpp
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\systemresource.o ..\DeadLocks-Final-Test\systemresource.cpp
 
 debug/qrc_resources.o: debug/qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_resources.o debug\qrc_resources.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_mainwindow.o debug\moc_mainwindow.cpp
-
-debug/moc_systemprocess.o: debug/moc_systemprocess.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_systemprocess.o debug\moc_systemprocess.cpp
-
-debug/moc_systemressource.o: debug/moc_systemressource.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_systemressource.o debug\moc_systemressource.cpp
 
 ####### Install
 

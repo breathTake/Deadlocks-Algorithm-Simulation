@@ -12,5 +12,6 @@
         <file>resources/tapedrive_on.png</file>
         <file>resources/Background_resources.png</file>
         <file>resources/DeadLockTestRunning.png</file>
+        <file>resources/Required_Matrix.png</file>
     </qresource>
 </RCC>

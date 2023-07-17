@@ -9,6 +9,7 @@
 #include <memory>
 #include "../../DeadLocks-Final-Test/mainwindow.h"
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
@@ -26,46 +27,43 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[20];
     char stringdata0[11];
-    char stringdata1[22];
+    char stringdata1[4];
     char stringdata2[1];
-    char stringdata3[4];
-    char stringdata4[25];
-    char stringdata5[10];
-    char stringdata6[18];
-    char stringdata7[27];
-    char stringdata8[7];
-    char stringdata9[22];
-    char stringdata10[21];
+    char stringdata3[25];
+    char stringdata4[21];
+    char stringdata5[27];
+    char stringdata6[30];
+    char stringdata7[21];
+    char stringdata8[10];
+    char stringdata9[35];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
-        QT_MOC_LITERAL(11, 21),  // "on_pushButton_clicked"
-        QT_MOC_LITERAL(33, 0),  // ""
-        QT_MOC_LITERAL(34, 3),  // "run"
-        QT_MOC_LITERAL(38, 24),  // "update_occupation_matrix"
-        QT_MOC_LITERAL(63, 9),  // "int[3][4]"
-        QT_MOC_LITERAL(73, 17),  // "occupiedResources"
-        QT_MOC_LITERAL(91, 26),  // "update_resource_occupation"
-        QT_MOC_LITERAL(118, 6),  // "int[4]"
-        QT_MOC_LITERAL(125, 21),  // "availableRessources_E"
-        QT_MOC_LITERAL(147, 20)   // "occupiedRessources_P"
+        QT_MOC_LITERAL(11, 3),  // "run"
+        QT_MOC_LITERAL(15, 0),  // ""
+        QT_MOC_LITERAL(16, 24),  // "update_occupation_matrix"
+        QT_MOC_LITERAL(41, 20),  // "update_needed_matrix"
+        QT_MOC_LITERAL(62, 26),  // "update_resource_occupation"
+        QT_MOC_LITERAL(89, 29),  // "updateStillNeededRessources_R"
+        QT_MOC_LITERAL(119, 20),  // "QList<SystemProcess>"
+        QT_MOC_LITERAL(140, 9),  // "processes"
+        QT_MOC_LITERAL(150, 34)   // "on_button_start_simulation_cl..."
     },
     "MainWindow",
-    "on_pushButton_clicked",
-    "",
     "run",
+    "",
     "update_occupation_matrix",
-    "int[3][4]",
-    "occupiedResources",
+    "update_needed_matrix",
     "update_resource_occupation",
-    "int[4]",
-    "availableRessources_E",
-    "occupiedRessources_P"
+    "updateStillNeededRessources_R",
+    "QList<SystemProcess>",
+    "processes",
+    "on_button_start_simulation_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -76,7 +74,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,16 +82,20 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   38,    2, 0x08,    1 /* Private */,
-       3,    0,   39,    2, 0x08,    2 /* Private */,
-       4,    1,   40,    2, 0x08,    3 /* Private */,
-       7,    2,   43,    2, 0x08,    5 /* Private */,
+       1,    0,   50,    2, 0x08,    1 /* Private */,
+       3,    0,   51,    2, 0x08,    2 /* Private */,
+       4,    0,   52,    2, 0x08,    3 /* Private */,
+       5,    0,   53,    2, 0x08,    4 /* Private */,
+       6,    1,   54,    2, 0x08,    5 /* Private */,
+       9,    0,   57,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 5,    6,
-    QMetaType::Void, 0x80000000 | 8, 0x80000000 | 8,    9,   10,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -107,17 +109,19 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'on_pushButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'run'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'update_occupation_matrix'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'update_needed_matrix'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'update_resource_occupation'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        // method 'updateStillNeededRessources_R'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QList<SystemProcess>, std::false_type>,
+        // method 'on_button_start_simulation_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -128,10 +132,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
-        case 1: _t->run(); break;
-        case 2: _t->update_occupation_matrix((*reinterpret_cast< std::add_pointer_t<int[3][4]>>(_a[1]))); break;
-        case 3: _t->update_resource_occupation((*reinterpret_cast< std::add_pointer_t<int[4]>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int[4]>>(_a[2]))); break;
+        case 0: _t->run(); break;
+        case 1: _t->update_occupation_matrix(); break;
+        case 2: _t->update_needed_matrix(); break;
+        case 3: _t->update_resource_occupation(); break;
+        case 4: _t->updateStillNeededRessources_R((*reinterpret_cast< std::add_pointer_t<QList<SystemProcess>>>(_a[1]))); break;
+        case 5: _t->on_button_start_simulation_clicked(); break;
         default: ;
         }
     }
@@ -156,13 +162,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }

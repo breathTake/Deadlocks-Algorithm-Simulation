@@ -33,22 +33,6 @@ SystemProcess::SystemProcess(QString name,int processId, int min, int max)
     }
 }
 
-int* SystemProcess::requestResource(const int* &differenceResources_A) const
-{
-    int indexArray[2] = {-1,-1};
-    for(int i = 0; i < neededResources.count(); i++)
-    {
-        while(neededResources.at(i).getCount() > differenceResources_A[i]){
-
-        }
-        int randomCount = rand() % (neededResources.at(i).getCount());
-        indexArray[0] = i;
-        indexArray[1] = randomCount;
-        return indexArray;
-
-    }
-    return indexArray;
-}
 /*
  * eliminateHoldAndWait
  *

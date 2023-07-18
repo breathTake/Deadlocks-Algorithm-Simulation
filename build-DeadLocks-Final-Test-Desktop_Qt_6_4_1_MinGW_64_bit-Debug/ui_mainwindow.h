@@ -85,6 +85,7 @@ public:
     QLabel *A2_label_needed;
     QLabel *B3_label_needed;
     QLabel *B4_label_needed;
+    QPushButton *button_stop_simulation;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -454,6 +455,9 @@ public:
         B4_label_needed->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
 "font: 500 12pt \"Futura PT\";\n"
 "background-color: rgb(73, 81, 103);"));
+        button_stop_simulation = new QPushButton(centralwidget);
+        button_stop_simulation->setObjectName("button_stop_simulation");
+        button_stop_simulation->setGeometry(QRect(50, 310, 191, 29));
         MainWindow->setCentralWidget(centralwidget);
         Deadlock_test_running_label->raise();
         background_resources->raise();
@@ -472,6 +476,7 @@ public:
         layoutWidget->raise();
         OccupationMatrix->raise();
         OccupationMatrix_2->raise();
+        button_stop_simulation->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 1314, 31));
@@ -536,6 +541,7 @@ public:
         A2_label_needed->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         B3_label_needed->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         B4_label_needed->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        button_stop_simulation->setText(QCoreApplication::translate("MainWindow", "Stop Simulation", nullptr));
     } // retranslateUi
 
 };

@@ -1150,6 +1150,19 @@ background-color: rgb(73, 81, 103);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="button_stop_simulation">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>310</y>
+      <width>191</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop Simulation</string>
+    </property>
+   </widget>
    <zorder>Deadlock_test_running_label</zorder>
    <zorder>background_resources</zorder>
    <zorder>Printer_background_label</zorder>
@@ -1167,6 +1180,7 @@ background-color: rgb(73, 81, 103);</string>
    <zorder>layoutWidget</zorder>
    <zorder>OccupationMatrix</zorder>
    <zorder>OccupationMatrix_2</zorder>
+   <zorder>button_stop_simulation</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

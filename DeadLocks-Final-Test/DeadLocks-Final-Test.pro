@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    processworker.cpp \
     systemprocess.cpp \
     systemresource.cpp
 
 HEADERS += \
     mainwindow.h \
+    processworker.h \
     systemprocess.h \
     systemresource.h
 

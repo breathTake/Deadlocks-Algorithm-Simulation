@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <ProcessWorker.h>
+#include <QThread>
 #include <QTimer>
 
 //how many times resources should request resources in the simulation
@@ -21,6 +23,9 @@ int occupiedResources_P[4] = {0, 0, 0, 0};
 int differenceResources_A[4];
 
 QList<SystemProcess> processes;
+
+QThread *threadProcessA, *threadProcessB, *threadProcessC;
+ProcessWorker *workerA, *workerB, *workerC;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,7 +49,18 @@ MainWindow::MainWindow(QWidget *parent)
     setUpProcesses();
     setUpResources(5,7,6,5);
 
+    threadProcessA = new QThread();
+    workerA = new ProcessWorker();
+    threadProcessB = new QThread();
+    workerB = new ProcessWorker();
+    threadProcessC = new QThread();
+    workerC = new ProcessWorker();
+
+
     connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
+    connect(workerA, SIGNAL(resouceReserved(int, int, int)), this, SLOT(reserveResouces(int, int, int)));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +82,7 @@ void MainWindow::run()
         }
 
     }
-    secondTimer->start(1000);
+    secondTimer->start(10000);
 
     /*bool isDeadlock = bankiersAlgorithm();
     if(isDeadlock){
@@ -74,6 +90,35 @@ void MainWindow::run()
     }else{
         ui->deadlockIndicator->setText("False");
     }*/
+}
+
+void MainWindow::reserveResouces(int process, int resource, int count){
+    assignedResources_C[process][resource] += count;
+    stillNeededResources_R[process][resource] -= count;
+    occupiedResources_P[resource] += count;
+    differenceResources_A[resource] -= count;
+
+    QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_on.png");
+    ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
+    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+
+    update_occupation_matrix();
+    update_needed_matrix();
+    update_resource_occupation();
+}
+
+void MainWindow::releaseResouces(int process, int resource, int count){
+    assignedResources_C[process][resource] -= count;
+    occupiedResources_P[resource] -= count;
+    differenceResources_A[resource] += count;
+
+    QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_off.png");
+    ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
+    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(73, 81, 103); font: 500 12pt; background-color : #9cb792; }");
+
+    update_occupation_matrix();
+    update_needed_matrix();
+    update_resource_occupation();
 }
 
 bool MainWindow::bankiersAlgorithm()
@@ -95,10 +140,16 @@ bool MainWindow::bankiersAlgorithm()
 
 void MainWindow::on_button_start_simulation_clicked()
 {
-    QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_on.png");
-    ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
-    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
-    secondTimer->start(1000);
+    workerA->moveToThread(threadProcessA);
+    threadProcessA->start();
+
+    QList<int> processCountsA = {3,1,5,4};
+    int processID = 0;
+    QMetaObject::invokeMethod(workerA, "requestResource", Qt::QueuedConnection,
+                                  Q_ARG(QList<SystemProcess>, processes),
+                                  Q_ARG(int[4], availableResources_E),
+                                  Q_ARG(int[4], differenceResources_A));
+    //secondTimer->start(1000);
 }
 
 void MainWindow::update_occupation_matrix()
@@ -180,4 +231,13 @@ void MainWindow::updateStillNeededRessources_R()
 }
 
 
+
+
+void MainWindow::on_button_stop_simulation_clicked()
+{
+    threadProcessA->quit();
+    threadProcessA->wait();
+    delete threadProcessA;
+    delete workerA;
+}
 

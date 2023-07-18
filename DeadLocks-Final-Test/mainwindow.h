@@ -27,7 +27,12 @@ private slots:
     void update_resource_occupation();
     void updateStillNeededRessources_R();
 
+    void reserveResouces(int process, int resource, int count);
+    void releaseResouces(int process, int resource, int count);
+
     void on_button_start_simulation_clicked();
+
+    void on_button_stop_simulation_clicked();
 
 private:
     Ui::MainWindow *ui;

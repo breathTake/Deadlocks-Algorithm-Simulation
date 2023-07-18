@@ -17,9 +17,10 @@ private:
 public:
     SystemProcess(QString name,int processId, int min, int max);
 
-    void setName(const QString &name) {
-        SystemProcess::name = name;
+    int getProcessId() const{
+        return processId;
     }
+
 
     const QList<SystemResource> getNeededResources() const {
         return neededResources;
@@ -36,10 +37,6 @@ public:
     void setAssignedResources(const QList<SystemResource> assignedResources) {
         SystemProcess::assignedResources = assignedResources;
     }
-
-
-    int* requestResource(const int* &differenceResources_A) const;
-    void releaseResource(SystemResource resource, int count);
 
     bool eliminateHoldAndWait(QList<SystemResource> &resources, const QList<int>& counts);
     QList<SystemResource> eliminateCircularWait(QList<SystemResource> neededResources);

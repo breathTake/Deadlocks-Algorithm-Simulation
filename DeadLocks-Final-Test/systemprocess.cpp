@@ -1,6 +1,12 @@
 #include "systemprocess.h"
 #include <algorithm>
 
+SystemProcess::SystemProcess(QString name,int processId)
+{
+    this->name = name;
+    this->processId = processId;
+}
+
 
 SystemProcess::SystemProcess(QString name,int processId, int min, int max)
 {

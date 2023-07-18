@@ -12,7 +12,7 @@ class ProcessWorker : public QObject
 {
     Q_OBJECT
 public:
-    explicit ProcessWorker(QObject *parent = nullptr);
+    ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4]);
 
 signals:
     void resouceReserved(int processID, int resouce, int count);
@@ -20,7 +20,11 @@ signals:
     void resouceReleased(int processID, int resouce, int count);
 
 public slots:
-    void requestResource(QList<SystemProcess> processes, int availableResources_E[4], int differenceResources_A[4]);
+    void requestResource();
+private:
+    int availableResources_E[4];
+    int differenceResources_A[4];
+    SystemProcess process;
 };
 
 #endif // PROCESSWORKER_H

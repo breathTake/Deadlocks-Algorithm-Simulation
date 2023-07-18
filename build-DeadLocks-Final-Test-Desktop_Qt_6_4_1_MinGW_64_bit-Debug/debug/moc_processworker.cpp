@@ -9,7 +9,6 @@
 #include <memory>
 #include "../../DeadLocks-Final-Test/processworker.h"
 #include <QtCore/qmetatype.h>
-#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'processworker.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
@@ -27,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_ProcessWorker_t {
-    uint offsetsAndSizes[28];
+    uint offsetsAndSizes[18];
     char stringdata0[14];
     char stringdata1[16];
     char stringdata2[1];
@@ -37,11 +36,6 @@ struct qt_meta_stringdata_ProcessWorker_t {
     char stringdata6[15];
     char stringdata7[16];
     char stringdata8[16];
-    char stringdata9[21];
-    char stringdata10[10];
-    char stringdata11[7];
-    char stringdata12[21];
-    char stringdata13[22];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_ProcessWorker_t::offsetsAndSizes) + ofs), len 
@@ -55,12 +49,7 @@ Q_CONSTINIT static const qt_meta_stringdata_ProcessWorker_t qt_meta_stringdata_P
         QT_MOC_LITERAL(49, 5),  // "count"
         QT_MOC_LITERAL(55, 14),  // "waitingForNext"
         QT_MOC_LITERAL(70, 15),  // "resouceReleased"
-        QT_MOC_LITERAL(86, 15),  // "requestResource"
-        QT_MOC_LITERAL(102, 20),  // "QList<SystemProcess>"
-        QT_MOC_LITERAL(123, 9),  // "processes"
-        QT_MOC_LITERAL(133, 6),  // "int[4]"
-        QT_MOC_LITERAL(140, 20),  // "availableResources_E"
-        QT_MOC_LITERAL(161, 21)   // "differenceResources_A"
+        QT_MOC_LITERAL(86, 15)   // "requestResource"
     },
     "ProcessWorker",
     "resouceReserved",
@@ -70,12 +59,7 @@ Q_CONSTINIT static const qt_meta_stringdata_ProcessWorker_t qt_meta_stringdata_P
     "count",
     "waitingForNext",
     "resouceReleased",
-    "requestResource",
-    "QList<SystemProcess>",
-    "processes",
-    "int[4]",
-    "availableResources_E",
-    "differenceResources_A"
+    "requestResource"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -99,7 +83,7 @@ Q_CONSTINIT static const uint qt_meta_data_ProcessWorker[] = {
        7,    3,   46,    2, 0x06,    6 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    3,   53,    2, 0x0a,   10 /* Public */,
+       8,    0,   53,    2, 0x0a,   10 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,
@@ -107,7 +91,7 @@ Q_CONSTINIT static const uint qt_meta_data_ProcessWorker[] = {
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 9, 0x80000000 | 11, 0x80000000 | 11,   10,   12,   13,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -134,10 +118,7 @@ Q_CONSTINIT const QMetaObject ProcessWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'requestResource'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QList<SystemProcess>, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -151,7 +132,7 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->resouceReserved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 1: _t->waitingForNext(); break;
         case 2: _t->resouceReleased((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
-        case 3: _t->requestResource((*reinterpret_cast< std::add_pointer_t<QList<SystemProcess>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int[4]>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int[4]>>(_a[3]))); break;
+        case 3: _t->requestResource(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

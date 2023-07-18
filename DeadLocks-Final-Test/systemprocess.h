@@ -15,10 +15,27 @@ private:
     QList<SystemResource> assignedResources;
 
 public:
+    SystemProcess(){
+
+    };
+    SystemProcess(QString name,int processId);
     SystemProcess(QString name,int processId, int min, int max);
 
     int getProcessId() const{
         return processId;
+    }
+
+    void setProcessId(int processId){
+        this->processId = processId;
+    }
+
+
+    QString getName() const{
+        return name;
+    }
+
+    void setName(QString name){
+        this->name = name;
     }
 
 

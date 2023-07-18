@@ -50,14 +50,16 @@ MainWindow::MainWindow(QWidget *parent)
     setUpResources(5,7,6,5);
 
     threadProcessA = new QThread();
-    workerA = new ProcessWorker();
+    workerA = new ProcessWorker(processes.at(0), availableResources_E, differenceResources_A);
     threadProcessB = new QThread();
-    workerB = new ProcessWorker();
+    workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A);
     threadProcessC = new QThread();
-    workerC = new ProcessWorker();
+    workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A);
 
 
+    connect(ui->button_start_simulation, SIGNAL(clicked()), this, SLOT(run()));
     connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
+    connect(threadProcessA, SIGNAL(started()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resouceReserved(int, int, int)), this, SLOT(reserveResouces(int, int, int)));
 
 
@@ -70,6 +72,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::run()
 {
+    workerA->moveToThread(threadProcessA);
+    threadProcessA->start();
     //for as long as countRepititions-Seconds there will be a request every second
     if(countRepititionsDone < countRepititions)
     {
@@ -138,19 +142,6 @@ bool MainWindow::bankiersAlgorithm()
     }
 }
 
-void MainWindow::on_button_start_simulation_clicked()
-{
-    workerA->moveToThread(threadProcessA);
-    threadProcessA->start();
-
-    QList<int> processCountsA = {3,1,5,4};
-    int processID = 0;
-    QMetaObject::invokeMethod(workerA, "requestResource", Qt::QueuedConnection,
-                                  Q_ARG(QList<SystemProcess>, processes),
-                                  Q_ARG(int[4], availableResources_E),
-                                  Q_ARG(int[4], differenceResources_A));
-    //secondTimer->start(1000);
-}
 
 void MainWindow::update_occupation_matrix()
 {
@@ -203,6 +194,7 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
 
     for(int i = 0; i < resources.count(); i++){
         availableResources_E[i] = resources.at(i).getCount();
+        differenceResources_A[i] = resources.at(i).getCount();
     }
 
     update_resource_occupation();

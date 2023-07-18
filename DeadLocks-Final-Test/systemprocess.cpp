@@ -85,6 +85,7 @@ QList<SystemResource> SystemProcess::eliminateCircularWait(QList<SystemResource>
     std::sort(neededResources.begin(), neededResources.end(), [](const SystemResource& a, const SystemResource& b) {
         return a.getResourceId() < b.getResourceId();
     });
+    return neededResources;
 }
 
 

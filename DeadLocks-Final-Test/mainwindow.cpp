@@ -22,10 +22,8 @@ int availableResources_E[4];
 int occupiedResources_P[4] = {0, 0, 0, 0};
 int differenceResources_A[4];
 
+//List of the Processes in the Simulation
 QList<SystemProcess> processes;
-
-QThread *threadProcessA, *threadProcessB, *threadProcessC;
-ProcessWorker *workerA, *workerB, *workerC;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,33 +34,42 @@ MainWindow::MainWindow(QWidget *parent)
     secondTimer = new QTimer(this);
 
     //Pixmaps for the Resource tab
-    QPixmap Pixmap_Printer_off= QPixmap(":/resources/Printer_off.png");
+    QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
     ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
-    QPixmap Pixmap_CD_off= QPixmap(":/resources/cd_off.png");
+    QPixmap Pixmap_CD_off = QPixmap(":/resources/cd_off.png");
     ui->Cd_background_label->setPixmap(Pixmap_CD_off);
-    QPixmap Pixmap_Plotter_off= QPixmap(":/resources/plotter_off.png");
+    QPixmap Pixmap_Plotter_off = QPixmap(":/resources/plotter_off.png");
     ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
-    QPixmap Pixmap_Tapedrive_off= QPixmap(":/resources/tapedrive_off.png");
+    QPixmap Pixmap_Tapedrive_off = QPixmap(":/resources/tapedrive_off.png");
     ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
 
+    //update matrix as it is all 0 at the start
     update_occupation_matrix();
+    //seting up processes and resources
     setUpProcesses();
     setUpResources(5,7,6,5);
 
-    threadProcessA = new QThread();
+    //initializing threads and workers
+    threadProcessA = new QThread;
     workerA = new ProcessWorker(processes.at(0), availableResources_E, differenceResources_A);
-    threadProcessB = new QThread();
+    threadProcessB = new QThread;
     workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A);
-    threadProcessC = new QThread();
+    threadProcessC = new QThread;
     workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A);
 
 
-    connect(ui->button_start_simulation, SIGNAL(clicked()), this, SLOT(run()));
-    connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
-    connect(threadProcessA, SIGNAL(started()), workerA, SLOT(requestResource()));
-    connect(workerA, SIGNAL(resouceReserved(int, int, int)), this, SLOT(reserveResouces(int, int, int)));
+    //connect(ui->button_start_simulation, SIGNAL(clicked()), this, SLOT(run()));
+    //connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
 
+    //connnecting worker Signals and slots
+    connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
+    connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
+    connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerA, SIGNAL(waitingForNext()),this, SLOT(test()));
 
+    //moving and starting threads
+    workerA->moveToThread(threadProcessA);
+    threadProcessA->start();
 }
 
 MainWindow::~MainWindow()
@@ -70,10 +77,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//ist gerade unnötig
 void MainWindow::run()
 {
-    workerA->moveToThread(threadProcessA);
-    threadProcessA->start();
+
+
     //for as long as countRepititions-Seconds there will be a request every second
     if(countRepititionsDone < countRepititions)
     {
@@ -96,7 +104,8 @@ void MainWindow::run()
     }*/
 }
 
-void MainWindow::reserveResouces(int process, int resource, int count){
+void MainWindow::reserveResources(int process, int resource, int count){
+
     assignedResources_C[process][resource] += count;
     stillNeededResources_R[process][resource] -= count;
     occupiedResources_P[resource] += count;
@@ -111,14 +120,14 @@ void MainWindow::reserveResouces(int process, int resource, int count){
     update_resource_occupation();
 }
 
-void MainWindow::releaseResouces(int process, int resource, int count){
+void MainWindow::releaseResources(int process, int resource, int count){
     assignedResources_C[process][resource] -= count;
     occupiedResources_P[resource] -= count;
     differenceResources_A[resource] += count;
 
-    QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_off.png");
-    ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
-    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(73, 81, 103); font: 500 12pt; background-color : #9cb792; }");
+    QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
+    ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
+    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
 
     update_occupation_matrix();
     update_needed_matrix();

@@ -1,13 +1,7 @@
 #include "processworker.h"
 
-#include <QSemaphore>
 #include <QThread>
 #include <QDebug>
-
-QSemaphore semaphorePrinter(0);
-QSemaphore semaphoreCD(0);
-QSemaphore semaphorePlotter(0);
-QSemaphore semaphoreTapeDrive(0);
 
 ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4])
 {
@@ -21,64 +15,71 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
     this->process.setProcessId(process.getProcessId());
     this->process.setName(process.getName());
 
-    semaphorePrinter.release(availableResources_E[0]);
-    semaphoreCD.release(availableResources_E[1]);
-    semaphorePlotter.release(availableResources_E[2]);
-    semaphoreTapeDrive.release(availableResources_E[3]);
+    semaphorePrinter = new QSemaphore(availableResources_E[0]);
+    semaphoreCD = new QSemaphore(availableResources_E[1]);
+    semaphorePlotter = new QSemaphore(availableResources_E[2]);
+    semaphoreTapeDrive = new QSemaphore(availableResources_E[3]);
 
 }
 
 void ProcessWorker::requestResource()
 {
     int nextResource = -1;
-    int countResouce = 0;
+    int countResource = 0;
     for(int i = 0; i < process.getNeededResources().count(); i++)
     {
         if(process.getNeededResources().at(i).getCount() < differenceResources_A[i] && process.getNeededResources().at(i).getCount() > 0){
             nextResource = i;
-            countResouce = rand() % process.getNeededResources().at(i).getCount() + 1;
+            countResource = rand() % process.getNeededResources().at(i).getCount() + 1;
             break;
         }
     }
 
-    qDebug() << "r:" << nextResource << "c:" << countResouce;
+
     if(nextResource == -1){
         //there are no resources left to request or they dont fit into available resources
     } else {
         switch (nextResource) {
         case 0:
-            semaphorePrinter.acquire(countResouce);
+            semaphorePrinter->acquire(countResource);
+            break;
         case 1:
-            semaphoreCD.acquire(countResouce);
+            semaphoreCD->acquire(countResource);
+            break;
         case 2:
-            semaphorePlotter.acquire(countResouce);
+            semaphorePlotter->acquire(countResource);
+            break;
         case 3:
-            semaphoreTapeDrive.acquire(countResouce);
+            semaphoreTapeDrive->acquire(countResource);
+            break;
         default:
             //something went wrong
             return;
         }
 
-        emit resouceReserved(process.getProcessId(), nextResource, countResouce);
+        emit resourceReserved(process.getProcessId(), nextResource, countResource);
 
-        QThread::sleep(countResouce*2000);
-        qDebug() << "Printing";
+        QThread::sleep(2*countResource);
 
         //Hier muss dann später die nächste resource angefordert werden, dafür code oben in eine schleife packen
 
         switch (nextResource) {
         case 0:
-            semaphorePrinter.release(countResouce);
+            semaphorePrinter->release(countResource);
+            break;
         case 1:
-            semaphoreCD.release(countResouce);
+            semaphoreCD->release(countResource);
+            break;
         case 2:
-            semaphorePlotter.release(countResouce);
+            semaphorePlotter->release(countResource);
+            break;
         case 3:
-            semaphoreTapeDrive.release(countResouce);
+            semaphoreTapeDrive->release(countResource);
+            break;
         default:
-            //something went wrong
             return;
         }
-        emit resouceReleased(process.getProcessId(), nextResource, countResouce);
+        qDebug() << "nach release" << semaphorePrinter->available();
+        emit resourceReleased(process.getProcessId(), nextResource, countResource);
     }
 }

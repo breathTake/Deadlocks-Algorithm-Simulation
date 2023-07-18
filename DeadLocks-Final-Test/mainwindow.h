@@ -5,6 +5,7 @@
 #include <QList>
 #include <SystemResource.h>
 #include <SystemProcess.h>
+#include <ProcessWorker.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,16 +28,17 @@ private slots:
     void update_resource_occupation();
     void updateStillNeededRessources_R();
 
-    void reserveResouces(int process, int resource, int count);
-    void releaseResouces(int process, int resource, int count);
+    void reserveResources(int process, int resource, int count);
+    void releaseResources(int process, int resource, int count);
 
-    void on_button_start_simulation_clicked();
 
     void on_button_stop_simulation_clicked();
 
 private:
     Ui::MainWindow *ui;
     bool bankiersAlgorithm();
+    QThread *threadProcessA, *threadProcessB, *threadProcessC;
+    ProcessWorker *workerA, *workerB, *workerC;
 
 };
 #endif // MAINWINDOW_H

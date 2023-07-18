@@ -28,13 +28,13 @@ namespace {
 struct qt_meta_stringdata_ProcessWorker_t {
     uint offsetsAndSizes[18];
     char stringdata0[14];
-    char stringdata1[16];
+    char stringdata1[17];
     char stringdata2[1];
     char stringdata3[10];
-    char stringdata4[8];
+    char stringdata4[9];
     char stringdata5[6];
     char stringdata6[15];
-    char stringdata7[16];
+    char stringdata7[17];
     char stringdata8[16];
 };
 #define QT_MOC_LITERAL(ofs, len) \
@@ -42,23 +42,23 @@ struct qt_meta_stringdata_ProcessWorker_t {
 Q_CONSTINIT static const qt_meta_stringdata_ProcessWorker_t qt_meta_stringdata_ProcessWorker = {
     {
         QT_MOC_LITERAL(0, 13),  // "ProcessWorker"
-        QT_MOC_LITERAL(14, 15),  // "resouceReserved"
-        QT_MOC_LITERAL(30, 0),  // ""
-        QT_MOC_LITERAL(31, 9),  // "processID"
-        QT_MOC_LITERAL(41, 7),  // "resouce"
-        QT_MOC_LITERAL(49, 5),  // "count"
-        QT_MOC_LITERAL(55, 14),  // "waitingForNext"
-        QT_MOC_LITERAL(70, 15),  // "resouceReleased"
-        QT_MOC_LITERAL(86, 15)   // "requestResource"
+        QT_MOC_LITERAL(14, 16),  // "resourceReserved"
+        QT_MOC_LITERAL(31, 0),  // ""
+        QT_MOC_LITERAL(32, 9),  // "processID"
+        QT_MOC_LITERAL(42, 8),  // "resource"
+        QT_MOC_LITERAL(51, 5),  // "count"
+        QT_MOC_LITERAL(57, 14),  // "waitingForNext"
+        QT_MOC_LITERAL(72, 16),  // "resourceReleased"
+        QT_MOC_LITERAL(89, 15)   // "requestResource"
     },
     "ProcessWorker",
-    "resouceReserved",
+    "resourceReserved",
     "",
     "processID",
-    "resouce",
+    "resource",
     "count",
     "waitingForNext",
-    "resouceReleased",
+    "resourceReleased",
     "requestResource"
 };
 #undef QT_MOC_LITERAL
@@ -105,14 +105,14 @@ Q_CONSTINIT const QMetaObject ProcessWorker::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_ProcessWorker_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ProcessWorker, std::true_type>,
-        // method 'resouceReserved'
+        // method 'resourceReserved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'waitingForNext'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'resouceReleased'
+        // method 'resourceReleased'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -129,9 +129,9 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         auto *_t = static_cast<ProcessWorker *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->resouceReserved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
+        case 0: _t->resourceReserved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 1: _t->waitingForNext(); break;
-        case 2: _t->resouceReleased((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
+        case 2: _t->resourceReleased((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 3: _t->requestResource(); break;
         default: ;
         }
@@ -139,7 +139,7 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (ProcessWorker::*)(int , int , int );
-            if (_t _q_method = &ProcessWorker::resouceReserved; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &ProcessWorker::resourceReserved; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
@@ -153,7 +153,7 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         }
         {
             using _t = void (ProcessWorker::*)(int , int , int );
-            if (_t _q_method = &ProcessWorker::resouceReleased; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &ProcessWorker::resourceReleased; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
@@ -192,7 +192,7 @@ int ProcessWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ProcessWorker::resouceReserved(int _t1, int _t2, int _t3)
+void ProcessWorker::resourceReserved(int _t1, int _t2, int _t3)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
@@ -205,7 +205,7 @@ void ProcessWorker::waitingForNext()
 }
 
 // SIGNAL 2
-void ProcessWorker::resouceReleased(int _t1, int _t2, int _t3)
+void ProcessWorker::resourceReleased(int _t1, int _t2, int _t3)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);

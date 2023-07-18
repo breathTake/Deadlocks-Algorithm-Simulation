@@ -18,14 +18,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QList<SystemResource> setUpResources(int countPrinters, int countCD, int countPlotters, int countTapeDrive);
-    QList<SystemProcess> setUpProcesses();
+    void setUpProcesses();
 
 private slots:
     void run();
     void update_occupation_matrix();
     void update_needed_matrix();
     void update_resource_occupation();
-    void updateStillNeededRessources_R(QList<SystemProcess> processes);
+    void updateStillNeededRessources_R();
 
     void on_button_start_simulation_clicked();
 

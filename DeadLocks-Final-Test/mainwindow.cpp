@@ -20,6 +20,8 @@ int availableResources_E[4];
 int occupiedResources_P[4] = {0, 0, 0, 0};
 int differenceResources_A[4];
 
+QList<SystemProcess> processes;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -52,10 +54,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::run()
 {
+    //for as long as countRepititions-Seconds there will be a request every second
     if(countRepititionsDone < countRepititions)
     {
-        ui->A1_label_occupation->setNum(countRepititionsDone);
-        countRepititionsDone++;
+        int requestAnswer[2] = {-1,-1};
+        while(requestAnswer[0] == -1){
+            int randomProcess = rand() % 3;
+            //requestAnswer[0] = (processes.at(randomProcess).requestResource(differenceResources_A))[0];
+            //requestAnswer[1] = (processes.at(randomProcess).requestResource(differenceResources_A))[1];
+
+        }
+
     }
     secondTimer->start(1000);
 
@@ -150,19 +159,17 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
     return resources;
 }
 
-QList<SystemProcess> MainWindow::setUpProcesses()
+void MainWindow::setUpProcesses()
 {
-    QList<SystemProcess> processes;
     processes.append(SystemProcess("Process A", 0, 1, 5));
     processes.append(SystemProcess("Process B", 1, 1, 5));
     processes.append(SystemProcess("Process C", 2, 1, 5));
 
-    updateStillNeededRessources_R(processes);
+    updateStillNeededRessources_R();
 
-    return processes;
 }
 
-void MainWindow::updateStillNeededRessources_R(QList<SystemProcess> processes)
+void MainWindow::updateStillNeededRessources_R()
 {
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 4; j++){

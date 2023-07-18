@@ -38,7 +38,7 @@ public:
     }
 
 
-    void requestResource(SystemResource resource, int count);
+    int* requestResource(const int* &differenceResources_A) const;
     void releaseResource(SystemResource resource, int count);
     void print();
 

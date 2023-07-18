@@ -9,7 +9,6 @@
 #include <memory>
 #include "../../DeadLocks-Final-Test/mainwindow.h"
 #include <QtCore/qmetatype.h>
-#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
@@ -27,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[16];
     char stringdata0[11];
     char stringdata1[4];
     char stringdata2[1];
@@ -35,9 +34,7 @@ struct qt_meta_stringdata_MainWindow_t {
     char stringdata4[21];
     char stringdata5[27];
     char stringdata6[30];
-    char stringdata7[21];
-    char stringdata8[10];
-    char stringdata9[35];
+    char stringdata7[35];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
@@ -50,9 +47,7 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
         QT_MOC_LITERAL(41, 20),  // "update_needed_matrix"
         QT_MOC_LITERAL(62, 26),  // "update_resource_occupation"
         QT_MOC_LITERAL(89, 29),  // "updateStillNeededRessources_R"
-        QT_MOC_LITERAL(119, 20),  // "QList<SystemProcess>"
-        QT_MOC_LITERAL(140, 9),  // "processes"
-        QT_MOC_LITERAL(150, 34)   // "on_button_start_simulation_cl..."
+        QT_MOC_LITERAL(119, 34)   // "on_button_start_simulation_cl..."
     },
     "MainWindow",
     "run",
@@ -61,8 +56,6 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
     "update_needed_matrix",
     "update_resource_occupation",
     "updateStillNeededRessources_R",
-    "QList<SystemProcess>",
-    "processes",
     "on_button_start_simulation_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -86,15 +79,15 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        3,    0,   51,    2, 0x08,    2 /* Private */,
        4,    0,   52,    2, 0x08,    3 /* Private */,
        5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    1,   54,    2, 0x08,    5 /* Private */,
-       9,    0,   57,    2, 0x08,    7 /* Private */,
+       6,    0,   54,    2, 0x08,    5 /* Private */,
+       7,    0,   55,    2, 0x08,    6 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -119,7 +112,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'updateStillNeededRessources_R'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QList<SystemProcess>, std::false_type>,
         // method 'on_button_start_simulation_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -136,11 +128,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->update_occupation_matrix(); break;
         case 2: _t->update_needed_matrix(); break;
         case 3: _t->update_resource_occupation(); break;
-        case 4: _t->updateStillNeededRessources_R((*reinterpret_cast< std::add_pointer_t<QList<SystemProcess>>>(_a[1]))); break;
+        case 4: _t->updateStillNeededRessources_R(); break;
         case 5: _t->on_button_start_simulation_clicked(); break;
         default: ;
         }
     }
+    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const

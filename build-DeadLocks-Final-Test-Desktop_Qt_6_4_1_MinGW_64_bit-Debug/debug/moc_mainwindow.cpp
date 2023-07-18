@@ -28,11 +28,11 @@ namespace {
 struct qt_meta_stringdata_MainWindow_t {
     uint offsetsAndSizes[26];
     char stringdata0[11];
-    char stringdata1[4];
+    char stringdata1[25];
     char stringdata2[1];
-    char stringdata3[25];
-    char stringdata4[21];
-    char stringdata5[27];
+    char stringdata3[21];
+    char stringdata4[27];
+    char stringdata5[32];
     char stringdata6[30];
     char stringdata7[17];
     char stringdata8[8];
@@ -46,25 +46,25 @@ struct qt_meta_stringdata_MainWindow_t {
 Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
-        QT_MOC_LITERAL(11, 3),  // "run"
-        QT_MOC_LITERAL(15, 0),  // ""
-        QT_MOC_LITERAL(16, 24),  // "update_occupation_matrix"
-        QT_MOC_LITERAL(41, 20),  // "update_needed_matrix"
-        QT_MOC_LITERAL(62, 26),  // "update_resource_occupation"
-        QT_MOC_LITERAL(89, 29),  // "updateStillNeededRessources_R"
-        QT_MOC_LITERAL(119, 16),  // "reserveResources"
-        QT_MOC_LITERAL(136, 7),  // "process"
-        QT_MOC_LITERAL(144, 8),  // "resource"
-        QT_MOC_LITERAL(153, 5),  // "count"
-        QT_MOC_LITERAL(159, 16),  // "releaseResources"
-        QT_MOC_LITERAL(176, 33)   // "on_button_stop_simulation_cli..."
+        QT_MOC_LITERAL(11, 24),  // "update_occupation_matrix"
+        QT_MOC_LITERAL(36, 0),  // ""
+        QT_MOC_LITERAL(37, 20),  // "update_needed_matrix"
+        QT_MOC_LITERAL(58, 26),  // "update_resource_occupation"
+        QT_MOC_LITERAL(85, 31),  // "update_resource_occupation_list"
+        QT_MOC_LITERAL(117, 29),  // "updateStillNeededRessources_R"
+        QT_MOC_LITERAL(147, 16),  // "reserveResources"
+        QT_MOC_LITERAL(164, 7),  // "process"
+        QT_MOC_LITERAL(172, 8),  // "resource"
+        QT_MOC_LITERAL(181, 5),  // "count"
+        QT_MOC_LITERAL(187, 16),  // "releaseResources"
+        QT_MOC_LITERAL(204, 33)   // "on_button_stop_simulation_cli..."
     },
     "MainWindow",
-    "run",
-    "",
     "update_occupation_matrix",
+    "",
     "update_needed_matrix",
     "update_resource_occupation",
+    "update_resource_occupation_list",
     "updateStillNeededRessources_R",
     "reserveResources",
     "process",
@@ -121,13 +121,13 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'run'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'update_occupation_matrix'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'update_needed_matrix'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'update_resource_occupation'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'update_resource_occupation_list'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'updateStillNeededRessources_R'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -153,10 +153,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->run(); break;
-        case 1: _t->update_occupation_matrix(); break;
-        case 2: _t->update_needed_matrix(); break;
-        case 3: _t->update_resource_occupation(); break;
+        case 0: _t->update_occupation_matrix(); break;
+        case 1: _t->update_needed_matrix(); break;
+        case 2: _t->update_resource_occupation(); break;
+        case 3: _t->update_resource_occupation_list(); break;
         case 4: _t->updateStillNeededRessources_R(); break;
         case 5: _t->reserveResources((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 6: _t->releaseResources((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;

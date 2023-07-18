@@ -22,16 +22,20 @@ public:
     void setUpProcesses();
 
 private slots:
-    void run();
+    //UI update slots
     void update_occupation_matrix();
     void update_needed_matrix();
     void update_resource_occupation();
+    void update_resource_occupation_list();
+
+    //update variables when occupation changed
     void updateStillNeededRessources_R();
 
+    //thread slots
     void reserveResources(int process, int resource, int count);
     void releaseResources(int process, int resource, int count);
 
-
+    //button slots
     void on_button_stop_simulation_clicked();
 
 private:

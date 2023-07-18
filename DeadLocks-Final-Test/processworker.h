@@ -51,9 +51,20 @@ public slots:
     void requestResource();
 
 private:
+    /**
+     * @brief availableResources_E is an array with the over all available resources
+     * @brief differenceResources_A is an array with the current available resources
+     * @brief process is the process of the thread
+     */
     int availableResources_E[4];
     int differenceResources_A[4];
     SystemProcess process;
+    /**
+     * @brief semaphorePrinter regulates how many printers can be used by threads
+     * @brief semaphoreCD regulates how many cds can be used by threads
+     * @brief semaphorePlotter regulates how many plotters can be used by threads
+     * @brief semaphoreTapeDrive regulates how many tape drives can be used by threads
+     */
     QSemaphore *semaphorePrinter;
     QSemaphore *semaphoreCD;
     QSemaphore *semaphorePlotter;

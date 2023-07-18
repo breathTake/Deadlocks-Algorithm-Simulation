@@ -37,7 +37,7 @@ public:
     QLabel *Tapedrive_background_label;
     QLabel *Printer_label_occupation_list;
     QLabel *Cd_label_occupation_list;
-    QLabel *Tapedrive_label_occupation_list_2;
+    QLabel *Tapedrive_label_occupation_list;
     QLabel *Plotter_label_occupation_list;
     QLabel *Printer_label_occupation;
     QLabel *Cd_label_occupation;
@@ -149,14 +149,14 @@ public:
 "font: 500 12pt \"Futura PT\";\n"
 "background-color: rgb(237, 237, 237);"));
         Cd_label_occupation_list->setAlignment(Qt::AlignCenter);
-        Tapedrive_label_occupation_list_2 = new QLabel(centralwidget);
-        Tapedrive_label_occupation_list_2->setObjectName("Tapedrive_label_occupation_list_2");
-        Tapedrive_label_occupation_list_2->setGeometry(QRect(400, 700, 141, 16));
-        Tapedrive_label_occupation_list_2->setFont(font);
-        Tapedrive_label_occupation_list_2->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
+        Tapedrive_label_occupation_list = new QLabel(centralwidget);
+        Tapedrive_label_occupation_list->setObjectName("Tapedrive_label_occupation_list");
+        Tapedrive_label_occupation_list->setGeometry(QRect(400, 700, 141, 16));
+        Tapedrive_label_occupation_list->setFont(font);
+        Tapedrive_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
 "font: 500 12pt \"Futura PT\";\n"
 "background-color: rgb(237, 237, 237);"));
-        Tapedrive_label_occupation_list_2->setAlignment(Qt::AlignCenter);
+        Tapedrive_label_occupation_list->setAlignment(Qt::AlignCenter);
         Plotter_label_occupation_list = new QLabel(centralwidget);
         Plotter_label_occupation_list->setObjectName("Plotter_label_occupation_list");
         Plotter_label_occupation_list->setGeometry(QRect(170, 700, 141, 16));
@@ -467,7 +467,7 @@ public:
         Tapedrive_background_label->raise();
         Printer_label_occupation_list->raise();
         Cd_label_occupation_list->raise();
-        Tapedrive_label_occupation_list_2->raise();
+        Tapedrive_label_occupation_list->raise();
         Plotter_label_occupation_list->raise();
         Printer_label_occupation->raise();
         Cd_label_occupation->raise();
@@ -500,7 +500,7 @@ public:
         Tapedrive_background_label->setText(QString());
         Printer_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Cd_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        Tapedrive_label_occupation_list_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Tapedrive_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Plotter_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Printer_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Cd_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));

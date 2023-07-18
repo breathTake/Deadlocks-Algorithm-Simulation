@@ -77,35 +77,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//ist gerade unnötig
-void MainWindow::run()
+void MainWindow::reserveResources(int process, int resource, int count)
 {
-
-
-    //for as long as countRepititions-Seconds there will be a request every second
-    if(countRepititionsDone < countRepititions)
-    {
-        int requestAnswer[2] = {-1,-1};
-        while(requestAnswer[0] == -1){
-            int randomProcess = rand() % 3;
-            //requestAnswer[0] = (processes.at(randomProcess).requestResource(differenceResources_A))[0];
-            //requestAnswer[1] = (processes.at(randomProcess).requestResource(differenceResources_A))[1];
-
-        }
-
-    }
-    secondTimer->start(10000);
-
-    /*bool isDeadlock = bankiersAlgorithm();
-    if(isDeadlock){
-        ui->deadlockIndicator->setText("True");
-    }else{
-        ui->deadlockIndicator->setText("False");
-    }*/
-}
-
-void MainWindow::reserveResources(int process, int resource, int count){
-
+    //adjusting the occupation matrixes and arrays
     assignedResources_C[process][resource] += count;
     stillNeededResources_R[process][resource] -= count;
     occupiedResources_P[resource] += count;
@@ -118,9 +92,12 @@ void MainWindow::reserveResources(int process, int resource, int count){
     update_occupation_matrix();
     update_needed_matrix();
     update_resource_occupation();
+    update_resource_occupation_list();
 }
 
-void MainWindow::releaseResources(int process, int resource, int count){
+void MainWindow::releaseResources(int process, int resource, int count)
+{
+    //adjusting the occupation matrixes and arrays
     assignedResources_C[process][resource] -= count;
     occupiedResources_P[resource] -= count;
     differenceResources_A[resource] += count;
@@ -132,6 +109,7 @@ void MainWindow::releaseResources(int process, int resource, int count){
     update_occupation_matrix();
     update_needed_matrix();
     update_resource_occupation();
+    update_resource_occupation_list();
 }
 
 bool MainWindow::bankiersAlgorithm()
@@ -151,7 +129,7 @@ bool MainWindow::bankiersAlgorithm()
     }
 }
 
-
+//updates the occupation matrix GUI
 void MainWindow::update_occupation_matrix()
 {
     ui->A1_label_occupation->setNum(assignedResources_C[0][0]);
@@ -168,6 +146,7 @@ void MainWindow::update_occupation_matrix()
     ui->C4_label_occupation->setNum(assignedResources_C[2][3]);
 }
 
+//updates the required matrix GUI
 void MainWindow::update_needed_matrix()
 {
     ui->A1_label_needed->setNum(stillNeededResources_R[0][0]);
@@ -184,12 +163,61 @@ void MainWindow::update_needed_matrix()
     ui->C4_label_needed->setNum(stillNeededResources_R[2][3]);
 }
 
+//updates the free resources info in GUI
 void MainWindow::update_resource_occupation()
 {
     ui->Printer_label_occupation->setText(QString::number(occupiedResources_P[0]) + "/" + QString::number(availableResources_E[0]));
     ui->Cd_label_occupation->setText(QString::number(occupiedResources_P[1]) + "/" + QString::number(availableResources_E[1]));
     ui->Plotter_label_occupation->setText(QString::number(occupiedResources_P[2]) + "/" + QString::number(availableResources_E[2]));
     ui->Tapedrive_label_occupation->setText(QString::number(occupiedResources_P[3]) + "/" + QString::number(availableResources_E[3]));
+}
+
+//update the list which shows the processes using the resource
+void MainWindow::update_resource_occupation_list()
+
+{
+    QString ListPrinter = "", ListCd = "", ListPlotter = "", ListTapeDrive = "";
+    for(int i = 0; i < system_resource_count; i++){
+        for(int j = 0; j < system_process_count; j++){
+            for(int k = 0; k < assignedResources_C[j][i]; k++){
+                if(k != 0 && j != 0){
+
+                }
+                switch(i){
+                case 0:
+                    ListPrinter.append(processes.at(j).getName()).append(" | ");
+                    break;
+                case 1:
+                    ListCd.append(processes.at(j).getName());
+                    break;
+                case 2:
+                    ListPlotter.append(processes.at(j).getName());
+                    break;
+                case 3:
+                    ListTapeDrive.append(processes.at(j).getName());
+                    break;
+                }
+
+
+            }
+        }
+    }
+
+    ui->Printer_label_occupation_list->setText(ListPrinter);
+    ui->Cd_label_occupation_list->setText(ListCd);
+    ui->Plotter_label_occupation_list->setText(ListPlotter);
+    ui->Tapedrive_label_occupation_list->setText(ListTapeDrive);
+}
+
+//updates the required matrix updateStillNeededRessources_R
+void MainWindow::updateStillNeededRessources_R()
+{
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 4; j++){
+            stillNeededResources_R[i][j] = processes.at(i).getNeededResources().at(j).getCount();
+        }
+    }
+    update_needed_matrix();
 }
 
 
@@ -213,26 +241,13 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
 
 void MainWindow::setUpProcesses()
 {
-    processes.append(SystemProcess("Process A", 0, 1, 5));
-    processes.append(SystemProcess("Process B", 1, 1, 5));
-    processes.append(SystemProcess("Process C", 2, 1, 5));
+    processes.append(SystemProcess("A", 0, 1, 5));
+    processes.append(SystemProcess("B", 1, 1, 5));
+    processes.append(SystemProcess("C", 2, 1, 5));
 
     updateStillNeededRessources_R();
 
 }
-
-void MainWindow::updateStillNeededRessources_R()
-{
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 4; j++){
-            stillNeededResources_R[i][j] = processes.at(i).getNeededResources().at(j).getCount();
-        }
-    }
-    update_needed_matrix();
-}
-
-
-
 
 void MainWindow::on_button_stop_simulation_clicked()
 {

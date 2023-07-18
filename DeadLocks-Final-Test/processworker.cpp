@@ -26,8 +26,11 @@ void ProcessWorker::requestResource()
 {
     int nextResource = -1;
     int countResource = 0;
+
+    //find the next resource the process needs to use
     for(int i = 0; i < process.getNeededResources().count(); i++)
     {
+        //the resource has to have a count > 0 but < the currently free resource count
         if(process.getNeededResources().at(i).getCount() < differenceResources_A[i] && process.getNeededResources().at(i).getCount() > 0){
             nextResource = i;
             countResource = rand() % process.getNeededResources().at(i).getCount() + 1;
@@ -39,6 +42,7 @@ void ProcessWorker::requestResource()
     if(nextResource == -1){
         //there are no resources left to request or they dont fit into available resources
     } else {
+        //resource will be reserved
         switch (nextResource) {
         case 0:
             semaphorePrinter->acquire(countResource);
@@ -57,8 +61,10 @@ void ProcessWorker::requestResource()
             return;
         }
 
+        differenceResources_A[nextResource] -= countResource;
         emit resourceReserved(process.getProcessId(), nextResource, countResource);
 
+        //waiting 2*countResource to simulate the resource writing etc.
         QThread::sleep(2*countResource);
 
         //Hier muss dann später die nächste resource angefordert werden, dafür code oben in eine schleife packen

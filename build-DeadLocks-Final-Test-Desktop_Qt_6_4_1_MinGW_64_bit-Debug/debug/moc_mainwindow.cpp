@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[28];
     char stringdata0[11];
     char stringdata1[25];
     char stringdata2[1];
@@ -40,6 +40,7 @@ struct qt_meta_stringdata_MainWindow_t {
     char stringdata10[6];
     char stringdata11[17];
     char stringdata12[34];
+    char stringdata13[35];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
@@ -57,7 +58,8 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
         QT_MOC_LITERAL(172, 8),  // "resource"
         QT_MOC_LITERAL(181, 5),  // "count"
         QT_MOC_LITERAL(187, 16),  // "releaseResources"
-        QT_MOC_LITERAL(204, 33)   // "on_button_stop_simulation_cli..."
+        QT_MOC_LITERAL(204, 33),  // "on_button_stop_simulation_cli..."
+        QT_MOC_LITERAL(238, 34)   // "on_button_start_simulation_cl..."
     },
     "MainWindow",
     "update_occupation_matrix",
@@ -71,7 +73,8 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
     "resource",
     "count",
     "releaseResources",
-    "on_button_stop_simulation_clicked"
+    "on_button_stop_simulation_clicked",
+    "on_button_start_simulation_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -82,7 +85,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -90,14 +93,15 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   62,    2, 0x08,    1 /* Private */,
-       3,    0,   63,    2, 0x08,    2 /* Private */,
-       4,    0,   64,    2, 0x08,    3 /* Private */,
-       5,    0,   65,    2, 0x08,    4 /* Private */,
-       6,    0,   66,    2, 0x08,    5 /* Private */,
-       7,    3,   67,    2, 0x08,    6 /* Private */,
-      11,    3,   74,    2, 0x08,   10 /* Private */,
-      12,    0,   81,    2, 0x08,   14 /* Private */,
+       1,    0,   68,    2, 0x08,    1 /* Private */,
+       3,    0,   69,    2, 0x08,    2 /* Private */,
+       4,    0,   70,    2, 0x08,    3 /* Private */,
+       5,    0,   71,    2, 0x08,    4 /* Private */,
+       6,    0,   72,    2, 0x08,    5 /* Private */,
+       7,    3,   73,    2, 0x08,    6 /* Private */,
+      11,    3,   80,    2, 0x08,   10 /* Private */,
+      12,    0,   87,    2, 0x08,   14 /* Private */,
+      13,    0,   88,    2, 0x08,   15 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -107,6 +111,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    8,    9,   10,
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    8,    9,   10,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -142,6 +147,8 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_button_stop_simulation_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_button_start_simulation_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -161,6 +168,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->reserveResources((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 6: _t->releaseResources((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 7: _t->on_button_stop_simulation_clicked(); break;
+        case 8: _t->on_button_start_simulation_clicked(); break;
         default: ;
         }
     }
@@ -185,13 +193,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

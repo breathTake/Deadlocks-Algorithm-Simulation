@@ -17,6 +17,7 @@ SystemProcess::SystemProcess(QString name,int processId, int min, int max)
     assignedResources.append(SystemResource("Plotter", 0));
     assignedResources.append(SystemResource("TapeDrive", 0));
 
+    //Problem: hier wird davon ausgegangen, dass jeder Prozess die reihenfolge der resourcen einhält, was oft nicht der fall ist.
     while(neededResources.count() < 4){
         QList<int> done;
         int randomProcess = rand() % 4;

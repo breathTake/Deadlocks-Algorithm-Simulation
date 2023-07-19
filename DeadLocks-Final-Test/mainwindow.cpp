@@ -85,9 +85,31 @@ void MainWindow::reserveResources(int process, int resource, int count)
     occupiedResources_P[resource] += count;
     differenceResources_A[resource] -= count;
 
-    QPixmap Pixmap_Printer_on= QPixmap(":/resources/Printer_on.png");
-    ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
-    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+    QPixmap Pixmap_Printer_on = QPixmap(":/resources/Printer_on.png");
+    QPixmap Pixmap_CD_on= QPixmap(":/resources/cd_on.png");
+    QPixmap Pixmap_Plotter_on= QPixmap(":/resources/plotter_on.png");
+    QPixmap Pixmap_TapeDrive_on= QPixmap(":/resources/tapedrive_on.png");
+
+    switch(resource){
+    case 0:
+        ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
+        ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        break;
+    case 1:
+        ui->Cd_background_label->setPixmap(Pixmap_CD_on);
+        ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        break;
+    case 2:
+        ui->Plotter_background_label->setPixmap(Pixmap_Plotter_on);
+        ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        break;
+    case 3:
+        ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_on);
+        ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        break;
+    }
+
+
 
     update_occupation_matrix();
     update_needed_matrix();
@@ -103,8 +125,28 @@ void MainWindow::releaseResources(int process, int resource, int count)
     differenceResources_A[resource] += count;
 
     QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
-    ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
-    ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+    QPixmap Pixmap_CD_off= QPixmap(":/resources/cd_off.png");
+    QPixmap Pixmap_Plotter_off= QPixmap(":/resources/plotter_off.png");
+    QPixmap Pixmap_TapeDrive_off= QPixmap(":/resources/tapedrive_off.png");
+
+    switch(resource){
+    case 0:
+        ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
+        ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+        break;
+    case 1:
+        ui->Cd_background_label->setPixmap(Pixmap_CD_off);
+        ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+        break;
+    case 2:
+        ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
+        ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+        break;
+    case 3:
+        ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_off);
+        ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+        break;
+    }
 
     update_occupation_matrix();
     update_needed_matrix();
@@ -180,25 +222,38 @@ void MainWindow::update_resource_occupation_list()
     for(int i = 0; i < system_resource_count; i++){
         for(int j = 0; j < system_process_count; j++){
             for(int k = 0; k < assignedResources_C[j][i]; k++){
-                if(k != 0 && j != 0){
+                if(k == 0 && j == 0){
+                    switch(i){
+                    case 0:
+                        ListPrinter.append(processes.at(j).getName());
+                        break;
+                    case 1:
+                        ListCd.append(processes.at(j).getName());
+                        break;
+                    case 2:
+                        ListPlotter.append(processes.at(j).getName());
+                        break;
+                    case 3:
+                        ListTapeDrive.append(processes.at(j).getName());
+                        break;
+                    }
 
+                } else{
+                    switch(i){
+                    case 0:
+                        ListPrinter.append(" | ").append(processes.at(j).getName());
+                        break;
+                    case 1:
+                        ListCd.append(" | ").append(processes.at(j).getName());
+                        break;
+                    case 2:
+                        ListPlotter.append(" | ").append(processes.at(j).getName());
+                        break;
+                    case 3:
+                        ListTapeDrive.append(" | ").append(processes.at(j).getName());
+                        break;
+                    }
                 }
-                switch(i){
-                case 0:
-                    ListPrinter.append(processes.at(j).getName()).append(" | ");
-                    break;
-                case 1:
-                    ListCd.append(processes.at(j).getName());
-                    break;
-                case 2:
-                    ListPlotter.append(processes.at(j).getName());
-                    break;
-                case 3:
-                    ListTapeDrive.append(processes.at(j).getName());
-                    break;
-                }
-
-
             }
         }
     }
@@ -255,5 +310,14 @@ void MainWindow::on_button_stop_simulation_clicked()
     threadProcessA->wait();
     delete threadProcessA;
     delete workerA;
+    ui->button_start_simulation->setEnabled(true);
+    ui->button_stop_simulation->setEnabled(false);
+}
+
+
+void MainWindow::on_button_start_simulation_clicked()
+{
+    //ui->button_start_simulation->setEnabled(false);
+    //ui->button_stop_simulation->setEnabled(true);
 }
 

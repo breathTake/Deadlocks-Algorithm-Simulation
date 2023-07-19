@@ -121,6 +121,7 @@ release/qrc_resources.cpp: ../DeadLocks-Final-Test/resources.qrc \
 		../DeadLocks-Final-Test/resources/Icon_White.png \
 		../DeadLocks-Final-Test/resources/plotter_off.png \
 		../DeadLocks-Final-Test/resources/Printer_on.png \
+		../DeadLocks-Final-Test/resources/Oversight_background.png \
 		../DeadLocks-Final-Test/resources/Printer_off.png \
 		../DeadLocks-Final-Test/resources/tapedrive_off.png \
 		../DeadLocks-Final-Test/resources/Background_resources.png \
@@ -284,6 +285,11 @@ release/moc_mainwindow.cpp: ../DeadLocks-Final-Test/mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
 		../DeadLocks-Final-Test/systemresource.h \
+		../DeadLocks-Final-Test/ProcessWorker.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QSemaphore \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsemaphore.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		release/moc_predefs.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\mainwindow.h -o release\moc_mainwindow.cpp
@@ -363,6 +369,10 @@ release/moc_processworker.cpp: ../DeadLocks-Final-Test/processworker.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QList \
 		../DeadLocks-Final-Test/systemresource.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QSemaphore \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsemaphore.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		release/moc_predefs.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/bin/moc.exe
 	C:\ProgramFiles\Qtcreator\6.4.1\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/build-DeadLocks-Final-Test-Desktop_Qt_6_4_1_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/mkspecs/win32-g++ -I"D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test" -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui -IC:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore -I. -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/ProgramFiles/Qtcreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\DeadLocks-Final-Test\processworker.h -o release\moc_processworker.cpp
@@ -532,6 +542,11 @@ release/main.o: ../DeadLocks-Final-Test/main.cpp ../DeadLocks-Final-Test/mainwin
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
 		../DeadLocks-Final-Test/systemresource.h \
+		../DeadLocks-Final-Test/ProcessWorker.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QSemaphore \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsemaphore.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		../DeadLocks-Final-Test/systemprocess.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QApplication \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qapplication.h \
@@ -541,8 +556,6 @@ release/main.o: ../DeadLocks-Final-Test/main.cpp ../DeadLocks-Final-Test/mainwin
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qjnitypes.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfuture.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qresultstore.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfuture_impl.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qthreadpool.h \
@@ -700,6 +713,11 @@ release/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QString \
 		../DeadLocks-Final-Test/SystemProcess.h \
 		../DeadLocks-Final-Test/systemresource.h \
+		../DeadLocks-Final-Test/ProcessWorker.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QSemaphore \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsemaphore.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		ui_mainwindow.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QVariant \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtGui/QIcon \
@@ -711,8 +729,6 @@ release/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qjnitypes.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfuture.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmutex.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtsan_impl.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qresultstore.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qfuture_impl.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qthreadpool.h \
@@ -751,7 +767,6 @@ release/mainwindow.o: ../DeadLocks-Final-Test/mainwindow.cpp ../DeadLocks-Final-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/qstatusbar.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtWidgets/QWidget \
-		../DeadLocks-Final-Test/ProcessWorker.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QThread \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QTimer \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtimer.h \
@@ -840,7 +855,20 @@ release/processworker.o: ../DeadLocks-Final-Test/processworker.cpp ../DeadLocks-
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QThread \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qthread.h \
 		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qelapsedtimer.h
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/QDebug \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qdebug.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qtextstream.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qstringconverter_base.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qshareddata.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qmap.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qset.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qhash.h \
+		C:/ProgramFiles/Qtcreator/6.4.1/mingw_64/include/QtCore/qvarlengtharray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\processworker.o ..\DeadLocks-Final-Test\processworker.cpp
 
 release/systemprocess.o: ../DeadLocks-Final-Test/systemprocess.cpp ../DeadLocks-Final-Test/systemprocess.h \

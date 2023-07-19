@@ -38,6 +38,8 @@ private slots:
     //button slots
     void on_button_stop_simulation_clicked();
 
+    void on_button_start_simulation_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool bankiersAlgorithm();

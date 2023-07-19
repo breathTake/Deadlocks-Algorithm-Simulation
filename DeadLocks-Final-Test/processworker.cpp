@@ -31,30 +31,39 @@ void ProcessWorker::requestResource()
     for(int i = 0; i < process.getNeededResources().count(); i++)
     {
         //the resource has to have a count > 0 but < the currently free resource count
+        //Problem: hier wird davon ausgegangen, dass jeder Prozess die reihenfolge der resourcen einhält, was oft nicht der fall ist.
         if(process.getNeededResources().at(i).getCount() < differenceResources_A[i] && process.getNeededResources().at(i).getCount() > 0){
             nextResource = i;
             countResource = rand() % process.getNeededResources().at(i).getCount() + 1;
             break;
+        } else{
+            nextResource = -1;
         }
     }
 
 
     if(nextResource == -1){
+        qDebug() << "-1";
         //there are no resources left to request or they dont fit into available resources
     } else {
         //resource will be reserved
         switch (nextResource) {
         case 0:
             semaphorePrinter->acquire(countResource);
+            differenceResources_A[0] -= countResource;
+            //Problem: hier müsste noch die neededresources von process geändert werden
             break;
         case 1:
             semaphoreCD->acquire(countResource);
+            differenceResources_A[1] -= countResource;
             break;
         case 2:
             semaphorePlotter->acquire(countResource);
+            differenceResources_A[2] -= countResource;
             break;
         case 3:
             semaphoreTapeDrive->acquire(countResource);
+            differenceResources_A[3] -= countResource;
             break;
         default:
             //something went wrong
@@ -85,7 +94,6 @@ void ProcessWorker::requestResource()
         default:
             return;
         }
-        qDebug() << "nach release" << semaphorePrinter->available();
         emit resourceReleased(process.getProcessId(), nextResource, countResource);
     }
 }

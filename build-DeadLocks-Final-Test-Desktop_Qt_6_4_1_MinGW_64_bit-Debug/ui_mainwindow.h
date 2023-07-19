@@ -12,16 +12,13 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -43,19 +40,6 @@ public:
     QLabel *Cd_label_occupation;
     QLabel *Tapedrive_label_occupation;
     QLabel *Plotter_label_occupation;
-    QWidget *layoutWidget;
-    QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout;
-    QLabel *isDeadLock;
-    QLabel *deadlockIndicator;
-    QVBoxLayout *verticalLayout_2;
-    QVBoxLayout *verticalLayout;
-    QLabel *algorithm_label;
-    QRadioButton *radio_bankier;
-    QRadioButton *radio_holdwait;
-    QRadioButton *radio_circularw;
-    QRadioButton *radio_preempt;
-    QPushButton *button_start_simulation;
     QLabel *Deadlock_test_running_label;
     QGroupBox *OccupationMatrix;
     QLabel *Occupation_Matrix_Label;
@@ -86,6 +70,11 @@ public:
     QLabel *B3_label_needed;
     QLabel *B4_label_needed;
     QPushButton *button_stop_simulation;
+    QRadioButton *radio_preempt;
+    QRadioButton *radio_bankier;
+    QRadioButton *radio_holdwait;
+    QRadioButton *radio_circularw;
+    QPushButton *button_start_simulation;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -93,7 +82,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1314, 855);
+        MainWindow->resize(1178, 845);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resources/Icon_White.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -102,35 +96,35 @@ public:
         centralwidget->setObjectName("centralwidget");
         background_resources = new QLabel(centralwidget);
         background_resources->setObjectName("background_resources");
-        background_resources->setGeometry(QRect(90, 400, 531, 371));
+        background_resources->setGeometry(QRect(10, 410, 531, 371));
         background_resources->setStyleSheet(QString::fromUtf8("image: url(:/resources/Background_resources.png);"));
         Printer_background_label = new QLabel(centralwidget);
         Printer_background_label->setObjectName("Printer_background_label");
-        Printer_background_label->setGeometry(QRect(130, 430, 231, 151));
+        Printer_background_label->setGeometry(QRect(50, 440, 231, 151));
         Printer_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
 "background-color: rgb(73, 81, 103);"));
         Printer_background_label->setScaledContents(true);
         Cd_background_label = new QLabel(centralwidget);
         Cd_background_label->setObjectName("Cd_background_label");
-        Cd_background_label->setGeometry(QRect(360, 430, 231, 151));
+        Cd_background_label->setGeometry(QRect(280, 440, 231, 151));
         Cd_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
 "background-color: rgb(73, 81, 103);"));
         Cd_background_label->setScaledContents(true);
         Plotter_background_label = new QLabel(centralwidget);
         Plotter_background_label->setObjectName("Plotter_background_label");
-        Plotter_background_label->setGeometry(QRect(130, 590, 231, 151));
+        Plotter_background_label->setGeometry(QRect(50, 600, 231, 151));
         Plotter_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
 "background-color: rgb(73, 81, 103);"));
         Plotter_background_label->setScaledContents(true);
         Tapedrive_background_label = new QLabel(centralwidget);
         Tapedrive_background_label->setObjectName("Tapedrive_background_label");
-        Tapedrive_background_label->setGeometry(QRect(360, 590, 231, 151));
+        Tapedrive_background_label->setGeometry(QRect(280, 600, 231, 151));
         Tapedrive_background_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Printer_off.png);\n"
 "background-color: rgb(73, 81, 103);"));
         Tapedrive_background_label->setScaledContents(true);
         Printer_label_occupation_list = new QLabel(centralwidget);
         Printer_label_occupation_list->setObjectName("Printer_label_occupation_list");
-        Printer_label_occupation_list->setGeometry(QRect(170, 541, 141, 16));
+        Printer_label_occupation_list->setGeometry(QRect(90, 551, 141, 16));
         QFont font;
         font.setFamilies({QString::fromUtf8("Futura PT")});
         font.setPointSize(12);
@@ -143,7 +137,7 @@ public:
         Printer_label_occupation_list->setAlignment(Qt::AlignCenter);
         Cd_label_occupation_list = new QLabel(centralwidget);
         Cd_label_occupation_list->setObjectName("Cd_label_occupation_list");
-        Cd_label_occupation_list->setGeometry(QRect(400, 540, 141, 16));
+        Cd_label_occupation_list->setGeometry(QRect(320, 550, 141, 16));
         Cd_label_occupation_list->setFont(font);
         Cd_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -151,7 +145,7 @@ public:
         Cd_label_occupation_list->setAlignment(Qt::AlignCenter);
         Tapedrive_label_occupation_list = new QLabel(centralwidget);
         Tapedrive_label_occupation_list->setObjectName("Tapedrive_label_occupation_list");
-        Tapedrive_label_occupation_list->setGeometry(QRect(400, 700, 141, 16));
+        Tapedrive_label_occupation_list->setGeometry(QRect(320, 710, 141, 16));
         Tapedrive_label_occupation_list->setFont(font);
         Tapedrive_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -159,7 +153,7 @@ public:
         Tapedrive_label_occupation_list->setAlignment(Qt::AlignCenter);
         Plotter_label_occupation_list = new QLabel(centralwidget);
         Plotter_label_occupation_list->setObjectName("Plotter_label_occupation_list");
-        Plotter_label_occupation_list->setGeometry(QRect(170, 700, 141, 16));
+        Plotter_label_occupation_list->setGeometry(QRect(90, 710, 141, 16));
         Plotter_label_occupation_list->setFont(font);
         Plotter_label_occupation_list->setStyleSheet(QString::fromUtf8("color: rgb(52, 61, 85);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -167,7 +161,7 @@ public:
         Plotter_label_occupation_list->setAlignment(Qt::AlignCenter);
         Printer_label_occupation = new QLabel(centralwidget);
         Printer_label_occupation->setObjectName("Printer_label_occupation");
-        Printer_label_occupation->setGeometry(QRect(250, 490, 71, 42));
+        Printer_label_occupation->setGeometry(QRect(170, 500, 71, 42));
         Printer_label_occupation->setFont(font);
         Printer_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -176,7 +170,7 @@ public:
         Printer_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         Cd_label_occupation = new QLabel(centralwidget);
         Cd_label_occupation->setObjectName("Cd_label_occupation");
-        Cd_label_occupation->setGeometry(QRect(480, 490, 71, 42));
+        Cd_label_occupation->setGeometry(QRect(400, 500, 71, 42));
         Cd_label_occupation->setFont(font);
         Cd_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -184,7 +178,7 @@ public:
         Cd_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         Tapedrive_label_occupation = new QLabel(centralwidget);
         Tapedrive_label_occupation->setObjectName("Tapedrive_label_occupation");
-        Tapedrive_label_occupation->setGeometry(QRect(480, 650, 71, 42));
+        Tapedrive_label_occupation->setGeometry(QRect(400, 660, 71, 42));
         Tapedrive_label_occupation->setFont(font);
         Tapedrive_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
 "font: 500 12pt \"Futura PT\";\n"
@@ -192,86 +186,19 @@ public:
         Tapedrive_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         Plotter_label_occupation = new QLabel(centralwidget);
         Plotter_label_occupation->setObjectName("Plotter_label_occupation");
-        Plotter_label_occupation->setGeometry(QRect(250, 650, 71, 42));
+        Plotter_label_occupation->setGeometry(QRect(170, 660, 71, 42));
         Plotter_label_occupation->setFont(font);
         Plotter_label_occupation->setStyleSheet(QString::fromUtf8("color: rgb(217, 217, 217);\n"
 "font: 500 12pt \"Futura PT\";\n"
 "background-color: rgb(106, 112, 129);"));
         Plotter_label_occupation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        layoutWidget = new QWidget(centralwidget);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(20, 60, 261, 234));
-        gridLayout = new QGridLayout(layoutWidget);
-        gridLayout->setObjectName("gridLayout");
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName("horizontalLayout");
-        isDeadLock = new QLabel(layoutWidget);
-        isDeadLock->setObjectName("isDeadLock");
-        QFont font1;
-        font1.setPointSize(14);
-        isDeadLock->setFont(font1);
-
-        horizontalLayout->addWidget(isDeadLock);
-
-        deadlockIndicator = new QLabel(layoutWidget);
-        deadlockIndicator->setObjectName("deadlockIndicator");
-        deadlockIndicator->setFont(font1);
-        deadlockIndicator->setFrameShadow(QFrame::Plain);
-        deadlockIndicator->setLineWidth(0);
-
-        horizontalLayout->addWidget(deadlockIndicator);
-
-
-        gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
-
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName("verticalLayout");
-        algorithm_label = new QLabel(layoutWidget);
-        algorithm_label->setObjectName("algorithm_label");
-
-        verticalLayout->addWidget(algorithm_label);
-
-        radio_bankier = new QRadioButton(layoutWidget);
-        radio_bankier->setObjectName("radio_bankier");
-
-        verticalLayout->addWidget(radio_bankier);
-
-        radio_holdwait = new QRadioButton(layoutWidget);
-        radio_holdwait->setObjectName("radio_holdwait");
-
-        verticalLayout->addWidget(radio_holdwait);
-
-        radio_circularw = new QRadioButton(layoutWidget);
-        radio_circularw->setObjectName("radio_circularw");
-
-        verticalLayout->addWidget(radio_circularw);
-
-        radio_preempt = new QRadioButton(layoutWidget);
-        radio_preempt->setObjectName("radio_preempt");
-
-        verticalLayout->addWidget(radio_preempt);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
-
-        button_start_simulation = new QPushButton(layoutWidget);
-        button_start_simulation->setObjectName("button_start_simulation");
-
-        verticalLayout_2->addWidget(button_start_simulation);
-
-
-        gridLayout->addLayout(verticalLayout_2, 0, 0, 1, 1);
-
         Deadlock_test_running_label = new QLabel(centralwidget);
         Deadlock_test_running_label->setObjectName("Deadlock_test_running_label");
-        Deadlock_test_running_label->setGeometry(QRect(290, 50, 291, 211));
-        Deadlock_test_running_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/DeadLockTestRunning.png);"));
+        Deadlock_test_running_label->setGeometry(QRect(30, 20, 491, 371));
+        Deadlock_test_running_label->setStyleSheet(QString::fromUtf8("image: url(:/resources/Oversight_background.png);"));
         OccupationMatrix = new QGroupBox(centralwidget);
         OccupationMatrix->setObjectName("OccupationMatrix");
-        OccupationMatrix->setGeometry(QRect(660, 390, 601, 421));
+        OccupationMatrix->setGeometry(QRect(543, 400, 601, 421));
         OccupationMatrix->setStyleSheet(QString::fromUtf8("border: none;"));
         OccupationMatrix->setFlat(true);
         Occupation_Matrix_Label = new QLabel(OccupationMatrix);
@@ -364,7 +291,7 @@ public:
 "background-color: rgb(73, 81, 103);"));
         OccupationMatrix_2 = new QGroupBox(centralwidget);
         OccupationMatrix_2->setObjectName("OccupationMatrix_2");
-        OccupationMatrix_2->setGeometry(QRect(660, 0, 601, 381));
+        OccupationMatrix_2->setGeometry(QRect(543, 10, 601, 381));
         OccupationMatrix_2->setStyleSheet(QString::fromUtf8("border: none;"));
         OccupationMatrix_2->setFlat(true);
         Needed_Matrix_Label = new QLabel(OccupationMatrix_2);
@@ -457,7 +384,41 @@ public:
 "background-color: rgb(73, 81, 103);"));
         button_stop_simulation = new QPushButton(centralwidget);
         button_stop_simulation->setObjectName("button_stop_simulation");
-        button_stop_simulation->setGeometry(QRect(50, 310, 191, 29));
+        button_stop_simulation->setGeometry(QRect(60, 320, 431, 21));
+        button_stop_simulation->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";"));
+        radio_preempt = new QRadioButton(centralwidget);
+        radio_preempt->setObjectName("radio_preempt");
+        radio_preempt->setGeometry(QRect(60, 210, 240, 26));
+        radio_preempt->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";"));
+        radio_bankier = new QRadioButton(centralwidget);
+        radio_bankier->setObjectName("radio_bankier");
+        radio_bankier->setGeometry(QRect(60, 111, 240, 26));
+        radio_bankier->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";"));
+        radio_holdwait = new QRadioButton(centralwidget);
+        radio_holdwait->setObjectName("radio_holdwait");
+        radio_holdwait->setGeometry(QRect(60, 144, 240, 26));
+        radio_holdwait->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";"));
+        radio_circularw = new QRadioButton(centralwidget);
+        radio_circularw->setObjectName("radio_circularw");
+        radio_circularw->setGeometry(QRect(60, 177, 240, 26));
+        radio_circularw->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";\n"
+""));
+        button_start_simulation = new QPushButton(centralwidget);
+        button_start_simulation->setObjectName("button_start_simulation");
+        button_start_simulation->setGeometry(QRect(60, 270, 431, 21));
+        button_start_simulation->setStyleSheet(QString::fromUtf8("border: none;\n"
+"background-color: rgb(106, 112, 129);\n"
+"font: 500 13pt \"Futura PT\";"));
         MainWindow->setCentralWidget(centralwidget);
         Deadlock_test_running_label->raise();
         background_resources->raise();
@@ -473,13 +434,17 @@ public:
         Cd_label_occupation->raise();
         Tapedrive_label_occupation->raise();
         Plotter_label_occupation->raise();
-        layoutWidget->raise();
         OccupationMatrix->raise();
         OccupationMatrix_2->raise();
         button_stop_simulation->raise();
+        radio_preempt->raise();
+        radio_bankier->raise();
+        radio_holdwait->raise();
+        radio_circularw->raise();
+        button_start_simulation->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1314, 31));
+        menubar->setGeometry(QRect(0, 0, 1178, 31));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -498,22 +463,14 @@ public:
         Cd_background_label->setText(QString());
         Plotter_background_label->setText(QString());
         Tapedrive_background_label->setText(QString());
-        Printer_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        Cd_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        Tapedrive_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        Plotter_label_occupation_list->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        Printer_label_occupation_list->setText(QString());
+        Cd_label_occupation_list->setText(QString());
+        Tapedrive_label_occupation_list->setText(QString());
+        Plotter_label_occupation_list->setText(QString());
         Printer_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Cd_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Tapedrive_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Plotter_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        isDeadLock->setText(QCoreApplication::translate("MainWindow", "Is Deadlock? :", nullptr));
-        deadlockIndicator->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        algorithm_label->setText(QCoreApplication::translate("MainWindow", "Algorithm", nullptr));
-        radio_bankier->setText(QCoreApplication::translate("MainWindow", "Bankier-Algorithm", nullptr));
-        radio_holdwait->setText(QCoreApplication::translate("MainWindow", "Hold and Wait", nullptr));
-        radio_circularw->setText(QCoreApplication::translate("MainWindow", "Circular Wait", nullptr));
-        radio_preempt->setText(QCoreApplication::translate("MainWindow", "No Preemption", nullptr));
-        button_start_simulation->setText(QCoreApplication::translate("MainWindow", "Start Simulation", nullptr));
         Deadlock_test_running_label->setText(QString());
         Occupation_Matrix_Label->setText(QString());
         C2_label_occupation->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
@@ -542,6 +499,11 @@ public:
         B3_label_needed->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         B4_label_needed->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         button_stop_simulation->setText(QCoreApplication::translate("MainWindow", "Stop Simulation", nullptr));
+        radio_preempt->setText(QCoreApplication::translate("MainWindow", "No Preemption", nullptr));
+        radio_bankier->setText(QCoreApplication::translate("MainWindow", "Bankier-Algorithm", nullptr));
+        radio_holdwait->setText(QCoreApplication::translate("MainWindow", "Hold and Wait", nullptr));
+        radio_circularw->setText(QCoreApplication::translate("MainWindow", "Circular Wait", nullptr));
+        button_start_simulation->setText(QCoreApplication::translate("MainWindow", "Start Simulation", nullptr));
     } // retranslateUi
 
 };

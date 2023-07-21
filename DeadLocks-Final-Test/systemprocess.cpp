@@ -1,5 +1,6 @@
 #include "systemprocess.h"
 #include <algorithm>
+#include <QDebug>
 
 SystemProcess::SystemProcess(QString name,int processId)
 {
@@ -17,26 +18,33 @@ SystemProcess::SystemProcess(QString name,int processId, int min, int max)
     assignedResources.append(SystemResource("Plotter", 0));
     assignedResources.append(SystemResource("TapeDrive", 0));
 
+    QList<int> done;
+    int neededResourcesCounter = 0;
+
     //Problem: hier wird davon ausgegangen, dass jeder Prozess die reihenfolge der resourcen einhält, was oft nicht der fall ist.
-    while(neededResources.count() < 4){
-        QList<int> done;
+    while(neededResourcesCounter < 4){
+
         int randomProcess = rand() % 4;
         int randomResourceCount= rand() % (max - min + 1) + min;
 
         if(randomProcess == 0 && !done.contains(0)){
-            neededResources.append(SystemResource("Printer", randomResourceCount));
+            neededResources.append(SystemResource("Printer", 0, randomResourceCount));
             done.append(0);
         } else if(randomProcess == 1 && !done.contains(1)){
-            neededResources.append(SystemResource("CD-ROM", randomResourceCount));
+            neededResources.append(SystemResource("CD-ROM", 1, randomResourceCount));
             done.append(1);
         } else if(randomProcess == 2 && !done.contains(2)){
-            neededResources.append(SystemResource("Plotter", randomResourceCount));
+            neededResources.append(SystemResource("Plotter", 2, randomResourceCount));
             done.append(2);
         } else if(randomProcess == 3 && !done.contains(3)){
-            neededResources.append(SystemResource("TapeDrive", randomResourceCount));
+            neededResources.append(SystemResource("TapeDrive", 3, randomResourceCount));
             done.append(3);
         }
+        neededResourcesCounter = neededResources.count();
+    }
 
+    for(int i = 0; i < neededResources.count(); i++){
+        qDebug() << "Process " << processId << " has " << neededResources.at(i).getCount() << " " << neededResources.at(i).getName() << "s in List index: " << i;
     }
 }
 
@@ -131,6 +139,7 @@ void SystemProcess::eliminateNoPreemption(SystemResource resource, int count)
  * Cautious checking the availability of resources
  *
  */
+
 bool SystemProcess::cautiousResourceAllocation(const QList<SystemProcess>& processes, const QList<SystemResource>& resources)
 {
     // Make a copy of available resources to track changes
@@ -172,7 +181,6 @@ bool SystemProcess::cautiousResourceAllocation(const QList<SystemProcess>& proce
     // All resource requirements have been met and allocated
     return true;
 }
-
 
 
 

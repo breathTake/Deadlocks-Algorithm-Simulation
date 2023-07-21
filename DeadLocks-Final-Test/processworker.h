@@ -22,6 +22,14 @@ public:
      */
     ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4]);
 
+    /**
+     * @brief updateProcess
+     * updates the neededResources List in the member Process
+     * \param nextResource is the ID of the resource that has been reserved
+     * \param countResource is the count of the reserce
+     */
+    void updateProcess(int nextResource, int countResource);
+
 signals:
     /**
      * @brief resourceReserved
@@ -58,6 +66,7 @@ private:
      */
     int availableResources_E[4];
     int differenceResources_A[4];
+    int stillNeededResources_R[4];
     SystemProcess process;
     /**
      * @brief semaphorePrinter regulates how many printers can be used by threads

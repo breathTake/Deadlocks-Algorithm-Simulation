@@ -39,19 +39,19 @@ public:
     }
 
 
-    const QList<SystemResource> getNeededResources() const {
+    const QList<SystemResource> getNeededResources() const{
         return neededResources;
     }
 
-    void setNeededResources(const QList<SystemResource> neededResources) {
+    void setNeededResources(QList<SystemResource> neededResources) {
         SystemProcess::neededResources = neededResources;
     }
 
-    const QList<SystemResource> getAssignedResources() const {
+    const QList<SystemResource> getAssignedResources() const{
         return assignedResources;
     }
 
-    void setAssignedResources(const QList<SystemResource> assignedResources) {
+    void setAssignedResources(QList<SystemResource> assignedResources) {
         SystemProcess::assignedResources = assignedResources;
     }
 

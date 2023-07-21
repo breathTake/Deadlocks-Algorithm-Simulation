@@ -5,42 +5,47 @@
 
 ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4])
 {
-    for(int i = 0; i < 4; i++){
-        this->differenceResources_A[i] = differenceResources_A[i];
-        this->availableResources_E[i] = availableResources_E[i];
-    }
     this->process = SystemProcess();
     this->process.setAssignedResources(process.getAssignedResources());
     this->process.setNeededResources(process.getNeededResources());
     this->process.setProcessId(process.getProcessId());
     this->process.setName(process.getName());
 
+    for(int i = 0; i < 4; i++){
+        this->differenceResources_A[i] = differenceResources_A[i];
+        this->availableResources_E[i] = availableResources_E[i];
+        int resourceID  = process.getNeededResources().at(i).getResourceId();
+        this->stillNeededResources_R[resourceID] = process.getNeededResources().at(i).getCount();
+    }
+
     semaphorePrinter = new QSemaphore(availableResources_E[0]);
     semaphoreCD = new QSemaphore(availableResources_E[1]);
     semaphorePlotter = new QSemaphore(availableResources_E[2]);
     semaphoreTapeDrive = new QSemaphore(availableResources_E[3]);
-
 }
 
 void ProcessWorker::requestResource()
 {
+    int lastResource = -1;
+    int lastCount = -1;
+
     int nextResource = -1;
     int countResource = 0;
+    int indexResourceList;
 
     //find the next resource the process needs to use
     for(int i = 0; i < process.getNeededResources().count(); i++)
     {
         //the resource has to have a count > 0 but < the currently free resource count
-        //Problem: hier wird davon ausgegangen, dass jeder Prozess die reihenfolge der resourcen einhält, was oft nicht der fall ist.
-        if(process.getNeededResources().at(i).getCount() < differenceResources_A[i] && process.getNeededResources().at(i).getCount() > 0){
-            nextResource = i;
-            countResource = rand() % process.getNeededResources().at(i).getCount() + 1;
+        if(process.getNeededResources().at(i).getCount() < differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+            nextResource = process.getNeededResources().at(i).getResourceId();
+            indexResourceList = i;
+            countResource = process.getNeededResources().at(i).getCount();
             break;
         } else{
             nextResource = -1;
         }
     }
-
 
     if(nextResource == -1){
         qDebug() << "-1";
@@ -51,24 +56,27 @@ void ProcessWorker::requestResource()
         case 0:
             semaphorePrinter->acquire(countResource);
             differenceResources_A[0] -= countResource;
-            //Problem: hier müsste noch die neededresources von process geändert werden
             break;
         case 1:
             semaphoreCD->acquire(countResource);
             differenceResources_A[1] -= countResource;
+            stillNeededResources_R[1] -= countResource;
             break;
         case 2:
             semaphorePlotter->acquire(countResource);
             differenceResources_A[2] -= countResource;
+            stillNeededResources_R[2] -= countResource;
             break;
         case 3:
             semaphoreTapeDrive->acquire(countResource);
             differenceResources_A[3] -= countResource;
+            stillNeededResources_R[3] -= countResource;
             break;
         default:
             //something went wrong
             return;
         }
+        updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
 
         differenceResources_A[nextResource] -= countResource;
         emit resourceReserved(process.getProcessId(), nextResource, countResource);
@@ -96,4 +104,13 @@ void ProcessWorker::requestResource()
         }
         emit resourceReleased(process.getProcessId(), nextResource, countResource);
     }
+}
+
+void ProcessWorker::updateProcess(int nextResource, int countResource)
+{
+    QList<SystemResource> resourcesCopy = process.getNeededResources();
+    SystemResource resourceCopy = process.getNeededResources().at(nextResource);
+    resourceCopy.setCount(countResource);
+    resourcesCopy.replace(nextResource, resourceCopy);
+    process.setNeededResources(resourcesCopy);
 }

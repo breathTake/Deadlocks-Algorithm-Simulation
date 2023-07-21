@@ -61,15 +61,31 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->button_start_simulation, SIGNAL(clicked()), this, SLOT(run()));
     //connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
 
-    //connnecting worker Signals and slots
+    //connnecting workerAs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
     connect(workerA, SIGNAL(waitingForNext()),this, SLOT(test()));
 
+    //connnecting workerBs signals and slots
+    connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
+    connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
+    connect(workerB, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerB, SIGNAL(waitingForNext()),this, SLOT(test()));
+
+    //connnecting workerCs signals and slots
+    connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
+    connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
+    connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerC, SIGNAL(waitingForNext()),this, SLOT(test()));
+
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
     threadProcessA->start();
+    workerB->moveToThread(threadProcessB);
+    threadProcessB->start();
+    workerC->moveToThread(threadProcessC);
+    threadProcessC->start();
 }
 
 MainWindow::~MainWindow()
@@ -269,7 +285,8 @@ void MainWindow::updateStillNeededRessources_R()
 {
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 4; j++){
-            stillNeededResources_R[i][j] = processes.at(i).getNeededResources().at(j).getCount();
+            int resourceID  = processes.at(i).getNeededResources().at(j).getResourceId();
+            stillNeededResources_R[i][resourceID] = processes.at(i).getNeededResources().at(j).getCount();
         }
     }
     update_needed_matrix();
@@ -310,6 +327,16 @@ void MainWindow::on_button_stop_simulation_clicked()
     threadProcessA->wait();
     delete threadProcessA;
     delete workerA;
+
+    threadProcessB->quit();
+    threadProcessB->wait();
+    delete threadProcessB;
+    delete workerB;
+
+    threadProcessC->quit();
+    threadProcessC->wait();
+    delete threadProcessC;
+    delete workerC;
     ui->button_start_simulation->setEnabled(true);
     ui->button_stop_simulation->setEnabled(false);
 }

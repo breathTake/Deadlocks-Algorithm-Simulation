@@ -38,11 +38,11 @@ public:
     }
 
     void setCount(int count) {
-        SystemResource::count = count;
+        this->count = count;
     }
 
-    void decreaseCount(int count1){
-        SystemResource::count -= count1;
+    void decreaseCount(int count){
+        this->count -= count;
     }
 
     void print();

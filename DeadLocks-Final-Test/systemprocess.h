@@ -18,6 +18,7 @@ public:
     SystemProcess(){
 
     };
+    SystemProcess(QString name,int processId, bool t);
     SystemProcess(QString name,int processId);
     SystemProcess(QString name,int processId, int min, int max);
 

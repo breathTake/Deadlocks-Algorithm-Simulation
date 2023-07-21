@@ -50,6 +50,7 @@ signals:
      * @param count is the count of released resources
      */
     void resourceReleased(int processID, int resource, int count);
+    void finishedResourceProcessing(int information);
 
 public slots:
     /**
@@ -74,10 +75,6 @@ private:
      * @brief semaphorePlotter regulates how many plotters can be used by threads
      * @brief semaphoreTapeDrive regulates how many tape drives can be used by threads
      */
-    QSemaphore *semaphorePrinter;
-    QSemaphore *semaphoreCD;
-    QSemaphore *semaphorePlotter;
-    QSemaphore *semaphoreTapeDrive;
 };
 
 #endif // PROCESSWORKER_H

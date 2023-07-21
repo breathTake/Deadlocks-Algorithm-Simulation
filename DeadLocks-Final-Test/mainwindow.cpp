@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     update_occupation_matrix();
     //seting up processes and resources
     setUpProcesses();
-    setUpResources(5,7,6,5);
+    setUpResources(1,1,1,1);
 
     //initializing threads and workers
     threadProcessA = new QThread;
@@ -131,6 +131,7 @@ void MainWindow::reserveResources(int process, int resource, int count)
     update_needed_matrix();
     update_resource_occupation();
     update_resource_occupation_list();
+    //bankiersAlgorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
 }
 
 void MainWindow::releaseResources(int process, int resource, int count)
@@ -145,23 +146,25 @@ void MainWindow::releaseResources(int process, int resource, int count)
     QPixmap Pixmap_Plotter_off= QPixmap(":/resources/plotter_off.png");
     QPixmap Pixmap_TapeDrive_off= QPixmap(":/resources/tapedrive_off.png");
 
-    switch(resource){
-    case 0:
-        ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
-        ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
-        break;
-    case 1:
-        ui->Cd_background_label->setPixmap(Pixmap_CD_off);
-        ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
-        break;
-    case 2:
-        ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
-        ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
-        break;
-    case 3:
-        ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_off);
-        ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
-        break;
+    if(occupiedResources_P[resource] == 0){
+        switch(resource){
+        case 0:
+            ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
+            ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            break;
+        case 1:
+            ui->Cd_background_label->setPixmap(Pixmap_CD_off);
+            ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            break;
+        case 2:
+            ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
+            ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            break;
+        case 3:
+            ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_off);
+            ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            break;
+        }
     }
 
     update_occupation_matrix();
@@ -170,17 +173,19 @@ void MainWindow::releaseResources(int process, int resource, int count)
     update_resource_occupation_list();
 }
 
-bool MainWindow::bankiersAlgorithm()
+bool MainWindow::bankiersAlgorithm(int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4])
 {
-    for(int i = 0; i < 5; i++){
+
+    for(int i = 0; i < 3; i++){
         for(int j = 0; j < 4; j++) {
-            if(stillNeededResources_R[i][j] <= differenceResources_A[j]) {
-                differenceResources_A[j] += assignedResources_C[i][j];
-                availableResources_E[j] -= assignedResources_C[i][j];
-                stillNeededResources_R[i][j] = 0;
+            if(stillNeededResources_RCopy[i][j] <= differenceResources_ACopy[j]) {
+                differenceResources_ACopy[j] += assignedResources_CCopy[i][j];
+                availableResources_ECopy[j] -= assignedResources_CCopy[i][j];
+                stillNeededResources_RCopy[i][j] = 0;
                 return true; // kein deadlock
             }
             else {
+                qDebug() << "Deadlock";
                 return false; // Deadlock
             }
         }
@@ -238,38 +243,33 @@ void MainWindow::update_resource_occupation_list()
     for(int i = 0; i < system_resource_count; i++){
         for(int j = 0; j < system_process_count; j++){
             for(int k = 0; k < assignedResources_C[j][i]; k++){
-                if(k == 0 && j == 0){
-                    switch(i){
-                    case 0:
-                        ListPrinter.append(processes.at(j).getName());
-                        break;
-                    case 1:
-                        ListCd.append(processes.at(j).getName());
-                        break;
-                    case 2:
-                        ListPlotter.append(processes.at(j).getName());
-                        break;
-                    case 3:
-                        ListTapeDrive.append(processes.at(j).getName());
-                        break;
+                switch(i){
+                case 0:
+                    if(ListPrinter != ""){
+                        ListPrinter.append(" | ");
                     }
-
-                } else{
-                    switch(i){
-                    case 0:
-                        ListPrinter.append(" | ").append(processes.at(j).getName());
-                        break;
-                    case 1:
-                        ListCd.append(" | ").append(processes.at(j).getName());
-                        break;
-                    case 2:
-                        ListPlotter.append(" | ").append(processes.at(j).getName());
-                        break;
-                    case 3:
-                        ListTapeDrive.append(" | ").append(processes.at(j).getName());
-                        break;
+                    ListPrinter.append(processes.at(j).getName());
+                    break;
+                case 1:
+                    if(ListCd != ""){
+                        ListCd.append(" | ");
                     }
+                    ListCd.append(processes.at(j).getName());
+                    break;
+                case 2:
+                    if(ListPlotter != ""){
+                        ListPlotter.append(" | ");
+                    }
+                    ListPlotter.append(processes.at(j).getName());
+                    break;
+                case 3:
+                    if(ListTapeDrive != ""){
+                        ListTapeDrive.append(" | ");
+                    }
+                    ListTapeDrive.append(processes.at(j).getName());
+                    break;
                 }
+
             }
         }
     }
@@ -313,9 +313,12 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
 
 void MainWindow::setUpProcesses()
 {
-    processes.append(SystemProcess("A", 0, 1, 5));
-    processes.append(SystemProcess("B", 1, 1, 5));
-    processes.append(SystemProcess("C", 2, 1, 5));
+    /*processes.append(SystemProcess("A", 0, false));
+    processes.append(SystemProcess("B", 1, false));
+    processes.append(SystemProcess("C", 2, false));*/
+    processes.append(SystemProcess("A", 0, 1, 2));
+    processes.append(SystemProcess("B", 1, 1, 2));
+    processes.append(SystemProcess("C", 2, 1, 2));
 
     updateStillNeededRessources_R();
 

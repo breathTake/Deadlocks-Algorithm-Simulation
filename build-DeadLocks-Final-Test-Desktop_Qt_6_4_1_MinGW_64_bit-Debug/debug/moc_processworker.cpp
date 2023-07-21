@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_ProcessWorker_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[22];
     char stringdata0[14];
     char stringdata1[17];
     char stringdata2[1];
@@ -35,7 +35,9 @@ struct qt_meta_stringdata_ProcessWorker_t {
     char stringdata5[6];
     char stringdata6[15];
     char stringdata7[17];
-    char stringdata8[16];
+    char stringdata8[27];
+    char stringdata9[12];
+    char stringdata10[16];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_ProcessWorker_t::offsetsAndSizes) + ofs), len 
@@ -49,7 +51,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ProcessWorker_t qt_meta_stringdata_P
         QT_MOC_LITERAL(51, 5),  // "count"
         QT_MOC_LITERAL(57, 14),  // "waitingForNext"
         QT_MOC_LITERAL(72, 16),  // "resourceReleased"
-        QT_MOC_LITERAL(89, 15)   // "requestResource"
+        QT_MOC_LITERAL(89, 26),  // "finishedResourceProcessing"
+        QT_MOC_LITERAL(116, 11),  // "information"
+        QT_MOC_LITERAL(128, 15)   // "requestResource"
     },
     "ProcessWorker",
     "resourceReserved",
@@ -59,6 +63,8 @@ Q_CONSTINIT static const qt_meta_stringdata_ProcessWorker_t qt_meta_stringdata_P
     "count",
     "waitingForNext",
     "resourceReleased",
+    "finishedResourceProcessing",
+    "information",
     "requestResource"
 };
 #undef QT_MOC_LITERAL
@@ -70,25 +76,27 @@ Q_CONSTINIT static const uint qt_meta_data_ProcessWorker[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       3,       // signalCount
+       4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,   38,    2, 0x06,    1 /* Public */,
-       6,    0,   45,    2, 0x06,    5 /* Public */,
-       7,    3,   46,    2, 0x06,    6 /* Public */,
+       1,    3,   44,    2, 0x06,    1 /* Public */,
+       6,    0,   51,    2, 0x06,    5 /* Public */,
+       7,    3,   52,    2, 0x06,    6 /* Public */,
+       8,    1,   59,    2, 0x06,   10 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    0,   53,    2, 0x0a,   10 /* Public */,
+      10,    0,   62,    2, 0x0a,   12 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,
+    QMetaType::Void, QMetaType::Int,    9,
 
  // slots: parameters
     QMetaType::Void,
@@ -117,6 +125,9 @@ Q_CONSTINIT const QMetaObject ProcessWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'finishedResourceProcessing'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'requestResource'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -132,7 +143,8 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->resourceReserved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         case 1: _t->waitingForNext(); break;
         case 2: _t->resourceReleased((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
-        case 3: _t->requestResource(); break;
+        case 3: _t->finishedResourceProcessing((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 4: _t->requestResource(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -158,6 +170,13 @@ void ProcessWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
                 return;
             }
         }
+        {
+            using _t = void (ProcessWorker::*)(int );
+            if (_t _q_method = &ProcessWorker::finishedResourceProcessing; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
     }
 }
 
@@ -180,13 +199,13 @@ int ProcessWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
@@ -209,6 +228,13 @@ void ProcessWorker::resourceReleased(int _t1, int _t2, int _t3)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void ProcessWorker::finishedResourceProcessing(int _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -14,5 +14,9 @@
         <file>resources/DeadLockTestRunning.png</file>
         <file>resources/Required_Matrix.png</file>
         <file>resources/Oversight_background.png</file>
+        <file>resources/checkBox_off.png</file>
+        <file>resources/checkBox_on.png</file>
+        <file>resources/button_off.png</file>
+        <file>resources/button_on.png</file>
     </qresource>
 </RCC>

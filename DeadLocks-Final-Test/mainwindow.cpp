@@ -2,7 +2,9 @@
 #include "ui_mainwindow.h"
 #include <ProcessWorker.h>
 #include <QThread>
+#include <QTime>
 #include <QTimer>
+#include <StartDialog.h>
 
 //how many times resources should request resources in the simulation
 int countRepititions = 5;
@@ -12,8 +14,8 @@ int countRepititionsDone = 0;
 int system_resource_count = 4;
 int system_process_count = 3;
 
-//A Timer object for the resource requests
-QTimer *secondTimer;
+//A Timer object updating the timer in ui
+QTimer programTimer;
 
 //The Arrays for occupation etc.
 int assignedResources_C[3][4];
@@ -31,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    secondTimer = new QTimer(this);
+    //programTimer = *new QTimer(this);
 
     //Pixmaps for the Resource tab
     QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
@@ -42,6 +44,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
     QPixmap Pixmap_Tapedrive_off = QPixmap(":/resources/tapedrive_off.png");
     ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
+
+    StartDialog startDialog;
+    startDialog.setWindowTitle("Deadlock Algorythm Tester");
+    if(startDialog.exec() == QDialog::Accepted){
+        //start
+    } else if(startDialog.exec() == QDialog::Rejected){
+        this->close();
+
+        startDialog.close();
+    }
 
     //update matrix as it is all 0 at the start
     update_occupation_matrix();
@@ -57,15 +69,14 @@ MainWindow::MainWindow(QWidget *parent)
     threadProcessC = new QThread;
     workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A);
 
-
-    //connect(ui->button_start_simulation, SIGNAL(clicked()), this, SLOT(run()));
-    //connect(secondTimer, SIGNAL(timeout()), this, SLOT(run()));
+    //connect(programTimer, SIGNAL(timeout()), this, SLOT(updateTimeRunning()));
 
     //connnecting workerAs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
     connect(workerA, SIGNAL(waitingForNext()),this, SLOT(test()));
+
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
@@ -86,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
     threadProcessB->start();
     workerC->moveToThread(threadProcessC);
     threadProcessC->start();
+    //programTimer.start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -349,5 +361,10 @@ void MainWindow::on_button_start_simulation_clicked()
 {
     //ui->button_start_simulation->setEnabled(false);
     //ui->button_stop_simulation->setEnabled(true);
+}
+
+void MainWindow::updateTimeRunning()
+{
+    //ui->time_running_lcd_number->display(ui->time_running_lcd_number->intValue() + 1);
 }
 

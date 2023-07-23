@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.0, 2023-07-21T15:40:08. -->
+<!-- Written by QtCreator 9.0.1, 2023-07-23T21:38:13. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -239,8 +239,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test/DeadLocks-Final-Test.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Studium/4. Semester/Betriebssysteme/Projekt/Git/DeadLocks-Project/DeadLocks-Final-Test/DeadLocks-Final-Test.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">DeadLocks-Final-Test2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Studium/4.Semester/Betriebssysteme_Projekt/Github/DeadLocks-Project/DeadLocks-Final-Test/DeadLocks-Final-Test.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Studium/4.Semester/Betriebssysteme_Projekt/Github/DeadLocks-Project/DeadLocks-Final-Test/DeadLocks-Final-Test.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

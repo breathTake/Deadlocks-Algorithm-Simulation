@@ -12,17 +12,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     processworker.cpp \
+    startdialog.cpp \
     systemprocess.cpp \
     systemresource.cpp
 
 HEADERS += \
     mainwindow.h \
     processworker.h \
+    startdialog.h \
     systemprocess.h \
     systemresource.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    startdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

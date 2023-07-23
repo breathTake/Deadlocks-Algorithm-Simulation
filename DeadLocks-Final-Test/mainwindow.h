@@ -27,6 +27,7 @@ private slots:
     void update_needed_matrix();
     void update_resource_occupation();
     void update_resource_occupation_list();
+    void updateTimeRunning();
 
     //update variables when occupation changed
     void updateStillNeededRessources_R();

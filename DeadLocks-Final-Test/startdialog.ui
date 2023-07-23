@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StartDialog</class>
+ <widget class="QDialog" name="StartDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>524</width>
+    <height>603</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(52, 61, 85);</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>110</y>
+     <width>331</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="checkBox_HoldAndWait">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+font: 14pt &quot;Futura Bk BT&quot;;
+font-color:  rgb(217, 217, 217);
+background-color:  none;
+spacing:  25px;
+QCheckBox {
+    spacing:  20px;
+};
+
+
+indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
+QCheckBox::indicator:checked {
+    
+	image: url(:/resources/checkBox_on.png);
+	border: none;
+	background-color:  none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Hold and Wait</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_noPreemption">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+font: 14pt &quot;Futura Bk BT&quot;;
+font-color:  rgb(217, 217, 217);
+background-color:  none;
+spacing:  25px;
+QCheckBox {
+    spacing:  20px;
+};
+
+
+indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
+QCheckBox::indicator:checked {
+    
+	image: url(:/resources/checkBox_on.png);
+	border: none;
+	background-color:  none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>no Preemption</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_circularWait">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+font: 14pt &quot;Futura Bk BT&quot;;
+font-color:  rgb(217, 217, 217);
+background-color:  none;
+spacing:  25px;
+QCheckBox {
+    spacing:  20px;
+};
+
+
+indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
+QCheckBox::indicator:checked {
+    
+	image: url(:/resources/checkBox_on.png);
+	border: none;
+	background-color:  none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Circular Wait</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_CarefullDistribution">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+font: 14pt &quot;Futura Bk BT&quot;;
+font-color:  rgb(217, 217, 217);
+background-color:  none;
+spacing:  25px;
+QCheckBox {
+    spacing:  20px;
+};
+
+
+indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
+QCheckBox::indicator:checked {
+    
+	image: url(:/resources/checkBox_on.png);
+	border: none;
+	background-color:  none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Carefull Distribution</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_BankiersAlgorythm">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+font: 14pt &quot;Futura Bk BT&quot;;
+font-color:  rgb(217, 217, 217);
+background-color:  none;
+spacing:  25px;
+QCheckBox {
+    spacing:  20px;
+};
+
+
+indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
+QCheckBox::indicator:checked {
+    
+	image: url(:/resources/checkBox_on.png);
+	border: none;
+	background-color:  none;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Bankiers Algorythm</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QSpinBox" name="spinBox_Printer"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_Cd"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_Plotter"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_TapeDrive"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="startSimulationButton">
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/resources/button_on.png);
+font: 18pt &quot;Futura BdCn BT&quot;;
+color: rgb(217, 217, 217);</string>
+      </property>
+      <property name="text">
+       <string>Start Simulation</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancelButton">
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/resources/button_on.png);
+font: 18pt &quot;Futura BdCn BT&quot;;
+color: rgb(217, 217, 217);
+</string>
+      </property>
+      <property name="text">
+       <string>cancel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>startSimulationButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StartDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>261</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StartDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>251</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>261</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

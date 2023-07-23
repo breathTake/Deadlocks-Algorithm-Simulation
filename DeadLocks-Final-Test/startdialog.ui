@@ -19,212 +19,347 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>110</y>
-     <width>331</width>
-     <height>401</height>
+     <x>150</x>
+     <y>140</y>
+     <width>209</width>
+     <height>146</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QCheckBox" name="checkBox_HoldAndWait">
-        <property name="styleSheet">
-         <string notr="true">border: none;
-font: 14pt &quot;Futura Bk BT&quot;;
-font-color:  rgb(217, 217, 217);
-background-color:  none;
-spacing:  25px;
-QCheckBox {
-    spacing:  20px;
-};
-
-
-indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
-QCheckBox::indicator:checked {
-    
-	image: url(:/resources/checkBox_on.png);
-	border: none;
-	background-color:  none;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>Hold and Wait</string>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_noPreemption">
-        <property name="styleSheet">
-         <string notr="true">border: none;
-font: 14pt &quot;Futura Bk BT&quot;;
-font-color:  rgb(217, 217, 217);
-background-color:  none;
-spacing:  25px;
-QCheckBox {
-    spacing:  20px;
-};
-
-
-indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
-QCheckBox::indicator:checked {
-    
-	image: url(:/resources/checkBox_on.png);
-	border: none;
-	background-color:  none;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>no Preemption</string>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_circularWait">
-        <property name="styleSheet">
-         <string notr="true">border: none;
-font: 14pt &quot;Futura Bk BT&quot;;
-font-color:  rgb(217, 217, 217);
-background-color:  none;
-spacing:  25px;
-QCheckBox {
-    spacing:  20px;
-};
-
-
-indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
-QCheckBox::indicator:checked {
-    
-	image: url(:/resources/checkBox_on.png);
-	border: none;
-	background-color:  none;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>Circular Wait</string>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_CarefullDistribution">
-        <property name="styleSheet">
-         <string notr="true">border: none;
-font: 14pt &quot;Futura Bk BT&quot;;
-font-color:  rgb(217, 217, 217);
-background-color:  none;
-spacing:  25px;
-QCheckBox {
-    spacing:  20px;
-};
-
-
-indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
-QCheckBox::indicator:checked {
-    
-	image: url(:/resources/checkBox_on.png);
-	border: none;
-	background-color:  none;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>Carefull Distribution</string>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox_BankiersAlgorythm">
-        <property name="styleSheet">
-         <string notr="true">border: none;
-font: 14pt &quot;Futura Bk BT&quot;;
-font-color:  rgb(217, 217, 217);
-background-color:  none;
-spacing:  25px;
-QCheckBox {
-    spacing:  20px;
-};
-
-
-indicator::unchecked: 	image: url(:/resources/checkBox_off.png);
-QCheckBox::indicator:checked {
-    
-	image: url(:/resources/checkBox_on.png);
-	border: none;
-	background-color:  none;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>Bankiers Algorythm</string>
-        </property>
-        <property name="tristate">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QSpinBox" name="spinBox_Printer"/>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_Cd"/>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_Plotter"/>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_TapeDrive"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="startSimulationButton">
+     <widget class="QRadioButton" name="radio_holdwait">
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/resources/button_on.png);
-font: 18pt &quot;Futura BdCn BT&quot;;
-color: rgb(217, 217, 217);</string>
+       <string notr="true">QRadioButton {
+	font: 14pt &quot;Futura Bk BT&quot;;
+	color:  rgb(217, 217, 217);
+    spacing: 20px;
+	background-color: none;
+}
+
+QRadioButton::hover {
+	color: rgb(105, 111, 128);
+}
+
+QRadioButton::indicator::hover {
+	color: rgb(105, 111, 128);
+}
+
+QRadioButton::indicator {
+    width: 19px;
+    height: 19px;
+}
+
+QRadioButton::indicator:unchecked {
+	
+	image: url(:/resources/checkBox_off.png);
+}
+
+QRadioButton::indicator:checked {
+	
+	image: url(:/resources/checkBox_on.png);
+}</string>
       </property>
       <property name="text">
-       <string>Start Simulation</string>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
+       <string>Hold and Wait</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="cancelButton">
+     <widget class="QRadioButton" name="radio_preempt">
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/resources/button_on.png);
-font: 18pt &quot;Futura BdCn BT&quot;;
-color: rgb(217, 217, 217);
+       <string notr="true">QRadioButton {
+	font: 14pt &quot;Futura Bk BT&quot;;
+	color:  rgb(217, 217, 217);
+    spacing: 20px;
+background-color: none;
+}
+
+QRadioButton::indicator {
+    width: 19px;
+    height: 19px;
+}
+
+QRadioButton::indicator:unchecked {
+	
+	image: url(:/resources/checkBox_off.png);
+}
+
+QRadioButton::indicator:checked {
+	
+	image: url(:/resources/checkBox_on.png);
+}
 </string>
       </property>
       <property name="text">
-       <string>cancel</string>
+       <string>No Preemption</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radio_circularw">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton {
+	font: 14pt &quot;Futura Bk BT&quot;;
+	color:  rgb(217, 217, 217);
+    spacing: 20px;
+background-color: none;
+}
+
+QRadioButton::indicator {
+    width: 19px;
+    height: 19px;
+}
+
+QRadioButton::indicator:unchecked {
+	
+	image: url(:/resources/checkBox_off.png);
+}
+
+QRadioButton::indicator:checked {
+	
+	image: url(:/resources/checkBox_on.png);
+}</string>
+      </property>
+      <property name="text">
+       <string>Circular Wait</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radio_bankier_2">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton {
+	font: 14pt &quot;Futura Bk BT&quot;;
+	color:  rgb(217, 217, 217);
+    spacing: 20px;
+background-color: none;
+}
+
+QRadioButton::indicator {
+    width: 19px;
+    height: 19px;
+}
+
+QRadioButton::indicator:unchecked {
+	
+	image: url(:/resources/checkBox_off.png);
+}
+
+QRadioButton::indicator:checked {
+	
+	image: url(:/resources/checkBox_on.png);
+}</string>
+      </property>
+      <property name="text">
+       <string>Carefull Distribution</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radio_bankier">
+      <property name="styleSheet">
+       <string notr="true">QRadioButton {
+	font: 14pt &quot;Futura Bk BT&quot;;
+	color:  rgb(217, 217, 217);
+    spacing: 20px;
+background-color: none;
+}
+
+QRadioButton::indicator {
+    width: 19px;
+    height: 19px;
+}
+
+QRadioButton::indicator:unchecked {
+	
+	image: url(:/resources/checkBox_off.png);
+}
+
+QRadioButton::indicator:checked {
+	
+	image: url(:/resources/checkBox_on.png);
+}</string>
+      </property>
+      <property name="text">
+       <string>Bankier-Algorithm</string>
       </property>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>340</y>
+     <width>261</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSpinBox" name="spinBox_Printer">
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-image: url(:/images/frame.png) 4;
+    border-width: 3;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-image: url(:/images/spinup.png) 1;
+    border-width: 1px;
+}
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+    image: url(:/images/up_arrow.png);
+    width: 7px;
+    height: 7px;
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+   image: url(:/images/up_arrow_disabled.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-image: url(:/images/spindown.png) 1;
+    border-width: 1px;
+    border-top-width: 0;
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+    image: url(:/images/down_arrow.png);
+    width: 7px;
+    height: 7px;
+}
+
+QSpinBox::down-arrow:disabled,
+QSpinBox::down-arrow:off { /* off state when value in min */
+   image: url(:/images/down_arrow_disabled.png);
+}</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSpinBox" name="spinBox_Cd">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSpinBox" name="spinBox_Plotter">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSpinBox" name="spinBox_TapeDrive">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="startSimulationButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>400</y>
+     <width>261</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+};
+QPushButton::pressed {
+    border-radius: 5px;
+	background-color: rgb(40, 43, 52);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Start Simulation</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>470</y>
+     <width>261</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+};
+QPushButton::pressed {
+    border-radius: 5px;
+	background-color: rgb(40, 43, 52);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>cancel</string>
+   </property>
   </widget>
  </widget>
  <resources/>

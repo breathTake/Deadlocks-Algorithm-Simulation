@@ -45,9 +45,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     StartDialog startDialog;
     connect(&startDialog, SIGNAL(countsFinished(int*)), this, SLOT(initResourceCount(int*)));
+    connect(&startDialog, SIGNAL(algorithmsFinished(int)), this, SLOT(selectedAlgorithm(int)));
     startDialog.setWindowTitle("Deadlock Algorythm Tester");
     if(startDialog.exec() == QDialog::Accepted){
         startDialog.getResourceCount();
+        startDialog.getAlgorithm();
     } else if(startDialog.exec() == QDialog::Rejected){
         this->close();
 
@@ -373,6 +375,6 @@ void MainWindow::initResourceCount(int* resourcesCounts)
 }
 
 void MainWindow::selectedAlgorithm(int algorithm){
-
+    //qDebug() << "algorithm: " << algorithm;
 }
 

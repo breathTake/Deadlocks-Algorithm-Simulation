@@ -13,10 +13,14 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/resources/Icon_White.png</normaloff>:/resources/Icon_White.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(52, 61, 85);</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -24,6 +28,10 @@
      <width>209</width>
      <height>146</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(73, 81, 103);
+</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
@@ -33,14 +41,10 @@
 	font: 14pt &quot;Futura Bk BT&quot;;
 	color:  rgb(217, 217, 217);
     spacing: 20px;
-	background-color: none;
+	background-color:none;
 }
 
 QRadioButton::hover {
-	color: rgb(105, 111, 128);
-}
-
-QRadioButton::indicator::hover {
 	color: rgb(105, 111, 128);
 }
 
@@ -49,8 +53,11 @@ QRadioButton::indicator {
     height: 19px;
 }
 
+QRadioButton::indicator:hover {
+	color: rgb(105, 111, 128);
+}
+
 QRadioButton::indicator:unchecked {
-	
 	image: url(:/resources/checkBox_off.png);
 }
 
@@ -190,8 +197,8 @@ QRadioButton::indicator:checked {
   <widget class="QPushButton" name="startSimulationButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>400</y>
+     <x>120</x>
+     <y>460</y>
      <width>261</width>
      <height>51</height>
     </rect>
@@ -199,15 +206,18 @@ QRadioButton::indicator:checked {
    <property name="styleSheet">
     <string notr="true">QPushButton {
     border-radius: 5px;
-	background-color: rgb(105, 111, 128);
+	background-color: rgb(43, 48, 63);
 	font: 18pt &quot;Futura BdCn BT&quot;;
 	color: rgb(217, 217, 217);
-};
+}
 QPushButton::pressed {
     border-radius: 5px;
 	background-color: rgb(40, 43, 52);
 	font: 18pt &quot;Futura BdCn BT&quot;;
 	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(105, 111, 128);
 }
 </string>
    </property>
@@ -218,39 +228,11 @@ QPushButton::pressed {
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>470</y>
-     <width>261</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    border-radius: 5px;
-	background-color: rgb(105, 111, 128);
-	font: 18pt &quot;Futura BdCn BT&quot;;
-	color: rgb(217, 217, 217);
-};
-QPushButton::pressed {
-    border-radius: 5px;
-	background-color: rgb(40, 43, 52);
-	font: 18pt &quot;Futura BdCn BT&quot;;
-	color: rgb(217, 217, 217);
-}
-</string>
-   </property>
-   <property name="text">
-    <string>cancel</string>
-   </property>
-  </widget>
   <widget class="QSpinBox" name="spinBox_Printer">
    <property name="geometry">
     <rect>
-     <x>131</x>
-     <y>343</y>
+     <x>120</x>
+     <y>380</y>
      <width>49</width>
      <height>31</height>
     </rect>
@@ -260,6 +242,7 @@ QPushButton::pressed {
     padding-right: 15px; /* make room for the arrows */
     border-width: 5px;
 	border-radius: 3px;
+	color: rgb(217, 217, 217);
 	background-color: rgb(105, 111, 128);
     padding: 8px;
 }
@@ -267,21 +250,22 @@ QPushButton::pressed {
 QSpinBox::up-button {
     subcontrol-origin: border;
 	border-radius: 3px;
-    subcontrol-position:  top right; /* position at the top right corner */
+    subcontrol-position:  top right; 
 	background-color: rgb(152, 161, 186);
-    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    width: 20px;
     border-width: 3px;
 }
 
 QSpinBox::up-button:hover {
+
 }
 
 QSpinBox::up-button:pressed {
 }
 
 QSpinBox::up-arrow {
-    width: 7px;
-    height: 7px;
+    
+	image: url(:/resources/arrow_up.png);
 }
 
 QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
@@ -298,23 +282,18 @@ QSpinBox::down-button {
 }
 
 QSpinBox::down-button:hover {
-    border-image: url(:/images/spindown_hover.png) 1;
 }
 
 QSpinBox::down-button:pressed {
-    border-image: url(:/images/spindown_pressed.png) 1;
 }
 
 QSpinBox::down-arrow {
-    
-	color: rgb(217, 217, 217);
-    width: 7px;
-    height: 7px;
+	image: url(:/resources/arrow_down.png);
 }
 
 QSpinBox::down-arrow:disabled,
 QSpinBox::down-arrow:off { /* off state when value in min */
-   image: url(:/images/down_arrow_disabled.png);
+  
 }
 </string>
    </property>
@@ -328,11 +307,71 @@ QSpinBox::down-arrow:off { /* off state when value in min */
   <widget class="QSpinBox" name="spinBox_Cd">
    <property name="geometry">
     <rect>
-     <x>197</x>
-     <y>353</y>
-     <width>40</width>
-     <height>24</height>
+     <x>190</x>
+     <y>380</y>
+     <width>51</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+
+}
+
+QSpinBox::up-button:pressed {
+}
+
+QSpinBox::up-arrow {
+    
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+
+}
+
+QSpinBox::down-button {
+      subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+}
+
+QSpinBox::down-button:pressed {
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+
+QSpinBox::down-arrow:disabled,
+QSpinBox::down-arrow:off { /* off state when value in min */
+  
+}
+</string>
    </property>
    <property name="minimum">
     <number>1</number>
@@ -344,11 +383,71 @@ QSpinBox::down-arrow:off { /* off state when value in min */
   <widget class="QSpinBox" name="spinBox_Plotter">
    <property name="geometry">
     <rect>
-     <x>264</x>
-     <y>353</y>
-     <width>40</width>
-     <height>24</height>
+     <x>260</x>
+     <y>380</y>
+     <width>51</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+
+}
+
+QSpinBox::up-button:pressed {
+}
+
+QSpinBox::up-arrow {
+    
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+
+}
+
+QSpinBox::down-button {
+      subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+}
+
+QSpinBox::down-button:pressed {
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+
+QSpinBox::down-arrow:disabled,
+QSpinBox::down-arrow:off { /* off state when value in min */
+  
+}
+</string>
    </property>
    <property name="minimum">
     <number>1</number>
@@ -361,10 +460,70 @@ QSpinBox::down-arrow:off { /* off state when value in min */
    <property name="geometry">
     <rect>
      <x>330</x>
-     <y>353</y>
-     <width>40</width>
-     <height>24</height>
+     <y>380</y>
+     <width>51</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+
+}
+
+QSpinBox::up-button:pressed {
+}
+
+QSpinBox::up-arrow {
+    
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+
+}
+
+QSpinBox::down-button {
+      subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+}
+
+QSpinBox::down-button:pressed {
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+
+QSpinBox::down-arrow:disabled,
+QSpinBox::down-arrow:off { /* off state when value in min */
+  
+}
+</string>
    </property>
    <property name="minimum">
     <number>1</number>
@@ -373,8 +532,52 @@ QSpinBox::down-arrow:off { /* off state when value in min */
     <number>10</number>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>50</y>
+     <width>371</width>
+     <height>501</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(73, 81, 103);
+border-radius: 5px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>320</y>
+     <width>401</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/resources/resourcesIcons.png);
+background-color: none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>frame</zorder>
+  <zorder>startSimulationButton</zorder>
+  <zorder>spinBox_Printer</zorder>
+  <zorder>spinBox_Cd</zorder>
+  <zorder>spinBox_Plotter</zorder>
+  <zorder>spinBox_TapeDrive</zorder>
+  <zorder>label_2</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>startSimulationButton</sender>
@@ -385,22 +588,6 @@ QSpinBox::down-arrow:off { /* off state when value in min */
     <hint type="sourcelabel">
      <x>165</x>
      <y>221</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>261</x>
-     <y>301</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>StartDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>165</x>
-     <y>251</y>
     </hint>
     <hint type="destinationlabel">
      <x>261</x>

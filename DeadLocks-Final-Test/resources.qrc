@@ -18,5 +18,8 @@
         <file>resources/checkBox_on.png</file>
         <file>resources/button_off.png</file>
         <file>resources/button_on.png</file>
+        <file>resources/resourcesIcons.png</file>
+        <file>resources/arrow_down.png</file>
+        <file>resources/arrow_up.png</file>
     </qresource>
 </RCC>

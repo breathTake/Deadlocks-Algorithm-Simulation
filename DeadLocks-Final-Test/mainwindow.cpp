@@ -6,13 +6,10 @@
 #include <QTimer>
 #include <StartDialog.h>
 
-//how many times resources should request resources in the simulation
-int countRepititions = 5;
-int countRepititionsDone = 0;
-
 //how many resources and processes the system has
 int system_resource_count = 4;
 int system_process_count = 3;
+int existingResources[4];
 
 //A Timer object updating the timer in ui
 QTimer programTimer;
@@ -45,10 +42,12 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap Pixmap_Tapedrive_off = QPixmap(":/resources/tapedrive_off.png");
     ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
 
+
     StartDialog startDialog;
+    connect(&startDialog, SIGNAL(countsFinished(int*)), this, SLOT(initResourceCount(int*)));
     startDialog.setWindowTitle("Deadlock Algorythm Tester");
     if(startDialog.exec() == QDialog::Accepted){
-        //start
+        startDialog.getResourceCount();
     } else if(startDialog.exec() == QDialog::Rejected){
         this->close();
 
@@ -59,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
     update_occupation_matrix();
     //seting up processes and resources
     setUpProcesses();
-    setUpResources(1,1,1,1);
+    setUpResources(existingResources[0], existingResources[1], existingResources[2], existingResources[3]);
 
     //initializing threads and workers
     threadProcessA = new QThread;
@@ -75,20 +74,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerA, SIGNAL(waitingForNext()),this, SLOT(test()));
 
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
     connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerB, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerB, SIGNAL(waitingForNext()),this, SLOT(test()));
 
     //connnecting workerCs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerC, SIGNAL(waitingForNext()),this, SLOT(test()));
 
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
@@ -366,5 +362,17 @@ void MainWindow::on_button_start_simulation_clicked()
 void MainWindow::updateTimeRunning()
 {
     //ui->time_running_lcd_number->display(ui->time_running_lcd_number->intValue() + 1);
+}
+
+void MainWindow::initResourceCount(int* resourcesCounts)
+{
+    existingResources[0] = resourcesCounts[0];
+    existingResources[1] = resourcesCounts[1];
+    existingResources[2] = resourcesCounts[2];
+    existingResources[3] = resourcesCounts[3];
+}
+
+void MainWindow::selectedAlgorithm(int algorithm){
+
 }
 

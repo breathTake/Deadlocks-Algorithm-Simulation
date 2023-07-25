@@ -15,6 +15,12 @@ public:
     explicit StartDialog(QWidget *parent = nullptr);
     ~StartDialog();
 
+public slots:
+    void getResourceCount();
+    void getAlgorithm();
+signals:
+    void countsFinished(int* resourcesCounts);
+    void algorithmsFinished(int algorithm);
 private:
     Ui::StartDialog *ui;
 };

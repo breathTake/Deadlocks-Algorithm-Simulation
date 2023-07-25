@@ -29,6 +29,9 @@ private slots:
     void update_resource_occupation_list();
     void updateTimeRunning();
 
+    void initResourceCount(int* resourcesCounts);
+    void selectedAlgorithm(int algorithm);
+
     //update variables when occupation changed
     void updateStillNeededRessources_R();
 

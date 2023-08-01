@@ -356,22 +356,6 @@ background-color: rgb(106, 112, 129);</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="Deadlock_test_running_label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>491</width>
-      <height>371</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/resources/Oversight_background.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="OccupationMatrix">
     <property name="geometry">
      <rect>
@@ -1063,92 +1047,32 @@ background-color: rgb(73, 81, 103);</string>
    <widget class="QPushButton" name="button_stop_simulation">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>120</x>
       <y>320</y>
-      <width>431</width>
-      <height>21</height>
+      <width>371</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Stop Simulation</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radio_preempt">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>210</y>
-      <width>240</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;</string>
-    </property>
-    <property name="text">
-     <string>No Preemption</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radio_bankier">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>111</y>
-      <width>240</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Bankier-Algorithm</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radio_holdwait">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>144</y>
-      <width>240</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Hold and Wait</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radio_circularw">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>177</y>
-      <width>240</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;
+     <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::pressed {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
 </string>
     </property>
     <property name="text">
-     <string>Circular Wait</string>
+     <string>Stop Simulation</string>
     </property>
    </widget>
    <widget class="QPushButton" name="button_start_simulation">
@@ -1169,7 +1093,54 @@ font: 500 13pt &quot;Futura PT&quot;;</string>
      <string>Start Simulation</string>
     </property>
    </widget>
-   <zorder>Deadlock_test_running_label</zorder>
+   <widget class="QPushButton" name="button_restart_simulation">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>320</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::pressed {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="background_resources_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>531</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/resources/Background_resources.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>background_resources_2</zorder>
    <zorder>background_resources</zorder>
    <zorder>Printer_background_label</zorder>
    <zorder>Cd_background_label</zorder>
@@ -1186,11 +1157,8 @@ font: 500 13pt &quot;Futura PT&quot;;</string>
    <zorder>OccupationMatrix</zorder>
    <zorder>OccupationMatrix_2</zorder>
    <zorder>button_stop_simulation</zorder>
-   <zorder>radio_preempt</zorder>
-   <zorder>radio_bankier</zorder>
-   <zorder>radio_holdwait</zorder>
-   <zorder>radio_circularw</zorder>
    <zorder>button_start_simulation</zorder>
+   <zorder>button_restart_simulation</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

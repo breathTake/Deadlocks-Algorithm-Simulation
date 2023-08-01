@@ -54,25 +54,48 @@ void ProcessWorker::requestResource()
             }
         }
 
+        //next the selected algorithm will do its thing to prevent a deadlock
+
+
         //resource will be reserved
         switch (nextResource) {
         case 0:
             semaphorePrinter->acquire(countResource);
+            if(semaphorePrinter->available() < 0){
+                differenceResources_A[nextResource] = 0;
+            } else {
+                differenceResources_A[nextResource] = semaphorePrinter->available();
+            }
             break;
         case 1:
             semaphoreCD->acquire(countResource);
+            if(semaphorePrinter->available() < 0){
+                differenceResources_A[nextResource] = 0;
+            } else {
+                differenceResources_A[nextResource] = semaphoreCD->available();
+            }
             break;
         case 2:
             semaphorePlotter->acquire(countResource);
-            break;
+            if(semaphorePrinter->available() < 0){
+                differenceResources_A[nextResource] = 0;
+            } else {
+                differenceResources_A[nextResource] = semaphorePlotter->available();
+            }
+                break;
         case 3:
             semaphoreTapeDrive->acquire(countResource);
+            if(semaphorePrinter->available() < 0){
+                differenceResources_A[nextResource] = 0;
+            } else {
+                differenceResources_A[nextResource] = semaphoreTapeDrive->available();
+            }
             break;
         }
 
         //update the occupation array and process list
         updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
-        differenceResources_A[nextResource] -= countResource;
+        //differenceResources_A[nextResource] -= countResource;
         emit resourceReserved(process.getProcessId(), nextResource, countResource);
 
         //resources have been acquired, last resource can be released

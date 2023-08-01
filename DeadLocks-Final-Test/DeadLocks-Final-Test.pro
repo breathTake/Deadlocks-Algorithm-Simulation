@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bankiersalgorithm.cpp \
+    deadlock_avoidance_api.cpp \
     main.cpp \
     mainwindow.cpp \
     processworker.cpp \
@@ -17,6 +19,8 @@ SOURCES += \
     systemresource.cpp
 
 HEADERS += \
+    bankiersalgorithm.h \
+    deadlock_avoidance_api.h \
     mainwindow.h \
     processworker.h \
     startdialog.h \

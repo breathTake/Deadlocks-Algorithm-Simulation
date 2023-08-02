@@ -1,6 +1,7 @@
 #ifndef PROCESSWORKER_H
 #define PROCESSWORKER_H
 
+#include "qdebug.h"
 #include <QObject>
 #include <SystemProcess.h>
 #include <systemresource.h>
@@ -29,6 +30,27 @@ public:
      * \param countResource is the count of the reserce
      */
     void updateProcess(int nextResource, int countResource);
+
+    void setUpOccupations(int assignedResources_C[3][4], int stillNeededResources_R[3][4]){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 4; j++){
+                this->assignedResources_C[i][j] = assignedResources_C[i][j];
+                this->stillNeededResources_R[i][j] = stillNeededResources_R[i][j];
+            }
+        }
+    }
+
+    void printStillNeeded(){
+        QDebug dbg(QtDebugMsg);
+        dbg << "R:" << "\n";
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 4; j++){
+                dbg << stillNeededResources_R[i][j];
+            }
+            dbg << "\n";
+        }
+        dbg << "A: " << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3] << "\n";
+    }
 
 signals:
     /**
@@ -67,7 +89,8 @@ private:
      */
     int availableResources_E[4];
     int differenceResources_A[4];
-    int stillNeededResources_R[4];
+    static int assignedResources_C[3][4];
+    static int stillNeededResources_R[3][4];
     SystemProcess process;
     /**
      * @brief semaphorePrinter regulates how many printers can be used by threads

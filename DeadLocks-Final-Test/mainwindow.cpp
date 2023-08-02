@@ -96,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
     workerC->moveToThread(threadProcessC);
     threadProcessC->start();
     //programTimer.start(1000);
+    workerA->setUpOccupations(assignedResources_C, stillNeededResources_R);
 }
 
 MainWindow::~MainWindow()

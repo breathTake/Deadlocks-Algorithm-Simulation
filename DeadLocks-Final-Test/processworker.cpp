@@ -2,14 +2,19 @@
 
 #include <QThread>
 #include <QDebug>
+#include <BankiersAlgorithm.h>
 
 QSemaphore *semaphorePrinter;
 QSemaphore *semaphoreCD;
 QSemaphore *semaphorePlotter;
 QSemaphore *semaphoreTapeDrive;
+int ProcessWorker::assignedResources_C[3][4];
+int ProcessWorker::stillNeededResources_R[3][4];
 
 ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4])
 {
+    //memset(assignedResources_C, 0, 12);
+    //memset(stillNeededResources_R, 0, 12);
     this->process = SystemProcess();
     this->process.setAssignedResources(process.getAssignedResources());
     this->process.setNeededResources(process.getNeededResources());
@@ -20,7 +25,7 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
         this->differenceResources_A[i] = differenceResources_A[i];
         this->availableResources_E[i] = availableResources_E[i];
         int resourceID  = process.getNeededResources().at(i).getResourceId();
-        this->stillNeededResources_R[resourceID] = process.getNeededResources().at(i).getCount();
+        this->stillNeededResources_R[process.getProcessId()][resourceID] = process.getNeededResources().at(i).getCount();
     }
 
     semaphorePrinter = new QSemaphore(availableResources_E[0]);
@@ -54,8 +59,24 @@ void ProcessWorker::requestResource()
             }
         }
 
+        assignedResources_C[process.getProcessId()][nextResource] += countResource;
+        stillNeededResources_R[process.getProcessId()][nextResource] -= countResource;
+        differenceResources_A[nextResource] -= countResource;
+        qDebug() << "process " << process.getProcessId() << " requested " << countResource << " of resource " << nextResource;
+        printStillNeeded();
         //next the selected algorithm will do its thing to prevent a deadlock
-
+        BankiersAlgorithm bankier = *new BankiersAlgorithm();
+        if(nextResource != -5){
+            if(bankier.avoidance_algorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E)){
+                qDebug() << "no Deadlock";
+            } else {
+                qDebug() << "deadlock";
+                assignedResources_C[process.getProcessId()][nextResource] -= countResource;
+                stillNeededResources_R[process.getProcessId()][nextResource] += countResource;
+                return;
+            }
+        }
+        differenceResources_A[nextResource] += countResource;
 
         //resource will be reserved
         switch (nextResource) {
@@ -95,7 +116,6 @@ void ProcessWorker::requestResource()
 
         //update the occupation array and process list
         updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
-        //differenceResources_A[nextResource] -= countResource;
         emit resourceReserved(process.getProcessId(), nextResource, countResource);
 
         //resources have been acquired, last resource can be released
@@ -115,6 +135,7 @@ void ProcessWorker::requestResource()
                 break;
             }
             emit resourceReleased(process.getProcessId(), lastResource, lastCount);
+            assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
         }
 
         //waiting 2*countResource to simulate the resource writing etc.

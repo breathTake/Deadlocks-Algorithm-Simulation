@@ -1,10 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <ProcessWorker.h>
+#include <QProcess>
+#include <QApplication>
 #include <QThread>
 #include <QTime>
 #include <QTimer>
 #include <StartDialog.h>
+#include <EndDialog.h>
+#include <QGraphicsDropShadowEffect>
 
 //how many resources and processes the system has
 int system_resource_count = 4;
@@ -32,6 +36,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     //programTimer = *new QTimer(this);
 
+    //shadow effects for buttons
+    QGraphicsDropShadowEffect* effectShadow1 = new QGraphicsDropShadowEffect();
+    effectShadow1->setBlurRadius(10);
+    effectShadow1->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow1->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow2 = new QGraphicsDropShadowEffect();
+    effectShadow2->setBlurRadius(10);
+    effectShadow2->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow2->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow3 = new QGraphicsDropShadowEffect();
+    effectShadow3->setBlurRadius(10);
+    effectShadow3->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow3->setOffset(0,2);
+    ui->button_restart_simulation->setGraphicsEffect(effectShadow1);
+    ui->button_start_simulation->setGraphicsEffect(effectShadow2);
+    ui->button_stop_simulation->setGraphicsEffect(effectShadow3);
+
     //Pixmaps for the Resource tab
     QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
     ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
@@ -43,16 +64,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
 
 
+    //Start dialog and setting up resource counts etc.
     StartDialog startDialog;
     connect(&startDialog, SIGNAL(countsFinished(int*)), this, SLOT(initResourceCount(int*)));
     connect(&startDialog, SIGNAL(algorithmsFinished(int)), this, SLOT(selectedAlgorithm(int)));
-    startDialog.setWindowTitle("Deadlock Algorythm Tester");
+    startDialog.setWindowTitle("Deadlock Algorithm Simulation");
     if(startDialog.exec() == QDialog::Accepted){
         startDialog.getResourceCount();
         startDialog.getAlgorithm();
     } else if(startDialog.exec() == QDialog::Rejected){
         this->close();
-
         startDialog.close();
     }
 
@@ -337,28 +358,34 @@ void MainWindow::setUpProcesses()
 
 void MainWindow::on_button_stop_simulation_clicked()
 {
+    /*threadProcessA->deleteLater();
     threadProcessA->quit();
     threadProcessA->wait();
     delete threadProcessA;
     delete workerA;
 
+    threadProcessB->deleteLater();
     threadProcessB->quit();
     threadProcessB->wait();
     delete threadProcessB;
     delete workerB;
 
+    threadProcessC->deleteLater();
     threadProcessC->quit();
     threadProcessC->wait();
     delete threadProcessC;
-    delete workerC;
-    ui->button_start_simulation->setEnabled(true);
-    ui->button_stop_simulation->setEnabled(false);
+    delete workerC;*/
+
+    qDebug() << "deleted threads";
+    EndDialog endDialog;
+    endDialog.setWindowTitle("Deadlock Algorithm Simulation");
+    endDialog.exec();
 }
 
 
 void MainWindow::on_button_start_simulation_clicked()
 {
-    //ui->button_start_simulation->setEnabled(false);
+    ui->button_start_simulation->setEnabled(false);
     //ui->button_stop_simulation->setEnabled(true);
 }
 
@@ -377,5 +404,26 @@ void MainWindow::initResourceCount(int* resourcesCounts)
 
 void MainWindow::selectedAlgorithm(int algorithm){
     //qDebug() << "algorithm: " << algorithm;
+}
+
+
+//restarting the application
+void MainWindow::on_button_restart_simulation_clicked()
+{
+    // Restart the application
+    QApplication::quit();
+
+#ifdef Q_OS_WIN
+    // Restart the application on Windows
+    QProcess::startDetached(QApplication::applicationFilePath());
+#elif defined(Q_OS_MACOS)
+    // Restart the application on macOS
+    QStringList arguments = QApplication::arguments();
+    arguments.removeFirst(); // Remove the current executable from the arguments
+    QProcess::startDetached(QApplication::applicationFilePath(), arguments);
+#else
+    // Restart the application on other platforms (Linux, etc.)
+    // You may need to implement a platform-specific method for other operating systems.
+#endif
 }
 

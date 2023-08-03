@@ -41,6 +41,10 @@ void ProcessWorker::requestResource()
 
 
     while(lastResource != -5){
+        if(QThread::currentThread()->isInterruptionRequested()){
+            qDebug() << "interrupting";
+            return;
+        }
         //find next resouce and count
         int nextResource = -1;
         int countResource = 0;

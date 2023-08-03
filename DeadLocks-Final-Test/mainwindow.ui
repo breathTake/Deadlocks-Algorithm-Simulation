@@ -1047,9 +1047,9 @@ background-color: rgb(73, 81, 103);</string>
    <widget class="QPushButton" name="button_stop_simulation">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>130</x>
       <y>320</y>
-      <width>371</width>
+      <width>361</width>
       <height>41</height>
      </rect>
     </property>
@@ -1078,16 +1078,29 @@ QPushButton::hover {
    <widget class="QPushButton" name="button_start_simulation">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>270</y>
-      <width>431</width>
-      <height>21</height>
+      <x>70</x>
+      <y>260</y>
+      <width>421</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: none;
-background-color: rgb(106, 112, 129);
-font: 500 13pt &quot;Futura PT&quot;;</string>
+     <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::!enabled {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	font: 18pt &quot;Futura BdCn BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
+</string>
     </property>
     <property name="text">
      <string>Start Simulation</string>
@@ -1096,7 +1109,7 @@ font: 500 13pt &quot;Futura PT&quot;;</string>
    <widget class="QPushButton" name="button_restart_simulation">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>320</y>
       <width>41</width>
       <height>41</height>
@@ -1122,6 +1135,10 @@ QPushButton::hover {
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resources.qrc">
+      <normaloff>:/resources/reset_Icon.png</normaloff>:/resources/reset_Icon.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="background_resources_2">

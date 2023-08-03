@@ -44,6 +44,8 @@ private slots:
 
     void on_button_start_simulation_clicked();
 
+    void on_button_restart_simulation_clicked();
+
 private:
     Ui::MainWindow *ui;
     bool bankiersAlgorithm(int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);

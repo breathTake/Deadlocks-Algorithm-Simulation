@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>524</width>
-    <height>603</height>
+    <width>500</width>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -25,8 +31,8 @@
     <rect>
      <x>150</x>
      <y>140</y>
-     <width>209</width>
-     <height>146</height>
+     <width>231</width>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -39,13 +45,9 @@
       <property name="styleSheet">
        <string notr="true">QRadioButton {
 	font: 14pt &quot;Futura Bk BT&quot;;
-	color:  rgb(217, 217, 217);
+	color: rgb(105, 111, 128);
     spacing: 20px;
 	background-color:none;
-}
-
-QRadioButton::hover {
-	color: rgb(105, 111, 128);
 }
 
 QRadioButton::indicator {
@@ -53,18 +55,24 @@ QRadioButton::indicator {
     height: 19px;
 }
 
-QRadioButton::indicator:hover {
-	color: rgb(105, 111, 128);
+QRadioButton::hover,
+QRadioButton::checked {
+	color:  rgb(217, 217, 217);
 }
+
 
 QRadioButton::indicator:unchecked {
 	image: url(:/resources/checkBox_off.png);
 }
 
 QRadioButton::indicator:checked {
-	
-	image: url(:/resources/checkBox_on.png);
-}</string>
+	image: url(:/resources/checkBox_on_hover.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/resources/checkBox_off_hover.png);
+}
+</string>
       </property>
       <property name="text">
        <string>Hold and Wait</string>
@@ -76,9 +84,9 @@ QRadioButton::indicator:checked {
       <property name="styleSheet">
        <string notr="true">QRadioButton {
 	font: 14pt &quot;Futura Bk BT&quot;;
-	color:  rgb(217, 217, 217);
+	color: rgb(105, 111, 128);
     spacing: 20px;
-background-color: none;
+	background-color:none;
 }
 
 QRadioButton::indicator {
@@ -86,14 +94,22 @@ QRadioButton::indicator {
     height: 19px;
 }
 
+QRadioButton::hover,
+QRadioButton::checked {
+	color:  rgb(217, 217, 217);
+}
+
+
 QRadioButton::indicator:unchecked {
-	
 	image: url(:/resources/checkBox_off.png);
 }
 
 QRadioButton::indicator:checked {
-	
-	image: url(:/resources/checkBox_on.png);
+	image: url(:/resources/checkBox_on_hover.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/resources/checkBox_off_hover.png);
 }
 </string>
       </property>
@@ -107,9 +123,9 @@ QRadioButton::indicator:checked {
       <property name="styleSheet">
        <string notr="true">QRadioButton {
 	font: 14pt &quot;Futura Bk BT&quot;;
-	color:  rgb(217, 217, 217);
+	color: rgb(105, 111, 128);
     spacing: 20px;
-background-color: none;
+	background-color:none;
 }
 
 QRadioButton::indicator {
@@ -117,15 +133,24 @@ QRadioButton::indicator {
     height: 19px;
 }
 
+QRadioButton::hover,
+QRadioButton::checked {
+	color:  rgb(217, 217, 217);
+}
+
+
 QRadioButton::indicator:unchecked {
-	
 	image: url(:/resources/checkBox_off.png);
 }
 
 QRadioButton::indicator:checked {
-	
-	image: url(:/resources/checkBox_on.png);
-}</string>
+	image: url(:/resources/checkBox_on_hover.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/resources/checkBox_off_hover.png);
+}
+</string>
       </property>
       <property name="text">
        <string>Circular Wait</string>
@@ -137,9 +162,9 @@ QRadioButton::indicator:checked {
       <property name="styleSheet">
        <string notr="true">QRadioButton {
 	font: 14pt &quot;Futura Bk BT&quot;;
-	color:  rgb(217, 217, 217);
+	color: rgb(105, 111, 128);
     spacing: 20px;
-background-color: none;
+	background-color:none;
 }
 
 QRadioButton::indicator {
@@ -147,15 +172,24 @@ QRadioButton::indicator {
     height: 19px;
 }
 
+QRadioButton::hover,
+QRadioButton::checked {
+	color:  rgb(217, 217, 217);
+}
+
+
 QRadioButton::indicator:unchecked {
-	
 	image: url(:/resources/checkBox_off.png);
 }
 
 QRadioButton::indicator:checked {
-	
-	image: url(:/resources/checkBox_on.png);
-}</string>
+	image: url(:/resources/checkBox_on_hover.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/resources/checkBox_off_hover.png);
+}
+</string>
       </property>
       <property name="text">
        <string>Carefull Distribution</string>
@@ -167,9 +201,9 @@ QRadioButton::indicator:checked {
       <property name="styleSheet">
        <string notr="true">QRadioButton {
 	font: 14pt &quot;Futura Bk BT&quot;;
-	color:  rgb(217, 217, 217);
+	color: rgb(105, 111, 128);
     spacing: 20px;
-background-color: none;
+	background-color:none;
 }
 
 QRadioButton::indicator {
@@ -177,15 +211,24 @@ QRadioButton::indicator {
     height: 19px;
 }
 
+QRadioButton::hover,
+QRadioButton::checked {
+	color:  rgb(217, 217, 217);
+}
+
+
 QRadioButton::indicator:unchecked {
-	
 	image: url(:/resources/checkBox_off.png);
 }
 
 QRadioButton::indicator:checked {
-	
-	image: url(:/resources/checkBox_on.png);
-}</string>
+	image: url(:/resources/checkBox_on_hover.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/resources/checkBox_off_hover.png);
+}
+</string>
       </property>
       <property name="text">
        <string>Bankier-Algorithm</string>
@@ -473,7 +516,7 @@ QSpinBox::down-arrow {
     <number>10</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_background">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -490,7 +533,7 @@ border-radius: 5px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label_Icons">
    <property name="geometry">
     <rect>
      <x>-70</x>
@@ -507,14 +550,36 @@ background-color: none;</string>
     <string/>
    </property>
   </widget>
-  <zorder>label</zorder>
+  <widget class="QLabel" name="label_Header">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>80</y>
+     <width>261</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 24pt &quot;Futura BdCn BT&quot;;
+background-color: none;
+color: rgb(217, 217, 217);</string>
+   </property>
+   <property name="text">
+    <string>Deadlock Simulation</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <zorder>label_background</zorder>
   <zorder>frame</zorder>
   <zorder>startSimulationButton</zorder>
   <zorder>spinBox_Printer</zorder>
   <zorder>spinBox_Cd</zorder>
   <zorder>spinBox_Plotter</zorder>
   <zorder>spinBox_TapeDrive</zorder>
-  <zorder>label_2</zorder>
+  <zorder>label_Icons</zorder>
+  <zorder>label_Header</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

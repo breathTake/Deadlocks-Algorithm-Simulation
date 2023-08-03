@@ -21,5 +21,8 @@
         <file>resources/resourcesIcons.png</file>
         <file>resources/arrow_down.png</file>
         <file>resources/arrow_up.png</file>
+        <file>resources/reset_Icon.png</file>
+        <file>resources/checkBox_off_hover.png</file>
+        <file>resources/checkBox_on_hover.png</file>
     </qresource>
 </RCC>

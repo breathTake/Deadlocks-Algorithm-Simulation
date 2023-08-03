@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     bankiersalgorithm.cpp \
     deadlock_avoidance_api.cpp \
+    enddialog.cpp \
     main.cpp \
     mainwindow.cpp \
     processworker.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     bankiersalgorithm.h \
     deadlock_avoidance_api.h \
+    enddialog.h \
     mainwindow.h \
     processworker.h \
     startdialog.h \
@@ -28,6 +30,7 @@ HEADERS += \
     systemresource.h
 
 FORMS += \
+    enddialog.ui \
     mainwindow.ui \
     startdialog.ui
 
@@ -38,3 +41,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    resources/checkBox_off.png \
+    resources/checkBox_off_hover.png \
+    resources/checkBox_on.png \
+    resources/checkBox_on_hover.png \
+    resources/reset_Icon.png \
+    resources/restet_Icon.png

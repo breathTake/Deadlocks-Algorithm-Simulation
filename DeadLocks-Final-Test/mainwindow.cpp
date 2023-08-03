@@ -138,6 +138,9 @@ void MainWindow::reserveResources(int process, int resource, int count)
     QPixmap Pixmap_Plotter_on= QPixmap(":/resources/plotter_on.png");
     QPixmap Pixmap_TapeDrive_on= QPixmap(":/resources/tapedrive_on.png");
 
+    QString logMessage = QString("The Process %1 reserved %2 of the resource %3").arg(process).arg(count).arg(resource);
+    ui->plainTextEdit_RequestInfo->appendPlainText(logMessage);
+
     switch(resource){
     case 0:
         ui->Printer_background_label->setPixmap(Pixmap_Printer_on);

@@ -1157,6 +1157,50 @@ QPushButton::hover {
      <string/>
     </property>
    </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_RequestInfo">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>149</y>
+      <width>421</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{ 
+	padding-top: 15px;
+	pading-bottom:15px;
+	padding-left: 50px;
+	border-radius: 5px;
+	border: none;
+	background-color: rgb(105, 111, 128);
+	font: 12pt &quot;Futura Bk BT&quot;;
+	color: rgb(217, 217, 217);
+	alignment: AlignCenter;
+    }</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+    </property>
+   </widget>
    <zorder>background_resources_2</zorder>
    <zorder>background_resources</zorder>
    <zorder>Printer_background_label</zorder>
@@ -1176,6 +1220,9 @@ QPushButton::hover {
    <zorder>button_stop_simulation</zorder>
    <zorder>button_start_simulation</zorder>
    <zorder>button_restart_simulation</zorder>
+   <zorder>textBrowser_newRequests</zorder>
+   <zorder>verticalScrollBar</zorder>
+   <zorder>plainTextEdit_RequestInfo</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

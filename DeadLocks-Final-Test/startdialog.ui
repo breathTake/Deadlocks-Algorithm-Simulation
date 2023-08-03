@@ -265,7 +265,7 @@ QPushButton::hover {
 </string>
    </property>
    <property name="text">
-    <string>Start Simulation</string>
+    <string>confirm</string>
    </property>
    <property name="checkable">
     <bool>false</bool>

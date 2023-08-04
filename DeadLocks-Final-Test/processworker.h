@@ -21,7 +21,7 @@ public:
      * \param availableResources_E is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start
      * \param differenceResources_A is an int array with 4 ints. Each int corresponds to a resource that is available right now
      */
-    ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4]);
+    ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm);
 
     /**
      * @brief updateProcess
@@ -43,6 +43,10 @@ public:
                 this->stillNeededResources_R[i][j] = stillNeededResources_R[i][j];
             }
         }
+    }
+
+    void setAlgorithm(int algorithm){
+        this->selectedAlgorithm = algorithm;
     }
 
     //temporary debug method to check variables
@@ -97,12 +101,14 @@ private:
      * @brief assignedResources_C matrix containing which and how many resources a process is occupying
      * @brief stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
      * @brief process is the process of the thread
+     * @brief selectedAlgorithmNumber is the algorithm used to prevent deadlocks
      */
     int availableResources_E[4];
     int differenceResources_A[4];
     static int assignedResources_C[3][4];
     static int stillNeededResources_R[3][4];
     SystemProcess process;
+    int selectedAlgorithm;
 };
 
 #endif // PROCESSWORKER_H

@@ -14,6 +14,7 @@
 int system_resource_count = 4;
 int system_process_count = 3;
 int existingResources[4];
+int selectedAlgorithmNumber = -1;
 
 //A Timer object updating the timer in ui
 QTimer programTimer;
@@ -85,11 +86,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     //initializing threads and workers
     threadProcessA = new QThread;
-    workerA = new ProcessWorker(processes.at(0), availableResources_E, differenceResources_A);
+    workerA = new ProcessWorker(processes.at(0), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
     threadProcessB = new QThread;
-    workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A);
+    workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
     threadProcessC = new QThread;
-    workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A);
+    workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
 
     //connect(programTimer, SIGNAL(timeout()), this, SLOT(updateTimeRunning()));
 
@@ -348,9 +349,6 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
 
 void MainWindow::setUpProcesses()
 {
-    /*processes.append(SystemProcess("A", 0, false));
-    processes.append(SystemProcess("B", 1, false));
-    processes.append(SystemProcess("C", 2, false));*/
     processes.append(SystemProcess("A", 0, 1, 2));
     processes.append(SystemProcess("B", 1, 1, 2));
     processes.append(SystemProcess("C", 2, 1, 2));
@@ -406,7 +404,7 @@ void MainWindow::initResourceCount(int* resourcesCounts)
 }
 
 void MainWindow::selectedAlgorithm(int algorithm){
-    //qDebug() << "algorithm: " << algorithm;
+    selectedAlgorithmNumber = algorithm;
 }
 
 

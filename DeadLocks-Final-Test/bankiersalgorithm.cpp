@@ -1,7 +1,7 @@
-#include "bankiersalgorithm.h"
+
 #include "QDebug"
 
-bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]){
+/*bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]){
     int countFinished = 0;
     //qDebug() << "\nR: \n";
         vector<int> markedFinished;
@@ -36,6 +36,6 @@ bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], in
         return true; // No Deadlock
 
 }
-
+*/
 
 

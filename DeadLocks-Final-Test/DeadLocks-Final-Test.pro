@@ -14,6 +14,7 @@ SOURCES += \
     enddialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    noavoidancesimulation.cpp \
     processworker.cpp \
     startdialog.cpp \
     systemprocess.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     deadlock_avoidance_api.h \
     enddialog.h \
     mainwindow.h \
+    noavoidancesimulation.h \
     processworker.h \
     startdialog.h \
     systemprocess.h \

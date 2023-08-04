@@ -3,6 +3,7 @@
 #include <QThread>
 #include <QDebug>
 #include <BankiersAlgorithm.h>
+#include <NoAvoidanceSimulation.h>
 
 /**
  * @brief semaphorePrinter regulates how many printers can be used by threads
@@ -18,8 +19,9 @@ QSemaphore *semaphoreTapeDrive;
 int ProcessWorker::assignedResources_C[3][4];
 int ProcessWorker::stillNeededResources_R[3][4];
 
-ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4])
+ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm)
 {
+    this->selectedAlgorithm = selectedAlgorithm;
     //"copying" the process belonging to thread with all attributes
     this->process = SystemProcess();
     this->process.setNeededResources(process.getNeededResources());
@@ -58,57 +60,19 @@ void ProcessWorker::requestResource()
             return;
         }
 
-        //finding the next Resource and count to be reserved
-        //nextResouce is the next resource that should get reserved. If it is -1 the next Resource has either not been found yet or there is no resource left. -5 is the flag that there is no resourc left.
-        int nextResource = -1;
-        //countResource is the amount of the resource that should be reserved. The Algorithm will try to reserve the amount that is given as count in neededResources of the process
-        int countResource = 0;
-        //indexResourceList is the index of the nextResourc in the neededResources list of process as they are in random order
-        int indexResourceList;
-
-        //going through the neededResources list to find the next needed resource
-        for(int i = 0; i < process.getNeededResources().count(); i++){
-            //the resource has to have a count > 0 but < the over all available resources
-            if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
-                //if the next resource was found set the nextResource, countResource and indexResourceList variables
-                nextResource = process.getNeededResources().at(i).getResourceId();
-                indexResourceList = i;
-                countResource = process.getNeededResources().at(i).getCount();
-                break;
-            }
-            if(i == process.getNeededResources().count() - 1 && nextResource == -1){
-                //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
-                //no return yet because last resource has to be released
-                nextResource = - 5;
-            }
+        //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock)
+        deadlock_avoidance_api *algorithm;
+        switch(selectedAlgorithm){
+            default:
+                algorithm = new NoAvoidanceSimulation();
         }
 
-        //now that the next resource to be reserved has been found the algorithm(s) will check if it is allowed to do this
-        //first the matrices are beeing updated to what they should be after reserving the wanted resources so bankiers can check if the current state is save
-        assignedResources_C[process.getProcessId()][nextResource] += countResource;
-        stillNeededResources_R[process.getProcessId()][nextResource] -= countResource;
-        differenceResources_A[nextResource] -= countResource;
 
-        //debugging
-        qDebug() << "process " << process.getProcessId() << " requested " << countResource << " of resource " << nextResource;
-        printStillNeeded();
-
-        //new bankiers algorithm object to check if state is save
-        BankiersAlgorithm bankier = *new BankiersAlgorithm();
-        if(nextResource != -5){
-            if(bankier.avoidance_algorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E)){
-                //state is save
-                qDebug() << "no Deadlock";
-            } else {
-                //state is not save
-                qDebug() << "deadlock";
-                assignedResources_C[process.getProcessId()][nextResource] -= countResource;
-                stillNeededResources_R[process.getProcessId()][nextResource] += countResource;
-                return;
-            }
-        }
-        differenceResources_A[nextResource] += countResource; //change back because it will be changed when aquiring
-
+        //the findNextResources funtion will be called upon the right algorithm
+        QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
+        int nextResource = foundNextResouce.at(0);
+        int countResource = foundNextResouce.at(1);
+        int indexResourceList = foundNextResouce.at(2);
 
 
         //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array;

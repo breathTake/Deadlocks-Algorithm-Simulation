@@ -16,6 +16,7 @@ QSemaphore *semaphoreCD;
 QSemaphore *semaphorePlotter;
 QSemaphore *semaphoreTapeDrive;
 //initializing the static matrices
+int ProcessWorker::differenceResources_A[4];
 int ProcessWorker::assignedResources_C[3][4];
 int ProcessWorker::stillNeededResources_R[3][4];
 
@@ -50,6 +51,8 @@ void ProcessWorker::requestResource()
     int lastResource = -1;
     //count of the last resource that has been reserved (-1 means there was no resource before)
     int lastCount = -1;
+    //deadlock_avoidance_api object
+    deadlock_avoidance_api *algorithm;
 
     //the process works as long as there are still resources left to be processed in neededResources
     while(lastResource != -5){
@@ -60,8 +63,7 @@ void ProcessWorker::requestResource()
             return;
         }
 
-        //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock)
-        deadlock_avoidance_api *algorithm;
+        //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock
         switch(selectedAlgorithm){
             default:
                 algorithm = new NoAvoidanceSimulation();
@@ -76,44 +78,30 @@ void ProcessWorker::requestResource()
 
 
         //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array;
-        switch (nextResource) {
-        case 0:
-            semaphorePrinter->acquire(countResource);
-            if(semaphorePrinter->available() < 0){
-                differenceResources_A[nextResource] = 0;
-            } else {
-                differenceResources_A[nextResource] = semaphorePrinter->available();
-            }
-            break;
-        case 1:
-            semaphoreCD->acquire(countResource);
-            if(semaphorePrinter->available() < 0){
-                differenceResources_A[nextResource] = 0;
-            } else {
-                differenceResources_A[nextResource] = semaphoreCD->available();
-            }
-            break;
-        case 2:
-            semaphorePlotter->acquire(countResource);
-            if(semaphorePrinter->available() < 0){
-                differenceResources_A[nextResource] = 0;
-            } else {
-                differenceResources_A[nextResource] = semaphorePlotter->available();
-            }
+        if(nextResource != -5){
+            switch (nextResource) {
+            case 0:
+                semaphorePrinter->acquire(countResource);
                 break;
-        case 3:
-            semaphoreTapeDrive->acquire(countResource);
-            if(semaphorePrinter->available() < 0){
-                differenceResources_A[nextResource] = 0;
-            } else {
-                differenceResources_A[nextResource] = semaphoreTapeDrive->available();
+            case 1:
+                semaphoreCD->acquire(countResource);
+                break;
+            case 2:
+                semaphorePlotter->acquire(countResource);
+                break;
+            case 3:
+                semaphoreTapeDrive->acquire(countResource);
+                break;
             }
-            break;
+
+            //update the occupation array and process list
+            differenceResources_A[nextResource] -= countResource;
+            assignedResources_C[process.getProcessId()][nextResource] += countResource;
+            stillNeededResources_R[process.getProcessId()][nextResource] += countResource;
+            updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
+            emit resourceReserved(process.getProcessId(), nextResource, countResource);
         }
 
-        //update the occupation array and process list
-        updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
-        emit resourceReserved(process.getProcessId(), nextResource, countResource);
 
         //resources have been acquired, the last resource (from befor) can be released, if they were set
         if(lastResource != -1){
@@ -131,10 +119,15 @@ void ProcessWorker::requestResource()
                 semaphoreTapeDrive->release(lastCount);
                 break;
             }
+            //if nextResource is -5 all resources are processed and finishedResourceProcessing can be emitted
+            if(nextResource == -5){
+                break;
+            }
             //emiiting resourcesReleased to notify mainwindow of changes and change ui
             emit resourceReleased(process.getProcessId(), lastResource, lastCount);
 
             //updating assignedResources_C because resources have been released
+            differenceResources_A[lastResource] += lastCount;
             assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
         }
 
@@ -144,9 +137,7 @@ void ProcessWorker::requestResource()
         //seting the lastResource and count to current resouce and count to be released in next iteration
         lastResource = nextResource;
         lastCount = countResource;
-
     }
-
     emit finishedResourceProcessing(lastResource);
 }
 

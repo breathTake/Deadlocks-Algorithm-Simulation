@@ -98,17 +98,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
 
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
     connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerB, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
 
     //connnecting workerCs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
 
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
@@ -377,7 +380,6 @@ void MainWindow::on_button_stop_simulation_clicked()
     delete threadProcessC;
     delete workerC;*/
 
-    qDebug() << "deleted threads";
     EndDialog endDialog;
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
     endDialog.exec();

@@ -104,7 +104,7 @@ private:
      * @brief selectedAlgorithmNumber is the algorithm used to prevent deadlocks
      */
     int availableResources_E[4];
-    int differenceResources_A[4];
+    static int differenceResources_A[4];
     static int assignedResources_C[3][4];
     static int stillNeededResources_R[3][4];
     SystemProcess process;

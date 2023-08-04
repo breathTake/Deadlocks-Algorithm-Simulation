@@ -1,4 +1,5 @@
 #include "noavoidancesimulation.h"
+#include "QDebug"
 
 NoAvoidanceSimulation::NoAvoidanceSimulation()
 {
@@ -26,11 +27,11 @@ QList<int> NoAvoidanceSimulation::findNextResource(SystemProcess process, int st
             indexResourceList = i;
             countResource = process.getNeededResources().at(i).getCount();
             break;
-        }
-        if(i == process.getNeededResources().count() - 1 && nextResource == -1){
+        } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
             //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
             //no return yet because last resource has to be released
             nextResource = - 5;
+            break;
         }
     }
 

@@ -31,6 +31,11 @@ public:
      */
     void updateProcess(int nextResource, int countResource);
 
+    /**
+     * @brief setUpOccupations used to copy the assignedResources_C and stillNeededResources_R from mainwindow to the threads
+     * @param assignedResources_C matrix containing which and how many resources a process is occupying
+     * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
+     */
     void setUpOccupations(int assignedResources_C[3][4], int stillNeededResources_R[3][4]){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 4; j++){
@@ -40,6 +45,7 @@ public:
         }
     }
 
+    //temporary debug method to check variables
     void printStillNeeded(){
         QDebug dbg(QtDebugMsg);
         dbg << "R:" << "\n";
@@ -62,6 +68,7 @@ signals:
      */
     void resourceReserved(int processID, int resource, int count);
 
+    //not implemented yet
     void waitingForNext();
 
     /**
@@ -72,6 +79,8 @@ signals:
      * @param count is the count of released resources
      */
     void resourceReleased(int processID, int resource, int count);
+
+    //not implemented yet
     void finishedResourceProcessing(int information);
 
 public slots:
@@ -85,6 +94,8 @@ private:
     /**
      * @brief availableResources_E is an array with the over all available resources
      * @brief differenceResources_A is an array with the current available resources
+     * @brief assignedResources_C matrix containing which and how many resources a process is occupying
+     * @brief stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
      * @brief process is the process of the thread
      */
     int availableResources_E[4];
@@ -92,12 +103,6 @@ private:
     static int assignedResources_C[3][4];
     static int stillNeededResources_R[3][4];
     SystemProcess process;
-    /**
-     * @brief semaphorePrinter regulates how many printers can be used by threads
-     * @brief semaphoreCD regulates how many cds can be used by threads
-     * @brief semaphorePlotter regulates how many plotters can be used by threads
-     * @brief semaphoreTapeDrive regulates how many tape drives can be used by threads
-     */
 };
 
 #endif // PROCESSWORKER_H

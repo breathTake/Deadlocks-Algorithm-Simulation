@@ -3,38 +3,6 @@
 #include <QDebug>
 #include <QRandomGenerator>
 
-//TestConstructor to produce deadlocks
-SystemProcess::SystemProcess(QString name,int processId, bool f)
-{
-    this->name = name;
-    this->processId = processId;
-    assignedResources.append(SystemResource("Printer", 0));
-    assignedResources.append(SystemResource("CD-ROM", 0));
-    assignedResources.append(SystemResource("Plotter", 0));
-    assignedResources.append(SystemResource("TapeDrive", 0));
-
-    if(processId == 0){
-        neededResources.append(SystemResource("CD-ROM", 3));
-        neededResources.append(SystemResource("Printer", 3));
-        neededResources.append(SystemResource("Plotter", 3));
-        neededResources.append(SystemResource("TapeDrive", 3));
-    } else if(processId == 1){
-        neededResources.append(SystemResource("Printer", 3));
-        neededResources.append(SystemResource("CD-ROM", 3));
-        neededResources.append(SystemResource("Plotter", 3));
-        neededResources.append(SystemResource("TapeDrive", 3));
-    } else if(processId == 2){
-        neededResources.append(SystemResource("Printer", 3));
-        neededResources.append(SystemResource("Plotter", 3));
-        neededResources.append(SystemResource("CD-ROM", 3));
-        neededResources.append(SystemResource("TapeDrive", 3));
-    }
-
-
-    for(int i = 0; i < neededResources.count(); i++){
-        qDebug() << "Process " << processId << " has " << neededResources.at(i).getCount() << " " << neededResources.at(i).getName() << "s in List index: " << i;
-    }
-}
 
 SystemProcess::SystemProcess(QString name,int processId)
 {
@@ -47,20 +15,15 @@ SystemProcess::SystemProcess(QString name,int processId, int min, int max)
 {
     this->name = name;
     this->processId = processId;
-    assignedResources.append(SystemResource("Printer", 0));
-    assignedResources.append(SystemResource("CD-ROM", 0));
-    assignedResources.append(SystemResource("Plotter", 0));
-    assignedResources.append(SystemResource("TapeDrive", 0));
 
     QList<int> done;
     int neededResourcesCounter = 0;
 
-    //Problem: hier wird davon ausgegangen, dass jeder Prozess die reihenfolge der resourcen einhält, was oft nicht der fall ist.
+    //the neededResources List will be filled with 4 Resources (1 of each) in a random order
     while(neededResourcesCounter < 4){
 
         int randomProcess = QRandomGenerator::global()->bounded(0, 4);
         int randomResourceCount= QRandomGenerator::global()->bounded(min, max);
-        //= rand() % (max - min + 1) + min;
 
         if(randomProcess == 0 && !done.contains(0)){
             neededResources.append(SystemResource("Printer", 0, randomResourceCount));

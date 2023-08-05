@@ -29,6 +29,7 @@ private slots:
     void update_resource_occupation_list();
     void updateTimeRunning();
 
+    void setShadows();
     void initResourceCount(int* resourcesCounts);
     void selectedAlgorithm(int algorithm);
 

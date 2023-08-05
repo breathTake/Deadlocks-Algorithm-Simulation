@@ -39,32 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     //programTimer = *new QTimer(this);
 
     //shadow effects for buttons
-    QGraphicsDropShadowEffect* effectShadow1 = new QGraphicsDropShadowEffect();
-    effectShadow1->setBlurRadius(10);
-    effectShadow1->setColor(QColor(0, 0, 0, 255 * 0.2));
-    effectShadow1->setOffset(0,2);
-    QGraphicsDropShadowEffect* effectShadow2 = new QGraphicsDropShadowEffect();
-    effectShadow2->setBlurRadius(10);
-    effectShadow2->setColor(QColor(0, 0, 0, 255 * 0.2));
-    effectShadow2->setOffset(0,2);
-    QGraphicsDropShadowEffect* effectShadow3 = new QGraphicsDropShadowEffect();
-    effectShadow3->setBlurRadius(10);
-    effectShadow3->setColor(QColor(0, 0, 0, 255 * 0.2));
-    effectShadow3->setOffset(0,2);
-    ui->button_restart_simulation->setGraphicsEffect(effectShadow1);
-    ui->button_start_simulation->setGraphicsEffect(effectShadow2);
-    ui->button_stop_simulation->setGraphicsEffect(effectShadow3);
-
-    //Pixmaps for the Resource tab
-    QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
-    ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
-    QPixmap Pixmap_CD_off = QPixmap(":/resources/cd_off.png");
-    ui->Cd_background_label->setPixmap(Pixmap_CD_off);
-    QPixmap Pixmap_Plotter_off = QPixmap(":/resources/plotter_off.png");
-    ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
-    QPixmap Pixmap_Tapedrive_off = QPixmap(":/resources/tapedrive_off.png");
-    ui->Tapedrive_background_label->setPixmap(Pixmap_Tapedrive_off);
-
+    setShadows();
 
     //Start dialog and setting up resource counts etc.
     StartDialog startDialog;
@@ -138,30 +113,21 @@ void MainWindow::reserveResources(int process, int resource, int count)
     occupiedResources_P[resource] += count;
     differenceResources_A[resource] -= count;
 
-    QPixmap Pixmap_Printer_on = QPixmap(":/resources/Printer_on.png");
-    QPixmap Pixmap_CD_on= QPixmap(":/resources/cd_on.png");
-    QPixmap Pixmap_Plotter_on= QPixmap(":/resources/plotter_on.png");
-    QPixmap Pixmap_TapeDrive_on= QPixmap(":/resources/tapedrive_on.png");
-
     QString logMessage = QString("The Process %1 reserved %2 of the resource %3").arg(process).arg(count).arg(resource);
     ui->plainTextEdit_RequestInfo->appendPlainText(logMessage);
 
     switch(resource){
     case 0:
-        ui->Printer_background_label->setPixmap(Pixmap_Printer_on);
-        ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        ui->Printer_background_label->setStyleSheet("QLabel {background-color: rgb(156, 183, 146); border-radius: 5px; }");
         break;
     case 1:
-        ui->Cd_background_label->setPixmap(Pixmap_CD_on);
-        ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        ui->Cd_background_label->setStyleSheet("QLabel {background-color: rgb(156, 183, 146); border-radius: 5px; }");
         break;
     case 2:
-        ui->Plotter_background_label->setPixmap(Pixmap_Plotter_on);
-        ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        ui->Plotter_background_label->setStyleSheet("QLabel {background-color: rgb(156, 183, 146); border-radius: 5px; }");
         break;
     case 3:
-        ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_on);
-        ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #9cb792; }");
+        ui->Tapedrive_background_label->setStyleSheet("QLabel {background-color: rgb(156, 183, 146); border-radius: 5px; }");
         break;
     }
 
@@ -181,28 +147,18 @@ void MainWindow::releaseResources(int process, int resource, int count)
     occupiedResources_P[resource] -= count;
     differenceResources_A[resource] += count;
 
-    QPixmap Pixmap_Printer_off = QPixmap(":/resources/Printer_off.png");
-    QPixmap Pixmap_CD_off= QPixmap(":/resources/cd_off.png");
-    QPixmap Pixmap_Plotter_off= QPixmap(":/resources/plotter_off.png");
-    QPixmap Pixmap_TapeDrive_off= QPixmap(":/resources/tapedrive_off.png");
-
     if(occupiedResources_P[resource] == 0){
         switch(resource){
         case 0:
-            ui->Printer_background_label->setPixmap(Pixmap_Printer_off);
-            ui->Printer_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            ui->Printer_background_label->setStyleSheet("QLabel { background-color: rgb(106, 112, 129); border-radius: 5px; }");
             break;
         case 1:
-            ui->Cd_background_label->setPixmap(Pixmap_CD_off);
-            ui->Cd_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
-            break;
+            ui->Cd_background_label->setStyleSheet("QLabel { background-color: rgb(106, 112, 129); border-radius: 5px; }");
         case 2:
-            ui->Plotter_background_label->setPixmap(Pixmap_Plotter_off);
-            ui->Plotter_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            ui->Plotter_background_label->setStyleSheet("QLabel { background-color: rgb(106, 112, 129); border-radius: 5px; }");
             break;
         case 3:
-            ui->Tapedrive_background_label->setPixmap(Pixmap_TapeDrive_off);
-            ui->Tapedrive_label_occupation->setStyleSheet("QLabel { color: rgb(217, 217, 217); font: 500 12pt; background-color : #6a7081; }");
+            ui->Tapedrive_background_label->setStyleSheet("QLabel { background-color: rgb(106, 112, 129); border-radius: 5px; }");
             break;
         }
     }
@@ -459,3 +415,61 @@ void MainWindow::on_button_restart_simulation_clicked()
 #endif
 }
 
+void MainWindow::setShadows()
+{
+    QGraphicsDropShadowEffect* effectShadow1 = new QGraphicsDropShadowEffect();
+    effectShadow1->setBlurRadius(10);
+    effectShadow1->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow1->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow2 = new QGraphicsDropShadowEffect();
+    effectShadow2->setBlurRadius(10);
+    effectShadow2->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow2->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow3 = new QGraphicsDropShadowEffect();
+    effectShadow3->setBlurRadius(10);
+    effectShadow3->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow3->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow4 = new QGraphicsDropShadowEffect();
+    effectShadow4->setBlurRadius(10);
+    effectShadow4->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow4->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow5 = new QGraphicsDropShadowEffect();
+    effectShadow5->setBlurRadius(10);
+    effectShadow5->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow5->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow6 = new QGraphicsDropShadowEffect();
+    effectShadow6->setBlurRadius(10);
+    effectShadow6->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow6->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow7 = new QGraphicsDropShadowEffect();
+    effectShadow7->setBlurRadius(10);
+    effectShadow7->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow7->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow8 = new QGraphicsDropShadowEffect();
+    effectShadow8->setBlurRadius(10);
+    effectShadow8->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow8->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow9 = new QGraphicsDropShadowEffect();
+    effectShadow9->setBlurRadius(10);
+    effectShadow9->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow9->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow10 = new QGraphicsDropShadowEffect();
+    effectShadow10->setBlurRadius(10);
+    effectShadow10->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow10->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow11 = new QGraphicsDropShadowEffect();
+    effectShadow11->setBlurRadius(10);
+    effectShadow11->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow11->setOffset(0,2);
+    ui->button_restart_simulation->setGraphicsEffect(effectShadow1);
+    ui->button_start_simulation->setGraphicsEffect(effectShadow2);
+    ui->button_stop_simulation->setGraphicsEffect(effectShadow3);
+    ui->Printer_label_occupation_list->setGraphicsEffect(effectShadow4);
+    ui->Cd_label_occupation_list->setGraphicsEffect(effectShadow5);
+    ui->Plotter_label_occupation_list->setGraphicsEffect(effectShadow6);
+    ui->Tapedrive_label_occupation_list->setGraphicsEffect(effectShadow7);
+    ui->Printer_background_label->setGraphicsEffect(effectShadow8);
+    ui->Cd_background_label->setGraphicsEffect(effectShadow9);
+    ui->Plotter_background_label->setGraphicsEffect(effectShadow10);
+    ui->Tapedrive_background_label->setGraphicsEffect(effectShadow11);
+}

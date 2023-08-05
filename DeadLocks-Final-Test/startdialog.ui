@@ -242,7 +242,7 @@ QRadioButton::indicator:unchecked:hover {
     <rect>
      <x>120</x>
      <y>460</y>
-     <width>261</width>
+     <width>271</width>
      <height>51</height>
     </rect>
    </property>
@@ -256,8 +256,8 @@ QRadioButton::indicator:unchecked:hover {
 QPushButton::pressed {
     border-radius: 5px;
 	background-color: rgb(43, 48, 63);
-	font: 18pt &quot;Futura BdCn BT&quot;;
 	color: rgb(217, 217, 217);
+	font: 18pt &quot;Futura Hv BT&quot;;
 }
 QPushButton::hover {
 	background-color: rgb(152, 161, 186);
@@ -269,251 +269,6 @@ QPushButton::hover {
    </property>
    <property name="checkable">
     <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_Printer">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>380</y>
-     <width>49</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"> QSpinBox {
-    padding-right: 15px; /* make room for the arrows */
-    border-width: 5px;
-	border-radius: 3px;
-	color: rgb(217, 217, 217);
-	background-color: rgb(105, 111, 128);
-    padding: 8px;
-}
-
-QSpinBox::up-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  top right; 
-	background-color: rgb(152, 161, 186);
-    width: 20px;
-    border-width: 3px;
-}
-
-QSpinBox::up-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::up-arrow {
-	image: url(:/resources/arrow_up.png);
-}
-
-QSpinBox::down-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  bottom right; /* position at the top right corner */
-	background-color: rgb(152, 161, 186);
-    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
-    border-width: 3px;
-}
-
-QSpinBox::down-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::down-arrow {
-	image: url(:/resources/arrow_down.png);
-}
-</string>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-   <property name="maximum">
-    <number>10</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_Cd">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>380</y>
-     <width>51</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"> QSpinBox {
-    padding-right: 15px; /* make room for the arrows */
-    border-width: 5px;
-	border-radius: 3px;
-	color: rgb(217, 217, 217);
-	background-color: rgb(105, 111, 128);
-    padding: 8px;
-}
-
-QSpinBox::up-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  top right; 
-	background-color: rgb(152, 161, 186);
-    width: 20px;
-    border-width: 3px;
-}
-
-QSpinBox::up-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::up-arrow {
-	image: url(:/resources/arrow_up.png);
-}
-
-QSpinBox::down-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  bottom right; /* position at the top right corner */
-	background-color: rgb(152, 161, 186);
-    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
-    border-width: 3px;
-}
-
-QSpinBox::down-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::down-arrow {
-	image: url(:/resources/arrow_down.png);
-}
-
-</string>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-   <property name="maximum">
-    <number>10</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_Plotter">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>380</y>
-     <width>51</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"> QSpinBox {
-    padding-right: 15px; /* make room for the arrows */
-    border-width: 5px;
-	border-radius: 3px;
-	color: rgb(217, 217, 217);
-	background-color: rgb(105, 111, 128);
-    padding: 8px;
-}
-
-QSpinBox::up-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  top right; 
-	background-color: rgb(152, 161, 186);
-    width: 20px;
-    border-width: 3px;
-}
-
-QSpinBox::up-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::up-arrow {
-	image: url(:/resources/arrow_up.png);
-}
-
-QSpinBox::down-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  bottom right; /* position at the top right corner */
-	background-color: rgb(152, 161, 186);
-    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
-    border-width: 3px;
-}
-
-QSpinBox::down-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::down-arrow {
-	image: url(:/resources/arrow_down.png);
-}
-</string>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-   <property name="maximum">
-    <number>10</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_TapeDrive">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>380</y>
-     <width>51</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"> QSpinBox {
-    padding-right: 15px; /* make room for the arrows */
-    border-width: 5px;
-	border-radius: 3px;
-	color: rgb(217, 217, 217);
-	background-color: rgb(105, 111, 128);
-    padding: 8px;
-}
-
-QSpinBox::up-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  top right; 
-	background-color: rgb(152, 161, 186);
-    width: 20px;
-    border-width: 3px;
-}
-
-QSpinBox::up-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::up-arrow {
-	image: url(:/resources/arrow_up.png);
-}
-
-QSpinBox::down-button {
-    subcontrol-origin: border;
-	border-radius: 3px;
-    subcontrol-position:  bottom right; /* position at the top right corner */
-	background-color: rgb(152, 161, 186);
-    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
-    border-width: 3px;
-}
-
-QSpinBox::down-button:hover {
-	background-color: rgb(183, 194, 224);
-}
-
-QSpinBox::down-arrow {
-	image: url(:/resources/arrow_down.png);
-}
-</string>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-   <property name="maximum">
-    <number>10</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_background">
@@ -533,29 +288,12 @@ border-radius: 5px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_Printer_Icon">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>330</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;
-image: url(:/resources/Printer_Icon.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_Header">
    <property name="geometry">
     <rect>
      <x>120</x>
      <y>80</y>
-     <width>261</width>
+     <width>271</width>
      <height>31</height>
     </rect>
    </property>
@@ -572,56 +310,293 @@ background-color: none;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label_CD_Icon">
+  <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>330</y>
-     <width>30</width>
-     <height>30</height>
+     <x>120</x>
+     <y>310</y>
+     <width>271</width>
+     <height>116</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: none;
+    <string notr="true">background-color: none;</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QSpinBox" name="spinBox_Printer">
+      <property name="styleSheet">
+       <string notr="true"> QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::up-arrow {
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QSpinBox" name="spinBox_TapeDrive">
+      <property name="styleSheet">
+       <string notr="true"> QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::up-arrow {
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QSpinBox" name="spinBox_Cd">
+      <property name="styleSheet">
+       <string notr="true"> QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::up-arrow {
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+
+</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_CD_Icon">
+      <property name="styleSheet">
+       <string notr="true">background-color: none;
 image: url(:/resources/CD-ROM_Icon.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Plotter_Icon">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>330</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_Printer_Icon">
+      <property name="styleSheet">
+       <string notr="true">background-color: none;
+image: url(:/resources/Printer_Icon.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_Plotter_Icon">
+      <property name="styleSheet">
+       <string notr="true">background-color: none;
 image: url(:/resources/Plotter_Icon.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_TapeDrive_Icon">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>330</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: none;
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_TapeDrive_Icon">
+      <property name="styleSheet">
+       <string notr="true">background-color: none;
 image: url(:/resources/TapeDrive_Icon.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QSpinBox" name="spinBox_Plotter">
+      <property name="styleSheet">
+       <string notr="true"> QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 5px;
+	border-radius: 3px;
+	color: rgb(217, 217, 217);
+	background-color: rgb(105, 111, 128);
+    padding: 8px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  top right; 
+	background-color: rgb(152, 161, 186);
+    width: 20px;
+    border-width: 3px;
+}
+
+QSpinBox::up-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::up-arrow {
+	image: url(:/resources/arrow_up.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+	border-radius: 3px;
+    subcontrol-position:  bottom right; /* position at the top right corner */
+	background-color: rgb(152, 161, 186);
+    width: 20px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-width: 3px;
+}
+
+QSpinBox::down-button:hover {
+	background-color: rgb(183, 194, 224);
+}
+
+QSpinBox::down-arrow {
+	image: url(:/resources/arrow_down.png);
+}
+</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+   <zorder>spinBox_Printer</zorder>
+   <zorder>spinBox_TapeDrive</zorder>
+   <zorder>spinBox_Cd</zorder>
+   <zorder>label_CD_Icon</zorder>
+   <zorder>label_Printer_Icon</zorder>
+   <zorder>label_Plotter_Icon</zorder>
+   <zorder>spinBox_Plotter</zorder>
+   <zorder>label_TapeDrive_Icon</zorder>
   </widget>
   <zorder>label_background</zorder>
   <zorder>frame</zorder>
@@ -635,6 +610,7 @@ image: url(:/resources/TapeDrive_Icon.png);</string>
   <zorder>label_CD_Icon</zorder>
   <zorder>label_Plotter_Icon</zorder>
   <zorder>label_TapeDrive_Icon</zorder>
+  <zorder>frame_2</zorder>
  </widget>
  <resources>
   <include location="resources.qrc"/>

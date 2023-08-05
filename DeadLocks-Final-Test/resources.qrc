@@ -1,24 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/Occupation_Matrix.png</file>
-        <file>resources/Printer_off.png</file>
         <file>resources/Icon_White.png</file>
-        <file>resources/Printer_on.png</file>
-        <file>resources/cd_off.png</file>
-        <file>resources/cd_on.png</file>
-        <file>resources/plotter_off.png</file>
-        <file>resources/plotter_on.png</file>
-        <file>resources/tapedrive_off.png</file>
-        <file>resources/tapedrive_on.png</file>
-        <file>resources/Background_resources.png</file>
-        <file>resources/DeadLockTestRunning.png</file>
-        <file>resources/Required_Matrix.png</file>
-        <file>resources/Oversight_background.png</file>
         <file>resources/checkBox_off.png</file>
         <file>resources/checkBox_on.png</file>
-        <file>resources/button_off.png</file>
-        <file>resources/button_on.png</file>
-        <file>resources/resourcesIcons.png</file>
         <file>resources/arrow_down.png</file>
         <file>resources/arrow_up.png</file>
         <file>resources/reset_Icon.png</file>

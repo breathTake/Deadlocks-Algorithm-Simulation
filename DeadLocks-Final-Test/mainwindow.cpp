@@ -15,6 +15,7 @@ int system_resource_count = 4;
 int system_process_count = 3;
 int existingResources[4];
 int selectedAlgorithmNumber = -1;
+int finished = 0;
 
 //A Timer object updating the timer in ui
 QTimer programTimer;
@@ -98,20 +99,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
+    connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
     connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerB, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
+    connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
     //connnecting workerCs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
-    connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(on_button_stop_simulation_clicked()));
+    connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
@@ -358,6 +359,34 @@ void MainWindow::setUpProcesses()
 
     updateStillNeededRessources_R();
 
+}
+
+void MainWindow::processFinished()
+{
+    finished++;
+    if(finished == 3){
+        threadProcessA->deleteLater();
+        threadProcessA->quit();
+        threadProcessA->wait();
+        delete threadProcessA;
+        delete workerA;
+
+        threadProcessB->deleteLater();
+        threadProcessB->quit();
+        threadProcessB->wait();
+        delete threadProcessB;
+        delete workerB;
+
+        threadProcessC->deleteLater();
+        threadProcessC->quit();
+        threadProcessC->wait();
+        delete threadProcessC;
+        delete workerC;
+
+        EndDialog endDialog;
+        endDialog.setWindowTitle("Deadlock Algorithm Simulation");
+        endDialog.exec();
+    }
 }
 
 void MainWindow::on_button_stop_simulation_clicked()

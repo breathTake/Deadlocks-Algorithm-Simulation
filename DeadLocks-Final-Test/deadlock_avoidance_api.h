@@ -2,7 +2,7 @@
 #define DEADLOCK_AVOIDANCE_API_H
 
 #include <SystemProcess.h>
-
+#include <QDebug>
 
 
 class deadlock_avoidance_api

@@ -48,7 +48,7 @@
      <rect>
       <x>50</x>
       <y>440</y>
-      <width>231</width>
+      <width>221</width>
       <height>151</height>
      </rect>
     </property>
@@ -68,7 +68,7 @@ background-color: rgb(73, 81, 103);</string>
      <rect>
       <x>280</x>
       <y>440</y>
-      <width>231</width>
+      <width>221</width>
       <height>151</height>
      </rect>
     </property>
@@ -88,7 +88,7 @@ background-color: rgb(73, 81, 103);</string>
      <rect>
       <x>50</x>
       <y>600</y>
-      <width>231</width>
+      <width>221</width>
       <height>151</height>
      </rect>
     </property>
@@ -127,7 +127,7 @@ background-color: rgb(73, 81, 103);</string>
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>551</y>
+      <y>550</y>
       <width>141</width>
       <height>16</height>
      </rect>
@@ -242,7 +242,7 @@ background-color: rgb(237, 237, 237);</string>
    <widget class="QLabel" name="Printer_label_occupation">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>160</x>
       <y>500</y>
       <width>71</width>
       <height>42</height>
@@ -1175,7 +1175,6 @@ QPushButton::hover {
     <property name="styleSheet">
      <string notr="true">QPlainTextEdit{ 
 	padding-top: 15px;
-	pading-bottom:15px;
 	padding-left: 50px;
 	border-radius: 5px;
 	border: none;
@@ -1220,8 +1219,6 @@ QPushButton::hover {
    <zorder>button_stop_simulation</zorder>
    <zorder>button_start_simulation</zorder>
    <zorder>button_restart_simulation</zorder>
-   <zorder>textBrowser_newRequests</zorder>
-   <zorder>verticalScrollBar</zorder>
    <zorder>plainTextEdit_RequestInfo</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

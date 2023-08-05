@@ -1,5 +1,12 @@
-
+#include "bankiersalgorithm.h"
 #include "QDebug"
+
+
+QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4])
+{
+
+}
+
 
 /*bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]){
     int countFinished = 0;

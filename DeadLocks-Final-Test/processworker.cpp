@@ -4,6 +4,10 @@
 #include <QDebug>
 #include <BankiersAlgorithm.h>
 #include <NoAvoidanceSimulation.h>
+#include <EliminateCircularWait.h>
+#include <EliminateHoldAndWait.h>
+#include <NoPreemption.h>
+#include <CarefulResourceDistribution.h>
 
 /**
  * @brief semaphorePrinter regulates how many printers can be used by threads
@@ -65,8 +69,24 @@ void ProcessWorker::requestResource()
 
         //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock
         switch(selectedAlgorithm){
+            case 0:
+                algorithm = new EliminateHoldAndWait();
+                break;
+            case 1:
+                algorithm = new NoPreemption();
+                break;
+            case 2:
+                algorithm = new EliminateCircularWait();
+                break;
+            case 3:
+                algorithm = new CarefulResourceDistribution();
+                break;
+            case 4:
+                algorithm = new BankiersAlgorithm();
+                break;
             default:
                 algorithm = new NoAvoidanceSimulation();
+                break;
         }
 
 
@@ -75,10 +95,12 @@ void ProcessWorker::requestResource()
         int nextResource = foundNextResouce.at(0);
         int countResource = foundNextResouce.at(1);
         int indexResourceList = foundNextResouce.at(2);
+        process.printNeededResources();
 
 
-        //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array;
+        //if the next Resource doesn't exist it will not be avquired but later the last will still be released
         if(nextResource != -5){
+            //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
                 semaphorePrinter->acquire(countResource);

@@ -10,11 +10,15 @@ CONFIG += c++17
 
 SOURCES += \
     bankiersalgorithm.cpp \
+    carefulresourcedistribution.cpp \
     deadlock_avoidance_api.cpp \
+    eliminatecircularwait.cpp \
+    eliminateholdandwait.cpp \
     enddialog.cpp \
     main.cpp \
     mainwindow.cpp \
     noavoidancesimulation.cpp \
+    nopreemption.cpp \
     processworker.cpp \
     startdialog.cpp \
     systemprocess.cpp \
@@ -22,10 +26,14 @@ SOURCES += \
 
 HEADERS += \
     bankiersalgorithm.h \
+    carefulresourcedistribution.h \
     deadlock_avoidance_api.h \
+    eliminatecircularwait.h \
+    eliminateholdandwait.h \
     enddialog.h \
     mainwindow.h \
     noavoidancesimulation.h \
+    nopreemption.h \
     processworker.h \
     startdialog.h \
     systemprocess.h \

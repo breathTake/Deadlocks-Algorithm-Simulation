@@ -3,6 +3,7 @@
 
 #include <QList>
 #include "systemresource.h"
+#include <QDebug>
 
 class SystemProcess
 {
@@ -88,6 +89,13 @@ public:
      */
     void setNeededResources(QList<SystemResource> neededResources) {
         SystemProcess::neededResources = neededResources;
+    }
+
+    void printNeededResources(){
+        qDebug() << "Process " << name << ":";
+        for(int i = 0; i < neededResources.size(); i++){
+            qDebug() << neededResources.at(i).getName() << " (" << neededResources.at(i).getCount() << ")";
+        }
     }
 
     //temporary. will be moved to extra classes

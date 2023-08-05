@@ -38,6 +38,7 @@ private slots:
     //thread slots
     void reserveResources(int process, int resource, int count);
     void releaseResources(int process, int resource, int count);
+    void processFinished();
 
     //button slots
     void on_button_stop_simulation_clicked();
@@ -45,6 +46,7 @@ private slots:
     void on_button_start_simulation_clicked();
 
     void on_button_restart_simulation_clicked();
+
 
 private:
     Ui::MainWindow *ui;

@@ -10,7 +10,10 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
 {
     //finding the next Resource and count to be reserved
     QList<int> result;
+
+    //copy of the neededResources list to find the right index because the sorting is local and not in the process list in the worker object
     QList<SystemResource> copyNeededResources = process.getNeededResources();
+    //using the avoidance algorithm which sorts the neededResources list
     process.setNeededResources(avoidance_algorithm(process.getNeededResources()));
 
 
@@ -46,16 +49,6 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
 }
 
 
-/*
- * eliminateCircularWait
- *
- * @neededResources: Resources the process wants
- *
- * Sorts the neededResources from a Process by their id number to
- * prevent a Circular Wait
- *
- * return: sorted QList
- */
 QList<SystemResource> EliminateCircularWait::avoidance_algorithm(QList<SystemResource> neededResources)
 {
     std::sort(neededResources.begin(), neededResources.end(), [](const SystemResource& a, const SystemResource& b) {

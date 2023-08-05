@@ -50,8 +50,8 @@ border-radius: 5px;</string>
     <string notr="true">QPushButton {
     border-radius: 5px;
 	background-color: rgb(105, 111, 128);
-	font: 18pt &quot;Futura BdCn BT&quot;;
-	color: rgb(217, 217, 217);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
 }
 QPushButton::pressed {
     border-radius: 5px;
@@ -78,9 +78,9 @@ QPushButton::hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 18pt &quot;Futura BdCn BT&quot;;
-background-color: none;
-color: rgb(217, 217, 217);</string>
+    <string notr="true">color: rgb(235, 235, 235);
+font: 18pt &quot;Futura Hv BT&quot;;
+background-color: none;</string>
    </property>
    <property name="text">
     <string>Test Completed</string>

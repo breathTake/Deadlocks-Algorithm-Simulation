@@ -30,14 +30,15 @@
    <widget class="QLabel" name="background_resources">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>531</width>
-      <height>371</height>
+      <x>30</x>
+      <y>420</y>
+      <width>491</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/resources/Background_resources.png);</string>
+     <string notr="true">background-color: rgb(73, 81, 103);
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string/>
@@ -375,13 +376,14 @@ background-color: rgb(106, 112, 129);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>20</y>
        <width>591</width>
-       <height>371</height>
+       <height>351</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/resources/Occupation_Matrix.png);</string>
+      <string notr="true">background-color: rgb(73, 81, 103);
+border-radius: 10px;</string>
      </property>
      <property name="text">
       <string/>
@@ -699,8 +701,149 @@ background-color: rgb(73, 81, 103);</string>
       <string>0</string>
      </property>
     </widget>
+    <widget class="QLabel" name="Occupation_headline_label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(235, 235, 235);
+font: 18pt &quot;Futura Hv BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Occupation</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_Process_A_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>160</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Process A</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_Process_B_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>220</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Process B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_Process_C_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>280</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>Process C</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_Plotter_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/Plotter_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_TapeDrive_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/TapeDrive_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_Printer_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/Printer_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Occupation_CD_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/CD-ROM_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
-   <widget class="QGroupBox" name="OccupationMatrix_2">
+   <widget class="QGroupBox" name="RequirementsMatrix">
     <property name="geometry">
      <rect>
       <x>543</x>
@@ -725,7 +868,9 @@ background-color: rgb(73, 81, 103);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/resources/Required_Matrix.png);</string>
+      <string notr="true">background-color: rgb(73, 81, 103);
+border-radius: 10px;
+</string>
      </property>
      <property name="text">
       <string/>
@@ -1043,6 +1188,147 @@ background-color: rgb(73, 81, 103);</string>
       <string>0</string>
      </property>
     </widget>
+    <widget class="QLabel" name="Requirements_headline_label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(235, 235, 235);
+font: 18pt &quot;Futura Hv BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Requirements</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_TapeDrive_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/TapeDrive_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_Process_C_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>280</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>Process C</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_Process_B_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>220</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Process B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_Plotter_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/Plotter_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_CD_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/CD-ROM_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_Printer_Icon_label">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>100</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+image: url(:/resources/Printer_Icon.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Requirements_Process_A_Label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>160</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Process A</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="button_stop_simulation">
     <property name="geometry">
@@ -1057,8 +1343,8 @@ background-color: rgb(73, 81, 103);</string>
      <string notr="true">QPushButton {
     border-radius: 5px;
 	background-color: rgb(105, 111, 128);
-	font: 18pt &quot;Futura BdCn BT&quot;;
-	color: rgb(217, 217, 217);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
 }
 QPushButton::pressed {
     border-radius: 5px;
@@ -1088,8 +1374,8 @@ QPushButton::hover {
      <string notr="true">QPushButton {
     border-radius: 5px;
 	background-color: rgb(105, 111, 128);
-	font: 18pt &quot;Futura BdCn BT&quot;;
-	color: rgb(217, 217, 217);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
 }
 QPushButton::!enabled {
     border-radius: 5px;
@@ -1144,14 +1430,15 @@ QPushButton::hover {
    <widget class="QLabel" name="background_resources_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>30</x>
       <y>20</y>
-      <width>531</width>
+      <width>491</width>
       <height>371</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/resources/Background_resources.png);</string>
+     <string notr="true">background-color: rgb(73, 81, 103);
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string/>
@@ -1215,7 +1502,7 @@ QPushButton::hover {
    <zorder>Tapedrive_label_occupation</zorder>
    <zorder>Plotter_label_occupation</zorder>
    <zorder>OccupationMatrix</zorder>
-   <zorder>OccupationMatrix_2</zorder>
+   <zorder>RequirementsMatrix</zorder>
    <zorder>button_stop_simulation</zorder>
    <zorder>button_start_simulation</zorder>
    <zorder>button_restart_simulation</zorder>

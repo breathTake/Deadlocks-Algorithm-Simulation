@@ -24,5 +24,9 @@
         <file>resources/reset_Icon.png</file>
         <file>resources/checkBox_off_hover.png</file>
         <file>resources/checkBox_on_hover.png</file>
+        <file>resources/CD-ROM_Icon.png</file>
+        <file>resources/Plotter_Icon.png</file>
+        <file>resources/Printer_Icon.png</file>
+        <file>resources/TapeDrive_Icon.png</file>
     </qresource>
 </RCC>

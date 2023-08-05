@@ -5,6 +5,13 @@
 
 
 QMutex *mutexOne = new QMutex();
+
+BankiersAlgorithm::BankiersAlgorithm()
+{
+
+}
+
+
 QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
 {
     mutexOne->lock();

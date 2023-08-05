@@ -95,11 +95,11 @@ void ProcessWorker::requestResource()
         int nextResource = foundNextResouce.at(0);
         int countResource = foundNextResouce.at(1);
         int indexResourceList = foundNextResouce.at(2);
-        process.printNeededResources();
+        //process.printNeededResources();
 
 
         //if the next Resource doesn't exist it will not be avquired but later the last will still be released
-        if(nextResource != -5){
+        if(nextResource != -5 && nextResource != -1){
             //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
@@ -119,7 +119,6 @@ void ProcessWorker::requestResource()
             //update the occupation array and process list
             differenceResources_A[nextResource] -= countResource;
             assignedResources_C[process.getProcessId()][nextResource] += countResource;
-            stillNeededResources_R[process.getProcessId()][nextResource] += countResource;
             updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
             emit resourceReserved(process.getProcessId(), nextResource, countResource);
         }
@@ -141,12 +140,14 @@ void ProcessWorker::requestResource()
                 semaphoreTapeDrive->release(lastCount);
                 break;
             }
+
+            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
             //if nextResource is -5 all resources are processed and finishedResourceProcessing can be emitted
             if(nextResource == -5){
                 break;
             }
             //emiiting resourcesReleased to notify mainwindow of changes and change ui
-            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
+
 
             //updating assignedResources_C because resources have been released
             differenceResources_A[lastResource] += lastCount;

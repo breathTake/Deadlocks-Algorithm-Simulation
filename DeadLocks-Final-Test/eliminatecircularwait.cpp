@@ -10,8 +10,9 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
 {
     //finding the next Resource and count to be reserved
     QList<int> result;
-
+    QList<SystemResource> copyNeededResources = process.getNeededResources();
     process.setNeededResources(avoidance_algorithm(process.getNeededResources()));
+
 
     //nextResouce is the next resource that should get reserved. If it is -1 the next Resource has either not been found yet or there is no resource left. -5 is the flag that there is no resourc left.
     int nextResource = -1;
@@ -26,7 +27,7 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
         if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
             nextResource = process.getNeededResources().at(i).getResourceId();
-            indexResourceList = i;
+            indexResourceList = copyNeededResources.indexOf(process.getNeededResources().at(i));
             countResource = process.getNeededResources().at(i).getCount();
             break;
         } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
@@ -57,7 +58,6 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
  */
 QList<SystemResource> EliminateCircularWait::avoidance_algorithm(QList<SystemResource> neededResources)
 {
-    qDebug() << "sorting";
     std::sort(neededResources.begin(), neededResources.end(), [](const SystemResource& a, const SystemResource& b) {
         return a.getResourceId() < b.getResourceId();
     });

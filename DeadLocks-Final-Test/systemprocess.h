@@ -91,10 +91,15 @@ public:
         SystemProcess::neededResources = neededResources;
     }
 
+    void moveNeededResourceToBack(int index){
+        neededResources.swapItemsAt(index, neededResources.count()-1);
+    }
+
     void printNeededResources(){
-        qDebug() << "Process " << name << ":";
+        QDebug dbg(QtDebugMsg);
+        dbg << "Process " << name << ":" << "\n";
         for(int i = 0; i < neededResources.size(); i++){
-            qDebug() << neededResources.at(i).getName() << " (" << neededResources.at(i).getCount() << ")";
+            dbg << neededResources.at(i).getName() << " (" << neededResources.at(i).getCount() << "), ";
         }
     }
 

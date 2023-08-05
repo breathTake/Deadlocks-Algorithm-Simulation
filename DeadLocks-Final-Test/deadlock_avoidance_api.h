@@ -20,6 +20,18 @@ public:
      * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     virtual QList<int> findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
+
+    void printStillNeeded(int stillNeededResources_R[3][4], int differenceResources_A[4]){
+        QDebug dbg(QtDebugMsg);
+        dbg << "R:" << "\n";
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 4; j++){
+                dbg << stillNeededResources_R[i][j];
+            }
+            dbg << "\n";
+        }
+        dbg << "A: " << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3] << "\n";
+    }
 };
 
 #endif // DEADLOCK_AVOIDANCE_API_H

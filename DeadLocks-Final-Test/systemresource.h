@@ -86,6 +86,10 @@ public:
     void decreaseCount(int count){
         this->count -= count;
     }
+
+    bool operator==(const SystemResource& otherResource) const{
+        return resourceId == otherResource.resourceId and name == otherResource.name;
+    }
 };
 
 #endif // SYSTEMRESOURCE_H

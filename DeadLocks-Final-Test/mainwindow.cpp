@@ -17,9 +17,6 @@ int existingResources[4];
 int selectedAlgorithmNumber = -1;
 int finished = 0;
 
-//A Timer object updating the timer in ui
-QTimer programTimer;
-
 //The Arrays for occupation etc.
 int assignedResources_C[3][4];
 int stillNeededResources_R[3][4] = {{0, 0, 0, 0},{0, 0, 0, 0},{0, 0, 0, 0}};
@@ -35,8 +32,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //programTimer = *new QTimer(this);
 
     //shadow effects for buttons
     setShadows();
@@ -89,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
     connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
+
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
     threadProcessA->start();
@@ -96,8 +92,9 @@ MainWindow::MainWindow(QWidget *parent)
     threadProcessB->start();
     workerC->moveToThread(threadProcessC);
     threadProcessC->start();
-    //programTimer.start(1000);
+
     workerA->setUpOccupations(assignedResources_C, stillNeededResources_R);
+
 }
 
 MainWindow::~MainWindow()
@@ -354,13 +351,33 @@ void MainWindow::on_button_stop_simulation_clicked()
 
 void MainWindow::on_button_start_simulation_clicked()
 {
+    //on start button clicked the button will be disabled and the timer will be started
     ui->button_start_simulation->setEnabled(false);
-    //ui->button_stop_simulation->setEnabled(true);
+    QTimer *timer = new QTimer(this);
+        QTime startTime = QTime::currentTime();
+        connect(timer, &QTimer::timeout, [this, startTime, timer]() {
+            updateElapsedTime(startTime);
+            timer->start(10);
+        });
+
+        timer->start(10);
 }
 
-void MainWindow::updateTimeRunning()
+void MainWindow::updateElapsedTime(const QTime &startTime)
 {
-    //ui->time_running_lcd_number->display(ui->time_running_lcd_number->intValue() + 1);
+    //function updating the time label with the elapsed time in fitting format
+    QTime currentTime = QTime::currentTime();
+    int elapsedMilliseconds = startTime.msecsTo(currentTime);
+    int minutes = elapsedMilliseconds / 60000;
+    int seconds = (elapsedMilliseconds % 60000) / 1000;
+    int milliseconds = elapsedMilliseconds % 1000;
+
+    QString formattedTime = QString("%1:%2:%3")
+                            .arg(minutes, 2, 10, QChar('0'))
+                            .arg(seconds, 2, 10, QChar('0'))
+                            .arg(milliseconds, 3, 10, QChar('0'));
+
+    ui->label_time->setText(formattedTime);
 }
 
 void MainWindow::initResourceCount(int* resourcesCounts)

@@ -27,7 +27,7 @@ private slots:
     void update_needed_matrix();
     void update_resource_occupation();
     void update_resource_occupation_list();
-    void updateTimeRunning();
+    void updateElapsedTime(const QTime &startTime);
 
     void setShadows();
     void initResourceCount(int* resourcesCounts);

@@ -58,9 +58,32 @@ void ProcessWorker::requestResource()
     int lastCount = -1;
     //deadlock_avoidance_api object
     deadlock_avoidance_api *algorithm;
+    //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock
+    switch(selectedAlgorithm){
+        case 0:
+            algorithm = new EliminateHoldAndWait();
+            break;
+        case 1:
+            algorithm = new NoPreemption();
+            break;
+        case 2:
+            algorithm = new EliminateCircularWait();
+            break;
+        case 3:
+            algorithm = new CarefulResourceDistribution();
+            break;
+        case 4:
+            algorithm = new BankiersAlgorithm();
+            break;
+        default:
+            algorithm = new NoAvoidanceSimulation();
+            break;
+    }
+
+    int nextResource, countResource, indexResourceList;
 
     //the process works as long as there are still resources left to be processed in neededResources
-    while(lastResource != -5){
+    while(lastResource != -5 || nextResource == -2){
 
         //if interruption was requested return
         if(QThread::currentThread()->isInterruptionRequested()){
@@ -68,39 +91,16 @@ void ProcessWorker::requestResource()
             return;
         }
 
-        //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock
-        switch(selectedAlgorithm){
-            case 0:
-                algorithm = new EliminateHoldAndWait();
-                break;
-            case 1:
-                algorithm = new NoPreemption();
-                break;
-            case 2:
-                algorithm = new EliminateCircularWait();
-                break;
-            case 3:
-                algorithm = new CarefulResourceDistribution();
-                break;
-            case 4:
-                algorithm = new BankiersAlgorithm();
-                break;
-            default:
-                algorithm = new NoAvoidanceSimulation();
-                break;
-        }
-
-
         //the findNextResources function will be called upon the right algorithm
         QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
-        int nextResource = foundNextResouce.at(0);
-        int countResource = foundNextResouce.at(1);
-        int indexResourceList = foundNextResouce.at(2);
+        nextResource = foundNextResouce.at(0);
+        countResource = foundNextResouce.at(1);
+        indexResourceList = foundNextResouce.at(2);
         //process.printNeededResources();
 
 
         //if the next Resource doesn't exist it will not be acquired but later the last will still be released
-        if(nextResource != -5 && nextResource != -1){
+        if(nextResource >= 0){
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
@@ -126,7 +126,7 @@ void ProcessWorker::requestResource()
 
 
         //resources have been acquired, the last resource (from before) can be released, if they were set
-        if(lastResource != -1){
+        if(lastResource != -1 && lastResource != -2){
             switch (lastResource) {
             case 0:
                 semaphorePrinter->release(lastCount);

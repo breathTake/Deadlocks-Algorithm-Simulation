@@ -24,6 +24,7 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
     int countResource = -1;
     //indexResourceList is the index of the nextResourc in the neededResources list of process as they are in random order
     int indexResourceList = -1;
+    bool deadlock = false;
 
     //going through the neededResources list to find the next needed resource
     for(int i = 0; i < process.getNeededResources().count(); i++){
@@ -38,16 +39,22 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
                 countResource = process.getNeededResources().at(i).getCount();
                 break;
             }
+            qDebug() << "deadlockupdat3ed";
+            deadlock = true;
             stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
-            qDebug() << process.getNeededResources().at(i).getName();
+            /*qDebug() << process.getNeededResources().at(i).getName();
             process.moveNeededResourceToBack(i);
             qDebug() << process.getNeededResources().at(i).getName();
-            i=0;
+            i=0;*/
 
 
         } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
             //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
             //no return yet because last resource has to be released
+            if(deadlock){
+                nextResource = -2;
+                break;
+            }
             nextResource = - 5;
             break;
         }

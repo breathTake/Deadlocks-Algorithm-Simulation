@@ -19,6 +19,7 @@ QSemaphore *semaphorePrinter;
 QSemaphore *semaphoreCD;
 QSemaphore *semaphorePlotter;
 QSemaphore *semaphoreTapeDrive;
+
 //initializing the static matrices
 int ProcessWorker::differenceResources_A[4];
 int ProcessWorker::assignedResources_C[3][4];
@@ -37,7 +38,7 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
     for(int i = 0; i < 4; i++){
         this->differenceResources_A[i] = differenceResources_A[i];
         this->availableResources_E[i] = availableResources_E[i];
-        //resourceID is needet because the still Needed Resources is ordered by resources but the process neededResources list from processes is in random order
+        //resourceID is needed because the still Needed Resources is ordered by resources but the process neededResources list from processes is in random order
         int resourceID  = process.getNeededResources().at(i).getResourceId();
         this->stillNeededResources_R[process.getProcessId()][resourceID] = process.getNeededResources().at(i).getCount();
     }
@@ -90,7 +91,7 @@ void ProcessWorker::requestResource()
         }
 
 
-        //the findNextResources funtion will be called upon the right algorithm
+        //the findNextResources function will be called upon the right algorithm
         QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
         int nextResource = foundNextResouce.at(0);
         int countResource = foundNextResouce.at(1);
@@ -98,9 +99,9 @@ void ProcessWorker::requestResource()
         //process.printNeededResources();
 
 
-        //if the next Resource doesn't exist it will not be avquired but later the last will still be released
+        //if the next Resource doesn't exist it will not be acquired but later the last will still be released
         if(nextResource != -5 && nextResource != -1){
-            //resource will be reserved (switching the nextresourc and reserving the proper semaphore + setting the differenceResources_A array)
+            //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
                 semaphorePrinter->acquire(countResource);
@@ -124,7 +125,7 @@ void ProcessWorker::requestResource()
         }
 
 
-        //resources have been acquired, the last resource (from befor) can be released, if they were set
+        //resources have been acquired, the last resource (from before) can be released, if they were set
         if(lastResource != -1){
             switch (lastResource) {
             case 0:
@@ -146,8 +147,7 @@ void ProcessWorker::requestResource()
             if(nextResource == -5){
                 break;
             }
-            //emiiting resourcesReleased to notify mainwindow of changes and change ui
-
+            //emitting resourcesReleased to notify mainwindow of changes and change ui
 
             //updating assignedResources_C because resources have been released
             differenceResources_A[lastResource] += lastCount;
@@ -157,7 +157,7 @@ void ProcessWorker::requestResource()
         //waiting 2*countResource to simulate the resource writing etc.
         QThread::sleep(2*countResource);
 
-        //seting the lastResource and count to current resouce and count to be released in next iteration
+        //seting the lastResource and count to current resource and count to be released in next iteration
         lastResource = nextResource;
         lastCount = countResource;
     }

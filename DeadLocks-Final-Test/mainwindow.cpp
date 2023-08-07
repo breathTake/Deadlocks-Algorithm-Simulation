@@ -169,25 +169,6 @@ void MainWindow::releaseResources(int process, int resource, int count)
     update_resource_occupation_list();
 }
 
-bool MainWindow::bankiersAlgorithm(int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4])
-{
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 4; j++) {
-            if(stillNeededResources_RCopy[i][j] <= differenceResources_ACopy[j]) {
-                differenceResources_ACopy[j] += assignedResources_CCopy[i][j];
-                availableResources_ECopy[j] -= assignedResources_CCopy[i][j];
-                stillNeededResources_RCopy[i][j] = 0;
-                return true; // kein deadlock
-            }
-            else {
-                qDebug() << "Deadlock";
-                return false; // Deadlock
-            }
-        }
-    }
-}
-
 //updates the occupation matrix GUI
 void MainWindow::update_occupation_matrix()
 {

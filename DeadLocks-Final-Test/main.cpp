@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "systemprocess.h"
-#include "systemresource.h"
 
 #include <QApplication>
 

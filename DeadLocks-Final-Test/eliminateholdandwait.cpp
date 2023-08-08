@@ -52,17 +52,26 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
         //going through the neededResources list to find the next needed resource
         for(int i = 0; i < process.getNeededResources().count(); i++){
 
-            //if the next resource was found set the nextResource, countResource and indexResourceList variables
-            nextResource = process.getNeededResources().at(i).getResourceId();
-            indexResourceList = copyNeededResources.indexOf(process.getNeededResources().at(i));
-            countResource = process.getNeededResources().at(i).getCount();
+            //the resource has to have a count > 0 but < the over all available resources
+            if(process.getNeededResources().at(i).getCount() <= availableResources_ECopy[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
 
-            result.append(nextResource);
-            result.append(countResource);
-            result.append(indexResourceList);
+                //if the next resource was found set the nextResource, countResource and indexResourceList variables
+                nextResource = process.getNeededResources().at(i).getResourceId();
+                indexResourceList = i;
+                countResource = process.getNeededResources().at(i).getCount();
+                break;
+
+            } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
+                //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
+                //no return yet because last resource has to be released
+                nextResource = - 5;
+                break;
+            }
         }
 
-
+        result.append(nextResource);
+        result.append(countResource);
+        result.append(indexResourceList);
     }
 
 
@@ -75,12 +84,4 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     //Step 6: Return the list of Values
     qDebug() << "Result: Process " << process.getProcessId() << " reserved Resource " << nextResource;
     return result;
-}
-
-QList<SystemResource> EliminateHoldAndWait::avoidance_algorithm(QList<SystemResource> neededResources)
-{
-    std::sort(neededResources.begin(), neededResources.end(), [](const SystemResource& a, const SystemResource& b) {
-        return a.getResourceId() < b.getResourceId();
-    });
-    return neededResources;
 }

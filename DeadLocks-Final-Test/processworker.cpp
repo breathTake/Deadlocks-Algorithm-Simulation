@@ -126,7 +126,7 @@ void ProcessWorker::requestResource()
 
 
         //resources have been acquired, the last resource (from before) can be released, if they were set
-        if(lastResource != -1 && lastResource != -2){
+        if(lastResource != -1 && lastResource != -2 && nextResource != -2 && nextResource != -1){
             switch (lastResource) {
             case 0:
                 semaphorePrinter->release(lastCount);

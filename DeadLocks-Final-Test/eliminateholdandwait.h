@@ -34,6 +34,8 @@ public:
 
 private:
     QMutex *mutex;
+    static int currentProcess;
 };
+
 
 #endif // ELIMINATEHOLDANDWAIT_H

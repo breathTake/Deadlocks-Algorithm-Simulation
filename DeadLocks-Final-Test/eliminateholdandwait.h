@@ -2,6 +2,7 @@
 #define ELIMINATEHOLDANDWAIT_H
 
 #include <deadlock_avoidance_api.h>
+#include <qmutex.h>
 
 
 
@@ -23,6 +24,16 @@ public:
      * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     QList<int> findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);
+
+    /**
+     * @brief avoidance_algorithm the function integrating the core algorithm
+     * @param neededResources a copy of the neededResources list of the process in the current worker object
+     * @return the sorted neededResources list
+     */
+    bool avoidance_algorithm(SystemProcess process, int differenceResources_A[4]);
+
+private:
+    QMutex *mutex;
 };
 
 #endif // ELIMINATEHOLDANDWAIT_H

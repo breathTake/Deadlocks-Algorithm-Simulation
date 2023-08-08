@@ -1,5 +1,6 @@
 #include "eliminateholdandwait.h"
 #include "nopreemption.h"
+#include <QDebug>
 
 EliminateHoldAndWait::EliminateHoldAndWait()
 {
@@ -23,13 +24,13 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     //Steop 2: Check if enough Resources are available. If NOT -> Step 5
     bool allConditionsMet = true;
     for(int i = 0 ; i <copyNeededResources.count(); i++){
-        if(copyNeededResources[i].getCount() > availableResources_ECopy[i]){
+        if(copyNeededResources.at(i).getCount()> availableResources_ECopy[i] && process.getNeededResources().at(i).getCount() > 0){
             allConditionsMet = false;
         }
     }
 
     //Step 3: Check No-Preemption. Yes -> Step 4 , No -> Step 5
-    if(allConditionsMet){
+    /*if(allConditionsMet){
 
         //If the algorithm No-Preemption is true, the next resource can be assigned
         NoPreemption nopreemption = *new NoPreemption();
@@ -42,7 +43,7 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
         if(!checkNoPreemption){
             allConditionsMet = false;
         }
-    }
+    }*/
 
 
     //Step 4: Get nextResource
@@ -51,25 +52,17 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
         //going through the neededResources list to find the next needed resource
         for(int i = 0; i < process.getNeededResources().count(); i++){
 
-            //the resource has to have a count > 0 but < the over all available resources
-            if(process.getNeededResources().at(i).getCount() <= availableResources_ECopy[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+            //if the next resource was found set the nextResource, countResource and indexResourceList variables
+            nextResource = process.getNeededResources().at(i).getResourceId();
+            indexResourceList = copyNeededResources.indexOf(process.getNeededResources().at(i));
+            countResource = process.getNeededResources().at(i).getCount();
 
-                //if the next resource was found set the nextResource, countResource and indexResourceList variables
-                nextResource = process.getNeededResources().at(i).getResourceId();
-                indexResourceList = copyNeededResources.indexOf(process.getNeededResources().at(i));
-                countResource = process.getNeededResources().at(i).getCount();
-                break;
-            } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
-                //in this case there are no resources left to process (all are either 0 or can't be processed because they exceed the over all available resource count
-                //no return yet because last resource has to be released
-                nextResource = - 5;
-                break;
-            }
+            result.append(nextResource);
+            result.append(countResource);
+            result.append(indexResourceList);
         }
 
-        result.append(nextResource);
-        result.append(countResource);
-        result.append(indexResourceList);
+
     }
 
 
@@ -80,7 +73,7 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     }
 
     //Step 6: Return the list of Values
-
+    qDebug() << "Result: Process " << process.getProcessId() << " reserved Resource " << nextResource;
     return result;
 }
 

@@ -143,19 +143,25 @@ void ProcessWorker::requestResource()
             }
 
             emit resourceReleased(process.getProcessId(), lastResource, lastCount);
-            //if nextResource is -5 all resources are processed and finishedResourceProcessing can be emitted
-            if(nextResource == -5){
-                break;
-            }
+
             //emitting resourcesReleased to notify mainwindow of changes and change ui
 
             //updating assignedResources_C because resources have been released
             differenceResources_A[lastResource] += lastCount;
             assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
+            //if nextResource is -5 all resources are processed and finishedResourceProcessing can be emitted
+            if(nextResource == -5){
+                break;
+            }
         }
 
         //waiting 2*countResource to simulate the resource writing etc.
-        QThread::sleep(2*countResource);
+        if(countResource >= 0){
+            QThread::sleep(2*countResource);
+        } else {
+            QThread::sleep(2);
+        }
+
 
         //seting the lastResource and count to current resource and count to be released in next iteration
         lastResource = nextResource;

@@ -11,11 +11,14 @@
 #include <QGraphicsDropShadowEffect>
 
 //how many resources and processes the system has
+const int maxResourcesInProcess = 1;
 int system_resource_count = 4;
 int system_process_count = 3;
 int existingResources[4];
 int selectedAlgorithmNumber = -1;
 int finished = 0;
+
+QTimer *timer;
 
 //The Arrays for occupation etc.
 int assignedResources_C[3][4];
@@ -287,9 +290,9 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
 
 void MainWindow::setUpProcesses()
 {
-    processes.append(SystemProcess("A", 0, 1, 2));
-    processes.append(SystemProcess("B", 1, 1, 2));
-    processes.append(SystemProcess("C", 2, 1, 2));
+    processes.append(SystemProcess("A", 0, 1, maxResourcesInProcess + 1));
+    processes.append(SystemProcess("B", 1, 1, maxResourcesInProcess + 1));
+    processes.append(SystemProcess("C", 2, 1, maxResourcesInProcess + 1));
 
     updateStillNeededRessources_R();
 
@@ -316,6 +319,7 @@ void MainWindow::processFinished()
         threadProcessC->wait();
         delete threadProcessC;
         delete workerC;
+        timer->stop();
 
         EndDialog endDialog;
         endDialog.setWindowTitle("Deadlock Algorithm Simulation");
@@ -325,23 +329,24 @@ void MainWindow::processFinished()
 
 void MainWindow::on_button_stop_simulation_clicked()
 {
-    /*threadProcessA->deleteLater();
-    threadProcessA->quit();
+    threadProcessA->deleteLater();
+    threadProcessA->terminate();
     threadProcessA->wait();
     delete threadProcessA;
     delete workerA;
 
     threadProcessB->deleteLater();
-    threadProcessB->quit();
+    threadProcessB->terminate();
     threadProcessB->wait();
     delete threadProcessB;
     delete workerB;
 
     threadProcessC->deleteLater();
-    threadProcessC->quit();
+    threadProcessC->terminate();
     threadProcessC->wait();
     delete threadProcessC;
-    delete workerC;*/
+    delete workerC;
+    timer->stop();
 
     EndDialog endDialog;
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
@@ -353,9 +358,9 @@ void MainWindow::on_button_start_simulation_clicked()
 {
     //on start button clicked the button will be disabled and the timer will be started
     ui->button_start_simulation->setEnabled(false);
-    QTimer *timer = new QTimer(this);
+    timer = new QTimer(this);
         QTime startTime = QTime::currentTime();
-        connect(timer, &QTimer::timeout, [this, startTime, timer]() {
+        connect(timer, &QTimer::timeout, [this, startTime]() {
             updateElapsedTime(startTime);
             timer->start(10);
         });

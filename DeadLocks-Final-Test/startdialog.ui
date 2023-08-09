@@ -601,15 +601,7 @@ QSpinBox::down-arrow {
   <zorder>label_background</zorder>
   <zorder>frame</zorder>
   <zorder>startSimulationButton</zorder>
-  <zorder>spinBox_Printer</zorder>
-  <zorder>spinBox_Cd</zorder>
-  <zorder>spinBox_Plotter</zorder>
-  <zorder>spinBox_TapeDrive</zorder>
-  <zorder>label_Printer_Icon</zorder>
   <zorder>label_Header</zorder>
-  <zorder>label_CD_Icon</zorder>
-  <zorder>label_Plotter_Icon</zorder>
-  <zorder>label_TapeDrive_Icon</zorder>
   <zorder>frame_2</zorder>
  </widget>
  <resources>

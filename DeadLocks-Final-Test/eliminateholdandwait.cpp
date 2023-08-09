@@ -2,10 +2,11 @@
 #include <QDebug>
 
 int EliminateHoldAndWait::currentProcess = -1;
+QSemaphore* EliminateHoldAndWait::semaphore = new QSemaphore(1);
 
 EliminateHoldAndWait::EliminateHoldAndWait()
 {
-    mutex = new QMutex();
+
 }
 
 
@@ -23,56 +24,71 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     //Step 1: Copy of neededResources
     QList<SystemResource> copyNeededResources =  process.getNeededResources();
 
+    int copyDifference[4];
 
     //Step 4: Get nextResource
+    if(currentProcess != process.getProcessId()){
+        semaphore->acquire(1);
+        for(int i = 0; i < 4; i++){
+            copyDifference[i] = differenceResources_A[i];
+            copyDifference[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+        }
+    }
 
-    if(mutex->tryLock() || EliminateHoldAndWait::currentProcess == process.getProcessId()){
-         if(avoidance_algorithm(process, differenceResources_A)){
-             EliminateHoldAndWait::currentProcess = process.getProcessId();
-             qDebug() << "process: " << process.getName() << " save";
-             //memset(differenceResources_A, 0, 4);
-             //going through the neededResources list to find the next needed resource
-
-             for(int i = 0; i < process.getNeededResources().count(); i++){
-
-                 //the resource has to have a count > 0 but < the over all available resources
-                 if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
-
-                     //if the next resource was found set the nextResource, countResource and indexResourceList variables
-                     nextResource = process.getNeededResources().at(i).getResourceId();
-                     indexResourceList = i;
-                     countResource = process.getNeededResources().at(i).getCount();
-                     break;
-
-                 } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
-                     //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
-                     //no return yet because last resource has to be released
-                     nextResource = - 5;
-                     break;
-                 }
-             }
-
-             result.append(nextResource);
-             result.append(countResource);
-             result.append(indexResourceList);
+    if(avoidance_algorithm(process, differenceResources_A)){
+        currentProcess = process.getProcessId();
+        qDebug() << "process: " << process.getName() << " save" << currentProcess;
 
 
+        //memset(differenceResources_A, 0, 4);
+        //going through the neededResources list to find the next needed resource
 
-             //Step 6: Return the list of Values
-             qDebug() << "Result: Process " << process.getProcessId() << " reserved Resource " << nextResource;
+        for(int i = 0; i < process.getNeededResources().count(); i++){
+            //the resource has to have a count > 0 but < the over all available resources
+            if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
 
-             if(nextResource == -5){
-               mutex->unlock();
-             }
+                //if the next resource was found set the nextResource, countResource and indexResourceList variables
+                nextResource = process.getNeededResources().at(i).getResourceId();
+                indexResourceList = i;
+                countResource = process.getNeededResources().at(i).getCount();
+                copyDifference[nextResource] += countResource;
+                break;
 
-         } else {
-             mutex->unlock();
-             qDebug() << "process: " << process.getName() << " on pause";
-             nextResource = -2;
-             result.append(nextResource);
-             result.append(countResource);
-             result.append(indexResourceList);
-         }
+            } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
+                //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
+                //no return yet because last resource has to be released
+                nextResource = - 5;
+                break;
+            }
+        }
+
+        if(copyDifference[0] > 0 || copyDifference[1] > 0 || copyDifference[2] > 0 || copyDifference[3] > 0){
+            qDebug() << "release" << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
+            //semaphore->release(1);
+        }
+
+        result.append(nextResource);
+        result.append(countResource);
+        result.append(indexResourceList);
+
+
+
+        //Step 6: Return the list of Values
+        qDebug() << "Result: Process " << process.getProcessId() << " reserved Resource " << nextResource;
+
+        if(nextResource == -5){
+           qDebug() << "unlocked";
+           semaphore->release(1);
+        }
+
+    } else {
+        semaphore->release(1);
+        qDebug() << "A: " << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3];
+        qDebug() << "process: " << process.getName() << " on pause";
+        nextResource = -2;
+        result.append(nextResource);
+        result.append(countResource);
+        result.append(indexResourceList);
     }
 
     return result;

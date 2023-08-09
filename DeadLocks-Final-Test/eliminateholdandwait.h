@@ -2,7 +2,7 @@
 #define ELIMINATEHOLDANDWAIT_H
 
 #include <deadlock_avoidance_api.h>
-#include <qmutex.h>
+#include <QSemaphore>
 
 
 
@@ -33,7 +33,7 @@ public:
     bool avoidance_algorithm(SystemProcess process, int differenceResources_A[4]);
 
 private:
-    QMutex *mutex;
+    static QSemaphore *semaphore;
     static int currentProcess;
 };
 

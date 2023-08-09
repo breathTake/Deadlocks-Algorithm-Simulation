@@ -29,32 +29,35 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
     //going through the neededResources list to find the next needed resource
     for(int i = 0; i < process.getNeededResources().count(); i++){
         //the resource has to have a count > 0 but < the over all available resources
-        if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+        if(process.getNeededResources().at(i).getCount() <= differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
             stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+
             qDebug() << "trying to reserve" << process.getNeededResources().at(i).getCount() << " of resource " << process.getNeededResources().at(i).getResourceId();
             if(avoidance_algorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E)){
                 nextResource = process.getNeededResources().at(i).getResourceId();
                 indexResourceList = i;
-                countResource = process.getNeededResources().at(i).getCount();
+                countResource = process.getNeededResources().at(i).getCount();                
                 break;
             }
-            qDebug() << "deadlockupdat3ed";
+
             deadlock = true;
             stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
-            /*qDebug() << process.getNeededResources().at(i).getName();
+            nextResource = -2;
+            qDebug() << process.getNeededResources().at(i).getName();
             process.moveNeededResourceToBack(i);
             qDebug() << process.getNeededResources().at(i).getName();
-            i=0;*/
 
+            result.append(nextResource);
+            result.append(countResource);
+            result.append(indexResourceList);
+
+            mutexOne->unlock();
+            return result;
 
         } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
             //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
             //no return yet because last resource has to be released
-            if(deadlock){
-                nextResource = -2;
-                break;
-            }
             nextResource = - 5;
             break;
         }
@@ -63,9 +66,6 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
     qDebug() << "process: " << process.getName() << " requested " << countResource << " of resource " << nextResource;
     printStillNeeded(stillNeededResources_R, differenceResources_A);
 
-    if(nextResource == -1){
-        qDebug() << "-1";
-    }
     result.append(nextResource);
     result.append(countResource);
     result.append(indexResourceList);

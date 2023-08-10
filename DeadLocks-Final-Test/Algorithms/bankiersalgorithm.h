@@ -1,17 +1,17 @@
-#ifndef CAREFULRESOURCEDISTRIBUTION_H
-#define CAREFULRESOURCEDISTRIBUTION_H
+#ifndef BANKIERSALGORITHM_H
+#define BANKIERSALGORITHM_H
 
-#include <deadlock_avoidance_api.h>
+#include <Objects/systemprocess.h>
+#include <Algorithms/deadlock_avoidance_api.h>
 
+using namespace std;
 
-
-class CarefulResourceDistribution : public deadlock_avoidance_api
+class BankiersAlgorithm : public deadlock_avoidance_api
 {
 public:
-    /**
-     * @brief CarefulResourceDistribution standard constructor
-     */
-    CarefulResourceDistribution();
+
+    BankiersAlgorithm();
+
 
     /**
      * @brief findNextResource function that will find the next resource,
@@ -23,6 +23,8 @@ public:
      * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     QList<int> findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);
+
+    bool avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]);
 };
 
-#endif // CAREFULRESOURCEDISTRIBUTION_H
+#endif // BANKIERSALGORITHM_H

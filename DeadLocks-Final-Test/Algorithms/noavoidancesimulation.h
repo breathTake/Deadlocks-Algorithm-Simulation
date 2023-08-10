@@ -1,7 +1,7 @@
 #ifndef NOAVOIDANCESIMULATION_H
 #define NOAVOIDANCESIMULATION_H
 
-#include <deadlock_avoidance_api.h>
+#include <Algorithms/deadlock_avoidance_api.h>
 
 
 class NoAvoidanceSimulation : public deadlock_avoidance_api

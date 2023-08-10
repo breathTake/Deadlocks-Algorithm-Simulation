@@ -1,7 +1,7 @@
 #ifndef ELIMINATECIRCULARWAIT_H
 #define ELIMINATECIRCULARWAIT_H
 
-#include <deadlock_avoidance_api.h>
+#include <Algorithms/deadlock_avoidance_api.h>
 
 
 

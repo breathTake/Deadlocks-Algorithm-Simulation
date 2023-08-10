@@ -1,17 +1,18 @@
-#ifndef BANKIERSALGORITHM_H
-#define BANKIERSALGORITHM_H
+#ifndef ELIMINATEHOLDANDWAIT_H
+#define ELIMINATEHOLDANDWAIT_H
 
-#include <SystemProcess.h>
-#include <deadlock_avoidance_api.h>
+#include <Algorithms/deadlock_avoidance_api.h>
+#include <QSemaphore>
 
-using namespace std;
 
-class BankiersAlgorithm : public deadlock_avoidance_api
+
+class EliminateHoldAndWait : public deadlock_avoidance_api
 {
 public:
-
-    BankiersAlgorithm();
-
+    /**
+     * @brief EliminateHoldAndWait standard constuctor
+     */
+    EliminateHoldAndWait();
 
     /**
      * @brief findNextResource function that will find the next resource,
@@ -24,7 +25,17 @@ public:
      */
     QList<int> findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);
 
-    bool avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]);
+    /**
+     * @brief avoidance_algorithm the function integrating the core algorithm
+     * @param neededResources a copy of the neededResources list of the process in the current worker object
+     * @return the sorted neededResources list
+     */
+    bool avoidance_algorithm(SystemProcess process, int differenceResources_A[4]);
+
+private:
+    static QSemaphore *semaphore;
+    static int currentProcess;
 };
 
-#endif // BANKIERSALGORITHM_H
+
+#endif // ELIMINATEHOLDANDWAIT_H

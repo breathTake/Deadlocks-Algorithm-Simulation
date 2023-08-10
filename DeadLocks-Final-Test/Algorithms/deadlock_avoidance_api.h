@@ -1,7 +1,8 @@
 #ifndef DEADLOCK_AVOIDANCE_API_H
 #define DEADLOCK_AVOIDANCE_API_H
 
-#include <SystemProcess.h>
+#include <Objects/SystemProcess.h>
+#include <QSemaphore>
 #include <QDebug>
 
 
@@ -21,6 +22,7 @@ public:
      */
     virtual QList<int> findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
 
+    //virtual void reserveResources(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
     void printStillNeeded(int stillNeededResources_R[3][4], int differenceResources_A[4]){
         QDebug dbg(QtDebugMsg);
         dbg << "R:" << "\n";

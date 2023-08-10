@@ -9,40 +9,40 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    bankiersalgorithm.cpp \
-    carefulresourcedistribution.cpp \
-    deadlock_avoidance_api.cpp \
-    eliminatecircularwait.cpp \
-    eliminateholdandwait.cpp \
-    enddialog.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    noavoidancesimulation.cpp \
-    nopreemption.cpp \
-    processworker.cpp \
-    startdialog.cpp \
-    systemprocess.cpp \
-    systemresource.cpp
+    Algorithms/bankiersalgorithm.cpp \
+    Algorithms/carefulresourcedistribution.cpp \
+    Algorithms/deadlock_avoidance_api.cpp \
+    Algorithms/eliminatecircularwait.cpp \
+    Algorithms/eliminateholdandwait.cpp \
+    Dialogs/enddialog.cpp \
+    Main/main.cpp \
+    Main/mainwindow.cpp \
+    Algorithms/noavoidancesimulation.cpp \
+    Algorithms/nopreemption.cpp \
+    Objects/processworker.cpp \
+    Dialogs/startdialog.cpp \
+    Objects/systemprocess.cpp \
+    Objects/systemresource.cpp
 
 HEADERS += \
-    bankiersalgorithm.h \
-    carefulresourcedistribution.h \
-    deadlock_avoidance_api.h \
-    eliminatecircularwait.h \
-    eliminateholdandwait.h \
-    enddialog.h \
-    mainwindow.h \
-    noavoidancesimulation.h \
-    nopreemption.h \
-    processworker.h \
-    startdialog.h \
-    systemprocess.h \
-    systemresource.h
+    Algorithms/bankiersalgorithm.h \
+    Algorithms/carefulresourcedistribution.h \
+    Algorithms/deadlock_avoidance_api.h \
+    Algorithms/eliminatecircularwait.h \
+    Algorithms/eliminateholdandwait.h \
+    Dialogs/enddialog.h \
+    Main/mainwindow.h \
+    Algorithms/noavoidancesimulation.h \
+    Algorithms/nopreemption.h \
+    Objects/processworker.h \
+    Dialogs/startdialog.h \
+    Objects/systemprocess.h \
+    Objects/systemresource.h
 
 FORMS += \
-    enddialog.ui \
-    mainwindow.ui \
-    startdialog.ui
+    Dialogs/enddialog.ui \
+    Main/mainwindow.ui \
+    Dialogs/startdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -3,9 +3,17 @@
 
 #include "qdebug.h"
 #include <QObject>
-#include <SystemProcess.h>
-#include <systemresource.h>
+#include <Objects/SystemProcess.h>
+#include <Objects/systemresource.h>
 #include <QSemaphore>
+#include <QThread>
+#include <QDebug>
+#include <Algorithms/BankiersAlgorithm.h>
+#include <Algorithms/NoAvoidanceSimulation.h>
+#include <Algorithms/EliminateCircularWait.h>
+#include <Algorithms/EliminateHoldAndWait.h>
+#include <Algorithms/NoPreemption.h>
+#include <Algorithms/CarefulResourceDistribution.h>
 
 //Q_DECLARE_METATYPE(QList<SystemProcess>)
 
@@ -109,6 +117,11 @@ private:
     static int stillNeededResources_R[3][4];
     SystemProcess process;
     int selectedAlgorithm;
+
+    static QSemaphore *semaphorePrinter;
+    static QSemaphore *semaphoreCD;
+    static QSemaphore *semaphorePlotter;
+    static QSemaphore *semaphoreTapeDrive;
 };
 
 #endif // PROCESSWORKER_H

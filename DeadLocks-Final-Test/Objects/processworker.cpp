@@ -1,24 +1,15 @@
 #include "processworker.h"
 
-#include <QThread>
-#include <QDebug>
-#include <BankiersAlgorithm.h>
-#include <NoAvoidanceSimulation.h>
-#include <EliminateCircularWait.h>
-#include <EliminateHoldAndWait.h>
-#include <NoPreemption.h>
-#include <CarefulResourceDistribution.h>
-
 /**
  * @brief semaphorePrinter regulates how many printers can be used by threads
  * @brief semaphoreCD regulates how many cds can be used by threads
  * @brief semaphorePlotter regulates how many plotters can be used by threads
  * @brief semaphoreTapeDrive regulates how many tape drives can be used by threads
  */
-QSemaphore *semaphorePrinter;
-QSemaphore *semaphoreCD;
-QSemaphore *semaphorePlotter;
-QSemaphore *semaphoreTapeDrive;
+QSemaphore* ProcessWorker::semaphorePrinter;
+QSemaphore* ProcessWorker::semaphoreCD;
+QSemaphore* ProcessWorker::semaphorePlotter;
+QSemaphore* ProcessWorker::semaphoreTapeDrive;
 
 //initializing the static matrices
 int ProcessWorker::differenceResources_A[4];

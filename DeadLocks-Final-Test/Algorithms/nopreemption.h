@@ -1,18 +1,17 @@
-#ifndef ELIMINATEHOLDANDWAIT_H
-#define ELIMINATEHOLDANDWAIT_H
+#ifndef NOPREEMPTION_H
+#define NOPREEMPTION_H
 
-#include <deadlock_avoidance_api.h>
-#include <QSemaphore>
-
+#include <Algorithms/deadlock_avoidance_api.h>
 
 
-class EliminateHoldAndWait : public deadlock_avoidance_api
+
+class NoPreemption : public deadlock_avoidance_api
 {
 public:
     /**
-     * @brief EliminateHoldAndWait standard constuctor
+     * @brief NoPreemption standard constuctor
      */
-    EliminateHoldAndWait();
+    NoPreemption();
 
     /**
      * @brief findNextResource function that will find the next resource,
@@ -30,12 +29,7 @@ public:
      * @param neededResources a copy of the neededResources list of the process in the current worker object
      * @return the sorted neededResources list
      */
-    bool avoidance_algorithm(SystemProcess process, int differenceResources_A[4]);
-
-private:
-    static QSemaphore *semaphore;
-    static int currentProcess;
+    QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
 };
 
-
-#endif // ELIMINATEHOLDANDWAIT_H
+#endif // NOPREEMPTION_H

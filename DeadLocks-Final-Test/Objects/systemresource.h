@@ -3,9 +3,11 @@
 
 #include <QString>
 
+/**
+ * @brief Class which represents the resources used by processes
+ */
 class SystemResource
 {
-
 
 private:
     /**

@@ -5,7 +5,9 @@
 #include <QSemaphore>
 #include <QDebug>
 
-
+/**
+ * @brief The virtual class represents an API the algorithms use
+ */
 class deadlock_avoidance_api
 {
 public:
@@ -18,11 +20,15 @@ public:
      * @param differenceResources_A is an array with the current available resources
      * @param assignedResources_C matrix containing which and how many resources a process is occupying
      * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
-     * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
+     * @return result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     virtual QList<int> findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
 
-    //virtual void reserveResources(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
+    /**
+     * @brief printStillNeeded prints the still needed resources of a process
+     * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
+     * @param differenceResources_A is an array with the current available resources
+     */
     void printStillNeeded(int stillNeededResources_R[3][4], int differenceResources_A[4]){
         QDebug dbg(QtDebugMsg);
         dbg << "R:" << "\n";

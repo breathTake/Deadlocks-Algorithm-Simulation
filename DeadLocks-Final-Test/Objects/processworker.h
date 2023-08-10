@@ -17,25 +17,25 @@
 
 //Q_DECLARE_METATYPE(QList<SystemProcess>)
 
-
+/**
+ * @brief Class represents the process worker which is responsible for the whole simulation process
+ */
 class ProcessWorker : public QObject
 {
     Q_OBJECT
 public:
     /**
-     * \brief creates ProcessWorker
-     *        creates a Process Worker with the given parameters and also initializes the semaphores
-     * \param processes is the process belonging to the worker object
-     * \param availableResources_E is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start
-     * \param differenceResources_A is an int array with 4 ints. Each int corresponds to a resource that is available right now
+     * @brief creates a Process Worker with the given parameters and also initializes the semaphores
+     * @param processes is the process belonging to the worker object
+     * @param availableResources_E is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start
+     * @param differenceResources_A is an int array with 4 ints. Each int corresponds to a resource that is available right now
      */
     ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm);
 
     /**
-     * @brief updateProcess
-     * updates the neededResources List in the member Process
-     * \param nextResource is the ID of the resource that has been reserved
-     * \param countResource is the count of the reserce
+     * @brief updateProcess updates the neededResources List in the member Process
+     * @param nextResource is the ID of the resource that has been reserved
+     * @param countResource is the count of the reserce
      */
     void updateProcess(int nextResource, int countResource);
 
@@ -53,6 +53,10 @@ public:
         }
     }
 
+    /**
+     * @brief setAlgorithm sets the algorithm used for the simulation
+     * @param algorithm number to choose the algorithm
+     */
     void setAlgorithm(int algorithm){
         this->selectedAlgorithm = algorithm;
     }
@@ -72,8 +76,7 @@ public:
 
 signals:
     /**
-     * @brief resourceReserved
-     *        notifies the main thread, that the given resource has been reserved and can not be used anymore
+     * @brief resourceReserved notifies the main thread, that the given resource has been reserved and can not be used anymore
      * @param processID is the ID of the process member to determin the process in the main thread
      * @param resource is the resource ID of the resource that has been reserved
      * @param count is the count of reserved resources
@@ -84,8 +87,7 @@ signals:
     void waitingForNext();
 
     /**
-     * @brief resourceReleased
-     *        notifies the main thread, that the given resource has been released
+     * @brief resourceReleased notifies the main thread, that the given resource has been released
      * @param processID is the ID of the process member to determin the process in the main thread
      * @param resource is the resource ID of the resource that has been released
      * @param count is the count of released resources
@@ -104,24 +106,23 @@ public slots:
 
 private:
     /**
-     * @brief availableResources_E is an array with the over all available resources
      * @brief differenceResources_A is an array with the current available resources
      * @brief assignedResources_C matrix containing which and how many resources a process is occupying
-     * @brief stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
+     * @brief stillNeededResources_R matrix containing which and how many resources a process will still need to occupie throughout the simulation
      * @brief process is the process of the thread
      * @brief selectedAlgorithmNumber is the algorithm used to prevent deadlocks
      */
-    int availableResources_E[4];
-    static int differenceResources_A[4];
-    static int assignedResources_C[3][4];
-    static int stillNeededResources_R[3][4];
-    SystemProcess process;
-    int selectedAlgorithm;
+    int availableResources_E[4]; ///< is an array with the over all available resources
+    static int differenceResources_A[4]; ///< is an array with the current available resources
+    static int assignedResources_C[3][4]; ///< containing which and how many resources a process is occupying
+    static int stillNeededResources_R[3][4]; ///< matrix containing which and how many resources a process will still need to occupie throughout the simulation
+    SystemProcess process; ///< process is the process running in the thread
+    int selectedAlgorithm; ///< is the algorithm used to prevent deadlocks
 
-    static QSemaphore *semaphorePrinter;
-    static QSemaphore *semaphoreCD;
-    static QSemaphore *semaphorePlotter;
-    static QSemaphore *semaphoreTapeDrive;
+    static QSemaphore *semaphorePrinter; ///< to keep track of available Printers
+    static QSemaphore *semaphoreCD; ///< to keep track of available CDs
+    static QSemaphore *semaphorePlotter; ///< to keep track of available Plotters
+    static QSemaphore *semaphoreTapeDrive; ///< to keep track of available TapeDrives
 };
 
 #endif // PROCESSWORKER_H

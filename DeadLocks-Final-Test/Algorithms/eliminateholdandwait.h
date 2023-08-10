@@ -34,7 +34,8 @@ public:
 
 private:
     static QSemaphore *semaphore;
-    static int currentProcess;
+    static QList<int>currentProcess;
+    static int copyDifference[4];
 };
 
 

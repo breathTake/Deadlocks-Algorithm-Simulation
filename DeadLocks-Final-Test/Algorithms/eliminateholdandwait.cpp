@@ -1,8 +1,9 @@
 #include "eliminateholdandwait.h"
 #include <QDebug>
 
-int EliminateHoldAndWait::currentProcess = -1;
+QList<int> EliminateHoldAndWait::currentProcess;
 QSemaphore* EliminateHoldAndWait::semaphore = new QSemaphore(1);
+int EliminateHoldAndWait::copyDifference[4];
 
 EliminateHoldAndWait::EliminateHoldAndWait()
 {
@@ -21,27 +22,53 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     //indexResourceList is the index of the nextResource in the neededResources list of process as they are in random order
     int indexResourceList = -1;
 
-    //Step 1: Copy of neededResources
-    QList<SystemResource> copyNeededResources =  process.getNeededResources();
-
-    int copyDifference[4];
-
-    //Step 4: Get nextResource
-    if(currentProcess != process.getProcessId()){
-        semaphore->acquire(1);
+    if(currentProcess.empty()){
+        currentProcess.append(-1);
         for(int i = 0; i < 4; i++){
             copyDifference[i] = differenceResources_A[i];
-            copyDifference[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+        }
+        qDebug() << "copy";
+    }
+
+    //Step 4: Get nextResource
+    if(!currentProcess.contains(process.getProcessId())){
+        semaphore->acquire(1);
+        if(avoidance_algorithm(process, copyDifference)){
+            currentProcess.append(process.getProcessId());
+            qDebug() << "process" << process.getName() << "acquired" << "id:" << process.getProcessId();
+            qDebug() << "needed: " << process.getNeededResources().at(0).getCount() << process.getNeededResources().at(1).getCount() << process.getNeededResources().at(2).getCount() << process.getNeededResources().at(3).getCount();
+            qDebug() << "lastDifference" << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
+            for(int i = 0; i < 4; i++){
+                qDebug() << "differences set" << copyDifference[process.getNeededResources().at(i).getResourceId()] <<  "-" << process.getNeededResources().at(i).getCount();
+                copyDifference[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+            }
+            //qDebug() << "differences set" << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
+
+            if(copyDifference[0] > 0 || copyDifference[1] > 0 || copyDifference[2] > 0 || copyDifference[3] > 0){
+                qDebug() << "release" << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
+                semaphore->release(1);
+            }
+
+        }  else {
+            semaphore->release(1);
+            qDebug() << "process: " << process.getName() << " on pause";
+            qDebug() << "because: " << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
+            nextResource = -2;
+            result.append(nextResource);
+            result.append(countResource);
+            result.append(indexResourceList);
+            return result;
         }
     }
 
-    if(avoidance_algorithm(process, differenceResources_A)){
-        currentProcess = process.getProcessId();
+
         qDebug() << "process: " << process.getName() << " save" << currentProcess;
 
 
         //memset(differenceResources_A, 0, 4);
         //going through the neededResources list to find the next needed resource
+
+
 
         for(int i = 0; i < process.getNeededResources().count(); i++){
             //the resource has to have a count > 0 but < the over all available resources
@@ -58,14 +85,14 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
                 //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
                 //no return yet because last resource has to be released
                 nextResource = - 5;
+                for(int i = 0; i < 4; i++){
+                    //copyDifference[process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
+                }
                 break;
             }
         }
 
-        if(copyDifference[0] > 0 || copyDifference[1] > 0 || copyDifference[2] > 0 || copyDifference[3] > 0){
-            qDebug() << "release" << copyDifference[0] << copyDifference[1] << copyDifference[2] << copyDifference[3];
-            //semaphore->release(1);
-        }
+
 
         result.append(nextResource);
         result.append(countResource);
@@ -81,15 +108,7 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
            semaphore->release(1);
         }
 
-    } else {
-        semaphore->release(1);
-        qDebug() << "A: " << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3];
-        qDebug() << "process: " << process.getName() << " on pause";
-        nextResource = -2;
-        result.append(nextResource);
-        result.append(countResource);
-        result.append(indexResourceList);
-    }
+
 
     return result;
 }
@@ -99,7 +118,7 @@ bool EliminateHoldAndWait::avoidance_algorithm(SystemProcess process, int differ
     //Steop 2: Check if enough Resources are available. If NOT -> Step 5
     bool allConditionsMet = true;
     for(int i = 0 ; i < process.getNeededResources().count(); i++){
-        if(process.getNeededResources().at(i).getCount() > differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() != 0){
+        if(process.getNeededResources().at(i).getCount() > differenceResources_A[process.getNeededResources().at(i).getResourceId()]){
             allConditionsMet = false;
         }
     }

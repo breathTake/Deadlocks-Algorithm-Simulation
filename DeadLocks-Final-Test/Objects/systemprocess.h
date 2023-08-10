@@ -5,6 +5,9 @@
 #include "Objects/systemresource.h"
 #include <QDebug>
 
+/**
+ * @brief Class represents the processes which use the resources
+ */
 class SystemProcess
 {
 
@@ -12,18 +15,19 @@ private:
     /**
      * @brief name of the process
      * @brief processId (corresponding to name: A = id 1...)
-     * @brief neededResources;
+     * @brief neededResources resources the process needs to run
      */
     QString name;
     int processId;
-
     QList<SystemResource> neededResources;
 
 public:
     /**
      * @brief SystemProcess standard constuctor with no parameter
      */
-    SystemProcess(){};
+    SystemProcess(){
+
+    };
 
     /**
      * @brief SystemProcess constructor setting name and processID
@@ -91,6 +95,10 @@ public:
         SystemProcess::neededResources = neededResources;
     }
 
+    /**
+     * @brief moveNeededResourceToBack the needed resource will be placed at the end of the list
+     * @param index placed at index
+     */
     void moveNeededResourceToBack(int index){
         neededResources.swapItemsAt(index, neededResources.count()-1);
     }

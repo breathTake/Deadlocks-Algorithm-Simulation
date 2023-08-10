@@ -4,7 +4,9 @@
 #include <Algorithms/deadlock_avoidance_api.h>
 
 
-
+/**
+ * @brief Class represents the algorithm to eliminate CircularWait
+ */
 class EliminateCircularWait : public deadlock_avoidance_api
 {
 public:
@@ -20,14 +22,14 @@ public:
      * @param differenceResources_A is an array with the current available resources
      * @param assignedResources_C matrix containing which and how many resources a process is occupying
      * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
-     * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
+     * @return result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     QList<int> findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);
 
     /**
-     * @brief avoidance_algorithm the function integrating the core algorithm
-     * @param neededResources a copy of the neededResources list of the process in the current worker object
-     * @return the sorted neededResources list
+     * @brief avoidance_algorithm algorithm which sorts the neededResources to avoid a deadlock
+     * @param neededResources List of the SystemResources the process needs to work currectly
+     * @return returns the sorted list of resources
      */
     QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
 };

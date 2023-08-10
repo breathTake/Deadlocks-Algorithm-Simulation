@@ -3,7 +3,9 @@
 
 #include <Algorithms/deadlock_avoidance_api.h>
 
-
+/**
+ * @brief Class represents the standard algorithm to sort and use the resources, normally leads to a deadlock
+ */
 class NoAvoidanceSimulation : public deadlock_avoidance_api
 {
 public:
@@ -19,7 +21,7 @@ public:
      * @param differenceResources_A is an array with the current available resources
      * @param assignedResources_C matrix containing which and how many resources a process is occupying
      * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
-     * @param result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
+     * @return result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
     QList<int> findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]);
 };

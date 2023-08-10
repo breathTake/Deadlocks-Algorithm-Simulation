@@ -2,6 +2,7 @@
 #include "ui_startdialog.h"
 
 #include <QGraphicsDropShadowEffect>
+#include <QDesktopServices>
 
 StartDialog::StartDialog(QWidget *parent) :
     QDialog(parent),
@@ -67,3 +68,11 @@ void StartDialog::getAlgorithm(){
         emit algorithmsFinished(4);
     }
 }
+
+void StartDialog::on_openGithubButton_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/breathTake/Deadlocks-Algorithm-Simulation", QUrl::TolerantMode));
+
+
+}
+

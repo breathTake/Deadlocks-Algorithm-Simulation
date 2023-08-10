@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/resources/Icon_White.png</normaloff>:/resources/Icon_White.png</iconset>
   </property>
   <property name="styleSheet">
@@ -241,7 +241,7 @@ QRadioButton::indicator:unchecked:hover {
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>460</y>
+     <y>440</y>
      <width>271</width>
      <height>51</height>
     </rect>
@@ -598,14 +598,61 @@ QSpinBox::down-arrow {
    <zorder>spinBox_Plotter</zorder>
    <zorder>label_TapeDrive_Icon</zorder>
   </widget>
+  <widget class="QPushButton" name="openGithubButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>510</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Futura Hv BT</family>
+     <pointsize>18</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+     <strikeout>false</strikeout>
+     <stylestrategy>PreferDefault</stylestrategy>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
+}
+QPushButton::pressed {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	color: rgb(217, 217, 217);
+	font: 18pt &quot;Futura Hv BT&quot;;
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Our GitHub</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
   <zorder>label_background</zorder>
   <zorder>frame</zorder>
   <zorder>startSimulationButton</zorder>
   <zorder>label_Header</zorder>
   <zorder>frame_2</zorder>
+  <zorder>github_label</zorder>
+  <zorder>github_link_label</zorder>
+  <zorder>openGithubButton</zorder>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -51,6 +51,9 @@ signals:
      */
     void algorithmsFinished(int algorithm);
 
+private slots:
+    void on_openGithubButton_clicked();
+
 private:
     Ui::StartDialog *ui; /**< Pointer to the UI object. */
 };

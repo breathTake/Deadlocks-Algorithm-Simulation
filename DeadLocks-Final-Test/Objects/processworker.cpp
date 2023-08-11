@@ -55,7 +55,7 @@ void ProcessWorker::requestResource()
             algorithm = new EliminateHoldAndWait();
             break;
         case 1:
-            algorithm = new NoPreemption();
+            algorithm = new NoPreemption();            
             break;
         case 2:
             algorithm = new EliminateCircularWait();

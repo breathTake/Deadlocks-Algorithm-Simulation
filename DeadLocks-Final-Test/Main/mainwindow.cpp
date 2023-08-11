@@ -12,7 +12,7 @@
 #include <QFont>
 
 //how many resources and processes the system has
-const int maxResourcesInProcess = 3;
+int maxResourcesInProcess;
 int system_resource_count = 4;
 int system_process_count = 3;
 int existingResources[4];
@@ -62,8 +62,9 @@ MainWindow::MainWindow(QWidget *parent)
     //update matrix as it is all 0 at the start
     update_occupation_matrix();
     //seting up processes and resources
-    setUpProcesses();
+
     setUpResources(existingResources[0], existingResources[1], existingResources[2], existingResources[3]);
+    setUpProcesses();
 
     //initializing threads and workers
     threadProcessA = new QThread;
@@ -310,18 +311,23 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
     }
 
     update_resource_occupation();
+    maxResourcesInProcess = std::max(std::max(countPrinters, countCD), std::max(countPlotters, countTapeDrive));
+
+    //set up processes
+    processes.append(SystemProcess("A", 0, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));
+    processes.append(SystemProcess("B", 1, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));
+    processes.append(SystemProcess("C", 2, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));
+
+    updateStillNeededRessources_R();
 
     return resources;
 }
 
 void MainWindow::setUpProcesses()
 {
-    processes.append(SystemProcess("A", 0, 1, maxResourcesInProcess + 1));
-    processes.append(SystemProcess("B", 1, 1, maxResourcesInProcess + 1));
-    processes.append(SystemProcess("C", 2, 1, maxResourcesInProcess + 1));
 
-    updateStillNeededRessources_R();
 
+    //updateStillNeededRessources_R();
 }
 
 void MainWindow::processFinished()

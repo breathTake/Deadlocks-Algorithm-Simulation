@@ -43,7 +43,7 @@ public:
      * @param min the minimum count a resource in neededResources can have
      * @param max the maximum count a resource in neededResources can have
      */
-    SystemProcess(QString name,int processId, int min, int max);
+    SystemProcess(QString name,int processId, int maxPrinters, int maxCDs, int maxPlotters, int maxTapeDrives);
 
     /**
      * @brief getProcessId getter for processId
@@ -115,11 +115,6 @@ public:
         }
     }
 
-    //temporary. will be moved to extra classes
-    bool eliminateHoldAndWait(QList<SystemResource> &resources, const QList<int>& counts);
-    QList<SystemResource> eliminateCircularWait(QList<SystemResource> neededResources);
-    void eliminateNoPreemption(SystemResource resource, int count);
-    bool cautiousResourceAllocation(const QList<SystemProcess>& processes, const QList<SystemResource>& resources);
 };
 
 #endif // SYSTEMPROCESS_H

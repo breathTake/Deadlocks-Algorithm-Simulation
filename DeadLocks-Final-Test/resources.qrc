@@ -12,5 +12,7 @@
         <file>resources/Plotter_Icon.png</file>
         <file>resources/Printer_Icon.png</file>
         <file>resources/TapeDrive_Icon.png</file>
+        <file>resources/fonts/futuraBook.ttf</file>
+        <file>resources/fonts/futuraHeavy.ttf</file>
     </qresource>
 </RCC>

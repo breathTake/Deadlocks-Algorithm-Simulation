@@ -59,8 +59,3 @@ DISTFILES += \
     resources/checkBox_on_hover.png \
     resources/reset_Icon.png \
     resources/restet_Icon.png
-
-FONT_FILES += \
-    resources/fonts/futuraBook.ttf \
-    resources/fonts/futuraHeavy.ttf
-

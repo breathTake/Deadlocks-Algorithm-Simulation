@@ -1643,6 +1643,42 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
      <string>Simulation Running: </string>
     </property>
    </widget>
+   <widget class="QLabel" name="CurrentAlgorithm_label_indicator">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: none;
+color: rgb(235, 235, 235);
+font: 18pt &quot;Futura Hv BT&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Algorithm:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="CurrentAlgorithm_label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: none;
+color: rgb(235, 235, 235);
+font: 18pt &quot;Futura Hv BT&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Default</string>
+    </property>
+   </widget>
    <zorder>background_resources_2</zorder>
    <zorder>background_resources</zorder>
    <zorder>Printer_background_label</zorder>
@@ -1677,6 +1713,8 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
    <zorder>free_TapeDrive_label</zorder>
    <zorder>label_time</zorder>
    <zorder>Requirements_headline_label_2</zorder>
+   <zorder>CurrentAlgorithm_label_indicator</zorder>
+   <zorder>CurrentAlgorithm_label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

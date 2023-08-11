@@ -52,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
         startDialog.close();
     }
 
+
+
     //update matrix as it is all 0 at the start
     update_occupation_matrix();
     //seting up processes and resources
@@ -65,6 +67,25 @@ MainWindow::MainWindow(QWidget *parent)
     workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
     threadProcessC = new QThread;
     workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
+
+    //Set the Algorithm Label to the current one
+    switch(selectedAlgorithmNumber){
+    case 0:
+        ui->CurrentAlgorithm_label->setText("Hold And Wait");
+        break;
+    case 1:
+        ui->CurrentAlgorithm_label->setText("No Preemption");
+        break;
+    case 2:
+        ui->CurrentAlgorithm_label->setText("Circular Wait");
+        break;
+    case 4:
+        ui->CurrentAlgorithm_label->setText("Bankiers Algorithm");
+        break;
+    default:
+        ui->CurrentAlgorithm_label->setText("No Avoidance");
+        break;
+    }
 
     //connect(programTimer, SIGNAL(timeout()), this, SLOT(updateTimeRunning()));
 
@@ -86,7 +107,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
     connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
-
 
     //moving and starting threads
     workerA->moveToThread(threadProcessA);

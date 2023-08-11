@@ -9,6 +9,7 @@
 #include <Dialogs/StartDialog.h>
 #include <Dialogs/EndDialog.h>
 #include <QGraphicsDropShadowEffect>
+#include <QFont>
 
 //how many resources and processes the system has
 const int maxResourcesInProcess = 1;
@@ -38,6 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //shadow effects for buttons
     setShadows();
+
+    //fonts
+    QFontDatabase::addApplicationFont(":/resources/fonts/futuraHeavy.ttf");
+    QFontDatabase::addApplicationFont(":/resources/fonts/futuraBook.ttf");
 
     //Start dialog and setting up resource counts etc.
     StartDialog startDialog;

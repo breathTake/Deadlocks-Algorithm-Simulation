@@ -103,6 +103,10 @@ public:
         neededResources.swapItemsAt(index, neededResources.count()-1);
     }
 
+    void shuffleNeededResources(){
+        std::random_shuffle(neededResources.begin(), neededResources.end());
+    }
+
     void printNeededResources(){
         QDebug dbg(QtDebugMsg);
         dbg << "Process " << name << ":" << "\n";

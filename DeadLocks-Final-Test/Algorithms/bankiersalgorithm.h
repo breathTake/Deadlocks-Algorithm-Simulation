@@ -38,6 +38,7 @@ public:
      * @return returns false if the current state is a deadlock or true if not
      */
     bool avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]);
+    int lastWasDeadlock;
 };
 
 #endif // BANKIERSALGORITHM_H

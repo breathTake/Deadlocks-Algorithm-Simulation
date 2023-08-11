@@ -146,13 +146,12 @@ void ProcessWorker::requestResource()
             }
         }
 
-        //waiting 2*countResource to simulate the resource writing etc.
+        //waiting 2 * countResource to simulate the resource writing etc.
         if(countResource >= 0){
             QThread::sleep(2*countResource);
         } else {
-            QThread::sleep(2);
+            QThread::sleep(1);
         }
-
 
         //seting the lastResource and count to current resource and count to be released in next iteration
         lastResource = nextResource;

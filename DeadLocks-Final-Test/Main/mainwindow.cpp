@@ -12,7 +12,7 @@
 #include <QFont>
 
 //how many resources and processes the system has
-const int maxResourcesInProcess = 1;
+const int maxResourcesInProcess = 3;
 int system_resource_count = 4;
 int system_process_count = 3;
 int existingResources[4];

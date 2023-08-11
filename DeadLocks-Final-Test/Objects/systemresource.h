@@ -29,13 +29,6 @@ public:
     SystemResource(QString name, int resourceId, int count);
 
     /**
-     * @brief SystemResource constructor without id
-     * @param name of a process
-     * @param count of the resource (how many are physically available)
-     */
-    SystemResource(QString name, int count);
-
-    /**
      * @brief getResourceId getter for resourceId
      * @return resourceId
      */

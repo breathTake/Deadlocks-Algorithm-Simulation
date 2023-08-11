@@ -6,15 +6,17 @@
 
 QMutex *mutexOne = new QMutex();
 
+
 BankiersAlgorithm::BankiersAlgorithm()
 {
-
+    lastWasDeadlock = -1;
 }
 
 
 QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
 {
     mutexOne->lock();
+
     //finding the next Resource and count to be reserved
     QList<int> result;
 
@@ -26,11 +28,25 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
     int indexResourceList = -1;
     bool deadlock = false;
 
+    /*for(int i = 0; i < process.getNeededResources().count(); i++){
+        if(process.getNeededResources().at(i).getCount() <= differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+            if(lastWasDeadlock == i){
+                process.shuffleNeededResources();
+                lastWasDeadlock = -1;
+                qDebug() << "shuffled:" << process.getNeededResources().at(0).getName() << ", " << process.getNeededResources().at(1).getName() << ", " << process.getNeededResources().at(2).getName() << ", " << process.getNeededResources().at(3).getName() << ", ";
+                break;
+            }
+        }
+    }*/
     //going through the neededResources list to find the next needed resource
     for(int i = 0; i < process.getNeededResources().count(); i++){
+        if(lastWasDeadlock == i){
+            process.shuffleNeededResources();
+        }
         //the resource has to have a count > 0 but < the over all available resources
         if(process.getNeededResources().at(i).getCount() <= differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
+
             stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
 
             qDebug() << "trying to reserve" << process.getNeededResources().at(i).getCount() << " of resource " << process.getNeededResources().at(i).getResourceId();
@@ -39,21 +55,27 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
                 indexResourceList = i;
                 countResource = process.getNeededResources().at(i).getCount();                
                 break;
+            } else{
+                qDebug() << "last deadlock set";
+                lastWasDeadlock = i;
+                stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
+                nextResource = -2;
+                break;
+                /*qDebug() << process.getNeededResources().at(i).getName();
+
+                qDebug() << process.getNeededResources().at(i).getName();
+
+                result.append(nextResource);
+                result.append(countResource);
+                result.append(indexResourceList);
+                break;
+
+
+                mutexOne->unlock();
+                return result;*/
             }
 
-            deadlock = true;
-            stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
-            nextResource = -2;
-            qDebug() << process.getNeededResources().at(i).getName();
-            process.moveNeededResourceToBack(i);
-            qDebug() << process.getNeededResources().at(i).getName();
 
-            result.append(nextResource);
-            result.append(countResource);
-            result.append(indexResourceList);
-
-            mutexOne->unlock();
-            return result;
 
         } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
             //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count

@@ -150,12 +150,14 @@ void ProcessWorker::requestResource()
         if(countResource >= 0){
             QThread::sleep(2*countResource);
         } else {
-            QThread::sleep(1);
+            QThread::sleep(2);
         }
 
         //seting the lastResource and count to current resource and count to be released in next iteration
-        lastResource = nextResource;
-        lastCount = countResource;
+        if(nextResource != -1 && nextResource != -2){
+            lastResource = nextResource;
+            lastCount = countResource;
+        }
     }
     emit finishedResourceProcessing(lastResource);
 }

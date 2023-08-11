@@ -311,7 +311,6 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
     }
 
     update_resource_occupation();
-    maxResourcesInProcess = std::max(std::max(countPrinters, countCD), std::max(countPlotters, countTapeDrive));
 
     //set up processes
     processes.append(SystemProcess("A", 0, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));

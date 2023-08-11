@@ -29,8 +29,8 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>140</y>
+     <x>140</x>
+     <y>120</y>
      <width>231</width>
      <height>151</height>
     </rect>
@@ -240,8 +240,8 @@ QRadioButton::indicator:unchecked:hover {
   <widget class="QPushButton" name="startSimulationButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>440</y>
+     <x>110</x>
+     <y>410</y>
      <width>271</width>
      <height>51</height>
     </rect>
@@ -274,10 +274,10 @@ QPushButton::hover {
   <widget class="QLabel" name="label_background">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>50</y>
+     <x>60</x>
+     <y>30</y>
      <width>371</width>
-     <height>501</height>
+     <height>531</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -291,8 +291,8 @@ border-radius: 5px;</string>
   <widget class="QLabel" name="label_Header">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>80</y>
+     <x>110</x>
+     <y>60</y>
      <width>271</width>
      <height>31</height>
     </rect>
@@ -313,8 +313,8 @@ background-color: none;
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>310</y>
+     <x>110</x>
+     <y>280</y>
      <width>271</width>
      <height>116</height>
     </rect>
@@ -601,16 +601,16 @@ QSpinBox::down-arrow {
   <widget class="QPushButton" name="openGithubButton">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>510</y>
-     <width>221</width>
-     <height>31</height>
+     <x>110</x>
+     <y>480</y>
+     <width>271</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Futura Hv BT</family>
-     <pointsize>18</pointsize>
+     <pointsize>16</pointsize>
      <italic>false</italic>
      <bold>false</bold>
      <strikeout>false</strikeout>
@@ -622,7 +622,7 @@ QSpinBox::down-arrow {
     border-radius: 5px;
 	background-color: rgb(105, 111, 128);
 	color: rgb(235, 235, 235);
-	font: 18pt &quot;Futura Hv BT&quot;;
+	font: 16pt &quot;Futura Hv BT&quot;;
 }
 QPushButton::pressed {
     border-radius: 5px;
@@ -647,8 +647,6 @@ QPushButton::hover {
   <zorder>startSimulationButton</zorder>
   <zorder>label_Header</zorder>
   <zorder>frame_2</zorder>
-  <zorder>github_label</zorder>
-  <zorder>github_link_label</zorder>
   <zorder>openGithubButton</zorder>
  </widget>
  <resources>

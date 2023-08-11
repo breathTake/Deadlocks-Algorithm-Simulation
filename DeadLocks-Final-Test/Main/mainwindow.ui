@@ -20,7 +20,7 @@
    <string>Deadlock Algorithm Simulation</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/resources/Icon_White.png</normaloff>:/resources/Icon_White.png</iconset>
   </property>
   <property name="styleSheet">
@@ -1304,7 +1304,7 @@ QPushButton::hover {
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="resources.qrc">
+     <iconset resource="../resources.qrc">
       <normaloff>:/resources/reset_Icon.png</normaloff>:/resources/reset_Icon.png</iconset>
     </property>
    </widget>
@@ -1684,14 +1684,14 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>1178</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -38,6 +38,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //shadow effects for buttons
     setShadows();
+    QFont customFont(":/resources/fonts/futuraHeavy.ttf");
+
+        // Set the font for the label
+    ui->button_start_simulation->setFont(customFont);
 
     //Start dialog and setting up resource counts etc.
     StartDialog startDialog;

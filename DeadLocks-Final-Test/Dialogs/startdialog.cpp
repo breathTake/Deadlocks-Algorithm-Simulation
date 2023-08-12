@@ -31,12 +31,17 @@ StartDialog::StartDialog(QWidget *parent) :
     effectShadow5->setBlurRadius(10);
     effectShadow5->setColor(QColor(0, 0, 0, 255 * 0.2));
     effectShadow5->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow6 = new QGraphicsDropShadowEffect();
+    effectShadow6->setBlurRadius(10);
+    effectShadow6->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow6->setOffset(0,2);
 
     ui->startSimulationButton->setGraphicsEffect(effectShadow1);
     ui->spinBox_Cd->setGraphicsEffect(effectShadow2);
     ui->spinBox_Plotter->setGraphicsEffect(effectShadow3);
     ui->spinBox_Printer->setGraphicsEffect(effectShadow4);
     ui->spinBox_TapeDrive->setGraphicsEffect(effectShadow5);
+    ui->openGithubButton->setGraphicsEffect(effectShadow6);
 
 }
 
@@ -62,10 +67,8 @@ void StartDialog::getAlgorithm(){
         emit algorithmsFinished(1);
     } else if(ui->radio_circularw->isChecked()){
         emit algorithmsFinished(2);
-    } else if(ui->radio_distribution->isChecked()){
-        emit algorithmsFinished(3);
     } else if(ui->radio_bankier->isChecked()){
-        emit algorithmsFinished(4);
+        emit algorithmsFinished(3);
     }
 }
 

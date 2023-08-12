@@ -1655,7 +1655,7 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
     <property name="styleSheet">
      <string notr="true">background-color: none;
 color: rgb(235, 235, 235);
-font: 18pt &quot;Futura Hv BT&quot;;</string>
+font: 14pt &quot;Futura Bk BT&quot;;</string>
     </property>
     <property name="text">
      <string>Algorithm:</string>
@@ -1666,17 +1666,20 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
      <rect>
       <x>190</x>
       <y>100</y>
-      <width>291</width>
+      <width>301</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: none;
 color: rgb(235, 235, 235);
-font: 18pt &quot;Futura Hv BT&quot;;</string>
+font: 12pt &quot;Futura Bk BT&quot;;</string>
     </property>
     <property name="text">
      <string>Default</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <zorder>background_resources_2</zorder>

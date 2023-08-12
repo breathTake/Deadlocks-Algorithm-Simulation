@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>120</y>
+     <y>100</y>
      <width>231</width>
      <height>151</height>
     </rect>
@@ -158,45 +158,6 @@ QRadioButton::indicator:unchecked:hover {
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radio_distribution">
-      <property name="styleSheet">
-       <string notr="true">QRadioButton {
-	font: 14pt &quot;Futura Bk BT&quot;;
-	color: rgb(105, 111, 128);
-    spacing: 20px;
-	background-color:none;
-}
-
-QRadioButton::indicator {
-    width: 19px;
-    height: 19px;
-}
-
-QRadioButton::hover,
-QRadioButton::checked {
-	color:  rgb(217, 217, 217);
-}
-
-
-QRadioButton::indicator:unchecked {
-	image: url(:/resources/checkBox_off.png);
-}
-
-QRadioButton::indicator:checked {
-	image: url(:/resources/checkBox_on_hover.png);
-}
-
-QRadioButton::indicator:unchecked:hover {
-	image: url(:/resources/checkBox_off_hover.png);
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Carefull Distribution</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QRadioButton" name="radio_bankier">
       <property name="styleSheet">
        <string notr="true">QRadioButton {
@@ -313,9 +274,9 @@ background-color: none;
   <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>280</y>
-     <width>271</width>
+     <x>100</x>
+     <y>260</y>
+     <width>291</width>
      <height>116</height>
     </rect>
    </property>

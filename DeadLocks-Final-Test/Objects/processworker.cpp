@@ -61,9 +61,6 @@ void ProcessWorker::requestResource()
             algorithm = new EliminateCircularWait();
             break;
         case 3:
-            algorithm = new CarefulResourceDistribution();
-            break;
-        case 4:
             algorithm = new BankiersAlgorithm();
             break;
         default:

@@ -70,7 +70,6 @@ This table has many functionalities:
 1. The green colour indicates, that the resources is used by at least one process
 2. The numbers (e.g. 0/1) show how many of the given resources are being used right know ( 1/1 Printer used)
 3. Processes who use some of the resources at the moment, are being listed inside the white label bar
-4. If a resource is fully used, the text on the left changes
 
 ![image](https://github.com/breathTake/Deadlocks-Algorithm-Simulation/assets/104220135/725a7769-7d69-4ae8-ab42-5d3ba4642d8a)
 

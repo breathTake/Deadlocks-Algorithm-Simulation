@@ -30,7 +30,7 @@ public:
      * @param availableResources_E is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start
      * @param differenceResources_A is an int array with 4 ints. Each int corresponds to a resource that is available right now
      */
-    ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm);
+    explicit ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm, QObject *parent = 0);
 
     /**
      * @brief updateProcess updates the neededResources List in the member Process
@@ -75,6 +75,8 @@ public:
     }
 
 signals:
+
+    void startedAcquire(int processId, int nextResource, int nextCount);
     /**
      * @brief resourceReserved notifies the main thread, that the given resource has been reserved and can not be used anymore
      * @param processID is the ID of the process member to determin the process in the main thread
@@ -82,9 +84,6 @@ signals:
      * @param count is the count of reserved resources
      */
     void resourceReserved(int processID, int resource, int count);
-
-    //not implemented yet
-    void waitingForNext();
 
     /**
      * @brief resourceReleased notifies the main thread, that the given resource has been released
@@ -94,8 +93,12 @@ signals:
      */
     void resourceReleased(int processID, int resource, int count);
 
-    //not implemented yet
+    /**
+     * @brief finishedResourceProcessing indicates that a process has released all resources it requires and is finished
+     * @param information unused
+     */
     void finishedResourceProcessing(int information);
+
 
 public slots:
     /**
@@ -104,6 +107,13 @@ public slots:
      */
     void requestResource();
 
+    void gotRevoked(int processID, int resource);
+
+public:
+    static QSemaphore *semaphorePrinter; ///< to keep track of available Printers
+    static QSemaphore *semaphoreCD; ///< to keep track of available CDs
+    static QSemaphore *semaphorePlotter; ///< to keep track of available Plotters
+    static QSemaphore *semaphoreTapeDrive; ///< to keep track of available TapeDrives
 private:
     /**
      * @brief differenceResources_A is an array with the current available resources
@@ -119,10 +129,6 @@ private:
     SystemProcess process; ///< process is the process running in the thread
     int selectedAlgorithm; ///< is the algorithm used to prevent deadlocks
 
-    static QSemaphore *semaphorePrinter; ///< to keep track of available Printers
-    static QSemaphore *semaphoreCD; ///< to keep track of available CDs
-    static QSemaphore *semaphorePlotter; ///< to keep track of available Plotters
-    static QSemaphore *semaphoreTapeDrive; ///< to keep track of available TapeDrives
 };
 
 #endif // PROCESSWORKER_H

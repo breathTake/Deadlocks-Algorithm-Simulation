@@ -81,6 +81,24 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     case 1:
         ui->CurrentAlgorithm_label->setText("No Preemption");
+        threadPreemption = new QThread;
+        preemptionWorker = new PreemptionWorker();
+        preemptionWorker->moveToThread(threadPreemption);
+        QMetaObject::invokeMethod(preemptionWorker, "initTimers");
+
+        connect(workerA, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerA, SIGNAL(resourceReleased(int,int,int)), preemptionWorker, SLOT(reservationFinished(int,int,int)));
+        connect(workerB, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerB, SIGNAL(resourceReleased(int,int,int)), preemptionWorker, SLOT(reservationFinished(int,int,int)));
+        connect(workerC, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerC, SIGNAL(resourceReleased(int,int,int)), preemptionWorker, SLOT(reservationFinished(int,int,int)));
+
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerA, SLOT(gotRevoked(int, int)));
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerB, SLOT(gotRevoked(int, int)));
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerC, SLOT(gotRevoked(int, int)));
+
+        qDebug() << "Main Thread:" << QThread::currentThreadId();
+        threadPreemption->start();
         break;
     case 2:
         ui->CurrentAlgorithm_label->setText("Circular Wait");

@@ -6,6 +6,7 @@
 #include <Objects/SystemResource.h>
 #include <Objects/SystemProcess.h>
 #include <Objects/ProcessWorker.h>
+#include <Algorithms/preemptionworker.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -72,8 +73,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QThread *threadProcessA, *threadProcessB, *threadProcessC;
+    QThread *threadProcessA, *threadProcessB, *threadProcessC, *threadPreemption;
     ProcessWorker *workerA, *workerB, *workerC;
+    PreemptionWorker *preemptionWorker;
 };
 
 #endif // MAINWINDOW_H

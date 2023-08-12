@@ -16,7 +16,8 @@ int ProcessWorker::differenceResources_A[4];
 int ProcessWorker::assignedResources_C[3][4];
 int ProcessWorker::stillNeededResources_R[3][4];
 
-ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm)
+ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm, QObject *parent) :
+    QObject(parent)
 {
     this->selectedAlgorithm = selectedAlgorithm;
     //"copying" the process belonging to thread with all attributes
@@ -87,29 +88,48 @@ void ProcessWorker::requestResource()
         //process.printNeededResources();
 
 
-        //if the next Resource doesn't exist it will not be acquired but later the last will still be released
+        //if the next Resource doesn't exist it will not be acquired
+        emit startedAcquire(process.getProcessId(), nextResource, countResource);
         if(nextResource >= 0){
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
                 semaphorePrinter->acquire(countResource);
+                if(NoPreemption::slotPrinterLocked){
+                    nextResource = -2;
+                    NoPreemption::slotPrinterLocked = false;
+                }
                 break;
             case 1:
                 semaphoreCD->acquire(countResource);
+                if(NoPreemption::slotCDLocked){
+                    nextResource = -2;
+                    NoPreemption::slotCDLocked = false;
+                }
                 break;
             case 2:
                 semaphorePlotter->acquire(countResource);
+                if(NoPreemption::slotPlotterLocked){
+                    nextResource = -2;
+                    NoPreemption::slotPlotterLocked = false;
+                }
                 break;
             case 3:
                 semaphoreTapeDrive->acquire(countResource);
+                if(NoPreemption::slotTapeDriveLocked){
+                    nextResource = -2;
+                    NoPreemption::slotTapeDriveLocked = false;
+                }
                 break;
             }
 
             //update the occupation array and process list
-            differenceResources_A[nextResource] -= countResource;
-            assignedResources_C[process.getProcessId()][nextResource] += countResource;
-            updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
-            emit resourceReserved(process.getProcessId(), nextResource, countResource);
+            if(nextResource >= 0){
+                emit resourceReserved(process.getProcessId(), nextResource, countResource);
+                differenceResources_A[nextResource] -= countResource;
+                assignedResources_C[process.getProcessId()][nextResource] += countResource;
+                updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
+            }
         }
 
 
@@ -158,6 +178,14 @@ void ProcessWorker::requestResource()
     }
     emit finishedResourceProcessing(lastResource);
 }
+
+void ProcessWorker::gotRevoked(int process, int resource){
+    qDebug() << "gotRevoked";
+    if(this->process.getProcessId() == process){
+        this->process.setRevokedResourceId(resource);
+    }
+}
+
 
 //updating the neededResources list by changing the count of the resource at nextResource
 void ProcessWorker::updateProcess(int nextResource, int countResource)

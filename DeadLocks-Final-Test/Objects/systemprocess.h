@@ -20,6 +20,7 @@ private:
     QString name;
     int processId;
     QList<SystemResource> neededResources;
+    int revokedResourceId = -1;
 
 public:
     /**
@@ -78,6 +79,13 @@ public:
         this->name = name;
     }
 
+    int getRevokedResourceId() const{
+        return revokedResourceId;
+    }
+
+    void setRevokedResourceId(int revokedResourceId){
+        this->revokedResourceId = revokedResourceId;
+    }
 
     /**
      * @brief getNeededResources list of needed resources

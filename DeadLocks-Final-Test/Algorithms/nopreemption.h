@@ -32,6 +32,12 @@ public:
      * @return the sorted neededResources list
      */
     QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
+
+public:
+    static bool slotPrinterLocked;
+    static bool slotCDLocked;
+    static bool slotPlotterLocked;
+    static bool slotTapeDriveLocked;
 };
 
 #endif // NOPREEMPTION_H

@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     case 2:
         ui->CurrentAlgorithm_label->setText("Circular Wait");
         break;
-    case 4:
+    case 3:
         ui->CurrentAlgorithm_label->setText("Bankiers Algorithm");
         break;
     default:

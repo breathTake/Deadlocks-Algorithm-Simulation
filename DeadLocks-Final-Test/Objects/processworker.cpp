@@ -81,6 +81,32 @@ void ProcessWorker::requestResource()
             return;
         }
 
+        if(NoPreemption::lastRevokedProcessA || NoPreemption::lastRevokedProcessB || NoPreemption::lastRevokedProcessC){
+            qDebug() << "shuffled and changed back";
+            process.shuffleNeededResources();
+            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
+
+            //emitting resourcesReleased to notify mainwindow of changes and change ui
+
+            //updating assignedResources_C because resources have been released
+            differenceResources_A[lastResource] += lastCount;
+            assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
+            //updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() + countResource);
+            switch(process.getProcessId()){
+            case 0:
+                NoPreemption::lastRevokedProcessA = false;
+                break;
+            case 1:
+                NoPreemption::lastRevokedProcessA = false;
+                break;
+            case 2:
+                NoPreemption::lastRevokedProcessA = false;
+                break;
+            }
+
+            qDebug() << "difference:" << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3];
+        }
+
         //the findNextResources function will be called upon the right algorithm
         QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
         nextResource = foundNextResouce.at(0);
@@ -88,50 +114,30 @@ void ProcessWorker::requestResource()
         indexResourceList = foundNextResouce.at(2);
         //process.printNeededResources();
 
-
         //if the next Resource doesn't exist it will not be acquired
-        emit startedAcquire(process.getProcessId(), nextResource, countResource);
         if(nextResource >= 0){
+            qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource;
+            emit startedAcquire(process.getProcessId(), nextResource, countResource);
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
                 semaphorePrinter->acquire(countResource);
-                if(NoPreemption::slotPrinterLocked){
-                    process.shuffleNeededResources();
-                    nextResource = -2;
-                    NoPreemption::slotPrinterLocked = false;
-                }
                 break;
             case 1:
                 semaphoreCD->acquire(countResource);
-                if(NoPreemption::slotCDLocked){
-                    process.shuffleNeededResources();
-                    nextResource = -2;
-                    NoPreemption::slotCDLocked = false;
-                }
                 break;
             case 2:
                 semaphorePlotter->acquire(countResource);
-                if(NoPreemption::slotPlotterLocked){
-                    process.shuffleNeededResources();
-                    nextResource = -2;
-                    NoPreemption::slotPlotterLocked = false;
-                }
                 break;
             case 3:
                 semaphoreTapeDrive->acquire(countResource);
-                if(NoPreemption::slotTapeDriveLocked){
-                    process.shuffleNeededResources();
-                    nextResource = -2;
-                    NoPreemption::slotTapeDriveLocked = false;
-                }
                 break;
             }
 
             //update the occupation array and process list
             if(nextResource >= 0){
                 emit resourceReserved(process.getProcessId(), nextResource, countResource);
-                differenceResources_A[nextResource] -= countResource;
+                differenceResources_A[nextResource] -= countResource;                
                 assignedResources_C[process.getProcessId()][nextResource] += countResource;
                 updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
             }
@@ -185,8 +191,8 @@ void ProcessWorker::requestResource()
 
 void ProcessWorker::gotRevoked(int process, int resource){
     if(this->process.getProcessId() == process){
-        qDebug() << "gotRevoked";
-        this->process.setRevokedResourceId(resource);
+        //qDebug() << "gotRevoked";
+        //this->process.setRevokedResourceId(resource);
     }
 }
 

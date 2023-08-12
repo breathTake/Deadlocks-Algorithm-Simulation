@@ -4,12 +4,14 @@ bool NoPreemption::slotPrinterLocked = false;
 bool NoPreemption::slotCDLocked = false;
 bool NoPreemption::slotPlotterLocked = false;
 bool NoPreemption::slotTapeDriveLocked = false;
+bool NoPreemption::lastRevokedProcessA = false;
+bool NoPreemption::lastRevokedProcessB = false;
+bool NoPreemption::lastRevokedProcessC = false;
 
-QMutex *mutex = new QMutex();
 
 NoPreemption::NoPreemption()
 {
-
+    mutex = new QMutex();
 }
 
 QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
@@ -80,6 +82,8 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
             qDebug() << "tapedrive currently occupied, process" << process.getName() << "not reserved";
         }
         break;
+    default:
+        qDebug() << "all unlocked, next resource was" << nextResource;
     }
 
     result.append(nextResource);

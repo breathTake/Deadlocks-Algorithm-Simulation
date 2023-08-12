@@ -1,6 +1,13 @@
 #include "preemptionworker.h"
 #include "Objects/ProcessWorker.h"
 
+int maxWaitTime = 4200;
+/*QMutex *mutexPrinter = new QMutex();
+QMutex *mutexCD= new QMutex();
+QMutex *mutexPlotter = new QMutex();
+QMutex *mutexTapeDrive = new QMutex();*/
+
+
 PreemptionWorker::PreemptionWorker(QObject *parent) :
     QObject{parent}
 {
@@ -14,9 +21,8 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         if(ProcessWorker::semaphorePrinter->available() < 1){
 
         }
-
         qDebug() << "printer started by process" << processId;
-        timerPrinter->start(nextCount * 2 * 1000 + 200);
+        timerPrinter->start(timerPrinter->remainingTime() + maxWaitTime);
         processPrinter = processId;
         nextPrinterResource = nextResource;
         nextPrinterCount = nextCount;
@@ -26,7 +32,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         if(ProcessWorker::semaphorePrinter->available() < 1){
         }
         qDebug() << "cd started by process" << processId;
-        timerCD->start(nextCount * 2 * 1000 + 200);
+        timerCD->start(timerCD->remainingTime() + maxWaitTime);
         processCD = processId;
         nextCDResource = nextResource;
         nextCDCount = nextCount;
@@ -36,7 +42,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         if(ProcessWorker::semaphorePrinter->available() < 1){
         }
         qDebug() << "plotter started by process" << processId;
-        timerPlotter->start(nextCount * 2 * 1000 + 200);
+        timerPlotter->start(timerPlotter->remainingTime() + maxWaitTime);
         processPlotter = processId;
         nextPlotterResource = nextResource;
         nextPlotterCount = nextCount;
@@ -46,7 +52,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         if(ProcessWorker::semaphorePrinter->available() < 1){
         }
         qDebug() << "tapedrive started by process" << processId;
-        timerTapeDrive->start(nextCount * 2 * 1000 + 200);
+        timerTapeDrive->start(timerTapeDrive->remainingTime() + maxWaitTime);
         processTapeDrive = processId;
         nextTapeDriveResource = nextResource;
         nextTapeDriveCount = nextCount;
@@ -57,23 +63,43 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
 void PreemptionWorker::reservationFinished(int processId, int nextResource, int nextCount){
     switch(nextResource){
         case 0:
+        NoPreemption::slotPrinterLocked = false;
         qDebug() << "process" << processId << "finished using printer normaly";
-        timerPrinter->stop();
+        if(timerPrinter->remainingTime() - maxWaitTime <= 0){
+            timerPrinter->stop();
+        } else {
+            timerPrinter->start(timerPrinter->remainingTime() - maxWaitTime);
+        }
         nextPrinterCount = -1;
         break;
         case 1:
+        NoPreemption::slotCDLocked = false;
         qDebug() << "process" << processId << "finished using cd normaly";
-        timerCD->stop();
+        if(timerCD->remainingTime() - maxWaitTime <= 0){
+            timerCD->stop();
+        } else {
+            timerCD->start(timerCD->remainingTime() - maxWaitTime);
+        }
         nextCDCount = -1;
         break;
         case 2:
+        NoPreemption::slotPlotterLocked = false;
         qDebug() << "process" << processId << "finished using plotter normaly";
-        timerPlotter->stop();
+        if(timerPlotter->remainingTime() - maxWaitTime <= 0){
+            timerPlotter->stop();
+        } else {
+            timerPlotter->start(timerPlotter->remainingTime() - maxWaitTime);
+        }
         nextPlotterCount = -1;
         break;
         case 3:
+        NoPreemption::slotTapeDriveLocked = false;
         qDebug() << "process" << processId << "finished using tapedrive normaly";
-        timerTapeDrive->stop();
+        if(timerTapeDrive->remainingTime() - maxWaitTime <= 0){
+            timerTapeDrive->stop();
+        } else {
+            timerTapeDrive->start(timerTapeDrive->remainingTime() - maxWaitTime);
+        }
         nextTapeDriveCount = -1;
         break;
     }
@@ -94,25 +120,76 @@ void PreemptionWorker::initTimers(){
 
 void PreemptionWorker::revokePrinter(){
     qDebug() << "printer revoked for process" << processPrinter;
+
     ProcessWorker::semaphorePrinter->release(nextPrinterCount);
+    switch(processPrinter){
+    case 0:
+        NoPreemption::lastRevokedProcessA = false;
+        break;
+    case 1:
+        NoPreemption::lastRevokedProcessB = false;
+        break;
+    case 2:
+        NoPreemption::lastRevokedProcessC = false;
+        break;
+    }
+    NoPreemption::slotPrinterLocked = false;
     emit revokedProcess(processPrinter, nextPrinterResource);
 }
 
 void PreemptionWorker::revokeCD(){
     qDebug() << "cd revoked for process" << processCD;
+
     ProcessWorker::semaphoreCD->release(nextCDCount);
+    switch(processCD){
+    case 0:
+        NoPreemption::lastRevokedProcessA = false;
+        break;
+    case 1:
+        NoPreemption::lastRevokedProcessB = false;
+        break;
+    case 2:
+        NoPreemption::lastRevokedProcessC = false;
+        break;
+    }
+    NoPreemption::slotCDLocked = false;
     emit revokedProcess(processPrinter, nextPrinterResource);
 }
 
 void PreemptionWorker::revokePlotter(){
     qDebug() << "plotter revoked for process" << processPlotter;
+
     ProcessWorker::semaphorePlotter->release(nextPlotterCount);
+    switch(processPlotter){
+    case 0:
+        NoPreemption::lastRevokedProcessA = false;
+        break;
+    case 1:
+        NoPreemption::lastRevokedProcessB = false;
+        break;
+    case 2:
+        NoPreemption::lastRevokedProcessC = false;
+        break;
+    }
+    NoPreemption::slotPlotterLocked = false;
     emit revokedProcess(processPrinter, nextPrinterResource);
 }
 
 void PreemptionWorker::revokeTapeDrive(){
     qDebug() << "tapedrive revoked for process" << processTapeDrive;
     ProcessWorker::semaphoreTapeDrive->release(nextTapeDriveCount);
+    switch(processTapeDrive){
+    case 0:
+        NoPreemption::lastRevokedProcessA = false;
+        break;
+    case 1:
+        NoPreemption::lastRevokedProcessB = false;
+        break;
+    case 2:
+        NoPreemption::lastRevokedProcessC = false;
+        break;
+    }
+    NoPreemption::slotTapeDriveLocked = false;
     emit revokedProcess(processPrinter, nextPrinterResource);
 
 }

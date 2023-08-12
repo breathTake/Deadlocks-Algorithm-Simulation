@@ -28,7 +28,7 @@ SystemProcess::SystemProcess(QString name,int processId, int maxPrinters, int ma
     neededResources.append(SystemResource("Plotter", 2, randomPlotterCount));
     neededResources.append(SystemResource("TapeDrive", 3, randomTapeDriveCount));
 
-    std::random_shuffle(neededResources.begin(), neededResources.end());
+    shuffleNeededResources();
 
     QList<int> done;
     int neededResourcesCounter = 0;

@@ -97,7 +97,6 @@ MainWindow::MainWindow(QWidget *parent)
         connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerB, SLOT(gotRevoked(int, int)));
         connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerC, SLOT(gotRevoked(int, int)));
 
-        qDebug() << "Main Thread:" << QThread::currentThreadId();
         threadPreemption->start();
         break;
     case 2:
@@ -368,6 +367,14 @@ void MainWindow::processFinished()
         threadProcessC->wait();
         delete threadProcessC;
         delete workerC;
+
+        if(selectedAlgorithmNumber == 1){
+            threadPreemption->deleteLater();
+            threadPreemption->terminate();
+            threadPreemption->wait();
+            delete threadPreemption;
+            delete preemptionWorker;
+        }
         timer->stop();
 
         EndDialog endDialog;
@@ -395,6 +402,14 @@ void MainWindow::on_button_stop_simulation_clicked()
     threadProcessC->wait();
     delete threadProcessC;
     delete workerC;
+
+    if(selectedAlgorithmNumber == 1){
+        threadPreemption->deleteLater();
+        threadPreemption->terminate();
+        threadPreemption->wait();
+        delete threadPreemption;
+        delete preemptionWorker;
+    }
     timer->stop();
 
     EndDialog endDialog;

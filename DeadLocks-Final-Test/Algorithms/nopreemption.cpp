@@ -17,6 +17,7 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
     mutex->lock();
 
     if(process.getRevokedResourceId() > 0){
+        qDebug() << "getRevoked not default";
         for(int i = 0; i < process.getNeededResources().count(); i++){
             if(process.getNeededResources().at(i).getResourceId() == process.getRevokedResourceId()){
                 process.moveNeededResourceToBack(i);
@@ -58,21 +59,25 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
     case 0:
         if(slotPrinterLocked){
             nextResource = -2;
+            qDebug() << "printer currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 1:
         if(slotCDLocked){
             nextResource = -2;
+            qDebug() << "cd currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 2:
         if(slotPlotterLocked){
             nextResource = -2;
+            qDebug() << "plotter currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 3:
         if(slotTapeDriveLocked){
             nextResource = -2;
+            qDebug() << "tapedrive currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     }

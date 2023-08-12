@@ -25,6 +25,7 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
     this->process.setNeededResources(process.getNeededResources());
     this->process.setProcessId(process.getProcessId());
     this->process.setName(process.getName());
+    this->process.setRevokedResourceId(process.getRevokedResourceId());
 
     //"copying" the arrays differenceResources_A, availableResources_E and the stillNeededResources_R Matrix to thread
     for(int i = 0; i < 4; i++){
@@ -96,6 +97,7 @@ void ProcessWorker::requestResource()
             case 0:
                 semaphorePrinter->acquire(countResource);
                 if(NoPreemption::slotPrinterLocked){
+                    process.shuffleNeededResources();
                     nextResource = -2;
                     NoPreemption::slotPrinterLocked = false;
                 }
@@ -103,6 +105,7 @@ void ProcessWorker::requestResource()
             case 1:
                 semaphoreCD->acquire(countResource);
                 if(NoPreemption::slotCDLocked){
+                    process.shuffleNeededResources();
                     nextResource = -2;
                     NoPreemption::slotCDLocked = false;
                 }
@@ -110,6 +113,7 @@ void ProcessWorker::requestResource()
             case 2:
                 semaphorePlotter->acquire(countResource);
                 if(NoPreemption::slotPlotterLocked){
+                    process.shuffleNeededResources();
                     nextResource = -2;
                     NoPreemption::slotPlotterLocked = false;
                 }
@@ -117,6 +121,7 @@ void ProcessWorker::requestResource()
             case 3:
                 semaphoreTapeDrive->acquire(countResource);
                 if(NoPreemption::slotTapeDriveLocked){
+                    process.shuffleNeededResources();
                     nextResource = -2;
                     NoPreemption::slotTapeDriveLocked = false;
                 }
@@ -162,7 +167,6 @@ void ProcessWorker::requestResource()
                 break;
             }
         }
-
         //waiting 2 * countResource to simulate the resource writing etc.
         if(countResource >= 0){
             QThread::sleep(2*countResource);
@@ -180,8 +184,8 @@ void ProcessWorker::requestResource()
 }
 
 void ProcessWorker::gotRevoked(int process, int resource){
-    qDebug() << "gotRevoked";
     if(this->process.getProcessId() == process){
+        qDebug() << "gotRevoked";
         this->process.setRevokedResourceId(resource);
     }
 }

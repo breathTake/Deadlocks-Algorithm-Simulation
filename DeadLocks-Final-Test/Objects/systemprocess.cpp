@@ -8,6 +8,7 @@ SystemProcess::SystemProcess(QString name,int processId)
 {
     this->name = name;
     this->processId = processId;
+    this->revokedResourceId = -1;
 }
 
 
@@ -15,6 +16,7 @@ SystemProcess::SystemProcess(QString name,int processId, int maxPrinters, int ma
 {
     this->name = name;
     this->processId = processId;
+    this->revokedResourceId = -1;
 
     int randomPrinterCount= QRandomGenerator::global()->bounded(1, maxPrinters);
     int randomCDCount= QRandomGenerator::global()->bounded(1, maxCDs);

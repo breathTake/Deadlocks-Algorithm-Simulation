@@ -20,7 +20,7 @@ private:
     QString name;
     int processId;
     QList<SystemResource> neededResources;
-    int revokedResourceId = -1;
+    int revokedResourceId;
 
 public:
     /**

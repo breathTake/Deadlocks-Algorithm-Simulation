@@ -21,7 +21,7 @@ public:
      * @param parent is the mainwindow
      */
     explicit EndDialog(QWidget *parent = nullptr);
-    /**
+        /**
      * @brief destructor
      */
     ~EndDialog();
@@ -31,6 +31,12 @@ private slots:
      * @brief on_end_pushButton_clicked dialog closes the complete window on button click
      */
     void on_end_pushButton_clicked();
+
+    void on_restart_pushButton_clicked();
+
+public slots:
+
+    void getEndResults(QString textFromRuntime, int numOfResources);
 
 private:
     Ui::EndDialog *ui;

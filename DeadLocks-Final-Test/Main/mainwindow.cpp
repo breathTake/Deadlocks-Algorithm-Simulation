@@ -353,6 +353,9 @@ void MainWindow::processFinished()
         timer->stop();
 
         EndDialog endDialog;
+        int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
+
+        endDialog.getEndResults(ui->label_time->text(), totalNumResources);
         endDialog.setWindowTitle("Deadlock Algorithm Simulation");
         endDialog.exec();
     }
@@ -360,6 +363,8 @@ void MainWindow::processFinished()
 
 void MainWindow::on_button_stop_simulation_clicked()
 {
+
+
     threadProcessA->deleteLater();
     threadProcessA->terminate();
     threadProcessA->wait();
@@ -369,6 +374,7 @@ void MainWindow::on_button_stop_simulation_clicked()
     threadProcessB->deleteLater();
     threadProcessB->terminate();
     threadProcessB->wait();
+
     delete threadProcessB;
     delete workerB;
 
@@ -380,8 +386,12 @@ void MainWindow::on_button_stop_simulation_clicked()
     timer->stop();
 
     EndDialog endDialog;
+    int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
+
+    endDialog.getEndResults(ui->label_time->text(), totalNumResources);
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
     endDialog.exec();
+
 }
 
 

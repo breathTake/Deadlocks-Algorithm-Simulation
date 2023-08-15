@@ -91,21 +91,28 @@ void ProcessWorker::requestResource()
         nextResource = foundNextResouce.at(0);
         countResource = foundNextResouce.at(1);
         indexResourceList = foundNextResouce.at(2);
+        //process.printNeededResources();
 
-        //check if this algorithm can be revoked and respond accordingly
-        if(algorithm->reservationRequirement(process.getProcessId())){
+        if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
+            qDebug() << "process" << process.getName() << "revoked," << lastCount << "of Resource" << lastResource;
             updateProcess(lastIndexResourceList, process.getNeededResources().at(lastIndexResourceList).getCount() + lastCount);
+            //process.shuffleNeededResources();
             lastCount = 0;
-            algorithm->updateRevoke(process.getProcessId());
+            if(process.getProcessId() == 0){
+                NoPreemption::lastRevokedProcessA = false;
+            } else if(process.getProcessId() == 1){
+                NoPreemption::lastRevokedProcessB = false;
+            } else if(process.getProcessId() == 2){
+                NoPreemption::lastRevokedProcessC = false;
+            }
         }
 
+        if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
+            break;
+        }
 
         //if the next Resource doesn't exist it will not be acquired but later the last will still be released
         if(nextResource >= 0){
-            //if reservationRequirement is set to true dont acquire
-            if(algorithm->reservationRequirement(process.getProcessId())){
-                break;
-            }
             emit startedAcquire(process.getProcessId(), nextResource, countResource);
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
@@ -149,8 +156,10 @@ void ProcessWorker::requestResource()
                 break;
             }
 
-            //emitting resourcesReleased to notify mainwindow of changes and change ui
             emit resourceReleased(process.getProcessId(), lastResource, lastCount, false);
+            qDebug() << "semaphore: " << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
+
+            //emitting resourcesReleased to notify mainwindow of changes and change ui
 
             //updating assignedResources_C because resources have been released
             differenceResources_A[lastResource] += lastCount;

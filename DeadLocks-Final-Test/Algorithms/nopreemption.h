@@ -33,10 +33,6 @@ public:
      */
     QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
 
-    bool reservationRequirement(int process) override;
-
-    void updateRevoke(int process) override;
-
 public:
     static bool slotPrinterLocked;
     static bool slotCDLocked;

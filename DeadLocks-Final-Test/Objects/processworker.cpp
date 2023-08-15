@@ -93,10 +93,10 @@ void ProcessWorker::requestResource()
         indexResourceList = foundNextResouce.at(2);
         //process.printNeededResources();
 
+
         if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
             qDebug() << "process" << process.getName() << "revoked," << lastCount << "of Resource" << lastResource;
             updateProcess(lastIndexResourceList, process.getNeededResources().at(lastIndexResourceList).getCount() + lastCount);
-            //process.shuffleNeededResources();
             lastCount = 0;
             if(process.getProcessId() == 0){
                 NoPreemption::lastRevokedProcessA = false;

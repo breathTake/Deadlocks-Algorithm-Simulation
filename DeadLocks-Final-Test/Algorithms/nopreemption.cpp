@@ -18,18 +18,6 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
 {
     mutex->lock();
 
-
-
-    /*if(process.getRevokedResourceId() > 0){
-        qDebug() << "getRevoked not default";
-        for(int i = 0; i < process.getNeededResources().count(); i++){
-            if(process.getNeededResources().at(i).getResourceId() == process.getRevokedResourceId()){
-                process.moveNeededResourceToBack(i);
-                qDebug() << "moved" << process.getNeededResources().at(i).getName() << "to back";
-                break;
-            }
-        }
-    }*/
     //finding the next Resource and count to be reserved
     QList<int> result;
 

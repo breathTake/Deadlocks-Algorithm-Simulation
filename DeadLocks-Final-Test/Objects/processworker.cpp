@@ -86,8 +86,6 @@ void ProcessWorker::requestResource()
             return;
         }
 
-
-
         //the findNextResources function will be called upon the right algorithm
         QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
         nextResource = foundNextResouce.at(0);
@@ -98,7 +96,7 @@ void ProcessWorker::requestResource()
         if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
             qDebug() << "process" << process.getName() << "revoked," << lastCount << "of Resource" << lastResource;
             updateProcess(lastIndexResourceList, process.getNeededResources().at(lastIndexResourceList).getCount() + lastCount);
-            process.shuffleNeededResources();
+            //process.shuffleNeededResources();
             lastCount = 0;
             if(process.getProcessId() == 0){
                 NoPreemption::lastRevokedProcessA = false;
@@ -112,8 +110,9 @@ void ProcessWorker::requestResource()
         if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
             break;
         }
+
         //if the next Resource doesn't exist it will not be acquired but later the last will still be released
-        if(nextResource >= 0){            
+        if(nextResource >= 0){
             emit startedAcquire(process.getProcessId(), nextResource, countResource);
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {

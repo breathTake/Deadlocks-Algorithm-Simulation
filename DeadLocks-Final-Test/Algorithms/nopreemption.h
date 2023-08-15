@@ -39,7 +39,7 @@ public:
     static bool slotPlotterLocked;
     static bool slotTapeDriveLocked;
     static bool lastRevokedProcessA, lastRevokedProcessB, lastRevokedProcessC;
-    QMutex *mutex;
+    static QMutex *mutex;
 };
 
 #endif // NOPREEMPTION_H

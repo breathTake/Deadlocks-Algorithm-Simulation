@@ -11,8 +11,6 @@ QSemaphore* ProcessWorker::semaphoreCD;
 QSemaphore* ProcessWorker::semaphorePlotter;
 QSemaphore* ProcessWorker::semaphoreTapeDrive;
 
-int lastResource = -1;
-int lastCount = -1;
 
 //initializing the static matrices
 int ProcessWorker::differenceResources_A[4];
@@ -48,6 +46,9 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
 
 void ProcessWorker::requestResource()
 {
+
+    int lastResource = -1;
+    int lastCount = -1;
     //id of the last resource, if it is -1 there was no resource before this one, if its -5 then all resources have been processed)
 
     //count of the last resource that has been reserved (-1 means there was no resource before)
@@ -82,6 +83,22 @@ void ProcessWorker::requestResource()
         if(QThread::currentThread()->isInterruptionRequested()){
             qDebug() << "interrupting";
             return;
+        }
+
+        if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
+            qDebug() << "gotRevoked";
+            process.setRevokedResourceId(lastResource);
+            differenceResources_A[lastResource] += lastCount;
+            assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
+            emit resourceReleased(process.getProcessId(), lastResource, lastCount, true);
+            lastCount = 0;
+            if(process.getProcessId() == 0){
+                NoPreemption::lastRevokedProcessA = false;
+            } else if(process.getProcessId() == 1){
+                NoPreemption::lastRevokedProcessB = false;
+            } else if(process.getProcessId() == 2){
+                NoPreemption::lastRevokedProcessC = false;
+            }
         }
 
         //the findNextResources function will be called upon the right algorithm
@@ -137,6 +154,7 @@ void ProcessWorker::requestResource()
             }
 
             emit resourceReleased(process.getProcessId(), lastResource, lastCount, false);
+            qDebug() << "semaphore: " << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
 
             //emitting resourcesReleased to notify mainwindow of changes and change ui
 
@@ -166,14 +184,14 @@ void ProcessWorker::requestResource()
 }
 
 void ProcessWorker::gotRevoked(int process, int resource, int count){
-    if(this->process.getProcessId() == process){
+    /*if(this->process.getProcessId() == process){
         qDebug() << "gotRevoked";
         this->process.setRevokedResourceId(resource);
         differenceResources_A[resource] += count;
         assignedResources_C[process][resource] -= count;
         emit resourceReleased(process, resource, count, true);
         lastCount = 0;
-    }
+    }*/
 }
 
 

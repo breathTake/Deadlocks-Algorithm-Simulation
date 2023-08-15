@@ -7,18 +7,20 @@ bool NoPreemption::slotTapeDriveLocked = false;
 bool NoPreemption::lastRevokedProcessA = false;
 bool NoPreemption::lastRevokedProcessB = false;
 bool NoPreemption::lastRevokedProcessC = false;
-
+QMutex *NoPreemption::mutex = new QMutex();
 
 NoPreemption::NoPreemption()
 {
-    mutex = new QMutex();
+
 }
 
 QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
 {
     mutex->lock();
 
-    if(process.getRevokedResourceId() > 0){
+
+
+    /*if(process.getRevokedResourceId() > 0){
         qDebug() << "getRevoked not default";
         for(int i = 0; i < process.getNeededResources().count(); i++){
             if(process.getNeededResources().at(i).getResourceId() == process.getRevokedResourceId()){
@@ -27,7 +29,7 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
                 break;
             }
         }
-    }
+    }*/
     //finding the next Resource and count to be reserved
     QList<int> result;
 

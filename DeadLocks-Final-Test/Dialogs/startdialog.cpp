@@ -75,7 +75,5 @@ void StartDialog::getAlgorithm(){
 void StartDialog::on_openGithubButton_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://github.com/breathTake/Deadlocks-Algorithm-Simulation", QUrl::TolerantMode));
-
-
 }
 

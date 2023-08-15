@@ -17,7 +17,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
 
         qDebug() << "printer started by process" << processId;
 
-        timerPrinter->start(timerPrinter->remainingTime() + maxWaitTime);
+        timerPrinter->start(maxWaitTime);
         processPrinter = processId;
         nextPrinterResource = nextResource;
         nextPrinterCount = nextCount;
@@ -25,7 +25,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
     case 1:
         NoPreemption::slotCDLocked = true;
         qDebug() << "cd started by process" << processId;
-        timerCD->start(timerCD->remainingTime() + maxWaitTime);
+        timerCD->start(maxWaitTime);
         processCD = processId;
         nextCDResource = nextResource;
         nextCDCount = nextCount;
@@ -34,7 +34,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         NoPreemption::slotPlotterLocked = true;
 
         qDebug() << "plotter started by process" << processId;
-        timerPlotter->start(timerPlotter->remainingTime() + maxWaitTime);
+        timerPlotter->start(maxWaitTime);
         processPlotter = processId;
         nextPlotterResource = nextResource;
         nextPlotterCount = nextCount;
@@ -43,7 +43,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
         NoPreemption::slotTapeDriveLocked = true;
 
         qDebug() << "tapedrive started by process" << processId;
-        timerTapeDrive->start(timerTapeDrive->remainingTime() + maxWaitTime);
+        timerTapeDrive->start(maxWaitTime);
         processTapeDrive = processId;
         nextTapeDriveResource = nextResource;
         nextTapeDriveCount = nextCount;
@@ -89,10 +89,10 @@ void PreemptionWorker::initTimers(){
     timerPlotter = new QTimer();
     timerTapeDrive = new QTimer();
 
-    connect(timerPrinter, SIGNAL(timeout()), this, SLOT(revokePrinter()));
-    connect(timerCD, SIGNAL(timeout()), this, SLOT(revokeCD()));
-    connect(timerPlotter, SIGNAL(timeout()), this, SLOT(revokePlotter()));
-    connect(timerTapeDrive, SIGNAL(timeout()), this, SLOT(revokeTapeDrive()));
+    connect(timerPrinter, SIGNAL(timeout()), this, SLOT(revokePrinter()), Qt::QueuedConnection);
+    connect(timerCD, SIGNAL(timeout()), this, SLOT(revokeCD()), Qt::QueuedConnection);
+    connect(timerPlotter, SIGNAL(timeout()), this, SLOT(revokePlotter()), Qt::QueuedConnection);
+    connect(timerTapeDrive, SIGNAL(timeout()), this, SLOT(revokeTapeDrive()), Qt::QueuedConnection);
 }
 
 void PreemptionWorker::revokePrinter(){

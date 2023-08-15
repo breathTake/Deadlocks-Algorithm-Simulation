@@ -57,41 +57,25 @@ void PreemptionWorker::reservationFinished(int processId, int nextResource, int 
             case 0:
             NoPreemption::slotPrinterLocked = false;
             qDebug() << "process" << processId << "finished using printer normaly";
-            if(timerPrinter->remainingTime() - maxWaitTime <= 0){
-                timerPrinter->stop();
-            } else {
-                timerPrinter->start(timerPrinter->remainingTime() - maxWaitTime);
-            }
+            timerPrinter->stop();
             nextPrinterCount = -1;
             break;
             case 1:
             NoPreemption::slotCDLocked = false;
             qDebug() << "process" << processId << "finished using cd normaly";
-            if(timerCD->remainingTime() - maxWaitTime <= 0){
-                timerCD->stop();
-            } else {
-                timerCD->start(timerCD->remainingTime() - maxWaitTime);
-            }
+            timerCD->stop();
             nextCDCount = -1;
             break;
             case 2:
             NoPreemption::slotPlotterLocked = false;
             qDebug() << "process" << processId << "finished using plotter normaly";
-            if(timerPlotter->remainingTime() - maxWaitTime <= 0){
-                timerPlotter->stop();
-            } else {
-                timerPlotter->start(timerPlotter->remainingTime() - maxWaitTime);
-            }
+            timerPlotter->stop();
             nextPlotterCount = -1;
             break;
             case 3:
             NoPreemption::slotTapeDriveLocked = false;
             qDebug() << "process" << processId << "finished using tapedrive normaly";
-            if(timerTapeDrive->remainingTime() - maxWaitTime <= 0){
-                timerTapeDrive->stop();
-            } else {
-                timerTapeDrive->start(timerTapeDrive->remainingTime() - maxWaitTime);
-            }
+            timerTapeDrive->stop();
             nextTapeDriveCount = -1;
             break;
         }
@@ -142,7 +126,7 @@ void PreemptionWorker::revokeCD(){
         NoPreemption::lastRevokedProcessB = true;
         break;
     case 2:
-        NoPreemption::lastRevokedProcessC = false;
+        NoPreemption::lastRevokedProcessC = true;
         break;
     }
     NoPreemption::slotCDLocked = false;

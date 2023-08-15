@@ -93,7 +93,7 @@ void ProcessWorker::requestResource()
         //process.printNeededResources();
 
         //if the next Resource doesn't exist it will not be acquired
-        if(nextResource >= 0){
+        if(nextResource >= 0 && nextResource!= lastResource){
             bool hasBeenEmitted = false;
             //problem: startet acquire countdown auch wenn resource garnicht belegt werden kann
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
@@ -144,7 +144,7 @@ void ProcessWorker::requestResource()
             updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
         }
 
-        if(lastResource >= 0){
+        if(lastResource >= 0 && selectedAlgorithm == 1){
             if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
 
                 emit resourceReleased(process.getProcessId(), lastResource, lastCount, true);
@@ -157,9 +157,8 @@ void ProcessWorker::requestResource()
                 assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
                 updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() + countResource);
                 stillNeededResources_R[process.getProcessId()][lastResource] += lastCount;
-                qDebug() << "shuffled and changed back";
-                process.shuffleNeededResources();
 
+                //process.shuffleNeededResources();
 
                 switch(process.getProcessId()){
                 case 0:

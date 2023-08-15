@@ -212,7 +212,6 @@ void MainWindow::releaseResources(int process, int resource, int count, bool not
 
     update_occupation_matrix();
     update_needed_matrix();
-
     update_resource_occupation();
     update_resource_occupation_list();
 }

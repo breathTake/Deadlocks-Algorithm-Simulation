@@ -99,6 +99,7 @@ void PreemptionWorker::revokePrinter(){
     qDebug() << "printer revoked for process" << processPrinter;
 
     ProcessWorker::semaphorePrinter->release(nextPrinterCount);
+    emit revokedProcess(processPrinter, nextPrinterResource, nextPrinterCount);
     switch(processPrinter){
     case 0:
         NoPreemption::lastRevokedProcessA = true;
@@ -111,13 +112,14 @@ void PreemptionWorker::revokePrinter(){
         break;
     }
     NoPreemption::slotPrinterLocked = false;
-    emit revokedProcess(processPrinter, nextPrinterResource);
+
 }
 
 void PreemptionWorker::revokeCD(){
     qDebug() << "cd revoked for process" << processCD;
 
     ProcessWorker::semaphoreCD->release(nextCDCount);
+    emit revokedProcess(processCD, nextCDResource, nextCDCount);
     switch(processCD){
     case 0:
         NoPreemption::lastRevokedProcessA = true;
@@ -130,13 +132,14 @@ void PreemptionWorker::revokeCD(){
         break;
     }
     NoPreemption::slotCDLocked = false;
-    emit revokedProcess(processCD, nextCDResource);
+
 }
 
 void PreemptionWorker::revokePlotter(){
     qDebug() << "plotter revoked for process" << processPlotter;
 
     ProcessWorker::semaphorePlotter->release(nextPlotterCount);
+    emit revokedProcess(processPlotter, nextPlotterResource, nextPlotterCount);
     switch(processPlotter){
     case 0:
         NoPreemption::lastRevokedProcessA = true;
@@ -149,12 +152,13 @@ void PreemptionWorker::revokePlotter(){
         break;
     }
     NoPreemption::slotPlotterLocked = false;
-    emit revokedProcess(processPlotter, nextPlotterResource);
+
 }
 
 void PreemptionWorker::revokeTapeDrive(){
     qDebug() << "tapedrive revoked for process" << processTapeDrive;
     ProcessWorker::semaphoreTapeDrive->release(nextTapeDriveCount);
+    emit revokedProcess(processTapeDrive, nextTapeDriveResource, nextTapeDriveCount);
     switch(processTapeDrive){
     case 0:
         NoPreemption::lastRevokedProcessA = true;
@@ -167,7 +171,7 @@ void PreemptionWorker::revokeTapeDrive(){
         break;
     }
     NoPreemption::slotTapeDriveLocked = false;
-    emit revokedProcess(processTapeDrive, nextTapeDriveResource);
+
 
 }
 

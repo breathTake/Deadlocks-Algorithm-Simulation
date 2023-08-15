@@ -40,7 +40,7 @@ public slots:
     }
 
 signals:
-    void revokedProcess(int process, int resourceId);
+    void revokedProcess(int process, int resourceId, int count);
 
 private:
     QTimer *timerPrinter, *timerCD, *timerPlotter, *timerTapeDrive;

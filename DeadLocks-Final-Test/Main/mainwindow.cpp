@@ -93,9 +93,9 @@ MainWindow::MainWindow(QWidget *parent)
         connect(workerC, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
         connect(workerC, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
 
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerA, SLOT(gotRevoked(int, int)));
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerB, SLOT(gotRevoked(int, int)));
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int)), workerC, SLOT(gotRevoked(int, int)));
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerA, SLOT(gotRevoked(int, int, int)));
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerB, SLOT(gotRevoked(int, int, int)));
+        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerC, SLOT(gotRevoked(int, int, int)));
 
         threadPreemption->start();
         break;

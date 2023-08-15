@@ -107,7 +107,7 @@ public slots:
      */
     void requestResource();
 
-    void gotRevoked(int processID, int resource);
+    void gotRevoked(int processID, int resource, int count);
 
 public:
     static QSemaphore *semaphorePrinter; ///< to keep track of available Printers

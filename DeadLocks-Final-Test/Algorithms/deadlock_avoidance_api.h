@@ -40,6 +40,11 @@ public:
         }
         dbg << "A: " << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3] << "\n";
     }
+
+    virtual bool reservationRequirement(int process){
+        return false;
+    }
+    virtual void updateRevoke(int process){}
 };
 
 #endif // DEADLOCK_AVOIDANCE_API_H

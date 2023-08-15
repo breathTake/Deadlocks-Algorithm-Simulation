@@ -92,3 +92,18 @@ QList<SystemResource> NoPreemption::avoidance_algorithm(QList<SystemResource> ne
 
     return result;
 }
+
+
+bool NoPreemption::reservationRequirement(int process){
+    return (NoPreemption::lastRevokedProcessA && process == 0) || (NoPreemption::lastRevokedProcessB && process == 1) || (NoPreemption::lastRevokedProcessC && process == 2);
+}
+
+void NoPreemption::updateRevoke(int process){
+    if(process == 0){
+        NoPreemption::lastRevokedProcessA = false;
+    } else if(process == 1){
+        NoPreemption::lastRevokedProcessB = false;
+    } else if(process == 2){
+        NoPreemption::lastRevokedProcessC = false;
+    }
+}

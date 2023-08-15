@@ -8,7 +8,7 @@ PreemptionWorker::PreemptionWorker(QObject *parent) :
     QObject{parent}
 {
     maxWaitTime = max(max(ProcessWorker::differenceResources_A[0],ProcessWorker::differenceResources_A[1]),max(ProcessWorker::differenceResources_A[2],ProcessWorker::differenceResources_A[3]));
-    maxWaitTime *= 2100;
+    maxWaitTime = maxWaitTime * 2000 + 500;
     qDebug() << "max" << maxWaitTime;
 }
 
@@ -32,7 +32,6 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
             processCD = processId;
             nextCDResource = nextResource;
             nextCDCount = nextCount;
-
         }
          break;
 

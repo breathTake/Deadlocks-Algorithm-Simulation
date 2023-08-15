@@ -14,7 +14,7 @@ public:
 
 public slots:
     void reservationStarted(int processId, int nextResource, int nextCount);
-    void reservationFinished(int processId, int nextResource, int nextCount);
+    void reservationFinished(int processId, int nextResource, int nextCount, bool notProcessedYet);
 
     void initTimers();
 

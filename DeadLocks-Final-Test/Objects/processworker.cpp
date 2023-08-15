@@ -64,9 +64,11 @@ void ProcessWorker::requestResource()
             break;
         case 3:
             algorithm = new BankiersAlgorithm();
+            qDebug() << "bankiers";
             break;
         default:
             algorithm = new NoAvoidanceSimulation();
+            qDebug() << "none";
             break;
     }
 
@@ -81,68 +83,102 @@ void ProcessWorker::requestResource()
             return;
         }
 
-        if(NoPreemption::lastRevokedProcessA || NoPreemption::lastRevokedProcessB || NoPreemption::lastRevokedProcessC){
-            qDebug() << "shuffled and changed back";
-            process.shuffleNeededResources();
-            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
-
-            //emitting resourcesReleased to notify mainwindow of changes and change ui
-
-            //updating assignedResources_C because resources have been released
-            differenceResources_A[lastResource] += lastCount;
-            assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
-            //updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() + countResource);
-            switch(process.getProcessId()){
-            case 0:
-                NoPreemption::lastRevokedProcessA = false;
-                break;
-            case 1:
-                NoPreemption::lastRevokedProcessA = false;
-                break;
-            case 2:
-                NoPreemption::lastRevokedProcessA = false;
-                break;
-            }
-
-            qDebug() << "difference:" << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3];
-        }
-
         //the findNextResources function will be called upon the right algorithm
         QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
         nextResource = foundNextResouce.at(0);
         countResource = foundNextResouce.at(1);
         indexResourceList = foundNextResouce.at(2);
+
+        qDebug()<< "find next Resource process"<< process.getName() << ":" << countResource << "of resource" << nextResource;
         //process.printNeededResources();
 
         //if the next Resource doesn't exist it will not be acquired
         if(nextResource >= 0){
-            qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource;
-            emit startedAcquire(process.getProcessId(), nextResource, countResource);
+            bool hasBeenEmitted = false;
+            //problem: startet acquire countdown auch wenn resource garnicht belegt werden kann
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
+                if(semaphorePrinter->available() >= countResource){
+                    emit startedAcquire(process.getProcessId(), nextResource, countResource);
+                    qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource << ",semaphores are:" << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
+                    hasBeenEmitted = true;
+                }
                 semaphorePrinter->acquire(countResource);
                 break;
             case 1:
+                if(semaphoreCD->available() >= countResource){
+                    emit startedAcquire(process.getProcessId(), nextResource, countResource);
+                    qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource << ",semaphores are:" << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
+                    hasBeenEmitted = true;
+                }
                 semaphoreCD->acquire(countResource);
                 break;
             case 2:
+                if(semaphorePlotter->available() >= countResource){
+                    emit startedAcquire(process.getProcessId(), nextResource, countResource);
+                    qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource << ",semaphores are:" << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
+                    hasBeenEmitted = true;
+                }
                 semaphorePlotter->acquire(countResource);
                 break;
             case 3:
+                if(semaphoreTapeDrive->available() >= countResource){
+                    emit startedAcquire(process.getProcessId(), nextResource, countResource);
+                    qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource << ",semaphores are:" << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
+                    hasBeenEmitted = true;
+                }
                 semaphoreTapeDrive->acquire(countResource);
                 break;
             }
 
-            //update the occupation array and process list
-            if(nextResource >= 0){
-                emit resourceReserved(process.getProcessId(), nextResource, countResource);
-                differenceResources_A[nextResource] -= countResource;                
-                assignedResources_C[process.getProcessId()][nextResource] += countResource;
-                updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
+            if(!hasBeenEmitted){
+                emit startedAcquire(process.getProcessId(), nextResource, countResource);
+                qDebug() << "\nstart Acquire" << process.getName() << countResource << "of resource" << nextResource << ",semaphores are:" << semaphorePrinter->available() << semaphoreCD->available() << semaphorePlotter->available() << semaphoreTapeDrive->available();
             }
+
+            //update the occupation array and process list
+            emit resourceReserved(process.getProcessId(), nextResource, countResource);
+            differenceResources_A[nextResource] -= countResource;
+            assignedResources_C[process.getProcessId()][nextResource] += countResource;
+            updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() - countResource);
         }
 
+        if(lastResource >= 0){
+            if((NoPreemption::lastRevokedProcessA && process.getProcessId() == 0) || (NoPreemption::lastRevokedProcessB && process.getProcessId() == 1) || (NoPreemption::lastRevokedProcessC && process.getProcessId() == 2)){
+
+                emit resourceReleased(process.getProcessId(), lastResource, lastCount, true);
+
+                //emitting resourcesReleased to notify mainwindow of changes and change ui
+
+                //updating assignedResources_C because resources have been released
+                qDebug() << "last Count:" << lastCount << "of resource" << lastResource;
+                differenceResources_A[lastResource] += lastCount;
+                assignedResources_C[process.getProcessId()][lastResource] -= lastCount;
+                updateProcess(indexResourceList, process.getNeededResources().at(indexResourceList).getCount() + countResource);
+                stillNeededResources_R[process.getProcessId()][lastResource] += lastCount;
+                qDebug() << "shuffled and changed back";
+                process.shuffleNeededResources();
+
+
+                switch(process.getProcessId()){
+                case 0:
+                    NoPreemption::lastRevokedProcessA = false;
+                    break;
+                case 1:
+                    NoPreemption::lastRevokedProcessB = false;
+                    break;
+                case 2:
+                    NoPreemption::lastRevokedProcessC = false;
+                    break;
+                }
+
+                lastResource = -1;
+                lastCount = -1;
+
+                qDebug() << "difference:" << differenceResources_A[0] << differenceResources_A[1] << differenceResources_A[2] << differenceResources_A[3];
+            }
+        }
 
         //resources have been acquired, the last resource (from before) can be released, if they were set
         if(lastResource != -1 && lastResource != -2 && nextResource != -2 && nextResource != -1){
@@ -161,7 +197,7 @@ void ProcessWorker::requestResource()
                 break;
             }
 
-            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
+            emit resourceReleased(process.getProcessId(), lastResource, lastCount, false);
 
             //emitting resourcesReleased to notify mainwindow of changes and change ui
 
@@ -185,6 +221,7 @@ void ProcessWorker::requestResource()
             lastResource = nextResource;
             lastCount = countResource;
         }
+        qDebug() << "end of the loop for process:" << process.getName();
     }
     emit finishedResourceProcessing(lastResource);
 }

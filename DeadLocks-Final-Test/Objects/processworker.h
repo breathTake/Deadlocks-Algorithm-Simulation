@@ -91,7 +91,7 @@ signals:
      * @param resource is the resource ID of the resource that has been released
      * @param count is the count of released resources
      */
-    void resourceReleased(int processID, int resource, int count);
+    void resourceReleased(int processID, int resource, int count, bool notProcessedYet);
 
     /**
      * @brief finishedResourceProcessing indicates that a process has released all resources it requires and is finished

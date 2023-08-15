@@ -63,7 +63,7 @@ private slots:
 
     ///< thread slots
     void reserveResources(int process, int resource, int count);
-    void releaseResources(int process, int resource, int count);
+    void releaseResources(int process, int resource, int count, bool notProcessedYet);
     void processFinished();
 
     ///< button slots

@@ -51,6 +51,8 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
             countResource = process.getNeededResources().at(i).getCount();
             break;
 
+        } else if(i == process.getNeededResources().count() - 1 && process.getNeededResources().at(i).getCount() > 0){
+            nextResource = -2;
         } else if(i == process.getNeededResources().count() - 1 && nextResource == -1){
             //in this case there are no resources left to process (all are either 0 or can't be processed because they exeed the over all available resource count
             //no return yet because last resource has to be released

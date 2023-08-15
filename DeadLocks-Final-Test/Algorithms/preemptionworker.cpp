@@ -14,9 +14,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
     switch(nextResource){
     case 0:
         NoPreemption::slotPrinterLocked = true;
-
         qDebug() << "printer started by process" << processId;
-
         timerPrinter->start(maxWaitTime);
         processPrinter = processId;
         nextPrinterResource = nextResource;
@@ -112,7 +110,9 @@ void PreemptionWorker::revokePrinter(){
         break;
     }
     NoPreemption::slotPrinterLocked = false;
-
+    ProcessWorker::differenceResources_A[nextPrinterResource] += nextPrinterCount;
+    ProcessWorker::assignedResources_C[processPrinter][nextPrinterResource] -= nextPrinterCount;
+    emit resourceReleased(processPrinter, nextPrinterResource, nextPrinterCount, true);
 }
 
 void PreemptionWorker::revokeCD(){
@@ -132,7 +132,9 @@ void PreemptionWorker::revokeCD(){
         break;
     }
     NoPreemption::slotCDLocked = false;
-
+    ProcessWorker::differenceResources_A[nextCDResource] += nextCDCount;
+    ProcessWorker::assignedResources_C[processCD][nextCDResource] -= nextCDCount;
+    emit resourceReleased(processCD, nextCDResource, nextCDCount, true);
 }
 
 void PreemptionWorker::revokePlotter(){
@@ -152,6 +154,9 @@ void PreemptionWorker::revokePlotter(){
         break;
     }
     NoPreemption::slotPlotterLocked = false;
+    ProcessWorker::differenceResources_A[nextPlotterResource] += nextPlotterCount;
+    ProcessWorker::assignedResources_C[processPlotter][nextPlotterResource] -= nextPlotterCount;
+    emit resourceReleased(processPlotter, nextPlotterResource, nextPlotterCount, true);
 
 }
 
@@ -172,6 +177,8 @@ void PreemptionWorker::revokeTapeDrive(){
     }
     NoPreemption::slotTapeDriveLocked = false;
 
-
+    ProcessWorker::differenceResources_A[nextTapeDriveResource] += nextTapeDriveCount;
+    ProcessWorker::assignedResources_C[processTapeDrive][nextTapeDriveResource] -= nextTapeDriveCount;
+    emit resourceReleased(processTapeDrive, nextTapeDriveResource, nextTapeDriveCount, true);
 }
 

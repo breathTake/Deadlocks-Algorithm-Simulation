@@ -14,6 +14,7 @@ SOURCES += \
     Algorithms/deadlock_avoidance_api.cpp \
     Algorithms/eliminatecircularwait.cpp \
     Algorithms/eliminateholdandwait.cpp \
+    Algorithms/preemptionworker.cpp \
     Dialogs/enddialog.cpp \
     Main/main.cpp \
     Main/mainwindow.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     Algorithms/deadlock_avoidance_api.h \
     Algorithms/eliminatecircularwait.h \
     Algorithms/eliminateholdandwait.h \
+    Algorithms/preemptionworker.h \
     Dialogs/enddialog.h \
     Main/mainwindow.h \
     Algorithms/noavoidancesimulation.h \

@@ -4,6 +4,11 @@
 #include <QList>
 #include "Objects/systemresource.h"
 #include <QDebug>
+#include <random>
+#include <QtGlobal>
+#include <QVector>
+#include <QRandomGenerator>
+
 
 /**
  * @brief Class represents the processes which use the resources
@@ -20,6 +25,7 @@ private:
     QString name;
     int processId;
     QList<SystemResource> neededResources;
+    int revokedResourceId;
 
 public:
     /**
@@ -78,6 +84,13 @@ public:
         this->name = name;
     }
 
+    int getRevokedResourceId() const{
+        return revokedResourceId;
+    }
+
+    void setRevokedResourceId(int revokedResourceId){
+        this->revokedResourceId = revokedResourceId;
+    }
 
     /**
      * @brief getNeededResources list of needed resources
@@ -104,7 +117,14 @@ public:
     }
 
     void shuffleNeededResources(){
-        std::random_shuffle(neededResources.begin(), neededResources.end());
+        int n = neededResources.size();
+        QRandomGenerator rng = QRandomGenerator::securelySeeded();
+
+        for (int i = n - 1; i > 0; --i) {
+            int j = rng.bounded(i + 1); // Generate a random index in [0, i]
+            std::swap(neededResources[i], neededResources[j]); // Swap the elements at indices i and j
+        }
+
     }
 
     void printNeededResources(){
@@ -114,7 +134,6 @@ public:
             dbg << neededResources.at(i).getName() << " (" << neededResources.at(i).getCount() << "), ";
         }
     }
-
 };
 
 #endif // SYSTEMPROCESS_H

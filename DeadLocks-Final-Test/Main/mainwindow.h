@@ -6,6 +6,7 @@
 #include <Objects/SystemResource.h>
 #include <Objects/SystemProcess.h>
 #include <Objects/ProcessWorker.h>
+#include <Algorithms/preemptionworker.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -62,7 +63,7 @@ private slots:
 
     ///< thread slots
     void reserveResources(int process, int resource, int count);
-    void releaseResources(int process, int resource, int count);
+    void releaseResources(int process, int resource, int count, bool notProcessedYet);
     void processFinished();
 
     ///< button slots
@@ -72,8 +73,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QThread *threadProcessA, *threadProcessB, *threadProcessC;
+    QThread *threadProcessA, *threadProcessB, *threadProcessC, *threadPreemption;
     ProcessWorker *workerA, *workerB, *workerC;
+    PreemptionWorker *preemptionWorker;
 };
 
 #endif // MAINWINDOW_H

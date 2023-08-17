@@ -30,7 +30,7 @@ public:
      * @param availableResources_E is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start
      * @param differenceResources_A is an int array with 4 ints. Each int corresponds to a resource that is available right now
      */
-    ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm);
+    explicit ProcessWorker(SystemProcess processes, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm, QObject *parent = 0);
 
     /**
      * @brief updateProcess updates the neededResources List in the member Process
@@ -75,6 +75,8 @@ public:
     }
 
 signals:
+
+    void startedAcquire(int processId, int nextResource, int nextCount);
     /**
      * @brief resourceReserved notifies the main thread, that the given resource has been reserved and can not be used anymore
      * @param processID is the ID of the process member to determin the process in the main thread
@@ -83,19 +85,20 @@ signals:
      */
     void resourceReserved(int processID, int resource, int count);
 
-    //not implemented yet
-    void waitingForNext();
-
     /**
      * @brief resourceReleased notifies the main thread, that the given resource has been released
      * @param processID is the ID of the process member to determin the process in the main thread
      * @param resource is the resource ID of the resource that has been released
      * @param count is the count of released resources
      */
-    void resourceReleased(int processID, int resource, int count);
+    void resourceReleased(int processID, int resource, int count, bool notProcessedYet);
 
-    //not implemented yet
+    /**
+     * @brief finishedResourceProcessing indicates that a process has released all resources it requires and is finished
+     * @param information unused
+     */
     void finishedResourceProcessing(int information);
+
 
 public slots:
     /**
@@ -104,6 +107,14 @@ public slots:
      */
     void requestResource();
 
+public:
+    static QSemaphore *semaphorePrinter; ///< to keep track of available Printers
+    static QSemaphore *semaphoreCD; ///< to keep track of available CDs
+    static QSemaphore *semaphorePlotter; ///< to keep track of available Plotters
+    static QSemaphore *semaphoreTapeDrive; ///< to keep track of available TapeDrives
+    static int differenceResources_A[4]; ///< is an array with the current available resources
+    static int assignedResources_C[3][4]; ///< containing which and how many resources a process is occupying
+    static int stillNeededResources_R[3][4]; ///< matrix containing which and how many resources a process will still need to occupie throughout the simulation
 private:
     /**
      * @brief differenceResources_A is an array with the current available resources
@@ -113,16 +124,9 @@ private:
      * @brief selectedAlgorithmNumber is the algorithm used to prevent deadlocks
      */
     int availableResources_E[4]; ///< is an array with the over all available resources
-    static int differenceResources_A[4]; ///< is an array with the current available resources
-    static int assignedResources_C[3][4]; ///< containing which and how many resources a process is occupying
-    static int stillNeededResources_R[3][4]; ///< matrix containing which and how many resources a process will still need to occupie throughout the simulation
     SystemProcess process; ///< process is the process running in the thread
     int selectedAlgorithm; ///< is the algorithm used to prevent deadlocks
 
-    static QSemaphore *semaphorePrinter; ///< to keep track of available Printers
-    static QSemaphore *semaphoreCD; ///< to keep track of available CDs
-    static QSemaphore *semaphorePlotter; ///< to keep track of available Plotters
-    static QSemaphore *semaphoreTapeDrive; ///< to keep track of available TapeDrives
 };
 
 #endif // PROCESSWORKER_H

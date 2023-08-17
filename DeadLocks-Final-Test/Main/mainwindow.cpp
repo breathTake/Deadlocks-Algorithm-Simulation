@@ -81,11 +81,26 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     case 1:
         ui->CurrentAlgorithm_label->setText("No Preemption");
+        threadPreemption = new QThread;
+        preemptionWorker = new PreemptionWorker();
+        preemptionWorker->moveToThread(threadPreemption);
+        QMetaObject::invokeMethod(preemptionWorker, "initTimers");
+
+        connect(workerA, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerA, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
+        connect(workerB, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerB, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
+        connect(workerC, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
+        connect(workerC, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
+
+        connect(preemptionWorker, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
+
+        threadPreemption->start();
         break;
     case 2:
         ui->CurrentAlgorithm_label->setText("Circular Wait");
         break;
-    case 4:
+    case 3:
         ui->CurrentAlgorithm_label->setText("Bankiers Algorithm");
         break;
     default:
@@ -98,20 +113,20 @@ MainWindow::MainWindow(QWidget *parent)
     //connnecting workerAs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
-    connect(workerA, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerA, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
     connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
     connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
-    connect(workerB, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerB, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
     connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
     //connnecting workerCs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
-    connect(workerC, SIGNAL(resourceReleased(int,int,int)), this, SLOT(releaseResources(int,int,int)));
+    connect(workerC, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
     connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
 
     //moving and starting threads
@@ -123,7 +138,6 @@ MainWindow::MainWindow(QWidget *parent)
     threadProcessC->start();
 
     workerA->setUpOccupations(assignedResources_C, stillNeededResources_R);
-
 }
 
 MainWindow::~MainWindow()
@@ -166,10 +180,13 @@ void MainWindow::reserveResources(int process, int resource, int count)
     //bankiersAlgorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
 }
 
-void MainWindow::releaseResources(int process, int resource, int count)
+void MainWindow::releaseResources(int process, int resource, int count, bool notProcessedYet)
 {
     //adjusting the occupation matrixes and arrays
-    assignedResources_C[process][resource] -= count;
+    if(notProcessedYet){
+        stillNeededResources_R[process][resource] += count;
+    }
+    assignedResources_C[process][resource] -= count;    
     occupiedResources_P[resource] -= count;
     differenceResources_A[resource] += count;
 
@@ -350,6 +367,14 @@ void MainWindow::processFinished()
         threadProcessC->wait();
         delete threadProcessC;
         delete workerC;
+
+        if(selectedAlgorithmNumber == 1){
+            threadPreemption->deleteLater();
+            threadPreemption->terminate();
+            threadPreemption->wait();
+            delete threadPreemption;
+            delete preemptionWorker;
+        }
         timer->stop();
 
         EndDialog endDialog;
@@ -383,6 +408,14 @@ void MainWindow::on_button_stop_simulation_clicked()
     threadProcessC->wait();
     delete threadProcessC;
     delete workerC;
+
+    if(selectedAlgorithmNumber == 1){
+        threadPreemption->deleteLater();
+        threadPreemption->terminate();
+        threadPreemption->wait();
+        delete threadPreemption;
+        delete preemptionWorker;
+    }
     timer->stop();
 
     EndDialog endDialog;

@@ -24,6 +24,11 @@ public:
      */
     virtual QList<int> findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]) = 0;
 
+    virtual void aquireConditionMet(int processId){}
+    virtual bool checkAquireCondition(int processId){
+        return false;
+    }
+
     /**
      * @brief printStillNeeded prints the still needed resources of a process
      * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation

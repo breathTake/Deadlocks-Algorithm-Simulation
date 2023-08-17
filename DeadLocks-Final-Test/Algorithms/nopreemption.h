@@ -32,6 +32,18 @@ public:
      * @return the sorted neededResources list
      */
     QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
+
+    void aquireConditionMet(int processId) override;
+    bool checkAquireCondition(int processId) override;
+
+
+public:
+    static bool slotPrinterLocked;
+    static bool slotCDLocked;
+    static bool slotPlotterLocked;
+    static bool slotTapeDriveLocked;
+    static bool lastRevokedProcessA, lastRevokedProcessB, lastRevokedProcessC;
+    static QMutex *mutex;
 };
 
 #endif // NOPREEMPTION_H

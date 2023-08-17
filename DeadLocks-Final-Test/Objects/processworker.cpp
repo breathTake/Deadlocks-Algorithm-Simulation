@@ -11,12 +11,14 @@ QSemaphore* ProcessWorker::semaphoreCD;
 QSemaphore* ProcessWorker::semaphorePlotter;
 QSemaphore* ProcessWorker::semaphoreTapeDrive;
 
+
 //initializing the static matrices
 int ProcessWorker::differenceResources_A[4];
 int ProcessWorker::assignedResources_C[3][4];
 int ProcessWorker::stillNeededResources_R[3][4];
 
-ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm)
+ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm, QObject *parent) :
+    QObject(parent)
 {
     this->selectedAlgorithm = selectedAlgorithm;
     //"copying" the process belonging to thread with all attributes
@@ -24,6 +26,7 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
     this->process.setNeededResources(process.getNeededResources());
     this->process.setProcessId(process.getProcessId());
     this->process.setName(process.getName());
+    this->process.setRevokedResourceId(process.getRevokedResourceId());
 
     //"copying" the arrays differenceResources_A, availableResources_E and the stillNeededResources_R Matrix to thread
     for(int i = 0; i < 4; i++){
@@ -47,15 +50,19 @@ void ProcessWorker::requestResource()
     int lastResource = -1;
     //count of the last resource that has been reserved (-1 means there was no resource before)
     int lastCount = -1;
+    //lastIndexResourceList is the index of the last Resource in the neededResources list of process as they are in random order
+    int lastIndexResourceList = -1;
     //deadlock_avoidance_api object
-    deadlock_avoidance_api *algorithm;
+
+
     //initializing the algorithm with the right one selected at the start (default is no algorithm running it into a deadlock
+    deadlock_avoidance_api *algorithm;
     switch(selectedAlgorithm){
         case 0:
             algorithm = new EliminateHoldAndWait();
             break;
         case 1:
-            algorithm = new NoPreemption();            
+            algorithm = new NoPreemption();
             break;
         case 2:
             algorithm = new EliminateCircularWait();
@@ -84,18 +91,24 @@ void ProcessWorker::requestResource()
         nextResource = foundNextResouce.at(0);
         countResource = foundNextResouce.at(1);
         indexResourceList = foundNextResouce.at(2);
-        //process.printNeededResources();
 
+        //if the algorithm aquirecondition is true the last resource was revoked (currently only used by preemption but could be used by others in the future)
+        if(algorithm->checkAquireCondition(process.getProcessId())){
+            updateProcess(lastIndexResourceList, process.getNeededResources().at(lastIndexResourceList).getCount() + lastCount);
+            lastCount = 0;
+            algorithm->aquireConditionMet(process.getProcessId());
+        }
 
         //if the next Resource doesn't exist it will not be acquired but later the last will still be released
         if(nextResource >= 0){
+            emit startedAcquire(process.getProcessId(), nextResource, countResource);
             //resource will be reserved (switching the nextresource and reserving the proper semaphore + setting the differenceResources_A array)
             switch (nextResource) {
             case 0:
                 semaphorePrinter->acquire(countResource);
                 break;
             case 1:
-                semaphoreCD->acquire(countResource);
+                semaphoreCD->acquire(countResource);                
                 break;
             case 2:
                 semaphorePlotter->acquire(countResource);
@@ -112,6 +125,12 @@ void ProcessWorker::requestResource()
             emit resourceReserved(process.getProcessId(), nextResource, countResource);
         }
 
+        //if the algorithm aquirecondition is true the last resource was revoked (currently only used by preemption but could be used by others in the future)
+        if(algorithm->checkAquireCondition(process.getProcessId())){
+            updateProcess(lastIndexResourceList, process.getNeededResources().at(lastIndexResourceList).getCount() + lastCount);
+            lastCount = 0;
+            algorithm->aquireConditionMet(process.getProcessId());
+        }
 
         //resources have been acquired, the last resource (from before) can be released, if they were set
         if(lastResource != -1 && lastResource != -2 && nextResource != -2 && nextResource != -1){
@@ -130,9 +149,8 @@ void ProcessWorker::requestResource()
                 break;
             }
 
-            emit resourceReleased(process.getProcessId(), lastResource, lastCount);
-
             //emitting resourcesReleased to notify mainwindow of changes and change ui
+            emit resourceReleased(process.getProcessId(), lastResource, lastCount, false);
 
             //updating assignedResources_C because resources have been released
             differenceResources_A[lastResource] += lastCount;
@@ -154,6 +172,7 @@ void ProcessWorker::requestResource()
         if(nextResource != -1 && nextResource != -2){
             lastResource = nextResource;
             lastCount = countResource;
+            lastIndexResourceList = indexResourceList;
         }
     }
     emit finishedResourceProcessing(lastResource);

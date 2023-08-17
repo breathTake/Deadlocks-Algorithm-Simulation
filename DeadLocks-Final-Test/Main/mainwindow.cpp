@@ -10,6 +10,7 @@
 #include <Dialogs/EndDialog.h>
 #include <QGraphicsDropShadowEffect>
 #include <QFont>
+#include <QFile>
 
 
 
@@ -64,8 +65,6 @@ MainWindow::MainWindow(QWidget *parent)
         startDialog.close();
     }
 
-
-
     //update matrix as it is all 0 at the start
     update_occupation_matrix();
     //seting up processes and resources
@@ -84,6 +83,25 @@ MainWindow::MainWindow(QWidget *parent)
     workerB = new ProcessWorker(processes.at(1), selectedAlgorithmNumber);
     threadProcessC = new QThread;
     workerC = new ProcessWorker(processes.at(2), selectedAlgorithmNumber);
+
+    //set up the explanations:
+    switch(selectedAlgorithmNumber){
+    case 0:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationHoldAndWait.txt");
+        break;
+    case 1:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationPreemption.txt");
+        break;
+    case 2:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationCircularWait.txt");
+        break;
+    case 3:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationBankier.txt");
+        break;
+    default:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationDeadlock.txt");
+        break;
+    }
 
     //Set the Algorithm Label to the current one
     switch(selectedAlgorithmNumber){
@@ -191,21 +209,18 @@ void MainWindow::reserveResources(int process, int resource, int count)
     switch (process) {
     case 0:
         if(processATimer->isValid()){
-            qDebug() << "process A" << "resource time: " << processATimer->elapsed();
             processATimeList->append(processATimer->elapsed());
         }
         processATimer->restart();
         break;
     case 1:
         if(processBTimer->isValid()){
-            qDebug() << "process B" << "resource time: " << processBTimer->elapsed();
             processBTimeList->append(processBTimer->elapsed());
         }
         processBTimer->restart();
         break;
     case 2:
         if(processCTimer->isValid()){
-            qDebug() << "process C" << "resource time: " << processCTimer->elapsed();
             processCTimeList->append(processCTimer->elapsed());
         }
         processCTimer->restart();
@@ -383,19 +398,16 @@ void MainWindow::processFinished(int processId)
     switch (processId) {
     case 0:
         if(processATimer->isValid()){
-            qDebug() << "process A" << "resource time: " << processATimer->elapsed() * 1000;
             processATimeList->append(processATimer->elapsed());
         }
         break;
     case 1:
         if(processBTimer->isValid()){
-            qDebug() << "process B" << "resource time: " << processBTimer->elapsed() * 1000;
             processBTimeList->append(processBTimer->elapsed());
         }
         break;
     case 2:
         if(processCTimer->isValid()){
-            qDebug() << "process C" << "resource time: " << processCTimer->elapsed() * 1000;
             processCTimeList->append(processCTimer->elapsed());
         }
         break;
@@ -562,6 +574,19 @@ void MainWindow::on_button_restart_simulation_clicked()
     // You may need to implement a platform-specific method for other operating systems.
 #endif
 }
+
+//put explanation in
+void MainWindow::loadTextFileIntoPlainTextEdit(const QString &filePath) {
+    QFile file(filePath);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        ui->explanation_plainTextEdit->setPlainText(in.readAll());
+        file.close();
+    } else {
+        // Handle error if the file couldn't be opened
+    }
+}
+
 
 //setting shadows of all needed elements
 void MainWindow::setShadows()

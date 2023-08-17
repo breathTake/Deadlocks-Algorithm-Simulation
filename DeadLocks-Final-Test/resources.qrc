@@ -14,5 +14,10 @@
         <file>resources/TapeDrive_Icon.png</file>
         <file>resources/fonts/futuraBook.ttf</file>
         <file>resources/fonts/futuraHeavy.ttf</file>
+        <file>resources/explanations/explanationDeadlock.txt</file>
+        <file>resources/explanations/explanationBankier.txt</file>
+        <file>resources/explanations/explanationCircularWait.txt</file>
+        <file>resources/explanations/explanationHoldAndWait.txt</file>
+        <file>resources/explanations/explanationPreemption.txt</file>
     </qresource>
 </RCC>

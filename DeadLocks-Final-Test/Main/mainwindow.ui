@@ -72,10 +72,10 @@ border-radius: 10px;
     <widget class="QLabel" name="explanation_Title_label">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>30</y>
+       <x>30</x>
+       <y>20</y>
        <width>171</width>
-       <height>31</height>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -87,8 +87,58 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
       <string>Algorithm:</string>
      </property>
     </widget>
+    <widget class="QPlainTextEdit" name="explanation_plainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>281</width>
+       <height>591</height>
+      </rect>
+     </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPlainTextEdit{ 
+	padding-top: 5px;
+	padding-left: 0px;
+	border-radius: 5px;
+	border: none;
+	background-color: rgb(73, 81, 103);
+	font: 12pt &quot;Futura Bk BT&quot;;
+	color: rgb(217, 217, 217);
+	alignment: AlignCenter;
+    }</string>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     </property>
+     <property name="plainText">
+      <string>testtext
+</string>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::NoTextInteraction</set>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -947,7 +997,7 @@ image: url(:/resources/Printer_Icon.png);</string>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -1014,8 +1064,8 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
          <string notr="true">background-color: none;</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="3" column="3">
-          <widget class="QLabel" name="C3_label_needed">
+         <item row="1" column="2">
+          <widget class="QLabel" name="A2_label_needed">
            <property name="font">
             <font>
              <family>Futura PT</family>
@@ -1037,8 +1087,8 @@ background-color: rgb(73, 81, 103);</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="4">
-          <widget class="QLabel" name="A4_label_needed">
+         <item row="2" column="4">
+          <widget class="QLabel" name="B4_label_needed">
            <property name="font">
             <font>
              <family>Futura PT</family>
@@ -1060,8 +1110,19 @@ background-color: rgb(73, 81, 103);</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="B2_label_needed">
+         <item row="0" column="3">
+          <widget class="QLabel" name="Requirements_Plotter_Icon_label">
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+image: url(:/resources/Plotter_Icon.png);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="A3_label_needed">
            <property name="font">
             <font>
              <family>Futura PT</family>
@@ -1080,6 +1141,17 @@ background-color: rgb(73, 81, 103);</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="Requirements_CD_Icon_label">
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+image: url(:/resources/CD-ROM_Icon.png);</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -1141,31 +1213,8 @@ background-color: rgb(73, 81, 103);</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="4">
-          <widget class="QLabel" name="C4_label_needed">
-           <property name="font">
-            <font>
-             <family>Futura PT</family>
-             <pointsize>12</pointsize>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(217, 217, 217);
-background-color: rgb(73, 81, 103);
-font: 500 12pt &quot;Futura PT&quot;;</string>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QLabel" name="B4_label_needed">
+         <item row="2" column="2">
+          <widget class="QLabel" name="B2_label_needed">
            <property name="font">
             <font>
              <family>Futura PT</family>
@@ -1199,14 +1248,37 @@ font: 12pt &quot;Futura Bk BT&quot;;</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="Requirements_Plotter_Icon_label">
+         <item row="0" column="4">
+          <widget class="QLabel" name="Requirements_TapeDrive_Icon_label">
            <property name="styleSheet">
             <string notr="true">background-color: none;
-image: url(:/resources/Plotter_Icon.png);</string>
+image: url(:/resources/TapeDrive_Icon.png);</string>
            </property>
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLabel" name="C4_label_needed">
+           <property name="font">
+            <font>
+             <family>Futura PT</family>
+             <pointsize>12</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(217, 217, 217);
+background-color: rgb(73, 81, 103);
+font: 500 12pt &quot;Futura PT&quot;;</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1218,6 +1290,65 @@ image: url(:/resources/Printer_Icon.png);</string>
            </property>
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="Requirements_Process_C_Label">
+           <property name="styleSheet">
+            <string notr="true">background-color: none;
+color: rgb(237, 237, 237);
+font: 12pt &quot;Futura Bk BT&quot;;
+</string>
+           </property>
+           <property name="text">
+            <string>Process C</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="B3_label_needed">
+           <property name="font">
+            <font>
+             <family>Futura PT</family>
+             <pointsize>12</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="A4_label_needed">
+           <property name="font">
+            <font>
+             <family>Futura PT</family>
+             <pointsize>12</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(217, 217, 217);
+font: 500 12pt &quot;Futura PT&quot;;
+background-color: rgb(73, 81, 103);</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -1244,19 +1375,8 @@ background-color: rgb(73, 81, 103);</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="Requirements_CD_Icon_label">
-           <property name="styleSheet">
-            <string notr="true">background-color: none;
-image: url(:/resources/CD-ROM_Icon.png);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="B3_label_needed">
+         <item row="3" column="3">
+          <widget class="QLabel" name="C3_label_needed">
            <property name="font">
             <font>
              <family>Futura PT</family>
@@ -1298,76 +1418,6 @@ background-color: rgb(73, 81, 103);</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="A2_label_needed">
-           <property name="font">
-            <font>
-             <family>Futura PT</family>
-             <pointsize>12</pointsize>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="Requirements_TapeDrive_Icon_label">
-           <property name="styleSheet">
-            <string notr="true">background-color: none;
-image: url(:/resources/TapeDrive_Icon.png);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLabel" name="A3_label_needed">
-           <property name="font">
-            <font>
-             <family>Futura PT</family>
-             <pointsize>12</pointsize>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(217, 217, 217);
-font: 500 12pt &quot;Futura PT&quot;;
-background-color: rgb(73, 81, 103);</string>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="Requirements_Process_C_Label">
-           <property name="styleSheet">
-            <string notr="true">background-color: none;
-color: rgb(237, 237, 237);
-font: 12pt &quot;Futura Bk BT&quot;;
-</string>
-           </property>
-           <property name="text">
-            <string>Process C</string>
            </property>
           </widget>
          </item>

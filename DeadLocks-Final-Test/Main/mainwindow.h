@@ -40,6 +40,8 @@ public:
      */
     void setUpResourcesAndProcesses(int countPrinters, int countCD, int countPlotters, int countTapeDrive);
 
+    void loadTextFileIntoPlainTextEdit(const QString &filePath);
+
 private slots:
     ///< UI update slots
     void update_occupation_matrix();

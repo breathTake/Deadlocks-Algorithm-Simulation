@@ -16,7 +16,12 @@ NoPreemption::NoPreemption()
 
 }
 
-QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
+NoPreemption::~NoPreemption()
+{
+
+}
+
+QList<int> NoPreemption::findNextResource(SystemProcess process)
 {
     mutex->lock();
 
@@ -33,7 +38,7 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
     //going through the neededResources list to find the next needed resource
     for(int i = 0; i < process.getNeededResources().count(); i++){
         //the resource has to have a count > 0 but < the over all available resources
-        if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+        if(process.getNeededResources().at(i).getCount() <= ProcessWorker::availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
 
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
             nextResource = process.getNeededResources().at(i).getResourceId();
@@ -83,12 +88,6 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
     return result;
 }
 
-QList<SystemResource> NoPreemption::avoidance_algorithm(QList<SystemResource> neededResources)
-{
-    QList<SystemResource> result;
-
-    return result;
-}
 
 void NoPreemption::aquireConditionMet(int processId){
     //restets the lastRevokedProcess bools

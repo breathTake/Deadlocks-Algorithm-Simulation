@@ -14,10 +14,11 @@ QSemaphore* ProcessWorker::semaphoreTapeDrive;
 
 //initializing the static matrices
 int ProcessWorker::differenceResources_A[4];
+int ProcessWorker::availableResources_E[4];
 int ProcessWorker::assignedResources_C[3][4];
 int ProcessWorker::stillNeededResources_R[3][4];
 
-ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4], int differenceResources_A[4], int selectedAlgorithm, QObject *parent) :
+ProcessWorker::ProcessWorker(SystemProcess process, int selectedAlgorithm, QObject *parent) :
     QObject(parent)
 {
     this->selectedAlgorithm = selectedAlgorithm;
@@ -28,13 +29,10 @@ ProcessWorker::ProcessWorker(SystemProcess process, int availableResources_E[4],
     this->process.setName(process.getName());
     this->process.setRevokedResourceId(process.getRevokedResourceId());
 
-    //"copying" the arrays differenceResources_A, availableResources_E and the stillNeededResources_R Matrix to thread
     for(int i = 0; i < 4; i++){
-        this->differenceResources_A[i] = differenceResources_A[i];
-        this->availableResources_E[i] = availableResources_E[i];
         //resourceID is needed because the still Needed Resources is ordered by resources but the process neededResources list from processes is in random order
         int resourceID  = process.getNeededResources().at(i).getResourceId();
-        this->stillNeededResources_R[process.getProcessId()][resourceID] = process.getNeededResources().at(i).getCount();
+        ProcessWorker::stillNeededResources_R[process.getProcessId()][resourceID] = process.getNeededResources().at(i).getCount();
     }
 
     //initializing the semaphores
@@ -87,7 +85,7 @@ void ProcessWorker::requestResource()
         }
 
         //the findNextResources function will be called upon the right algorithm
-        QList<int> foundNextResouce = algorithm->findNextResource(process, stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
+        QList<int> foundNextResouce = algorithm->findNextResource(process);
         nextResource = foundNextResouce.at(0);
         countResource = foundNextResouce.at(1);
         indexResourceList = foundNextResouce.at(2);

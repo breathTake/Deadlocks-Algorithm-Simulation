@@ -1,5 +1,6 @@
 #include "eliminateholdandwait.h"
 #include <QDebug>
+#include <Objects/ProcessWorker.h>
 
 QList<int> EliminateHoldAndWait::currentProcess;
 QSemaphore* EliminateHoldAndWait::semaphore = new QSemaphore(1);
@@ -10,7 +11,12 @@ EliminateHoldAndWait::EliminateHoldAndWait()
 
 }
 
-QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]){
+EliminateHoldAndWait::~EliminateHoldAndWait()
+{
+
+}
+
+QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process){
 
     QList<int> result;
 
@@ -26,7 +32,7 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
         //flag as not empty
         currentProcess.append(-1);
         for(int i = 0; i < 4; i++){
-            copyDifference[i] = differenceResources_A[i];
+            copyDifference[i] = ProcessWorker::differenceResources_A[i];
         }
     }
 
@@ -62,7 +68,7 @@ QList<int> EliminateHoldAndWait::findNextResource(SystemProcess process, int sti
     //going through the neededResources list to find the next needed resource
     for(int i = 0; i < process.getNeededResources().count(); i++){
         //the resource has to have a count > 0 but < the over all available resources
-        if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+        if(process.getNeededResources().at(i).getCount() <= ProcessWorker::availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
             nextResource = process.getNeededResources().at(i).getResourceId();
             indexResourceList = i;

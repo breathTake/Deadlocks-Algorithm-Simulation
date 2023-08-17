@@ -2,6 +2,7 @@
 #include "QDebug"
 #include "qmutex.h"
 #include <QThread>
+#include <Objects/ProcessWorker.h>
 
 
 QMutex *mutexOne = new QMutex();
@@ -9,11 +10,14 @@ QMutex *mutexOne = new QMutex();
 
 BankiersAlgorithm::BankiersAlgorithm()
 {
-    lastWasDeadlock = -1;
+}
+
+BankiersAlgorithm::~BankiersAlgorithm()
+{
 }
 
 
-QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
+QList<int> BankiersAlgorithm::findNextResource(SystemProcess process)
 {
     mutexOne->lock();
 
@@ -34,17 +38,17 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
     for(int i = 0; i < process.getNeededResources().count(); i++){
 
         //the resource has to have a count > 0 but < the available resources we will check for the next resource
-        if(process.getNeededResources().at(i).getCount() <= differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+        if(process.getNeededResources().at(i).getCount() <= ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
             //reserve the resources that would be the potential next resource to find out if it is a state is save
 
-            differenceResources_A[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
-            stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+            ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
+            ProcessWorker::stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
 
-            if(avoidance_algorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E)){
+            if(avoidance_algorithm()){
                 //if the state is save the nextResources, indexResourcesList and countResources will be set, and marked as not a deadlock
 
                 //differenceResources_A is returned to former state because it will be changed when resource is aquired
-                differenceResources_A[process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
+                ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
                 nextResource = process.getNeededResources().at(i).getResourceId();
                 indexResourceList = i;
                 countResource = process.getNeededResources().at(i).getCount();
@@ -56,9 +60,9 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
                 deadlock = true;
                 //-2 as nextResource indicates deadlock
                 nextResource = -2;
-                stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
+                ProcessWorker::stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
                 //differenceResources_A is returned to former state because it will be changed when resource is aquired
-                differenceResources_A[process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
+                ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] += process.getNeededResources().at(i).getCount();
 
             }
 
@@ -85,7 +89,7 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process, int stillN
 }
 
 
-bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4]){
+bool BankiersAlgorithm::avoidance_algorithm(){
     //countFinished counts the processes that have been completely analyzed
     int countFinished = 0;
     //markedFinished contains the id of the processes that have been completely analyzed
@@ -97,7 +101,7 @@ bool BankiersAlgorithm::avoidance_algorithm(int stillNeededResources_R[3][4], in
             if(!binary_search(markedFinished.begin(), markedFinished.end(), i)) {
                 int count = 0;
                 for(int j = 0; j < 4; j++) {
-                    if(stillNeededResources_R[i][j] <= differenceResources_A[j]) {
+                    if(ProcessWorker::stillNeededResources_R[i][j] <= ProcessWorker::differenceResources_A[j]) {
                         count++;
                         if(count == 4) {
                             markedFinished.push_back(j);

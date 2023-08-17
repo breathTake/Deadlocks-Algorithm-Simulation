@@ -14,6 +14,7 @@ public:
      * @brief EliminateCircularWait standard constructor
      */
     EliminateCircularWait();
+    ~EliminateCircularWait();
 
     /**
      * @brief findNextResource function that will find the next resource,
@@ -24,7 +25,7 @@ public:
      * @param stillNeededResources_R matix containing which and how many resources a process will still need to occupie throughout the simulation
      * @return result from type @List<int>: first int is nextResource, second int is nextResourceCount, third int is indexResourceList
      */
-    QList<int> findNextResource(SystemProcess process, int stillNeededResources_RCopy[3][4], int assignedResources_CCopy[3][4], int differenceResources_ACopy[4], int availableResources_ECopy[4]);
+    QList<int> findNextResource(SystemProcess process) override;
 
     /**
      * @brief avoidance_algorithm algorithm which sorts the neededResources to avoid a deadlock

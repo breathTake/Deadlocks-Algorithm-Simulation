@@ -10,7 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     Algorithms/bankiersalgorithm.cpp \
-    Algorithms/carefulresourcedistribution.cpp \
     Algorithms/deadlock_avoidance_api.cpp \
     Algorithms/eliminatecircularwait.cpp \
     Algorithms/eliminateholdandwait.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 
 HEADERS += \
     Algorithms/bankiersalgorithm.h \
-    Algorithms/carefulresourcedistribution.h \
     Algorithms/deadlock_avoidance_api.h \
     Algorithms/eliminatecircularwait.h \
     Algorithms/eliminateholdandwait.h \

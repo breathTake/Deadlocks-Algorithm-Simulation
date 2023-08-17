@@ -1,12 +1,19 @@
 #include "eliminatecircularwait.h"
 
+#include <Objects/ProcessWorker.h>
+
 
 EliminateCircularWait::EliminateCircularWait()
 {
 
 }
 
-QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int stillNeededResources_R[3][4], int assignedResources_C[3][4], int differenceResources_A[4], int availableResources_E[4])
+EliminateCircularWait::~EliminateCircularWait()
+{
+
+}
+
+QList<int> EliminateCircularWait::findNextResource(SystemProcess process)
 {
     //finding the next Resource and count to be reserved
     QList<int> result;
@@ -28,7 +35,7 @@ QList<int> EliminateCircularWait::findNextResource(SystemProcess process, int st
     for(int i = 0; i < process.getNeededResources().count(); i++){
 
         //the resource has to have a count > 0 but < the over all available resources
-        if(process.getNeededResources().at(i).getCount() <= availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
+        if(process.getNeededResources().at(i).getCount() <= ProcessWorker::availableResources_E[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
 
             //if the next resource was found set the nextResource, countResource and indexResourceList variables
             nextResource = process.getNeededResources().at(i).getResourceId();

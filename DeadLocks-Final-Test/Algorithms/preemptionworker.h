@@ -12,6 +12,7 @@ class PreemptionWorker : public QObject
 public:
     explicit PreemptionWorker(QObject *parent = 0);
 
+
 public slots:
     void reservationStarted(int processId, int nextResource, int nextCount);
     void reservationFinished(int processId, int nextResource, int nextCount, bool notProcessedYet);

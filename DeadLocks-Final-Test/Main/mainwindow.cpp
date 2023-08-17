@@ -11,14 +11,15 @@
 #include <QGraphicsDropShadowEffect>
 #include <QFont>
 
-//how many resources and processes the system has
-int maxResourcesInProcess;
-int system_resource_count = 4;
-int system_process_count = 3;
-int existingResources[4];
-int selectedAlgorithmNumber = -1;
-int finished = 0;
 
+
+const int system_resource_count = 4; ///<how many resources the system has (constant)
+const int system_process_count = 3; ///<how many processes the system has (constant)
+int existingResources[4]; ///<the count of how many of each resource type exist
+int selectedAlgorithmNumber = -1; ///<the selected algorithm
+int finished = 0; ///<count for completely finished processes
+
+//timers
 QTimer *timer;
 QElapsedTimer *processATimer = new QElapsedTimer();
 QList<int> *processATimeList = new QList<int>();
@@ -68,17 +69,21 @@ MainWindow::MainWindow(QWidget *parent)
     //update matrix as it is all 0 at the start
     update_occupation_matrix();
     //seting up processes and resources
+    setUpResourcesAndProcesses(existingResources[0], existingResources[1], existingResources[2], existingResources[3]);
 
-    setUpResources(existingResources[0], existingResources[1], existingResources[2], existingResources[3]);
-    setUpProcesses();
+    //"copying" the arrays differenceResources_A, availableResources_E and the stillNeededResources_R Matrix to thread
+    for(int i = 0; i < 4; i++){
+        ProcessWorker::differenceResources_A[i] = differenceResources_A[i];
+        ProcessWorker::availableResources_E[i] = availableResources_E[i];
+    }
 
     //initializing threads and workers
     threadProcessA = new QThread;
-    workerA = new ProcessWorker(processes.at(0), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
+    workerA = new ProcessWorker(processes.at(0), selectedAlgorithmNumber);
     threadProcessB = new QThread;
-    workerB = new ProcessWorker(processes.at(1), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
+    workerB = new ProcessWorker(processes.at(1), selectedAlgorithmNumber);
     threadProcessC = new QThread;
-    workerC = new ProcessWorker(processes.at(2), availableResources_E, differenceResources_A, selectedAlgorithmNumber);
+    workerC = new ProcessWorker(processes.at(2), selectedAlgorithmNumber);
 
     //Set the Algorithm Label to the current one
     switch(selectedAlgorithmNumber){
@@ -86,6 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->CurrentAlgorithm_label->setText("Hold And Wait");
         break;
     case 1:
+        //for the preemption algorithm a worker class is needed, it will be started in a differen thread with some connections
         ui->CurrentAlgorithm_label->setText("No Preemption");
         threadPreemption = new QThread;
         preemptionWorker = new PreemptionWorker();
@@ -98,9 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
         connect(workerB, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
         connect(workerC, SIGNAL(startedAcquire(int, int, int)), preemptionWorker, SLOT(reservationStarted(int, int, int)));
         connect(workerC, SIGNAL(resourceReleased(int,int,int, bool)), preemptionWorker, SLOT(reservationFinished(int,int,int, bool)));
-
         connect(preemptionWorker, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
-
         threadPreemption->start();
         break;
     case 2:
@@ -157,9 +161,11 @@ void MainWindow::reserveResources(int process, int resource, int count)
     occupiedResources_P[resource] += count;
     differenceResources_A[resource] -= count;
 
+    //update logMessage for textField in main ui
     QString logMessage = QString("The Process %1 reserved %2 of the resource %3").arg(process).arg(count).arg(resource);
     ui->plainTextEdit_RequestInfo->appendPlainText(logMessage);
 
+    //update colour of resource background labels
     switch(resource){
     case 0:
         ui->Printer_background_label->setStyleSheet("QLabel {background-color: rgb(156, 183, 146); border-radius: 5px; }");
@@ -175,12 +181,13 @@ void MainWindow::reserveResources(int process, int resource, int count)
         break;
     }
 
+    //update occupations
     update_occupation_matrix();
     update_needed_matrix();
     update_resource_occupation();
     update_resource_occupation_list();
 
-
+    //append time taken for last resource to the timeList of the matching process
     switch (process) {
     case 0:
         if(processATimer->isValid()){
@@ -208,14 +215,16 @@ void MainWindow::reserveResources(int process, int resource, int count)
 
 void MainWindow::releaseResources(int process, int resource, int count, bool notProcessedYet)
 {
-    //adjusting the occupation matrixes and arrays
+    //if notProcessedYet the last resource was revoked, R needs to be set back to what it was before
     if(notProcessedYet){
         stillNeededResources_R[process][resource] += count;
     }
+    //adjusting the occupation matrixes and arrays
     assignedResources_C[process][resource] -= count;    
     occupiedResources_P[resource] -= count;
     differenceResources_A[resource] += count;
 
+    //update colour of resource background labels
     if(occupiedResources_P[resource] == 0){
         switch(resource){
         case 0:
@@ -233,6 +242,7 @@ void MainWindow::releaseResources(int process, int resource, int count, bool not
         }
     }
 
+    //update occupations
     update_occupation_matrix();
     update_needed_matrix();
     update_resource_occupation();
@@ -284,7 +294,6 @@ void MainWindow::update_resource_occupation()
 
 //update the list which shows the processes using the resource
 void MainWindow::update_resource_occupation_list()
-
 {
     QString ListPrinter = "", ListCd = "", ListPlotter = "", ListTapeDrive = "";
     for(int i = 0; i < system_resource_count; i++){
@@ -321,6 +330,7 @@ void MainWindow::update_resource_occupation_list()
         }
     }
 
+    //update ui
     ui->Printer_label_occupation_list->setText(ListPrinter);
     ui->Cd_label_occupation_list->setText(ListCd);
     ui->Plotter_label_occupation_list->setText(ListPlotter);
@@ -340,19 +350,22 @@ void MainWindow::updateStillNeededRessources_R()
 }
 
 
-QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD, int countPlotters, int countTapeDrive)
+void MainWindow::setUpResourcesAndProcesses(int countPrinters, int countCD, int countPlotters, int countTapeDrive)
 {
+    //set up resources
     QList<SystemResource> resources;
     resources.append(SystemResource("Printer", 0, countPrinters));
     resources.append(SystemResource("CD-ROM", 1, countCD));
     resources.append(SystemResource("Plotter", 2, countPlotters));
     resources.append(SystemResource("TapeDrive", 3, countTapeDrive));
 
+    //fill available resources and difference resources
     for(int i = 0; i < resources.count(); i++){
         availableResources_E[i] = resources.at(i).getCount();
         differenceResources_A[i] = resources.at(i).getCount();
     }
 
+    //update ui
     update_resource_occupation();
 
     //set up processes
@@ -360,20 +373,13 @@ QList<SystemResource> MainWindow::setUpResources(int countPrinters, int countCD,
     processes.append(SystemProcess("B", 1, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));
     processes.append(SystemProcess("C", 2, countPrinters + 1, countCD + 1, countPlotters + 1, countTapeDrive + 1));
 
+    //update ui
     updateStillNeededRessources_R();
-
-    return resources;
-}
-
-void MainWindow::setUpProcesses()
-{
-
-
-    //updateStillNeededRessources_R();
 }
 
 void MainWindow::processFinished(int processId)
 {
+    //add last time for resource to the lists
     switch (processId) {
     case 0:
         if(processATimer->isValid()){
@@ -394,7 +400,9 @@ void MainWindow::processFinished(int processId)
         }
         break;
     }
+
     finished++;
+    //if all processes finished delete workers and threads
     if(finished == 3){
         threadProcessA->deleteLater();
         threadProcessA->quit();
@@ -423,6 +431,7 @@ void MainWindow::processFinished(int processId)
         }
         timer->stop();
 
+        //start end dialog
         EndDialog endDialog;
         int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
         int maxResourceTimeA = std::accumulate(processATimeList->begin(), processATimeList->end(), 0.0) / processATimeList->count();
@@ -436,6 +445,7 @@ void MainWindow::processFinished(int processId)
 
 void MainWindow::on_button_stop_simulation_clicked()
 {
+    //terminate threads
     threadProcessA->deleteLater();
     threadProcessA->terminate();
     threadProcessA->wait();
@@ -464,6 +474,7 @@ void MainWindow::on_button_stop_simulation_clicked()
     }
     timer->stop();
 
+    //start end dialog
     EndDialog endDialog;
     int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
 
@@ -483,7 +494,6 @@ void MainWindow::on_button_stop_simulation_clicked()
     endDialog.getEndResults(ui->label_time->text(), totalNumResources, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
     endDialog.exec();
-
 }
 
 
@@ -518,6 +528,7 @@ void MainWindow::updateElapsedTime(const QTime &startTime)
     ui->label_time->setText(formattedTime);
 }
 
+//initialize resource count from the selected counts on start dialog
 void MainWindow::initResourceCount(int* resourcesCounts)
 {
     existingResources[0] = resourcesCounts[0];
@@ -526,6 +537,7 @@ void MainWindow::initResourceCount(int* resourcesCounts)
     existingResources[3] = resourcesCounts[3];
 }
 
+//initialize algorithm selected on start dialog
 void MainWindow::selectedAlgorithm(int algorithm){
     selectedAlgorithmNumber = algorithm;
 }
@@ -551,6 +563,7 @@ void MainWindow::on_button_restart_simulation_clicked()
 #endif
 }
 
+//setting shadows of all needed elements
 void MainWindow::setShadows()
 {
     QGraphicsDropShadowEffect* effectShadow1 = new QGraphicsDropShadowEffect();

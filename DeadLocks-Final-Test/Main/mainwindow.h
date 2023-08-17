@@ -37,14 +37,8 @@ public:
      * @param countCD The count of CD-ROMs
      * @param countPlotters The count of plotters
      * @param countTapeDrive The count of tape drives
-     * @return A QList of SystemResource objects representing the setup resources
      */
-    QList<SystemResource> setUpResources(int countPrinters, int countCD, int countPlotters, int countTapeDrive);
-
-    /**
-     * @brief Sets up the initial processes
-     */
-    void setUpProcesses();
+    void setUpResourcesAndProcesses(int countPrinters, int countCD, int countPlotters, int countTapeDrive);
 
 private slots:
     ///< UI update slots

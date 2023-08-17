@@ -2,6 +2,13 @@
 
 This Software is a C++ and Qt based university project which goal it is to visually understand the phenomenon of "deadlocks" in operating systems and to learn about algorithms for preventing them.
 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![HitCount](https://hits.dwyl.com/breathTake/Deadlocks-Algorithm-Simulation.svg)](https://hits.dwyl.com/breathTake/Deadlocks-Algorithm-Simulation)
+![License](https://badgen.net/github/license/micromatch/micromatch)
+![Contributors](https://badgen.net/github/contributors/micromatch/micromatch)
+
+
+
 ## Description
 All the processes in a system require some resources such as central processing unit(CPU), file storage, input/output devices, etc to execute it. 
 

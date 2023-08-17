@@ -33,6 +33,10 @@ public:
      */
     QList<SystemResource> avoidance_algorithm(QList<SystemResource> neededResources);
 
+    void aquireConditionMet(int processId) override;
+    bool checkAquireCondition(int processId) override;
+
+
 public:
     static bool slotPrinterLocked;
     static bool slotCDLocked;

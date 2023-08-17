@@ -1,5 +1,7 @@
 #include "nopreemption.h"
 
+#include <Objects/ProcessWorker.h>
+
 bool NoPreemption::slotPrinterLocked = false;
 bool NoPreemption::slotCDLocked = false;
 bool NoPreemption::slotPlotterLocked = false;
@@ -49,33 +51,28 @@ QList<int> NoPreemption::findNextResource(SystemProcess process, int stillNeeded
         }
     }
 
+    //if the slots are locked the resource can't be reserved
     switch (nextResource) {
     case 0:
         if(slotPrinterLocked){
             nextResource = -2;
-            qDebug() << "printer currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 1:
         if(slotCDLocked){
             nextResource = -2;
-            qDebug() << "cd currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 2:
         if(slotPlotterLocked){
             nextResource = -2;
-            qDebug() << "plotter currently occupied, process" << process.getName() << "not reserved";
         }
         break;
     case 3:
         if(slotTapeDriveLocked){
             nextResource = -2;
-            qDebug() << "tapedrive currently occupied, process" << process.getName() << "not reserved";
         }
         break;
-    default:
-        qDebug() << "all unlocked, next resource was" << nextResource;
     }
 
     result.append(nextResource);
@@ -91,4 +88,20 @@ QList<SystemResource> NoPreemption::avoidance_algorithm(QList<SystemResource> ne
     QList<SystemResource> result;
 
     return result;
+}
+
+void NoPreemption::aquireConditionMet(int processId){
+    //restets the lastRevokedProcess bools
+    if(processId == 0){
+        NoPreemption::lastRevokedProcessA = false;
+    } else if(processId == 1){
+        NoPreemption::lastRevokedProcessB = false;
+    } else if(processId == 2){
+        NoPreemption::lastRevokedProcessC = false;
+    }
+}
+
+bool NoPreemption::checkAquireCondition(int processId){
+    //checks if this process was rejected in last round
+    return (NoPreemption::lastRevokedProcessA && processId == 0) || (NoPreemption::lastRevokedProcessB && processId == 1) || (NoPreemption::lastRevokedProcessC && processId == 2);
 }

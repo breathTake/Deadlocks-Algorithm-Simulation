@@ -95,10 +95,6 @@ MainWindow::MainWindow(QWidget *parent)
 
         connect(preemptionWorker, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
 
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerA, SLOT(gotRevoked(int, int, int)));
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerB, SLOT(gotRevoked(int, int, int)));
-        connect(preemptionWorker, SIGNAL(revokedProcess(int, int, int)), workerC, SLOT(gotRevoked(int, int, int)));
-
         threadPreemption->start();
         break;
     case 2:
@@ -142,7 +138,6 @@ MainWindow::MainWindow(QWidget *parent)
     threadProcessC->start();
 
     workerA->setUpOccupations(assignedResources_C, stillNeededResources_R);
-
 }
 
 MainWindow::~MainWindow()

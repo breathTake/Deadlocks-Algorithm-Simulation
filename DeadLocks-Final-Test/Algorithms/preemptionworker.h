@@ -41,7 +41,6 @@ public slots:
 
 signals:
     void resourceReleased(int processID, int resource, int count, bool notProcessedYet);
-    void revokedProcess(int process, int resourceId, int count);
 
 private:
     QTimer *timerPrinter, *timerCD, *timerPlotter, *timerTapeDrive;

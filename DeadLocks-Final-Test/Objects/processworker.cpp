@@ -175,7 +175,7 @@ void ProcessWorker::requestResource()
             lastIndexResourceList = indexResourceList;
         }
     }
-    emit finishedResourceProcessing(lastResource);
+    emit finishedResourceProcessing(process.getProcessId());
 }
 
 //updating the neededResources list by changing the count of the resource at nextResource

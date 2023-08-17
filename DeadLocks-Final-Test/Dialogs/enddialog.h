@@ -36,7 +36,7 @@ private slots:
 
 public slots:
 
-    void getEndResults(QString textFromRuntime, int numOfResources);
+    void getEndResults(QString textFromRuntime, int numOfResources, int maxResourceTimeA, int maxResourceTimeB, int maxResourceTimeC);
 
 private:
     Ui::EndDialog *ui;

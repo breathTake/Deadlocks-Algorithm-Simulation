@@ -20,6 +20,12 @@ int selectedAlgorithmNumber = -1;
 int finished = 0;
 
 QTimer *timer;
+QElapsedTimer *processATimer = new QElapsedTimer();
+QList<int> *processATimeList = new QList<int>();
+QElapsedTimer *processBTimer = new QElapsedTimer();
+QList<int> *processBTimeList = new QList<int>();
+QElapsedTimer *processCTimer = new QElapsedTimer();
+QList<int> *processCTimeList = new QList<int>();
 
 //The Arrays for occupation etc.
 int assignedResources_C[3][4];
@@ -108,26 +114,24 @@ MainWindow::MainWindow(QWidget *parent)
         break;
     }
 
-    //connect(programTimer, SIGNAL(timeout()), this, SLOT(updateTimeRunning()));
-
     //connnecting workerAs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerA, SLOT(requestResource()));
     connect(workerA, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerA, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
-    connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
+    connect(workerA, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished(int)));
 
 
     //connnecting workerBs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerB, SLOT(requestResource()));
     connect(workerB, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerB, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
-    connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
+    connect(workerB, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished(int)));
 
     //connnecting workerCs signals and slots
     connect(ui->button_start_simulation, SIGNAL(clicked()), workerC, SLOT(requestResource()));
     connect(workerC, SIGNAL(resourceReserved(int,int,int)), this, SLOT(reserveResources(int,int,int)));
     connect(workerC, SIGNAL(resourceReleased(int,int,int, bool)), this, SLOT(releaseResources(int,int,int, bool)));
-    connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished()));
+    connect(workerC, SIGNAL(finishedResourceProcessing(int)),this, SLOT(processFinished(int)));
 
     //moving and starting threads
     workerA->moveToThread(threadProcessA);
@@ -171,13 +175,35 @@ void MainWindow::reserveResources(int process, int resource, int count)
         break;
     }
 
-
-
     update_occupation_matrix();
     update_needed_matrix();
     update_resource_occupation();
     update_resource_occupation_list();
-    //bankiersAlgorithm(stillNeededResources_R, assignedResources_C, differenceResources_A, availableResources_E);
+
+
+    switch (process) {
+    case 0:
+        if(processATimer->isValid()){
+            qDebug() << "process A" << "resource time: " << processATimer->elapsed();
+            processATimeList->append(processATimer->elapsed());
+        }
+        processATimer->restart();
+        break;
+    case 1:
+        if(processBTimer->isValid()){
+            qDebug() << "process B" << "resource time: " << processBTimer->elapsed();
+            processBTimeList->append(processBTimer->elapsed());
+        }
+        processBTimer->restart();
+        break;
+    case 2:
+        if(processCTimer->isValid()){
+            qDebug() << "process C" << "resource time: " << processCTimer->elapsed();
+            processCTimeList->append(processCTimer->elapsed());
+        }
+        processCTimer->restart();
+        break;
+    }
 }
 
 void MainWindow::releaseResources(int process, int resource, int count, bool notProcessedYet)
@@ -346,8 +372,28 @@ void MainWindow::setUpProcesses()
     //updateStillNeededRessources_R();
 }
 
-void MainWindow::processFinished()
+void MainWindow::processFinished(int processId)
 {
+    switch (processId) {
+    case 0:
+        if(processATimer->isValid()){
+            qDebug() << "process A" << "resource time: " << processATimer->elapsed() * 1000;
+            processATimeList->append(processATimer->elapsed());
+        }
+        break;
+    case 1:
+        if(processBTimer->isValid()){
+            qDebug() << "process B" << "resource time: " << processBTimer->elapsed() * 1000;
+            processBTimeList->append(processBTimer->elapsed());
+        }
+        break;
+    case 2:
+        if(processCTimer->isValid()){
+            qDebug() << "process C" << "resource time: " << processCTimer->elapsed() * 1000;
+            processCTimeList->append(processCTimer->elapsed());
+        }
+        break;
+    }
     finished++;
     if(finished == 3){
         threadProcessA->deleteLater();
@@ -379,8 +425,10 @@ void MainWindow::processFinished()
 
         EndDialog endDialog;
         int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
-
-        endDialog.getEndResults(ui->label_time->text(), totalNumResources);
+        int maxResourceTimeA = std::accumulate(processATimeList->begin(), processATimeList->end(), 0.0) / processATimeList->count();
+        int maxResourceTimeB = std::accumulate(processBTimeList->begin(), processBTimeList->end(), 0.0) / processBTimeList->count();
+        int maxResourceTimeC = std::accumulate(processCTimeList->begin(), processCTimeList->end(), 0.0) / processCTimeList->count();
+        endDialog.getEndResults(ui->label_time->text(), totalNumResources, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
         endDialog.setWindowTitle("Deadlock Algorithm Simulation");
         endDialog.exec();
     }
@@ -388,8 +436,6 @@ void MainWindow::processFinished()
 
 void MainWindow::on_button_stop_simulation_clicked()
 {
-
-
     threadProcessA->deleteLater();
     threadProcessA->terminate();
     threadProcessA->wait();
@@ -421,7 +467,20 @@ void MainWindow::on_button_stop_simulation_clicked()
     EndDialog endDialog;
     int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
 
-    endDialog.getEndResults(ui->label_time->text(), totalNumResources);
+    int maxResourceTimeA = 0;
+    int maxResourceTimeB = 0;
+    int maxResourceTimeC = 0;
+    if(!processATimeList->isEmpty()){
+        maxResourceTimeA = std::accumulate(processATimeList->begin(), processATimeList->end(), 0.0) / processATimeList->count();
+    }
+    if(!processBTimeList->isEmpty()){
+        maxResourceTimeA = std::accumulate(processBTimeList->begin(), processBTimeList->end(), 0.0) / processBTimeList->count();
+    }
+    if(!processCTimeList->isEmpty()){
+        maxResourceTimeA = std::accumulate(processCTimeList->begin(), processCTimeList->end(), 0.0) / processCTimeList->count();
+    }
+
+    endDialog.getEndResults(ui->label_time->text(), totalNumResources, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
     endDialog.exec();
 

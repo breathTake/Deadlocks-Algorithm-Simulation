@@ -97,7 +97,7 @@ signals:
      * @brief finishedResourceProcessing indicates that a process has released all resources it requires and is finished
      * @param information unused
      */
-    void finishedResourceProcessing(int information);
+    void finishedResourceProcessing(int processID);
 
 
 public slots:

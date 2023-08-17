@@ -56,10 +56,12 @@ void EndDialog::on_restart_pushButton_clicked()
 #endif
 }
 
-void EndDialog::getEndResults(QString textFromRuntime, int numOfResources)
+void EndDialog::getEndResults(QString textFromRuntime, int numOfResources, int maxResourceTimeA, int maxResourceTimeB, int maxResourceTimeC)
 {
     ui->end_runtime_label->setText(textFromRuntime);
     ui->end_resources_label->setText(QString::number(numOfResources));
-
+    ui->avg_A_value_label->setText(QString::number(maxResourceTimeA / 1000) + "s");
+    ui->avg_B_value_label->setText(QString::number(maxResourceTimeB / 1000) + "s");
+    ui->avg_C_value_label->setText(QString::number(maxResourceTimeC / 1000) + "s");
 }
 

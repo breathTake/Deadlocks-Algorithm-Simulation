@@ -1,1 +1,14 @@
 Bankiers Algorithm:
+
+This algorithm works by checking if the current state is save or not.
+If the state is save the process can reserve the resource, otherwise the request will be rejected.
+
+To check this there are three steps:
+
+1. In the requirements matrix search for a row with values smaller or equal to array A, the currently free resources. If ther is none the state isn't save and the resources won't be reserved.
+
+2. If a matching row was found it will be marked as finished and the resource counts are added to A, the currently free resources.
+
+3. Repeat the steps 1 and 2 until all processes are marked as finished. If all were smaller or equal the current state is save, otherwise it's a possible deadlock and won't be reserved.
+
+If the algorithm marked the current state as save the processWorker will aquire the resources needed by the requesting process.

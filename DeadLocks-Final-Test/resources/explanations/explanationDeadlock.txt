@@ -1,1 +1,61 @@
 Deadlocks:
+
+Step 1: Initialization
+
+Processes are allocated resources at the beginning of their execution.
+Each process can request additional resources during its execution.
+
+Step 2: Resource Allocation
+
+Processes request resources as needed for their execution.
+Resources can be of different types, and each process needs a certain number of instances of each resource type to complete its execution.
+
+Step 3: Resource Hold
+
+When a process successfully acquires a resource, it enters the "hold and wait" state.
+The process holds the acquired resource(s) while it continues its execution.
+
+Step 4: Request for Additional Resources
+
+If a process requires additional resources during its execution and they are not available, the process enters the "waiting" state.
+The process is now waiting for the requested resources to be released by other processes.
+
+Step 5: Resource Request and Waiting Chain Formation
+
+A situation arises where each process in a set is holding a resource that another process in the same set is waiting for.
+This forms a circular chain of waiting, where each process waits for a resource held by the next process in the chain.
+
+Step 6: Resource Deadlock
+
+Once the circular chain of waiting is formed, no process in the chain can proceed.
+Each process is waiting for a resource that will never be released since the process holding that resource is waiting for another resource in the chain.
+
+Step 7: System Stagnation
+
+The system is now in a state of deadlock, where no process can make progress.
+Processes are effectively stuck, and no new processes can be executed because the required resources are unavailable due to the deadlock.
+
+Step 8: Necessary Conditions for Deadlocks
+
+Deadlocks occur due to the simultaneous presence of four necessary conditions: mutual exclusion, hold and wait, no preemption, and circular wait.
+
+Step 9: Detecting and Handling Deadlocks
+
+Systems can implement various deadlock detection and recovery mechanisms.
+Deadlock detection involves periodically checking the resource allocation graph for circular wait conditions.
+If a deadlock is detected, recovery strategies can be employed, such as process termination or resource preemption.
+
+Step 10: Prevention and Avoidance
+
+To prevent deadlocks, one or more of the necessary conditions must be eliminated.
+Avoidance involves ensuring that the system never enters an unsafe state where deadlock is possible.
+Various algorithms, like the Banker's Algorithm, can be used to ensure that resource allocations do not lead to deadlocks.
+
+Step 11: Resource Release and Resolution
+
+Deadlocks can be resolved by releasing resources from one or more processes.
+This breaks the circular wait condition and allows the remaining processes to continue their execution.
+
+Step 12: System Recovery
+
+After deadlock resolution, the system recovers from the deadlock state and can continue executing processes.

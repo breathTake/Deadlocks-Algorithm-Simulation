@@ -1,2 +1,0 @@
-              - name: Checkout
-                uses: actions/checkout@v3.6.0

@@ -1,0 +1,183 @@
+\doxysection{Preemption\+Worker Class Reference}
+\hypertarget{class_preemption_worker}{}\label{class_preemption_worker}\index{PreemptionWorker@{PreemptionWorker}}
+
+
+The \doxylink{class_preemption_worker}{Preemption\+Worker} class is for the \doxylink{class_no_preemption}{No\+Preemption} algorithm to have a seperate Thread which can take resources out of other threads.  
+
+
+
+
+{\ttfamily \#include $<$preemptionworker.\+h$>$}
+
+
+
+Inheritance diagram for Preemption\+Worker\+:
+% FIG 0
+
+
+Collaboration diagram for Preemption\+Worker\+:
+% FIG 1
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_preemption_worker_a713461f5c8bb27abda329034aab25ac2}{reservation\+Started}} (int process\+Id, int next\+Resource, int next\+Count)
+\begin{DoxyCompactList}\small\item\em reservation\+Started Slot when the reservation starts \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_preemption_worker_a2e4367bf902925ee7d0c1fcaebfe2cc7}{reservation\+Finished}} (int process\+Id, int next\+Resource, int next\+Count, bool not\+Processed\+Yet)
+\begin{DoxyCompactList}\small\item\em reservation\+Finished Slot when the reservation is finished \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_preemption_worker_a527811f3a9b80bef312b9592236326d8}{init\+Timers}} ()
+\item 
+void \mbox{\hyperlink{class_preemption_worker_accb97910b5ec71a32b0fb86e8f2413bb}{revoke\+Printer}} ()
+\begin{DoxyCompactList}\small\item\em revoke\+Printer When the Printer surpassed the timeslot it will be revoked \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_preemption_worker_a1bdb6797b7064daf730e31e1b75959f6}{revoke\+CD}} ()
+\item 
+void \mbox{\hyperlink{class_preemption_worker_ab34228631db1b9a220095301b06186c5}{revoke\+Plotter}} ()
+\item 
+void \mbox{\hyperlink{class_preemption_worker_aff423ca76ea629c1f82e73fc4d23bac0}{revoke\+Tape\+Drive}} ()
+\item 
+bool \mbox{\hyperlink{class_preemption_worker_acdade03aefd96fe57f5ca4aee79e46f7}{get\+Timer\+Printer\+Status}} ()
+\item 
+bool \mbox{\hyperlink{class_preemption_worker_a5bdeb6ecb11fe79377d6a5c7b992abd3}{get\+Timer\+CDStatus}} ()
+\item 
+bool \mbox{\hyperlink{class_preemption_worker_a0eacbc07105da7abc288a466040cf6ed}{get\+Timer\+Plotter\+Status}} ()
+\item 
+bool \mbox{\hyperlink{class_preemption_worker_a149bf50a7577c08d1bc81b00309a7294}{get\+Timer\+Tape\+Drive\+Status}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_preemption_worker_ae72b33777f96ee7ffd690e5fe259ffb4}{resource\+Released}} (int process\+ID, int resource, int count, bool not\+Processed\+Yet)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_preemption_worker_a8e33c4a443491077419cfedcdfd9b786}{Preemption\+Worker}} (QObject \texorpdfstring{$\ast$}{*}parent=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{class_preemption_worker}{Preemption\+Worker} class is for the \doxylink{class_no_preemption}{No\+Preemption} algorithm to have a seperate Thread which can take resources out of other threads. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_preemption_worker_a8e33c4a443491077419cfedcdfd9b786}\label{class_preemption_worker_a8e33c4a443491077419cfedcdfd9b786} 
+\index{PreemptionWorker@{PreemptionWorker}!PreemptionWorker@{PreemptionWorker}}
+\index{PreemptionWorker@{PreemptionWorker}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{PreemptionWorker()}{PreemptionWorker()}}
+{\footnotesize\ttfamily Preemption\+Worker\+::\+Preemption\+Worker (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_preemption_worker_a5bdeb6ecb11fe79377d6a5c7b992abd3}\label{class_preemption_worker_a5bdeb6ecb11fe79377d6a5c7b992abd3} 
+\index{PreemptionWorker@{PreemptionWorker}!getTimerCDStatus@{getTimerCDStatus}}
+\index{getTimerCDStatus@{getTimerCDStatus}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{getTimerCDStatus}{getTimerCDStatus}}
+{\footnotesize\ttfamily bool Preemption\+Worker\+::get\+Timer\+CDStatus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_a0eacbc07105da7abc288a466040cf6ed}\label{class_preemption_worker_a0eacbc07105da7abc288a466040cf6ed} 
+\index{PreemptionWorker@{PreemptionWorker}!getTimerPlotterStatus@{getTimerPlotterStatus}}
+\index{getTimerPlotterStatus@{getTimerPlotterStatus}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{getTimerPlotterStatus}{getTimerPlotterStatus}}
+{\footnotesize\ttfamily bool Preemption\+Worker\+::get\+Timer\+Plotter\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_acdade03aefd96fe57f5ca4aee79e46f7}\label{class_preemption_worker_acdade03aefd96fe57f5ca4aee79e46f7} 
+\index{PreemptionWorker@{PreemptionWorker}!getTimerPrinterStatus@{getTimerPrinterStatus}}
+\index{getTimerPrinterStatus@{getTimerPrinterStatus}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{getTimerPrinterStatus}{getTimerPrinterStatus}}
+{\footnotesize\ttfamily bool Preemption\+Worker\+::get\+Timer\+Printer\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_a149bf50a7577c08d1bc81b00309a7294}\label{class_preemption_worker_a149bf50a7577c08d1bc81b00309a7294} 
+\index{PreemptionWorker@{PreemptionWorker}!getTimerTapeDriveStatus@{getTimerTapeDriveStatus}}
+\index{getTimerTapeDriveStatus@{getTimerTapeDriveStatus}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{getTimerTapeDriveStatus}{getTimerTapeDriveStatus}}
+{\footnotesize\ttfamily bool Preemption\+Worker\+::get\+Timer\+Tape\+Drive\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_a527811f3a9b80bef312b9592236326d8}\label{class_preemption_worker_a527811f3a9b80bef312b9592236326d8} 
+\index{PreemptionWorker@{PreemptionWorker}!initTimers@{initTimers}}
+\index{initTimers@{initTimers}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{initTimers}{initTimers}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::init\+Timers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_a2e4367bf902925ee7d0c1fcaebfe2cc7}\label{class_preemption_worker_a2e4367bf902925ee7d0c1fcaebfe2cc7} 
+\index{PreemptionWorker@{PreemptionWorker}!reservationFinished@{reservationFinished}}
+\index{reservationFinished@{reservationFinished}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{reservationFinished}{reservationFinished}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::reservation\+Finished (\begin{DoxyParamCaption}\item[{int}]{process\+Id,  }\item[{int}]{next\+Resource,  }\item[{int}]{next\+Count,  }\item[{bool}]{not\+Processed\+Yet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+reservation\+Finished Slot when the reservation is finished 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process\+Id} & ID from the called process \\
+\hline
+{\em next\+Resource} & is the next needed resource \\
+\hline
+{\em next\+Count} & count of the next needed resource \\
+\hline
+{\em not\+Processed\+Yet} & true if some resources are not proccessed yet \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_preemption_worker_a713461f5c8bb27abda329034aab25ac2}\label{class_preemption_worker_a713461f5c8bb27abda329034aab25ac2} 
+\index{PreemptionWorker@{PreemptionWorker}!reservationStarted@{reservationStarted}}
+\index{reservationStarted@{reservationStarted}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{reservationStarted}{reservationStarted}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::reservation\+Started (\begin{DoxyParamCaption}\item[{int}]{process\+Id,  }\item[{int}]{next\+Resource,  }\item[{int}]{next\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+reservation\+Started Slot when the reservation starts 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process\+Id} & ID from the called process \\
+\hline
+{\em next\+Resource} & is the next needed resource \\
+\hline
+{\em next\+Count} & count of the next needed resource \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_preemption_worker_ae72b33777f96ee7ffd690e5fe259ffb4}\label{class_preemption_worker_ae72b33777f96ee7ffd690e5fe259ffb4} 
+\index{PreemptionWorker@{PreemptionWorker}!resourceReleased@{resourceReleased}}
+\index{resourceReleased@{resourceReleased}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{resourceReleased}{resourceReleased}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::resource\+Released (\begin{DoxyParamCaption}\item[{int}]{process\+ID,  }\item[{int}]{resource,  }\item[{int}]{count,  }\item[{bool}]{not\+Processed\+Yet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_preemption_worker_a1bdb6797b7064daf730e31e1b75959f6}\label{class_preemption_worker_a1bdb6797b7064daf730e31e1b75959f6} 
+\index{PreemptionWorker@{PreemptionWorker}!revokeCD@{revokeCD}}
+\index{revokeCD@{revokeCD}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{revokeCD}{revokeCD}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::revoke\+CD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_ab34228631db1b9a220095301b06186c5}\label{class_preemption_worker_ab34228631db1b9a220095301b06186c5} 
+\index{PreemptionWorker@{PreemptionWorker}!revokePlotter@{revokePlotter}}
+\index{revokePlotter@{revokePlotter}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{revokePlotter}{revokePlotter}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::revoke\+Plotter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\Hypertarget{class_preemption_worker_accb97910b5ec71a32b0fb86e8f2413bb}\label{class_preemption_worker_accb97910b5ec71a32b0fb86e8f2413bb} 
+\index{PreemptionWorker@{PreemptionWorker}!revokePrinter@{revokePrinter}}
+\index{revokePrinter@{revokePrinter}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{revokePrinter}{revokePrinter}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::revoke\+Printer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+revoke\+Printer When the Printer surpassed the timeslot it will be revoked 
+
+revoke\+CD When the CD surpassed the timeslot it will be revoked
+
+revoke\+Plotter When the Plotter surpassed the timeslot it will be revoked
+
+revoke\+Tape\+Drive When the Tape\+Drive surpassed the timeslot it will be revoked \Hypertarget{class_preemption_worker_aff423ca76ea629c1f82e73fc4d23bac0}\label{class_preemption_worker_aff423ca76ea629c1f82e73fc4d23bac0} 
+\index{PreemptionWorker@{PreemptionWorker}!revokeTapeDrive@{revokeTapeDrive}}
+\index{revokeTapeDrive@{revokeTapeDrive}!PreemptionWorker@{PreemptionWorker}}
+\doxysubsubsection{\texorpdfstring{revokeTapeDrive}{revokeTapeDrive}}
+{\footnotesize\ttfamily void Preemption\+Worker\+::revoke\+Tape\+Drive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\mbox{\hyperlink{preemptionworker_8h}{preemptionworker.\+h}}\item 
+Algorithms/\mbox{\hyperlink{preemptionworker_8cpp}{preemptionworker.\+cpp}}\end{DoxyCompactItemize}

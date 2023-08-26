@@ -1,0 +1,94 @@
+\doxysection{systemprocess.\+h}
+\hypertarget{systemprocess_8h_source}{}\label{systemprocess_8h_source}\index{Objects/systemprocess.h@{Objects/systemprocess.h}}
+\mbox{\hyperlink{systemprocess_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SYSTEMPROCESS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SYSTEMPROCESS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{systemresource_8h}{Objects/systemresource.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QtGlobal>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QRandomGenerator>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_system_process}{SystemProcess}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ QString\ name;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ processId;}
+\DoxyCodeLine{00027\ \ \ \ \ QList<SystemResource>\ neededResources;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ revokedResourceId;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_system_process_ad49e6cb124de7f12bfe2656791f48755}{SystemProcess}}()\{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_system_process_ad49e6cb124de7f12bfe2656791f48755}{SystemProcess}}(QString\ name,\textcolor{keywordtype}{int}\ processId);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_system_process_ad49e6cb124de7f12bfe2656791f48755}{SystemProcess}}(QString\ name,\textcolor{keywordtype}{int}\ processId,\ \textcolor{keywordtype}{int}\ maxPrinters,\ \textcolor{keywordtype}{int}\ maxCDs,\ \textcolor{keywordtype}{int}\ maxPlotters,\ \textcolor{keywordtype}{int}\ maxTapeDrives);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_system_process_aab81a500d765f3e59d07417aebb08477}{getProcessId}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ processId;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_aeb69e844df5412fe4886f8e0770ea17b}{setProcessId}}(\textcolor{keywordtype}{int}\ processId)\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ this-\/>processId\ =\ processId;}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ QString\ \mbox{\hyperlink{class_system_process_a51ab0fd881830ba8e5bfd1a3ea802637}{getName}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ name;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_ae888b9a9d082ab1eb9a4b3c4c2575e0a}{setName}}(QString\ name)\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ this-\/>name\ =\ name;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_system_process_aa45ea04f4052c027c49f8bcdf85992d1}{getRevokedResourceId}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ revokedResourceId;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_a13a00fdf7326a4723fc710e55e0b1669}{setRevokedResourceId}}(\textcolor{keywordtype}{int}\ revokedResourceId)\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ this-\/>revokedResourceId\ =\ revokedResourceId;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ QList<SystemResource>\ \mbox{\hyperlink{class_system_process_adc1d28e9feff87bf0c90d0acb00d5389}{getNeededResources}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ neededResources;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_a3a7007ebd5c2d3f51161be78948f1ae6}{setNeededResources}}(QList<SystemResource>\ neededResources)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ SystemProcess::neededResources\ =\ neededResources;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_a51b9e6c134a7218480965d4022dc54dc}{moveNeededResourceToBack}}(\textcolor{keywordtype}{int}\ index)\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ neededResources.swapItemsAt(index,\ neededResources.count()-\/1);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_aa299c7f574771ef4447c361ba676e4d7}{shuffleNeededResources}}()\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ neededResources.size();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ QRandomGenerator\ rng\ =\ QRandomGenerator::securelySeeded();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ n\ -\/\ 1;\ i\ >\ 0;\ -\/-\/i)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ rng.bounded(i\ +\ 1);\ \textcolor{comment}{//\ Generate\ a\ random\ index\ in\ [0,\ i]}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ std::swap(neededResources[i],\ neededResources[j]);\ \textcolor{comment}{//\ Swap\ the\ elements\ at\ indices\ i\ and\ j}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_process_a2fb920cf285abe3c4dba8addb12f55a0}{printNeededResources}}()\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ QDebug\ dbg(QtDebugMsg);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ dbg\ <<\ \textcolor{stringliteral}{"{}Process\ "{}}\ <<\ name\ <<\ \textcolor{stringliteral}{"{}:"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ neededResources.size();\ i++)\{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ dbg\ <<\ neededResources.at(i).getName()\ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ neededResources.at(i).getCount()\ <<\ \textcolor{stringliteral}{"{}),\ "{}};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSTEMPROCESS\_H}}
+
+\end{DoxyCode}

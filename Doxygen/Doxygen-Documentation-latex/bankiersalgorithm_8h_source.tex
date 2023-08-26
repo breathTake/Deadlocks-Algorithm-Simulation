@@ -1,0 +1,26 @@
+\doxysection{bankiersalgorithm.\+h}
+\hypertarget{bankiersalgorithm_8h_source}{}\label{bankiersalgorithm_8h_source}\mbox{\hyperlink{bankiersalgorithm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BANKIERSALGORITHM\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BANKIERSALGORITHM\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemprocess_8h}{Objects/systemprocess.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{deadlock__avoidance__api_8h}{Algorithms/deadlock\_avoidance\_api.h}}>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_bankiers_algorithm}{BankiersAlgorithm}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classdeadlock__avoidance__api}{deadlock\_avoidance\_api}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc}{BankiersAlgorithm}}();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00026\ \ \ \ \ QList<int>\ \mbox{\hyperlink{class_bankiers_algorithm_a792db0b05662572b7eb98319f406d005}{findNextResource}}(\mbox{\hyperlink{class_system_process}{SystemProcess}}\ process,\ \textcolor{keywordtype}{int}\ stillNeededResources\_RCopy[3][4],\ \textcolor{keywordtype}{int}\ assignedResources\_CCopy[3][4],\ \textcolor{keywordtype}{int}\ differenceResources\_ACopy[4],\ \textcolor{keywordtype}{int}\ availableResources\_ECopy[4]);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_bankiers_algorithm_a42bcd39e8bd821e5e7ba25c2adc115be}{avoidance\_algorithm}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{mainwindow_8cpp_a9d670bce8ae762ff6cf6d20d75076cc7}{stillNeededResources\_R}}[3][4],\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mainwindow_8cpp_a96e78b9bbacdc6493fc8bc3c3ac644ca}{assignedResources\_C}}[3][4],\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mainwindow_8cpp_a9f9926402aeb4035e8c6753a6e6b021e}{differenceResources\_A}}[4],\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mainwindow_8cpp_a2addbefd638414750803e95f7f1e0c07}{availableResources\_E}}[4]);}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BANKIERSALGORITHM\_H}}
+
+\end{DoxyCode}

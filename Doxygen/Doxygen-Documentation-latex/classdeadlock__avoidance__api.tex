@@ -1,0 +1,105 @@
+\doxysection{deadlock\+\_\+avoidance\+\_\+api Class Reference}
+\hypertarget{classdeadlock__avoidance__api}{}\label{classdeadlock__avoidance__api}\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+
+
+The virtual class represents an API the algorithms use.  
+
+
+
+
+{\ttfamily \#include $<$deadlock\+\_\+avoidance\+\_\+api.\+h$>$}
+
+
+
+Inheritance diagram for deadlock\+\_\+avoidance\+\_\+api\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdeadlock__avoidance__api_a4a9902146a65592e74d5cfe7c0278f5b}{deadlock\+\_\+avoidance\+\_\+api}} ()
+\item 
+virtual \mbox{\hyperlink{classdeadlock__avoidance__api_a31c0ed3d01221988a9317f1c78d28715}{\texorpdfstring{$\sim$}{\string~}deadlock\+\_\+avoidance\+\_\+api}} ()=0
+\item 
+virtual QList$<$ int $>$ \mbox{\hyperlink{classdeadlock__avoidance__api_a640c3f406ac3e6fb0b96829d88678151}{find\+Next\+Resource}} (\mbox{\hyperlink{class_system_process}{System\+Process}} process)
+\begin{DoxyCompactList}\small\item\em find\+Next\+Resource virtual function that will find the next resource, \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classdeadlock__avoidance__api_a2c9ee424a4448b3a3651142562b0aabb}{aquire\+Condition\+Met}} (int process\+Id)
+\item 
+virtual bool \mbox{\hyperlink{classdeadlock__avoidance__api_ab94377fe69a2ccdf6b0c70bb17377b32}{check\+Aquire\+Condition}} (int process\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The virtual class represents an API the algorithms use. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdeadlock__avoidance__api_a4a9902146a65592e74d5cfe7c0278f5b}\label{classdeadlock__avoidance__api_a4a9902146a65592e74d5cfe7c0278f5b} 
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\doxysubsubsection{\texorpdfstring{deadlock\_avoidance\_api()}{deadlock\_avoidance\_api()}}
+{\footnotesize\ttfamily deadlock\+\_\+avoidance\+\_\+api\+::deadlock\+\_\+avoidance\+\_\+api (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classdeadlock__avoidance__api_a31c0ed3d01221988a9317f1c78d28715}\label{classdeadlock__avoidance__api_a31c0ed3d01221988a9317f1c78d28715} 
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!````~deadlock\_avoidance\_api@{\texorpdfstring{$\sim$}{\string~}deadlock\_avoidance\_api}}
+\index{````~deadlock\_avoidance\_api@{\texorpdfstring{$\sim$}{\string~}deadlock\_avoidance\_api}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}deadlock\_avoidance\_api()}{\string~deadlock\_avoidance\_api()}}
+{\footnotesize\ttfamily deadlock\+\_\+avoidance\+\_\+api\+::\texorpdfstring{$\sim$}{\string~}deadlock\+\_\+avoidance\+\_\+api (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdeadlock__avoidance__api_a2c9ee424a4448b3a3651142562b0aabb}\label{classdeadlock__avoidance__api_a2c9ee424a4448b3a3651142562b0aabb} 
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!aquireConditionMet@{aquireConditionMet}}
+\index{aquireConditionMet@{aquireConditionMet}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\doxysubsubsection{\texorpdfstring{aquireConditionMet()}{aquireConditionMet()}}
+{\footnotesize\ttfamily virtual void deadlock\+\_\+avoidance\+\_\+api\+::aquire\+Condition\+Met (\begin{DoxyParamCaption}\item[{int}]{process\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_no_preemption_aaac23b5067cc6b7c250c0ce2acb9ff1f}{No\+Preemption}}.
+
+\Hypertarget{classdeadlock__avoidance__api_ab94377fe69a2ccdf6b0c70bb17377b32}\label{classdeadlock__avoidance__api_ab94377fe69a2ccdf6b0c70bb17377b32} 
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!checkAquireCondition@{checkAquireCondition}}
+\index{checkAquireCondition@{checkAquireCondition}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\doxysubsubsection{\texorpdfstring{checkAquireCondition()}{checkAquireCondition()}}
+{\footnotesize\ttfamily virtual bool deadlock\+\_\+avoidance\+\_\+api\+::check\+Aquire\+Condition (\begin{DoxyParamCaption}\item[{int}]{process\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_no_preemption_a013726842047da2a7ebd5eaeb528822e}{No\+Preemption}}.
+
+\Hypertarget{classdeadlock__avoidance__api_a640c3f406ac3e6fb0b96829d88678151}\label{classdeadlock__avoidance__api_a640c3f406ac3e6fb0b96829d88678151} 
+\index{deadlock\_avoidance\_api@{deadlock\_avoidance\_api}!findNextResource@{findNextResource}}
+\index{findNextResource@{findNextResource}!deadlock\_avoidance\_api@{deadlock\_avoidance\_api}}
+\doxysubsubsection{\texorpdfstring{findNextResource()}{findNextResource()}}
+{\footnotesize\ttfamily QList$<$ int $>$ deadlock\+\_\+avoidance\+\_\+api\+::find\+Next\+Resource (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_system_process}{System\+Process}}}]{process }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+find\+Next\+Resource virtual function that will find the next resource, 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process} & is the process of the thread \\
+\hline
+{\em available\+Resources\+\_\+E} & is an array with the over all available resources \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an array with the current available resources \\
+\hline
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result from type @\+List$<$int$>$\+: first int is next\+Resource, second int is next\+Resource\+Count, third int is index\+Resource\+List 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_bankiers_algorithm_a14e8c9fa10b2665b9f4e6c6c4e113bc6}{Bankiers\+Algorithm}}, \mbox{\hyperlink{class_eliminate_circular_wait_a2bdfbf7b03d45a0d5a3970724445e3b6}{Eliminate\+Circular\+Wait}}, \mbox{\hyperlink{class_eliminate_hold_and_wait_ac8b10d490e01ac870b4f82b384debb78}{Eliminate\+Hold\+And\+Wait}}, and \mbox{\hyperlink{class_no_preemption_ae192bf5497e2d879389243b5a57b851e}{No\+Preemption}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\mbox{\hyperlink{deadlock__avoidance__api_8h}{deadlock\+\_\+avoidance\+\_\+api.\+h}}\item 
+Algorithms/\mbox{\hyperlink{deadlock__avoidance__api_8cpp}{deadlock\+\_\+avoidance\+\_\+api.\+cpp}}\end{DoxyCompactItemize}

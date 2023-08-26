@@ -1,0 +1,34 @@
+\doxysection{nopreemption.\+h}
+\hypertarget{nopreemption_8h_source}{}\label{nopreemption_8h_source}\index{Algorithms/nopreemption.h@{Algorithms/nopreemption.h}}
+\mbox{\hyperlink{nopreemption_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NOPREEMPTION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NOPREEMPTION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{deadlock__avoidance__api_8h}{Algorithms/deadlock\_avoidance\_api.h}}>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_no_preemption}{NoPreemption}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classdeadlock__avoidance__api}{deadlock\_avoidance\_api}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_no_preemption_a488ff6d9dd156612aaa10c97c188fc0e}{NoPreemption}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_no_preemption_a2ce8bfa9a77712877d799a10f1797db1}{\string~NoPreemption}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00028\ \ \ \ \ QList<int>\ \mbox{\hyperlink{class_no_preemption_ae192bf5497e2d879389243b5a57b851e}{findNextResource}}(\mbox{\hyperlink{class_system_process}{SystemProcess}}\ process)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_no_preemption_aaac23b5067cc6b7c250c0ce2acb9ff1f}{aquireConditionMet}}(\textcolor{keywordtype}{int}\ processId)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_a013726842047da2a7ebd5eaeb528822e}{checkAquireCondition}}(\textcolor{keywordtype}{int}\ processId)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_a466ede4af691b390160afa10c4862ef4}{slotPrinterLocked}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_a716f8380a0c8e83c11128db0e1ca5e66}{slotCDLocked}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_a156bc367858e2fd91bdbaa77e426af02}{slotPlotterLocked}};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_a2c93a7b62b79116ccb651870f8ac63f3}{slotTapeDriveLocked}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_no_preemption_aad3cdb0b8a741715afc2d127981134e4}{lastRevokedProcessA}},\ \mbox{\hyperlink{class_no_preemption_a2107209d3eb0d275e70e86ab09348b38}{lastRevokedProcessB}},\ \mbox{\hyperlink{class_no_preemption_ab7954890f716c606b400167a05fec7f1}{lastRevokedProcessC}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ QMutex\ *\mbox{\hyperlink{class_no_preemption_a064f36d9321f6805129a42d20044650d}{mutex}};}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NOPREEMPTION\_H}}
+
+\end{DoxyCode}

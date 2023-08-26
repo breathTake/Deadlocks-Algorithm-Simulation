@@ -1,0 +1,88 @@
+\doxysection{processworker.\+h}
+\hypertarget{processworker_8h_source}{}\label{processworker_8h_source}\index{Objects/processworker.h@{Objects/processworker.h}}
+\mbox{\hyperlink{processworker_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROCESSWORKER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROCESSWORKER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}qdebug.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemprocess_8h}{Objects/SystemProcess.h}}>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemresource_8h}{Objects/systemresource.h}}>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QSemaphore>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_algorithms_2bankiersalgorithm_8h}{Algorithms/BankiersAlgorithm.h}}>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{noavoidancesimulation_8h}{Algorithms/NoAvoidanceSimulation.h}}>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{eliminatecircularwait_8h}{Algorithms/EliminateCircularWait.h}}>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{eliminateholdandwait_8h}{Algorithms/EliminateHoldAndWait.h}}>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{nopreemption_8h}{Algorithms/NoPreemption.h}}>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//Q\_DECLARE\_METATYPE(QList<SystemProcess>)}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_process_worker}{ProcessWorker}}\ :\ \textcolor{keyword}{public}\ QObject}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_process_worker}{ProcessWorker}}(\mbox{\hyperlink{class_system_process}{SystemProcess}}\ \mbox{\hyperlink{mainwindow_8cpp_a01e38441e60c14e0d927fd570cc71f80}{processes}},\ \textcolor{keywordtype}{int}\ selectedAlgorithm,\ QObject\ *parent\ =\ 0);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_ad86b69cc0fafb2734cdd6d7a89ec5a21}{updateProcess}}(\textcolor{keywordtype}{int}\ nextResource,\ \textcolor{keywordtype}{int}\ countResource);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_a3c64ca4784543b34cf83d1d898f6201e}{setUpOccupations}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_adc58eb469769356f9959ea3634a874fd}{assignedResources\_C}}[3][4],\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{stillNeededResources\_R}}[3][4])\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ i++)\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 4;\ j++)\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>assignedResources\_C[i][j]\ =\ \mbox{\hyperlink{class_process_worker_adc58eb469769356f9959ea3634a874fd}{assignedResources\_C}}[i][j];}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>stillNeededResources\_R[i][j]\ =\ \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{stillNeededResources\_R}}[i][j];}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_a82f7a4fa846a7cda2889c3c2c63d73e6}{setAlgorithm}}(\textcolor{keywordtype}{int}\ algorithm)\{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ this-\/>selectedAlgorithm\ =\ algorithm;}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//temporary\ debug\ method\ to\ check\ variables}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_aed35a84c44483d03ac5985fce41e5e92}{printStillNeeded}}()\{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ QDebug\ dbg(QtDebugMsg);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ dbg\ <<\ \textcolor{stringliteral}{"{}R:"{}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ i++)\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 4;\ j++)\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dbg\ <<\ \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{stillNeededResources\_R}}[i][j];}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ dbg\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ dbg\ <<\ \textcolor{stringliteral}{"{}A:\ "{}}\ <<\ \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{differenceResources\_A}}[0]\ <<\ \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{differenceResources\_A}}[1]\ <<\ \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{differenceResources\_A}}[2]\ <<\ \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{differenceResources\_A}}[3]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ signals:}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_ac0ebc3d60c4af45392c77bd041946641}{startedAcquire}}(\textcolor{keywordtype}{int}\ processId,\ \textcolor{keywordtype}{int}\ nextResource,\ \textcolor{keywordtype}{int}\ nextCount);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_aff62f79878b63c6518ffdba17e1477c3}{resourceReserved}}(\textcolor{keywordtype}{int}\ processID,\ \textcolor{keywordtype}{int}\ resource,\ \textcolor{keywordtype}{int}\ count);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_a9bf0d7b04166b8d0bc94c57d8d0f8425}{resourceReleased}}(\textcolor{keywordtype}{int}\ processID,\ \textcolor{keywordtype}{int}\ resource,\ \textcolor{keywordtype}{int}\ count,\ \textcolor{keywordtype}{bool}\ notProcessedYet);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_ae2bb453bba1d282afaa291b81034703e}{finishedResourceProcessing}}(\textcolor{keywordtype}{int}\ processID);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_process_worker_a3fe5e7b59cebb1466f57c9f95b88ae4f}{requestResource}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{static}\ QSemaphore\ *\mbox{\hyperlink{class_process_worker_a9fe0e659d4d2d2c5f015c889884f01bc}{semaphorePrinter}};\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{static}\ QSemaphore\ *\mbox{\hyperlink{class_process_worker_a62853344cb3ebba6843375a9e4f13b51}{semaphoreCD}};\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static}\ QSemaphore\ *\mbox{\hyperlink{class_process_worker_a6909cb49bab40cb43982118585451719}{semaphorePlotter}};\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ QSemaphore\ *\mbox{\hyperlink{class_process_worker_a5dfa5d752c64470d3f7e24992dadc9de}{semaphoreTapeDrive}};\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{differenceResources\_A}}[4];\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_a5f6f4da93c14aafe079dc7ade2050fa9}{availableResources\_E}}[4];\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_adc58eb469769356f9959ea3634a874fd}{assignedResources\_C}}[3][4];\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{stillNeededResources\_R}}[3][4];\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{class_system_process}{SystemProcess}}\ process;\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{int}\ selectedAlgorithm;\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PROCESSWORKER\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,192 @@
+\doxysection{Bankiers\+Algorithm Class Reference}
+\hypertarget{class_bankiers_algorithm}{}\label{class_bankiers_algorithm}\index{BankiersAlgorithm@{BankiersAlgorithm}}
+
+
+Class represents the Bankier Algorithm to prevent Deadlocks.  
+
+
+
+
+{\ttfamily \#include $<$bankiersalgorithm.\+h$>$}
+
+
+
+Inheritance diagram for Bankiers\+Algorithm\+:
+% FIG 0
+
+
+Collaboration diagram for Bankiers\+Algorithm\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc}{Bankiers\+Algorithm}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_bankiers_algorithm}{Bankiers\+Algorithm} standard constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_bankiers_algorithm_a62d493728b432d18ec5f7282da9aa1d3}{\texorpdfstring{$\sim$}{\string~}\+Bankiers\+Algorithm}} ()
+\item 
+QList$<$ int $>$ \mbox{\hyperlink{class_bankiers_algorithm_a14e8c9fa10b2665b9f4e6c6c4e113bc6}{find\+Next\+Resource}} (\mbox{\hyperlink{class_system_process}{System\+Process}} process) override
+\begin{DoxyCompactList}\small\item\em find\+Next\+Resource function that will find the next resource, \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_bankiers_algorithm_a38d6de629f6070ec55949ef4902bdd7c}{avoidance\+\_\+algorithm}} ()
+\begin{DoxyCompactList}\small\item\em avoidance\+\_\+algorithm algorithm which checks for deadlocks \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc}{Bankiers\+Algorithm}} ()
+\item 
+QList$<$ int $>$ \mbox{\hyperlink{class_bankiers_algorithm_a792db0b05662572b7eb98319f406d005}{find\+Next\+Resource}} (\mbox{\hyperlink{class_system_process}{System\+Process}} process, int still\+Needed\+Resources\+\_\+\+RCopy\mbox{[}3\mbox{]}\mbox{[}4\mbox{]}, int assigned\+Resources\+\_\+\+CCopy\mbox{[}3\mbox{]}\mbox{[}4\mbox{]}, int difference\+Resources\+\_\+\+ACopy\mbox{[}4\mbox{]}, int available\+Resources\+\_\+\+ECopy\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em find\+Next\+Resource function that will find the next resource \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_bankiers_algorithm_a42bcd39e8bd821e5e7ba25c2adc115be}{avoidance\+\_\+algorithm}} (int \mbox{\hyperlink{mainwindow_8cpp_a9d670bce8ae762ff6cf6d20d75076cc7}{still\+Needed\+Resources\+\_\+R}}\mbox{[}3\mbox{]}\mbox{[}4\mbox{]}, int \mbox{\hyperlink{mainwindow_8cpp_a96e78b9bbacdc6493fc8bc3c3ac644ca}{assigned\+Resources\+\_\+C}}\mbox{[}3\mbox{]}\mbox{[}4\mbox{]}, int \mbox{\hyperlink{mainwindow_8cpp_a9f9926402aeb4035e8c6753a6e6b021e}{difference\+Resources\+\_\+A}}\mbox{[}4\mbox{]}, int \mbox{\hyperlink{mainwindow_8cpp_a2addbefd638414750803e95f7f1e0c07}{available\+Resources\+\_\+E}}\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em avoidance\+\_\+algorithm avoids a deadlock with the algorithm specifice limitations \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdeadlock__avoidance__api}{deadlock\+\_\+avoidance\+\_\+api}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdeadlock__avoidance__api_a4a9902146a65592e74d5cfe7c0278f5b}{deadlock\+\_\+avoidance\+\_\+api}} ()
+\item 
+virtual \mbox{\hyperlink{classdeadlock__avoidance__api_a31c0ed3d01221988a9317f1c78d28715}{\texorpdfstring{$\sim$}{\string~}deadlock\+\_\+avoidance\+\_\+api}} ()=0
+\item 
+virtual QList$<$ int $>$ \mbox{\hyperlink{classdeadlock__avoidance__api_a640c3f406ac3e6fb0b96829d88678151}{find\+Next\+Resource}} (\mbox{\hyperlink{class_system_process}{System\+Process}} process)
+\begin{DoxyCompactList}\small\item\em find\+Next\+Resource virtual function that will find the next resource, \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classdeadlock__avoidance__api_a2c9ee424a4448b3a3651142562b0aabb}{aquire\+Condition\+Met}} (int process\+Id)
+\item 
+virtual bool \mbox{\hyperlink{classdeadlock__avoidance__api_ab94377fe69a2ccdf6b0c70bb17377b32}{check\+Aquire\+Condition}} (int process\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class represents the Bankier Algorithm to prevent Deadlocks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc}\label{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\index{BankiersAlgorithm@{BankiersAlgorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{BankiersAlgorithm()}{BankiersAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Bankiers\+Algorithm\+::\+Bankiers\+Algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_bankiers_algorithm}{Bankiers\+Algorithm} standard constructor. 
+
+\Hypertarget{class_bankiers_algorithm_a62d493728b432d18ec5f7282da9aa1d3}\label{class_bankiers_algorithm_a62d493728b432d18ec5f7282da9aa1d3} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!````~BankiersAlgorithm@{\texorpdfstring{$\sim$}{\string~}BankiersAlgorithm}}
+\index{````~BankiersAlgorithm@{\texorpdfstring{$\sim$}{\string~}BankiersAlgorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BankiersAlgorithm()}{\string~BankiersAlgorithm()}}
+{\footnotesize\ttfamily Bankiers\+Algorithm\+::\texorpdfstring{$\sim$}{\string~}\+Bankiers\+Algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc}\label{class_bankiers_algorithm_a130cfde57c48b08338ba0103dddf1dcc} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\index{BankiersAlgorithm@{BankiersAlgorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{BankiersAlgorithm()}{BankiersAlgorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Bankiers\+Algorithm\+::\+Bankiers\+Algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bankiers_algorithm_a38d6de629f6070ec55949ef4902bdd7c}\label{class_bankiers_algorithm_a38d6de629f6070ec55949ef4902bdd7c} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!avoidance\_algorithm@{avoidance\_algorithm}}
+\index{avoidance\_algorithm@{avoidance\_algorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{avoidance\_algorithm()}{avoidance\_algorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Bankiers\+Algorithm\+::avoidance\+\_\+algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+avoidance\+\_\+algorithm algorithm which checks for deadlocks 
+
+
+\begin{DoxyParams}{Parameters}
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an array with the current available resources \\
+\hline
+{\em available\+Resources\+\_\+E} & is an array with the over all available resources \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns false if the current state is a deadlock or true if not 
+\end{DoxyReturn}
+\Hypertarget{class_bankiers_algorithm_a42bcd39e8bd821e5e7ba25c2adc115be}\label{class_bankiers_algorithm_a42bcd39e8bd821e5e7ba25c2adc115be} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!avoidance\_algorithm@{avoidance\_algorithm}}
+\index{avoidance\_algorithm@{avoidance\_algorithm}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{avoidance\_algorithm()}{avoidance\_algorithm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Bankiers\+Algorithm\+::avoidance\+\_\+algorithm (\begin{DoxyParamCaption}\item[{int}]{still\+Needed\+Resources\+\_\+R\mbox{[}3\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{assigned\+Resources\+\_\+C\mbox{[}3\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{difference\+Resources\+\_\+A\mbox{[}4\mbox{]},  }\item[{int}]{available\+Resources\+\_\+E\mbox{[}4\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+avoidance\+\_\+algorithm avoids a deadlock with the algorithm specifice limitations 
+
+
+\begin{DoxyParams}{Parameters}
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an array with the current available resources \\
+\hline
+{\em available\+Resources\+\_\+E} & is an array with the over all available resources \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_bankiers_algorithm_a14e8c9fa10b2665b9f4e6c6c4e113bc6}\label{class_bankiers_algorithm_a14e8c9fa10b2665b9f4e6c6c4e113bc6} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!findNextResource@{findNextResource}}
+\index{findNextResource@{findNextResource}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{findNextResource()}{findNextResource()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily QList$<$ int $>$ Bankiers\+Algorithm\+::find\+Next\+Resource (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_system_process}{System\+Process}}}]{process }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+find\+Next\+Resource function that will find the next resource, 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process} & is the process of the thread \\
+\hline
+{\em available\+Resources\+\_\+E} & is an array with the over all available resources \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an array with the current available resources \\
+\hline
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+{\em result} & from type @\+List$<$int$>$\+: first int is next\+Resource, second int is next\+Resource\+Count, third int is index\+Resource\+List \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classdeadlock__avoidance__api_a640c3f406ac3e6fb0b96829d88678151}{deadlock\+\_\+avoidance\+\_\+api}}.
+
+\Hypertarget{class_bankiers_algorithm_a792db0b05662572b7eb98319f406d005}\label{class_bankiers_algorithm_a792db0b05662572b7eb98319f406d005} 
+\index{BankiersAlgorithm@{BankiersAlgorithm}!findNextResource@{findNextResource}}
+\index{findNextResource@{findNextResource}!BankiersAlgorithm@{BankiersAlgorithm}}
+\doxysubsubsection{\texorpdfstring{findNextResource()}{findNextResource()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily QList$<$ int $>$ Bankiers\+Algorithm\+::find\+Next\+Resource (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_system_process}{System\+Process}}}]{process,  }\item[{int}]{still\+Needed\+Resources\+\_\+\+RCopy\mbox{[}3\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{assigned\+Resources\+\_\+\+CCopy\mbox{[}3\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{difference\+Resources\+\_\+\+ACopy\mbox{[}4\mbox{]},  }\item[{int}]{available\+Resources\+\_\+\+ECopy\mbox{[}4\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+find\+Next\+Resource function that will find the next resource 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process} & is the process of the thread \\
+\hline
+{\em available\+Resources\+\_\+E} & is an array with the over all available resources \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an array with the current available resources \\
+\hline
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+{\em result} & from type @\+List$<$int$>$\+: first int is next\+Resource, second int is next\+Resource\+Count, third int is index\+Resource\+List \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\mbox{\hyperlink{_algorithms_2bankiersalgorithm_8h}{bankiersalgorithm.\+h}}\item 
+\mbox{\hyperlink{bankiersalgorithm_8h}{bankiersalgorithm.\+h}}\item 
+Algorithms/\mbox{\hyperlink{bankiersalgorithm_8cpp}{bankiersalgorithm.\+cpp}}\end{DoxyCompactItemize}

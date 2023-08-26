@@ -1,0 +1,31 @@
+\doxysection{eliminateholdandwait.\+h}
+\hypertarget{eliminateholdandwait_8h_source}{}\label{eliminateholdandwait_8h_source}\index{Algorithms/eliminateholdandwait.h@{Algorithms/eliminateholdandwait.h}}
+\mbox{\hyperlink{eliminateholdandwait_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ELIMINATEHOLDANDWAIT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ELIMINATEHOLDANDWAIT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{deadlock__avoidance__api_8h}{Algorithms/deadlock\_avoidance\_api.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QSemaphore>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eliminate_hold_and_wait}{EliminateHoldAndWait}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classdeadlock__avoidance__api}{deadlock\_avoidance\_api}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_eliminate_hold_and_wait_a331838418fed45712b74c59946c13115}{EliminateHoldAndWait}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_eliminate_hold_and_wait_a68ac3464503e54fbeb975113d898afbb}{\string~EliminateHoldAndWait}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00029\ \ \ \ \ QList<int>\ \mbox{\hyperlink{class_eliminate_hold_and_wait_ac8b10d490e01ac870b4f82b384debb78}{findNextResource}}(\mbox{\hyperlink{class_system_process}{SystemProcess}}\ process)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eliminate_hold_and_wait_a67280bbda73bf2f1d021dc3dddd788cf}{avoidance\_algorithm}}(\mbox{\hyperlink{class_system_process}{SystemProcess}}\ process,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mainwindow_8cpp_a9f9926402aeb4035e8c6753a6e6b021e}{differenceResources\_A}}[4]);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ QSemaphore\ *semaphore;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ QList<int>currentProcess;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ copyDifference[4];}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ELIMINATEHOLDANDWAIT\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,314 @@
+\doxysection{Process\+Worker Class Reference}
+\hypertarget{class_process_worker}{}\label{class_process_worker}\index{ProcessWorker@{ProcessWorker}}
+
+
+Class represents the process worker which is responsible for the whole simulation process.  
+
+
+
+
+{\ttfamily \#include $<$processworker.\+h$>$}
+
+
+
+Inheritance diagram for Process\+Worker\+:
+% FIG 0
+
+
+Collaboration diagram for Process\+Worker\+:
+% FIG 1
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_process_worker_a3fe5e7b59cebb1466f57c9f95b88ae4f}{request\+Resource}} ()
+\begin{DoxyCompactList}\small\item\em request\+Resource a slot that will request the resources a process needs until all resources were processed. It will notify the main thread throughout the process about changes in the resource occupation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_process_worker_ac0ebc3d60c4af45392c77bd041946641}{started\+Acquire}} (int process\+Id, int next\+Resource, int next\+Count)
+\item 
+void \mbox{\hyperlink{class_process_worker_aff62f79878b63c6518ffdba17e1477c3}{resource\+Reserved}} (int process\+ID, int resource, int count)
+\begin{DoxyCompactList}\small\item\em resource\+Reserved notifies the main thread, that the given resource has been reserved and can not be used anymore \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_a9bf0d7b04166b8d0bc94c57d8d0f8425}{resource\+Released}} (int process\+ID, int resource, int count, bool not\+Processed\+Yet)
+\begin{DoxyCompactList}\small\item\em resource\+Released notifies the main thread, that the given resource has been released \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_ae2bb453bba1d282afaa291b81034703e}{finished\+Resource\+Processing}} (int process\+ID)
+\begin{DoxyCompactList}\small\item\em finished\+Resource\+Processing indicates that a process has released all resources it requires and is finished \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_process_worker_aa324d3349f875c7f63cb2937bed2ce83}{Process\+Worker}} (\mbox{\hyperlink{class_system_process}{System\+Process}} \mbox{\hyperlink{mainwindow_8cpp_a01e38441e60c14e0d927fd570cc71f80}{processes}}, int selected\+Algorithm, QObject \texorpdfstring{$\ast$}{*}parent=0)
+\begin{DoxyCompactList}\small\item\em creates a Process Worker with the given parameters and also initializes the semaphores \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_ad86b69cc0fafb2734cdd6d7a89ec5a21}{update\+Process}} (int next\+Resource, int count\+Resource)
+\begin{DoxyCompactList}\small\item\em update\+Process updates the needed\+Resources List in the member Process \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_a3c64ca4784543b34cf83d1d898f6201e}{set\+Up\+Occupations}} (int \mbox{\hyperlink{class_process_worker_adc58eb469769356f9959ea3634a874fd}{assigned\+Resources\+\_\+C}}\mbox{[}3\mbox{]}\mbox{[}4\mbox{]}, int \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{still\+Needed\+Resources\+\_\+R}}\mbox{[}3\mbox{]}\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em set\+Up\+Occupations used to copy the assigned\+Resources\+\_\+C and still\+Needed\+Resources\+\_\+R from mainwindow to the threads \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_a82f7a4fa846a7cda2889c3c2c63d73e6}{set\+Algorithm}} (int algorithm)
+\begin{DoxyCompactList}\small\item\em set\+Algorithm sets the algorithm used for the simulation \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_process_worker_aed35a84c44483d03ac5985fce41e5e92}{print\+Still\+Needed}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static QSemaphore \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_process_worker_a9fe0e659d4d2d2c5f015c889884f01bc}{semaphore\+Printer}}
+\begin{DoxyCompactList}\small\item\em to keep track of available Printers \end{DoxyCompactList}\item 
+static QSemaphore \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_process_worker_a62853344cb3ebba6843375a9e4f13b51}{semaphore\+CD}}
+\begin{DoxyCompactList}\small\item\em to keep track of available CDs \end{DoxyCompactList}\item 
+static QSemaphore \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_process_worker_a6909cb49bab40cb43982118585451719}{semaphore\+Plotter}}
+\begin{DoxyCompactList}\small\item\em to keep track of available Plotters \end{DoxyCompactList}\item 
+static QSemaphore \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_process_worker_a5dfa5d752c64470d3f7e24992dadc9de}{semaphore\+Tape\+Drive}}
+\begin{DoxyCompactList}\small\item\em to keep track of available Tape\+Drives \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}{difference\+Resources\+\_\+A}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em is an array with the current available resources \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_process_worker_a5f6f4da93c14aafe079dc7ade2050fa9}{available\+Resources\+\_\+E}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em is an array with the over all available resources \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_process_worker_adc58eb469769356f9959ea3634a874fd}{assigned\+Resources\+\_\+C}} \mbox{[}3\mbox{]}\mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em containing which and how many resources a process is occupying \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}{still\+Needed\+Resources\+\_\+R}} \mbox{[}3\mbox{]}\mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em matrix containing which and how many resources a process will still need to occupie throughout the simulation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class represents the process worker which is responsible for the whole simulation process. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_process_worker_aa324d3349f875c7f63cb2937bed2ce83}\label{class_process_worker_aa324d3349f875c7f63cb2937bed2ce83} 
+\index{ProcessWorker@{ProcessWorker}!ProcessWorker@{ProcessWorker}}
+\index{ProcessWorker@{ProcessWorker}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{ProcessWorker()}{ProcessWorker()}}
+{\footnotesize\ttfamily Process\+Worker\+::\+Process\+Worker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_system_process}{System\+Process}}}]{processes,  }\item[{int}]{selected\+Algorithm,  }\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+creates a Process Worker with the given parameters and also initializes the semaphores 
+
+
+\begin{DoxyParams}{Parameters}
+{\em processes} & is the process belonging to the worker object \\
+\hline
+{\em available\+Resources\+\_\+E} & is an int array with 4 ints. Each int corresponds to a resource and how many are available at the start \\
+\hline
+{\em difference\+Resources\+\_\+A} & is an int array with 4 ints. Each int corresponds to a resource that is available right now \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_process_worker_ae2bb453bba1d282afaa291b81034703e}\label{class_process_worker_ae2bb453bba1d282afaa291b81034703e} 
+\index{ProcessWorker@{ProcessWorker}!finishedResourceProcessing@{finishedResourceProcessing}}
+\index{finishedResourceProcessing@{finishedResourceProcessing}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{finishedResourceProcessing}{finishedResourceProcessing}}
+{\footnotesize\ttfamily void Process\+Worker\+::finished\+Resource\+Processing (\begin{DoxyParamCaption}\item[{int}]{process\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+finished\+Resource\+Processing indicates that a process has released all resources it requires and is finished 
+
+
+\begin{DoxyParams}{Parameters}
+{\em information} & unused \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_process_worker_aed35a84c44483d03ac5985fce41e5e92}\label{class_process_worker_aed35a84c44483d03ac5985fce41e5e92} 
+\index{ProcessWorker@{ProcessWorker}!printStillNeeded@{printStillNeeded}}
+\index{printStillNeeded@{printStillNeeded}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{printStillNeeded()}{printStillNeeded()}}
+{\footnotesize\ttfamily void Process\+Worker\+::print\+Still\+Needed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_process_worker_a3fe5e7b59cebb1466f57c9f95b88ae4f}\label{class_process_worker_a3fe5e7b59cebb1466f57c9f95b88ae4f} 
+\index{ProcessWorker@{ProcessWorker}!requestResource@{requestResource}}
+\index{requestResource@{requestResource}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{requestResource}{requestResource}}
+{\footnotesize\ttfamily void Process\+Worker\+::request\+Resource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+request\+Resource a slot that will request the resources a process needs until all resources were processed. It will notify the main thread throughout the process about changes in the resource occupation 
+
+\Hypertarget{class_process_worker_a9bf0d7b04166b8d0bc94c57d8d0f8425}\label{class_process_worker_a9bf0d7b04166b8d0bc94c57d8d0f8425} 
+\index{ProcessWorker@{ProcessWorker}!resourceReleased@{resourceReleased}}
+\index{resourceReleased@{resourceReleased}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{resourceReleased}{resourceReleased}}
+{\footnotesize\ttfamily void Process\+Worker\+::resource\+Released (\begin{DoxyParamCaption}\item[{int}]{process\+ID,  }\item[{int}]{resource,  }\item[{int}]{count,  }\item[{bool}]{not\+Processed\+Yet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+resource\+Released notifies the main thread, that the given resource has been released 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process\+ID} & is the ID of the process member to determin the process in the main thread \\
+\hline
+{\em resource} & is the resource ID of the resource that has been released \\
+\hline
+{\em count} & is the count of released resources \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_process_worker_aff62f79878b63c6518ffdba17e1477c3}\label{class_process_worker_aff62f79878b63c6518ffdba17e1477c3} 
+\index{ProcessWorker@{ProcessWorker}!resourceReserved@{resourceReserved}}
+\index{resourceReserved@{resourceReserved}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{resourceReserved}{resourceReserved}}
+{\footnotesize\ttfamily void Process\+Worker\+::resource\+Reserved (\begin{DoxyParamCaption}\item[{int}]{process\+ID,  }\item[{int}]{resource,  }\item[{int}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+resource\+Reserved notifies the main thread, that the given resource has been reserved and can not be used anymore 
+
+
+\begin{DoxyParams}{Parameters}
+{\em process\+ID} & is the ID of the process member to determin the process in the main thread \\
+\hline
+{\em resource} & is the resource ID of the resource that has been reserved \\
+\hline
+{\em count} & is the count of reserved resources \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_process_worker_a82f7a4fa846a7cda2889c3c2c63d73e6}\label{class_process_worker_a82f7a4fa846a7cda2889c3c2c63d73e6} 
+\index{ProcessWorker@{ProcessWorker}!setAlgorithm@{setAlgorithm}}
+\index{setAlgorithm@{setAlgorithm}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{setAlgorithm()}{setAlgorithm()}}
+{\footnotesize\ttfamily void Process\+Worker\+::set\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{algorithm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Algorithm sets the algorithm used for the simulation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & number to choose the algorithm \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_process_worker_a3c64ca4784543b34cf83d1d898f6201e}\label{class_process_worker_a3c64ca4784543b34cf83d1d898f6201e} 
+\index{ProcessWorker@{ProcessWorker}!setUpOccupations@{setUpOccupations}}
+\index{setUpOccupations@{setUpOccupations}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{setUpOccupations()}{setUpOccupations()}}
+{\footnotesize\ttfamily void Process\+Worker\+::set\+Up\+Occupations (\begin{DoxyParamCaption}\item[{int}]{assigned\+Resources\+\_\+C\mbox{[}3\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{still\+Needed\+Resources\+\_\+R\mbox{[}3\mbox{]}\mbox{[}4\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Up\+Occupations used to copy the assigned\+Resources\+\_\+C and still\+Needed\+Resources\+\_\+R from mainwindow to the threads 
+
+
+\begin{DoxyParams}{Parameters}
+{\em assigned\+Resources\+\_\+C} & matrix containing which and how many resources a process is occupying \\
+\hline
+{\em still\+Needed\+Resources\+\_\+R} & matix containing which and how many resources a process will still need to occupie throughout the simulation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_process_worker_ac0ebc3d60c4af45392c77bd041946641}\label{class_process_worker_ac0ebc3d60c4af45392c77bd041946641} 
+\index{ProcessWorker@{ProcessWorker}!startedAcquire@{startedAcquire}}
+\index{startedAcquire@{startedAcquire}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{startedAcquire}{startedAcquire}}
+{\footnotesize\ttfamily void Process\+Worker\+::started\+Acquire (\begin{DoxyParamCaption}\item[{int}]{process\+Id,  }\item[{int}]{next\+Resource,  }\item[{int}]{next\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_process_worker_ad86b69cc0fafb2734cdd6d7a89ec5a21}\label{class_process_worker_ad86b69cc0fafb2734cdd6d7a89ec5a21} 
+\index{ProcessWorker@{ProcessWorker}!updateProcess@{updateProcess}}
+\index{updateProcess@{updateProcess}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{updateProcess()}{updateProcess()}}
+{\footnotesize\ttfamily void Process\+Worker\+::update\+Process (\begin{DoxyParamCaption}\item[{int}]{next\+Resource,  }\item[{int}]{count\+Resource }\end{DoxyParamCaption})}
+
+
+
+update\+Process updates the needed\+Resources List in the member Process 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Resource} & is the ID of the resource that has been reserved \\
+\hline
+{\em count\+Resource} & is the count of the reserce \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_process_worker_adc58eb469769356f9959ea3634a874fd}\label{class_process_worker_adc58eb469769356f9959ea3634a874fd} 
+\index{ProcessWorker@{ProcessWorker}!assignedResources\_C@{assignedResources\_C}}
+\index{assignedResources\_C@{assignedResources\_C}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{assignedResources\_C}{assignedResources\_C}}
+{\footnotesize\ttfamily int Process\+Worker\+::assigned\+Resources\+\_\+C\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+containing which and how many resources a process is occupying 
+
+\Hypertarget{class_process_worker_a5f6f4da93c14aafe079dc7ade2050fa9}\label{class_process_worker_a5f6f4da93c14aafe079dc7ade2050fa9} 
+\index{ProcessWorker@{ProcessWorker}!availableResources\_E@{availableResources\_E}}
+\index{availableResources\_E@{availableResources\_E}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{availableResources\_E}{availableResources\_E}}
+{\footnotesize\ttfamily int Process\+Worker\+::available\+Resources\+\_\+E\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+is an array with the over all available resources 
+
+\Hypertarget{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3}\label{class_process_worker_a3b50ec90a5952b41ed10ca2bf04c54f3} 
+\index{ProcessWorker@{ProcessWorker}!differenceResources\_A@{differenceResources\_A}}
+\index{differenceResources\_A@{differenceResources\_A}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{differenceResources\_A}{differenceResources\_A}}
+{\footnotesize\ttfamily int Process\+Worker\+::difference\+Resources\+\_\+A\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+is an array with the current available resources 
+
+\Hypertarget{class_process_worker_a62853344cb3ebba6843375a9e4f13b51}\label{class_process_worker_a62853344cb3ebba6843375a9e4f13b51} 
+\index{ProcessWorker@{ProcessWorker}!semaphoreCD@{semaphoreCD}}
+\index{semaphoreCD@{semaphoreCD}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{semaphoreCD}{semaphoreCD}}
+{\footnotesize\ttfamily QSemaphore \texorpdfstring{$\ast$}{*} Process\+Worker\+::semaphore\+CD\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to keep track of available CDs 
+
+\Hypertarget{class_process_worker_a6909cb49bab40cb43982118585451719}\label{class_process_worker_a6909cb49bab40cb43982118585451719} 
+\index{ProcessWorker@{ProcessWorker}!semaphorePlotter@{semaphorePlotter}}
+\index{semaphorePlotter@{semaphorePlotter}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{semaphorePlotter}{semaphorePlotter}}
+{\footnotesize\ttfamily QSemaphore \texorpdfstring{$\ast$}{*} Process\+Worker\+::semaphore\+Plotter\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to keep track of available Plotters 
+
+\Hypertarget{class_process_worker_a9fe0e659d4d2d2c5f015c889884f01bc}\label{class_process_worker_a9fe0e659d4d2d2c5f015c889884f01bc} 
+\index{ProcessWorker@{ProcessWorker}!semaphorePrinter@{semaphorePrinter}}
+\index{semaphorePrinter@{semaphorePrinter}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{semaphorePrinter}{semaphorePrinter}}
+{\footnotesize\ttfamily QSemaphore \texorpdfstring{$\ast$}{*} Process\+Worker\+::semaphore\+Printer\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to keep track of available Printers 
+
+semaphore\+Printer regulates how many printers can be used by threads
+
+semaphore\+CD regulates how many cds can be used by threads
+
+semaphore\+Plotter regulates how many plotters can be used by threads
+
+semaphore\+Tape\+Drive regulates how many tape drives can be used by threads \Hypertarget{class_process_worker_a5dfa5d752c64470d3f7e24992dadc9de}\label{class_process_worker_a5dfa5d752c64470d3f7e24992dadc9de} 
+\index{ProcessWorker@{ProcessWorker}!semaphoreTapeDrive@{semaphoreTapeDrive}}
+\index{semaphoreTapeDrive@{semaphoreTapeDrive}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{semaphoreTapeDrive}{semaphoreTapeDrive}}
+{\footnotesize\ttfamily QSemaphore \texorpdfstring{$\ast$}{*} Process\+Worker\+::semaphore\+Tape\+Drive\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to keep track of available Tape\+Drives 
+
+\Hypertarget{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1}\label{class_process_worker_ade9d76e33f75f12bb57a7544ca9f91b1} 
+\index{ProcessWorker@{ProcessWorker}!stillNeededResources\_R@{stillNeededResources\_R}}
+\index{stillNeededResources\_R@{stillNeededResources\_R}!ProcessWorker@{ProcessWorker}}
+\doxysubsubsection{\texorpdfstring{stillNeededResources\_R}{stillNeededResources\_R}}
+{\footnotesize\ttfamily int Process\+Worker\+::still\+Needed\+Resources\+\_\+R\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+matrix containing which and how many resources a process will still need to occupie throughout the simulation 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Objects/\mbox{\hyperlink{processworker_8h}{processworker.\+h}}\item 
+Objects/\mbox{\hyperlink{processworker_8cpp}{processworker.\+cpp}}\end{DoxyCompactItemize}

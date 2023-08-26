@@ -120,7 +120,7 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
 
 QPlainTextEdit QScrollBar:vertical {
     width: 10px; /* Width of the scrollbar */
-	background-color: rgb(106, 112, 129);
+	background-color: rgb(105, 111, 128);
     border-radius: 5px;
 }
 
@@ -1940,7 +1940,7 @@ font: 12pt &quot;Futura Bk BT&quot;;
      <x>0</x>
      <y>0</y>
      <width>1550</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

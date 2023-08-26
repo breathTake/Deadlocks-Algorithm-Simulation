@@ -6,6 +6,9 @@
 
 #include <Objects/SystemProcess.h>
 
+/**
+ * @brief The PreemptionWorker class is for the NoPreemption algorithm to have a seperate Thread which can take resources out of other threads
+ */
 class PreemptionWorker : public QObject
 {
     Q_OBJECT
@@ -14,7 +17,21 @@ public:
 
 
 public slots:
+    /**
+     * @brief reservationStarted Slot when the reservation starts
+     * @param processId ID from the called process
+     * @param nextResource is the next needed resource
+     * @param nextCount count of the next needed resource
+     */
     void reservationStarted(int processId, int nextResource, int nextCount);
+
+    /**
+     * @brief reservationFinished Slot when the reservation is finished
+     * @param processId ID from the called process
+     * @param nextResource is the next needed resource
+     * @param nextCount count of the next needed resource
+     * @param notProcessedYet
+     */
     void reservationFinished(int processId, int nextResource, int nextCount, bool notProcessedYet);
 
     void initTimers();

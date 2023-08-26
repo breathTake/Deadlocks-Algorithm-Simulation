@@ -19,6 +19,7 @@ const int system_process_count = 3; ///<how many processes the system has (const
 int existingResources[4]; ///<the count of how many of each resource type exist
 int selectedAlgorithmNumber = -1; ///<the selected algorithm
 int finished = 0; ///<count for completely finished processes
+int countAllResourcesUsed = 0; ///<count of all the resources used throughout the simulation, displayed at the end
 
 //timers
 QTimer *timer;
@@ -85,23 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
     workerC = new ProcessWorker(processes.at(2), selectedAlgorithmNumber);
 
     //set up the explanations:
-    switch(selectedAlgorithmNumber){
-    case 0:
-        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationHoldAndWait.txt");
-        break;
-    case 1:
-        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationPreemption.txt");
-        break;
-    case 2:
-        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationCircularWait.txt");
-        break;
-    case 3:
-        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationBankier.txt");
-        break;
-    default:
-        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationDeadlock.txt");
-        break;
-    }
+    on_explanation_Button_algorithm_clicked();
 
     //Set the Algorithm Label to the current one
     switch(selectedAlgorithmNumber){
@@ -233,6 +218,8 @@ void MainWindow::releaseResources(int process, int resource, int count, bool not
     //if notProcessedYet the last resource was revoked, R needs to be set back to what it was before
     if(notProcessedYet){
         stillNeededResources_R[process][resource] += count;
+    } else{
+        countAllResourcesUsed += count;
     }
     //adjusting the occupation matrixes and arrays
     assignedResources_C[process][resource] -= count;    
@@ -445,11 +432,10 @@ void MainWindow::processFinished(int processId)
 
         //start end dialog
         EndDialog endDialog;
-        int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
         int maxResourceTimeA = std::accumulate(processATimeList->begin(), processATimeList->end(), 0.0) / processATimeList->count();
         int maxResourceTimeB = std::accumulate(processBTimeList->begin(), processBTimeList->end(), 0.0) / processBTimeList->count();
         int maxResourceTimeC = std::accumulate(processCTimeList->begin(), processCTimeList->end(), 0.0) / processCTimeList->count();
-        endDialog.getEndResults(ui->label_time->text(), totalNumResources, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
+        endDialog.getEndResults(ui->label_time->text(), countAllResourcesUsed, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
         endDialog.setWindowTitle("Deadlock Algorithm Simulation");
         endDialog.exec();
     }
@@ -488,7 +474,6 @@ void MainWindow::on_button_stop_simulation_clicked()
 
     //start end dialog
     EndDialog endDialog;
-    int totalNumResources = existingResources[0] + existingResources[1] + existingResources[2] + existingResources[3];
 
     int maxResourceTimeA = 0;
     int maxResourceTimeB = 0;
@@ -503,7 +488,7 @@ void MainWindow::on_button_stop_simulation_clicked()
         maxResourceTimeA = std::accumulate(processCTimeList->begin(), processCTimeList->end(), 0.0) / processCTimeList->count();
     }
 
-    endDialog.getEndResults(ui->label_time->text(), totalNumResources, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
+    endDialog.getEndResults(ui->label_time->text(), countAllResourcesUsed, maxResourceTimeA, maxResourceTimeB, maxResourceTimeC);
     endDialog.setWindowTitle("Deadlock Algorithm Simulation");
     endDialog.exec();
 }
@@ -647,3 +632,41 @@ void MainWindow::setShadows()
     ui->Plotter_background_label->setGraphicsEffect(effectShadow10);
     ui->Tapedrive_background_label->setGraphicsEffect(effectShadow11);
 }
+
+void MainWindow::on_explanation_Button_explanation_clicked()
+{
+    loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationSimulation.txt");
+    ui->explanation_Button_algorithm->setEnabled(true);
+    ui->explanation_Button_explanation->setEnabled(false);
+    ui->explanation_Title_label->setText("Simulation overview");
+}
+
+
+void MainWindow::on_explanation_Button_algorithm_clicked()
+{
+    switch(selectedAlgorithmNumber){
+    case 0:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationHoldAndWait.txt");
+        ui->explanation_Title_label->setText("Eliminate Hold and Wait");
+        break;
+    case 1:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationPreemption.txt");
+        ui->explanation_Title_label->setText("Eliminate no Preemption");
+        break;
+    case 2:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationCircularWait.txt");
+        ui->explanation_Title_label->setText("Eliminate Circular Wait");
+        break;
+    case 3:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationBankier.txt");
+        ui->explanation_Title_label->setText("Banker's Algorithm");
+        break;
+    default:
+        loadTextFileIntoPlainTextEdit(":/resources/explanations/explanationDeadlock.txt");
+        ui->explanation_Title_label->setText("Deadlock requirements");
+        break;
+    }
+    ui->explanation_Button_algorithm->setEnabled(false);
+    ui->explanation_Button_explanation->setEnabled(true);
+}
+

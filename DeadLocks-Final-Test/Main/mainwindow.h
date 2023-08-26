@@ -67,6 +67,10 @@ private slots:
     void on_button_start_simulation_clicked();
     void on_button_restart_simulation_clicked();
 
+    void on_explanation_Button_explanation_clicked();
+
+    void on_explanation_Button_algorithm_clicked();
+
 private:
     Ui::MainWindow *ui;
     QThread *threadProcessA, *threadProcessB, *threadProcessC, *threadPreemption;

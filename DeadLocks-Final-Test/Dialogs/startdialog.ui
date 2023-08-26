@@ -192,7 +192,7 @@ QRadioButton::indicator:unchecked:hover {
 </string>
       </property>
       <property name="text">
-       <string>Bankier-Algorithm</string>
+       <string>Bankers-Algorithm</string>
       </property>
      </widget>
     </item>

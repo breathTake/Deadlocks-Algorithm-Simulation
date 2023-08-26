@@ -1,61 +1,21 @@
 Deadlocks:
+There are a few requirements that have to be met for a deadlock to occur. The requirements are:
 
-Step 1: Initialization
+1. Mutual Exclusion:
+At least one resource must be held in a non-sharable mode, meaning it cannot be simultaneously used by more than one process.
+The simulation fulfils this because there is a limited number of resources of each type.
 
-Processes are allocated resources at the beginning of their execution.
-Each process can request additional resources during its execution.
+2. Hold and Wait:
+Processes currently holding resources may request additional resources, while still retaining the resources they already possess.
+The simulation fulfils this by waiting for the next resource to be found before releasing the last resource it occupies.
 
-Step 2: Resource Allocation
+3. No Preemption:
+Resources cannot be forcibly taken away from a process that is holding them, they can only be released voluntarily by the holding process.
+The simulation fulfils this because there is no way to take the resources from a process (not by the main thread and not by other processes) once it occupies them.
 
-Processes request resources as needed for their execution.
-Resources can be of different types, and each process needs a certain number of instances of each resource type to complete its execution.
+4. Circular Wait:
+A circular chain of two or more processes exists, where each process holds a resource that the next process in the chain is waiting for.
+The simulation fulfils this because the order in which the resources are being requested is random.
 
-Step 3: Resource Hold
-
-When a process successfully acquires a resource, it enters the "hold and wait" state.
-The process holds the acquired resource(s) while it continues its execution.
-
-Step 4: Request for Additional Resources
-
-If a process requires additional resources during its execution and they are not available, the process enters the "waiting" state.
-The process is now waiting for the requested resources to be released by other processes.
-
-Step 5: Resource Request and Waiting Chain Formation
-
-A situation arises where each process in a set is holding a resource that another process in the same set is waiting for.
-This forms a circular chain of waiting, where each process waits for a resource held by the next process in the chain.
-
-Step 6: Resource Deadlock
-
-Once the circular chain of waiting is formed, no process in the chain can proceed.
-Each process is waiting for a resource that will never be released since the process holding that resource is waiting for another resource in the chain.
-
-Step 7: System Stagnation
-
-The system is now in a state of deadlock, where no process can make progress.
-Processes are effectively stuck, and no new processes can be executed because the required resources are unavailable due to the deadlock.
-
-Step 8: Necessary Conditions for Deadlocks
-
-Deadlocks occur due to the simultaneous presence of four necessary conditions: mutual exclusion, hold and wait, no preemption, and circular wait.
-
-Step 9: Detecting and Handling Deadlocks
-
-Systems can implement various deadlock detection and recovery mechanisms.
-Deadlock detection involves periodically checking the resource allocation graph for circular wait conditions.
-If a deadlock is detected, recovery strategies can be employed, such as process termination or resource preemption.
-
-Step 10: Prevention and Avoidance
-
-To prevent deadlocks, one or more of the necessary conditions must be eliminated.
-Avoidance involves ensuring that the system never enters an unsafe state where deadlock is possible.
-Various algorithms, like the Banker's Algorithm, can be used to ensure that resource allocations do not lead to deadlocks.
-
-Step 11: Resource Release and Resolution
-
-Deadlocks can be resolved by releasing resources from one or more processes.
-This breaks the circular wait condition and allows the remaining processes to continue their execution.
-
-Step 12: System Recovery
-
-After deadlock resolution, the system recovers from the deadlock state and can continue executing processes.
+With these requirements met a deadlock can occur, however, it is not guaranteed to because the order of resources and the amount of each resource a process needs are randomized.
+After a few tries a deadlock will occur, visible in two or more resources which are being used an never released again.

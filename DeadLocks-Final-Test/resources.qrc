@@ -19,5 +19,8 @@
         <file>resources/explanations/explanationCircularWait.txt</file>
         <file>resources/explanations/explanationHoldAndWait.txt</file>
         <file>resources/explanations/explanationPreemption.txt</file>
+        <file>resources/explanations/explanationSimulation.txt</file>
+        <file>resources/arrow_right.png</file>
+        <file>resources/arrowleft.png</file>
     </qresource>
 </RCC>

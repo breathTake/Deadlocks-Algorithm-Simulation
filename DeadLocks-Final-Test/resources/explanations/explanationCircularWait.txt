@@ -1,45 +1,10 @@
-eliminate Circular Wait:
+Request:
+When the process has requested to find the next resource, first the condition for the circular wait has to be eliminated.
 
-Step 1: Initialization
-
-At the beginning, all resources are available and unallocated.
-Each process is either in the "running" state, "waiting" state, or "completed" state.
-
-Step 2: Resource Request
-
-When a process requests a resource, the system checks if the requested resources are available.
-If the requested resources are available, they are allocated to the process, and the system updates the allocation status.
-
-Step 3: Holding Resources
-
-Once a process holds resources, it can request additional resources without releasing the ones it already holds.
-
-Step 4: Releasing Resources
-
-When a process finishes using the allocated resources, it releases them.
-The released resources become available for allocation to other processes.
-
-Step 5: Avoiding Circular Wait
-
+Eliminate Circular wait:
 To eliminate circular wait, the system must ensure that resource requests are made in a way that prevents a circular chain of waiting.
-One common approach is to impose a total ordering on resources, assigning a unique number (timestamp) to each resource.
-Processes are allowed to request resources in increasing order of their timestamps, preventing circular chains.
+The simulated algorithm imposes a total ordering on resources, assigning a unique number (timestamp) to each resource (1. printer, 2. CD-ROM, 3. plotter, 4. tape drive).
+Processes are allowed to request resources in increasing order of their timestamps, preventing circular chains. This is achieved by sorting their list of still-needed resources.
 
-Step 6: Checking Request Order
-
-Whenever a process requests a resource, the system checks if the requested resource's timestamp is greater than the timestamp of any resources the process is currently holding.
-If the requested resource has a lower timestamp than any held resource, the system denies the request to maintain the order.
-
-Step 7: Releasing Resources
-
-A process can only release resources in decreasing order of their timestamps.
-This order ensures that a higher timestamp resource is released before a lower timestamp resource.
-
-Step 8: Enforcing the Rule
-
-The system enforces the rule that a process can only request resources in increasing order of timestamps and release them in decreasing order.
-This prevents a circular chain of waiting, as processes cannot request resources in a way that forms a cycle.
-
-Step 9: Repeat
-
-The process repeats as new resource requests and releases occur.
+Reservation:
+Now the next resource that has a count > 0 can be selected and reserved from the now sorted list.

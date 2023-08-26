@@ -1,0 +1,15 @@
+Structure:
+The simulation is an idealized version of a system with three processes (A, B and C) and four resource types (printers, CD-ROMs, plotters and tape drives).
+Depending on the user's selection, several resources of each type are available, which can be occupied or free.
+
+Requests:
+When the processes get initialized, they get assigned a random list of resources (to simulate the random resource requests), after which they will request resources.
+The reason for determining them before the process starts is that some algorithms (Banker's Algorithm and Eliminate Hold and Wait) need to know all the resources a process will request from the get-go.
+For the other Algorithms, it doesn't matter as it does not make a difference in the context.
+
+Holding Resources:
+When a process has reserved a resource it will wait 2 seconds multiplied by the amount of the resource it reserved to simulate the process using the resource.
+The resource will only be released again if the next resource is found or if it has processed all the resources it needs.
+
+Running the simulation:
+All the processes get started simultaneously so that they run in parallel. They start requesting and reserving resources and do so until they have used everything they need.

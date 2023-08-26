@@ -39,7 +39,7 @@ QList<int> BankiersAlgorithm::findNextResource(SystemProcess process)
 
         //the resource has to have a count > 0 but < the available resources we will check for the next resource
         if(process.getNeededResources().at(i).getCount() <= ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] && process.getNeededResources().at(i).getCount() > 0){
-            //reserve the resources that would be the potential next resource to find out if it is a state is save
+            //reserve the resources that would be the potential next resource to find out if the state is save
 
             ProcessWorker::differenceResources_A[process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();
             ProcessWorker::stillNeededResources_R[process.getProcessId()][process.getNeededResources().at(i).getResourceId()] -= process.getNeededResources().at(i).getCount();

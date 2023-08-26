@@ -74,7 +74,7 @@ border-radius: 10px;
       <rect>
        <x>30</x>
        <y>20</y>
-       <width>171</width>
+       <width>351</width>
        <height>61</height>
       </rect>
      </property>
@@ -90,10 +90,10 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
     <widget class="QPlainTextEdit" name="explanation_plainTextEdit">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>341</width>
-       <height>591</height>
+       <x>32</x>
+       <y>92</y>
+       <width>351</width>
+       <height>551</height>
       </rect>
      </property>
      <property name="tabletTracking">
@@ -106,22 +106,41 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPlainTextEdit{ 
-	padding-top: 5px;
-	padding-left: 0px;
-	border-radius: 5px;
-	border: none;
-	background-color: rgb(73, 81, 103);
-	font: 12pt &quot;Futura Bk BT&quot;;
-	color: rgb(217, 217, 217);
-	alignment: AlignCenter;
-    }</string>
+      <string notr="true">QPlainTextEdit {
+    padding-top: 0px;
+    padding-left: 0px;
+    border-radius: 5px;
+    border: none;
+	background: none;
+    background-color: rgb(73, 81, 103);
+    font: 12pt &quot;Futura Bk BT&quot;;
+    color: rgb(217, 217, 217);
+    alignment: AlignCenter;
+}
+
+QPlainTextEdit QScrollBar:vertical {
+    width: 10px; /* Width of the scrollbar */
+	background-color: rgb(106, 112, 129);
+    border-radius: 5px;
+}
+
+QPlainTextEdit QScrollBar::handle:vertical {
+	min-height: 20px;
+	background-color: rgb(237, 237, 237);
+    border-radius: 5px;
+}
+
+QPlainTextEdit QScrollBar::add-line:vertical,
+QPlainTextEdit QScrollBar::sub-line:vertical {
+    height: 0px; 
+}
+</string>
      </property>
      <property name="inputMethodHints">
       <set>Qt::ImhNone</set>
      </property>
      <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -135,6 +154,76 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
      </property>
      <property name="textInteractionFlags">
       <set>Qt::NoTextInteraction</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="explanation_Button_algorithm">
+     <property name="geometry">
+      <rect>
+       <x>33</x>
+       <y>673</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
+}
+QPushButton::!enabled {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	font: 18pt &quot;Futura Hv BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/resources/arrowleft.png</normaloff>:/resources/arrowleft.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="explanation_Button_explanation">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>670</y>
+       <width>171</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    border-radius: 5px;
+	background-color: rgb(105, 111, 128);
+	color: rgb(235, 235, 235);
+	font: 18pt &quot;Futura Hv BT&quot;;
+}
+QPushButton::!enabled {
+    border-radius: 5px;
+	background-color: rgb(43, 48, 63);
+	font: 18pt &quot;Futura Hv BT&quot;;
+	color: rgb(217, 217, 217);
+}
+QPushButton::hover {
+	background-color: rgb(152, 161, 186);
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/resources/arrow_right.png</normaloff>:/resources/arrow_right.png</iconset>
      </property>
     </widget>
    </widget>
@@ -1851,7 +1940,7 @@ font: 12pt &quot;Futura Bk BT&quot;;
      <x>0</x>
      <y>0</y>
      <width>1550</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>

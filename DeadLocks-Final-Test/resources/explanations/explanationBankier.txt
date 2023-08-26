@@ -1,36 +1,14 @@
-Bankier Algorithm:
+Request:
+When the process has requested to find the next resource it will first select the next resource it wants to reserve along with the amount.
 
-Step 1: Initialization
+Checking for save state:
+When the next resource has been selected the banker's algorithm will check if the state resulting from the reservation of that resource will be save or not through these three steps:
 
-The algorithm starts with the current available resources and the maximum demand of each process.
+1. In the requirements matrix search for a row with values smaller or equal to the currently free resources array. If there is none the state isn't save and the resources won't be reserved.
 
-Step 2: Request for Resources
+2. If a matching row is found it will be marked as finished and the resource counts are added to the currently free resources array.
 
-When a process requests resources, the system checks if the requested resources are available.
-If the requested resources are less than or equal to the available resources, the system temporarily grants the resources to the process for testing purposes.
+3. Repeat the steps 1 and 2 until all processes are marked as finished. If all are smaller or equal the current state is save, otherwise, it's a possible deadlock and won't be reserved.
 
-Step 3: Safety Check
-
-The system performs a safety check to determine if allocating the requested resources would result in a safe state.
-It simulates the allocation by marking the requested resources as allocated for that process and reducing the available resources accordingly.
-
-Step 4: Test for Safe State
-
-The algorithm checks if the system remains in a safe state after allocating the requested resources.
-It uses a loop to iteratively find a process that can be completed with the available resources.
-If such a process is found, its allocated resources are released and added back to the available resources.
-The loop continues until no more processes can be completed or all processes are completed.
-
-Step 5: Decide to Grant or Delay
-
-If the system can reach a safe state after allocating the requested resources, the resources are actually granted to the process.
-If not, the requested resources are not granted, and the process is kept waiting.
-
-Step 6: Release Resources
-
-When the process finishes using the allocated resources, it releases them.
-The released resources are added back to the available resources.
-
-Step 7: Repeat
-
-The process repeats as new resource requests and releases occur.
+Reservation:
+If the algorithm marks the current state as save, the process will acquire the resources needed by the requesting process.

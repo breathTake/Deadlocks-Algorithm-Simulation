@@ -1,33 +1,12 @@
-Eliminate No Preemption:
+Request:
+When the process has requested to find the next resource it will first select the next resource it wants to reserve along with the amount.
 
-Step 1: Initialization
+Reservation:
+After finding the next resource the process will occupy the specified amount of the resource.
 
-At the start, all resources are unallocated and available for allocation.
-
-Step 2: Resource Request
-
-When a process requests a resource, the system checks if the requested resources are available.
-If the requested resources are available, they are allocated to the process, and the system updates the allocation status.
-
-Step 3: Holding Resources
-
-Once a process holds resources, they cannot be forcefully taken away. This prevents the process from entering a state where it's holding resources and waiting for more.
-
-Step 4: Resource Release
-
-When a process finishes using the allocated resources, it releases them voluntarily.
-The released resources are added back to the available pool.
-
-Step 5: Allocation to Other Processes
-
-The released resources can now be allocated to other processes that need them.
-This allocation ensures that resources are utilized efficiently while adhering to the no preemption rule.
-
-Step 6: Avoiding Deadlocks
-
-By eliminating preemption, the system guarantees that a process cannot be left in a state where it holds some resources and is waiting indefinitely for others.
-This condition ensures that the circular wait condition of the deadlock is avoided.
-
-Step 7: Repeat
-
-The process repeats as new resource requests and releases occur.
+Preemption:
+To eliminate the no preemption requirement the resources have to be revokable by another thread.
+To do that the Round-Robin system is used to divide the usage of each resource into time slots, the size of the maximum amount an occupation can take.
+When a process starts the occupation of a resource a timer will be started.
+If the process finishes in time nothing will happen but if the process exceeds the time slot the resource will be revoked from that process.
+When a process gets revoked another process can try to go through with the occupation and the revoked process will try to reserve that resource at a later time.

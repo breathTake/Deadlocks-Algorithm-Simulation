@@ -172,7 +172,7 @@ font: 12pt &quot;Futura Bk BT&quot;;
 background-color: none;</string>
    </property>
    <property name="text">
-    <string>Resources:</string>
+    <string>Resources used:</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -425,7 +425,7 @@ font: 12pt &quot;Futura Bk BT&quot;;
 background-color: none;</string>
    </property>
    <property name="text">
-    <string>Runtime</string>
+    <string>Runtime:</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

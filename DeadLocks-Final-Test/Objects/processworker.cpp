@@ -80,7 +80,6 @@ void ProcessWorker::requestResource()
 
         //if interruption was requested return
         if(QThread::currentThread()->isInterruptionRequested()){
-            qDebug() << "interrupting";
             return;
         }
 

@@ -14,6 +14,7 @@ SystemProcess::SystemProcess(QString name,int processId)
 
 SystemProcess::SystemProcess(QString name,int processId, int maxPrinters, int maxCDs, int maxPlotters, int maxTapeDrives)
 {
+
     this->name = name;
     this->processId = processId;
     this->revokedResourceId = -1;
@@ -28,15 +29,8 @@ SystemProcess::SystemProcess(QString name,int processId, int maxPrinters, int ma
     neededResources.append(SystemResource("Plotter", 2, randomPlotterCount));
     neededResources.append(SystemResource("TapeDrive", 3, randomTapeDriveCount));
 
+    //Shuffles the needed Resources inside the NeededResources List
     shuffleNeededResources();
-
-    QList<int> done;
-    int neededResourcesCounter = 0;
-
-
-    for(int i = 0; i < neededResources.count(); i++){
-        qDebug() << "Process " << processId << " has " << neededResources.at(i).getCount() << " " << neededResources.at(i).getName() << "s in List index: " << i;
-    }
 }
 
 

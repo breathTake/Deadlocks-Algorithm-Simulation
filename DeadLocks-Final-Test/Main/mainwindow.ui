@@ -132,8 +132,10 @@ QPlainTextEdit QScrollBar::handle:vertical {
 
 QPlainTextEdit QScrollBar::add-line:vertical,
 QPlainTextEdit QScrollBar::sub-line:vertical {
-    height: 0px; 
+    height: 0px;
 }
+
+
 </string>
      </property>
      <property name="inputMethodHints">
@@ -398,7 +400,7 @@ font: 14pt &quot;Futura Bk BT&quot;;</string>
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPlainTextEdit{ 
+         <string notr="true">QPlainTextEdit{
 	padding-top: 15px;
 	padding-left: 50px;
 	border-radius: 5px;

@@ -120,7 +120,8 @@ font: 18pt &quot;Futura Hv BT&quot;;</string>
 
 QPlainTextEdit QScrollBar:vertical {
     width: 10px; /* Width of the scrollbar */
-	background-color: rgb(106, 112, 129);
+	
+	background-color: rgb(105, 111, 128);
     border-radius: 5px;
 }
 
@@ -134,6 +135,8 @@ QPlainTextEdit QScrollBar::add-line:vertical,
 QPlainTextEdit QScrollBar::sub-line:vertical {
     height: 0px; 
 }
+
+
 </string>
      </property>
      <property name="inputMethodHints">

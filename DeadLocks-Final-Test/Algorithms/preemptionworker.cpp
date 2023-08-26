@@ -7,11 +7,13 @@ int maxWaitTime;
 PreemptionWorker::PreemptionWorker(QObject *parent) :
     QObject{parent}
 {
+    //init the max slot time for the resources
     maxWaitTime = max(max(ProcessWorker::differenceResources_A[0],ProcessWorker::differenceResources_A[1]),max(ProcessWorker::differenceResources_A[2],ProcessWorker::differenceResources_A[3]));
     maxWaitTime *= 2500;
 }
 
 void PreemptionWorker::reservationStarted(int processId, int nextResource, int nextCount){
+    //when the reservation was startet the coresponding timers have to be startet and the variables have to be saved for the release
     switch(nextResource){
     case 0:
         if(!NoPreemption::slotPrinterLocked){
@@ -56,6 +58,7 @@ void PreemptionWorker::reservationStarted(int processId, int nextResource, int n
 }
 
 void PreemptionWorker::reservationFinished(int processId, int nextResource, int nextCount, bool notProcessedYet){
+    //when the reservation was finished without exeeding the slot time the timers are stoped and no more action needs to be taken
     if(!notProcessedYet){
         switch(nextResource){
             case 0:
@@ -83,6 +86,7 @@ void PreemptionWorker::reservationFinished(int processId, int nextResource, int 
 }
 
 void PreemptionWorker::initTimers(){
+    //initialize the timer objects and set up the connections
     timerPrinter  = new QTimer();
     timerCD = new QTimer();
     timerPlotter = new QTimer();
@@ -95,6 +99,7 @@ void PreemptionWorker::initTimers(){
 }
 
 void PreemptionWorker::revokePrinter(){
+    //when the time slot of the printer is oversteped the process will be revoked from using the printer and emit that it was revoked
     ProcessWorker::semaphorePrinter->release(nextPrinterCount);
     switch(processPrinter){
     case 0:
@@ -114,6 +119,7 @@ void PreemptionWorker::revokePrinter(){
 }
 
 void PreemptionWorker::revokeCD(){
+    //when the time slot of the cd is oversteped the process will be revoked from using the cd and emit that it was revoked
     ProcessWorker::semaphoreCD->release(nextCDCount);
     switch(processCD){
     case 0:
@@ -133,6 +139,7 @@ void PreemptionWorker::revokeCD(){
 }
 
 void PreemptionWorker::revokePlotter(){
+    //when the time slot of the plotter is oversteped the process will be revoked from using the plotter and emit that it was revoked
     ProcessWorker::semaphorePlotter->release(nextPlotterCount);
     switch(processPlotter){
     case 0:
@@ -153,6 +160,7 @@ void PreemptionWorker::revokePlotter(){
 }
 
 void PreemptionWorker::revokeTapeDrive(){
+    //when the time slot of the tapedrive is oversteped the process will be revoked from using the tapedrive and emit that it was revoked
     ProcessWorker::semaphoreTapeDrive->release(nextTapeDriveCount);
     switch(processTapeDrive){
     case 0:

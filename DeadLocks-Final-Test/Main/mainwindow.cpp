@@ -554,13 +554,10 @@ void MainWindow::on_button_restart_simulation_clicked()
     QStringList arguments = QApplication::arguments();
     arguments.removeFirst(); // Remove the current executable from the arguments
     QProcess::startDetached(QApplication::applicationFilePath(), arguments);
-#else
-    // Restart the application on other platforms (Linux, etc.)
-    // You may need to implement a platform-specific method for other operating systems.
 #endif
 }
 
-//put explanation in
+
 void MainWindow::loadTextFileIntoPlainTextEdit(const QString &filePath) {
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -568,7 +565,7 @@ void MainWindow::loadTextFileIntoPlainTextEdit(const QString &filePath) {
         ui->explanation_plainTextEdit->setPlainText(in.readAll());
         file.close();
     } else {
-        // Handle error if the file couldn't be opened
+        qDebug() << "error opening file";
     }
 }
 
@@ -620,6 +617,14 @@ void MainWindow::setShadows()
     effectShadow11->setBlurRadius(10);
     effectShadow11->setColor(QColor(0, 0, 0, 255 * 0.2));
     effectShadow11->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow12 = new QGraphicsDropShadowEffect();
+    effectShadow12->setBlurRadius(10);
+    effectShadow12->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow12->setOffset(0,2);
+    QGraphicsDropShadowEffect* effectShadow13 = new QGraphicsDropShadowEffect();
+    effectShadow13->setBlurRadius(10);
+    effectShadow13->setColor(QColor(0, 0, 0, 255 * 0.2));
+    effectShadow13->setOffset(0,2);
     ui->button_restart_simulation->setGraphicsEffect(effectShadow1);
     ui->button_start_simulation->setGraphicsEffect(effectShadow2);
     ui->button_stop_simulation->setGraphicsEffect(effectShadow3);
@@ -631,6 +636,8 @@ void MainWindow::setShadows()
     ui->Cd_background_label->setGraphicsEffect(effectShadow9);
     ui->Plotter_background_label->setGraphicsEffect(effectShadow10);
     ui->Tapedrive_background_label->setGraphicsEffect(effectShadow11);
+    ui->explanation_Button_algorithm->setGraphicsEffect(effectShadow12);
+    ui->explanation_Button_explanation->setGraphicsEffect(effectShadow13);
 }
 
 void MainWindow::on_explanation_Button_explanation_clicked()
